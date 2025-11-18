@@ -4,5 +4,5 @@ This repository documents Tutorials and Reader's Notes about __Linux Administrat
 
 ## Contributions
 
-Feel free to contribute with feedback or suggestions for new challenges!
+Feel free to contribute with feedback or suggestions for new tutorials!
 
