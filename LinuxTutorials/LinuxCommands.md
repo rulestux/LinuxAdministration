@@ -6,7 +6,7 @@
 ### uname
 - exibe a arquitetura do sistema, a versão do kernel a distribuição e a versão
 da distribuição.
-- __opções:__
+- **opções:**
     - -a, --all;
 	- -s, --kernel-name;
 	- -n, --nodename;
@@ -17,31 +17,31 @@ da distribuição.
 	- -i, --hardware-platform;
 	- -o, --operating-system.
 
-### man COMMAND
-- acessa arquivos de ajuda da documentação dos comandos localizados em */usr/share/man*; note que o diretório de manuais está divido em sessões;
+### man 
+- acessa arquivos de ajuda da documentação de um comando fornecido a seguir, a partir dos arquivos localizados em '/usr/share/man'; note que o diretório de manuais está divido em sessões;
 - 'man' funciona apenas com o nome exato do comando.
 
-### apropos PATTERN
-- explora os nomes e descrições das páginas de manuais (man pages), permitindo encontrar o objeto de busca de um modo mais gnérico;
+### apropos
+- explora os nomes e descrições das páginas de manuais (man pages) de um comando fornecido a seguir, permitindo encontrar o objeto de busca de um modo mais gnérico;
 - equivale a ```man -k ```.
 
-### info COMMAND
-- exibe uma versão resumida de 'man'.
+### info
+- exibe uma versão resumida de 'man' para um comando fornecido a seguir.
 
-### whatis COMMAND
-- obtém informações sumárias em poucas linhas de um comando, indicando a sessão 'man', de onde o termo foi localizado.
+### whatis
+- obtém informações sumárias em poucas linhas de um comando fornecido a seguir, indicando a sessão 'man', de onde o termo foi localizado.
 
-### which COMMAND
-- retorna sempre a localização absoluta de um executável, buscando pelos caminhos parents especificados na variável $PATH;
+### which
+- retorna sempre a localização absoluta de um executável fornecido, buscando pelos caminhos parents especificados na variável $PATH;
 - com a opção '-a', todos os nomes de caminho para o executável são exibidos;
 - busca apenas em caminhos especificados na variável $PATH.
 
-### type COMMAND
-- retorna igualmente informações sobre um binário e seu tipo, em relação ao bash, caso seja builtin;
+### type
+- retorna igualmente informações sobre um binário fornecido e seu tipo, em relação ao bash, caso seja builtin;
 - a opção '-a' é análoga à de which;
 - a opção '-t' detalha o tipo.
 
-### whereis COMMAND
+### whereis
 - equivale a which, mas retorna também a localização das páginas de manual ou código fonte do programa;
 - a opção '-b' filtra o resultado pelo binário;
 - a opção '-m' retorna a localização do manual;
@@ -49,7 +49,7 @@ da distribuição.
 
 ### echo
 - exibe as strings e variáveis informadas;
-- __opções:__ 
+- **opções:** 
 	- '-e' seguida de strings em aspas, permite formatação de conteúdo, habilitando a exibição de caracteres especiais com escape '\', como
 		- tabulação: '\t';
 		- nova linha: '\n';
@@ -57,7 +57,7 @@ da distribuição.
 
 ### read
 - comando para entrada (leitura) de dados;
-- __opções:__
+- **opções:**
 	- '-p' permite inserir um 'prompt' entre aspas para se exibir antes da entrada dos dados;
 	- '-s' oculta o que é digitado, sendo útil para a inserção de senhas.
 
@@ -80,7 +80,7 @@ da distribuição.
 ### bash and zsh
 - como comando, inicia um shell filho, seja em um pts \(pseudo terminal slave - emulador de terminal) ou em um tty \(teletypewritter); 
 - para abrir um console tty, pode-se usar as combinações ctrl+alt+F1-F6; ctrl+alt+F7 retorna ao desktop;
-- __opções para o comando bash:__
+- **opções para o comando bash:**
 	- '-l' ou '--login' invocam um shell de login;
 	- '-i' invoca um shell interativo;
 	- '--noprofile' em shell de login, ignora arquivos feito '/etc/profile' de sistema e '~/.bash_profile', '~/.bash_login' e '~/.profile' de usuário;
@@ -96,7 +96,7 @@ da distribuição.
 	- 'bash' ou '/bin/bash' interativo sem login;
 	- 'nome_de_script' não interativo.
 
-- __Bash Built-in Variables:__
+- **Bash Built-in Variables:**
 	- $? referencia o resultado do último comando, sendo '0' sucesso;
 	- $$ expande-se para o PID do shell;
 	- $! expande-se para o PID do último trabalho em segundo plano;
@@ -120,7 +120,7 @@ da distribuição.
 ### declare
 - 'declare -x' equivale a export;
 - 'declare -f' lista funções.
-- __arrays:__
+- **arrays:**
 	- ```$ declare -a ARRAY```
 	- ```$ ARRAY=( 1 2 3 4 5 )```
 	- ```$ echo ${ARRAY}```
@@ -141,8 +141,8 @@ da distribuição.
 ### set
 - exibe todas as variáveis locais e globais e funções do shell atual.
 
-### unset VAR
-- desconfigura valores e atributos de varáveis e funções do shell.
+### unset
+- desconfigura valores e atributos de varáveis e funções do shell fornecidas a seguir.
 
 ### env
 - estende e modifica as variáveis de ambiente (apenas variáveis globais).
@@ -157,7 +157,7 @@ da distribuição.
 
 ### alias
 - comando que retorna aliases disponíveis ou permite criar novos;
-- para desconfigurar um alias, usa-se __unalias__.
+- para desconfigurar um alias, usa-se **unalias**.
 
 ### source
 - comando que executa scripts num mecanismo chamado sourcing;
@@ -165,9 +165,9 @@ da distribuição.
 
 ### test
 - 'test' e ```[ ]``` retornam booleano true ou false.
-- __opções para test__
+- **opções para test**
 	- podem-se usar variáveis para estas opções, desde que sejam referenciadas entre aspas duplas;
-	- __ARQUIVOS__	
+	- **ARQUIVOS**	
 	- '-a' testa se o destino de um caminho fornecido é um arquivo;
 	- '-b' se é um bloco especial;
 	- '-c' se é um caractere especial;
@@ -191,78 +191,75 @@ da distribuição.
 	- '-nt' se o destino de um caminho anteriormente fornecido é mais recente que o caminho seguinte, conforme última modificação;
 	- '-ot' se é mais antigo;
 	- '-ef' se é link físico um para o outro;
-	- __TEXTOS__
+	- **TEXTOS**
 	- '-z' testa se o conteúdo de uma variável de texto está vazia, feito uma string de tamanho 0;
 	- '-n' se não está vazia;
 	- '=' ou '==' compara se duas variáveis têm conteúdos de texto iguais;
 	- '!=' se diferentes;
 	- '<' e '>' se vêm antes ou depois em ordem alfabética, respectivamente;
-	- __OPERADORES DE COMPARAÇÃO COM NÚMEROS__
+	- **OPERADORES DE COMPARAÇÃO COM NÚMEROS**
 	- '-lt' menor que;
 	- '-gt' maior que;
 	- '-le' menor ou igual;
 	- '-ge' maior ou igual;
 	- '-eq' igual;
 	- '-ne' diferente;
-	- __MODIFICADORES__
+	- **MODIFICADORES**
 	- '!' testa se uma expressão que se seguir é falsa;
 	- '-a' testa se uma anterior e outra seguinte são verdadeiras;
 	- '-o' testa se ou a anterior ou a seguinte é verdadeira.
 
-============================================================
+------------------------------------------------------------
 
 ## TEXT FILTERING:
 
-### cat *file*
-- combina e retorna o conteúdo de arquivos de texto simples.
-- *cat* retorna o conteúdo de um arquivo, com um output que pode ser direcionado para outro arquivo, usando ```>``` ou ```>>```; 
+### cat
+- combina e retorna o conteúdo de arquivos de texto simples fornecidos;
+- 'cat' retorna o conteúdo de um arquivo, com um output que pode ser direcionado para outro arquivo, usando ```>``` ou ```>>```; 
 - com ```<```, seguido do caminho do arquivo, o conteúdo é exibido na tela;
-- __opções:__
+- **opções:**
     - '-n' numera todas as linhas, incluso linhas em branco;
     - '-b' numera apenas linhas escritas;
-- __tac__ retorna o conteúdo de um arquivo de forma invertida;
-- __bzcat__, __xzcat__ e __zcat__ processam ou lêem arquivos comprimidos usando os métodos bzip2, xz e gzip, respectivamente.
+- **tac** retorna o conteúdo de um arquivo de forma invertida;
+- **bzcat**, **xzcat** e **zcat** processam ou lêem arquivos comprimidos usando os métodos bzip2, xz e gzip, respectivamente.
 
-### cat /etc/shells
-- exibe todos os shells instalados no sistema.
+### less
+- pagina o conteúdo de um arquivo fornecido a seguir, possibilitando navegação e pesquisa.
 
-### less *file*
-- pagina o conteúdo de um arquivo, possibilitando navegação e pesquisa.
-
-### head *file*
-- exibe as dez primeiras linhas; 
+### head
+- exibe as dez primeiras linhas de um arquivo fornecido a seguir; 
 - a opção '-n N' permite personalizá-lo, enumerando a quantidade de linhas desejadas em 'N'.
 
-### tail *file*
-- exibe as dez últimas linhas; 
-- __opções:__
+### tail
+- exibe as dez últimas linhas de um arquivo; 
+- **opções:**
 	- '-n N' permite personalizá-lo, enumerando a quantidade de linhas desejadas em 'N'; 
 	- '-f' segue a saída do arquivo de texto conforme novos dados são acrescidos a ele em tempo real.
 
-### diff *file file*
-- compara dois arquivos e não retorna coisa alguma se eles forem idênticos;
+### diff
+- compara dois arquivos fornecidos a seguir e não retorna coisa alguma se eles forem idênticos;
 - retorna a diferença quando são diferentes.
 
-### wc *options file*
-- word count;
-- __opções:__
+### wc
+- word count options file;
+- **opções:**
     - '-l' número de linhas;
     - '-w' número de palavras;
     - '-m' número de caracteres.
 
-### sort *file*
+### sort
 - retorna o conteúdo dos arquivos em ordem alfabética;
-- __opções:__
+- **opções:**
     - '-r' reverte (inverte) a ordem.
 
-### uniq *file*
+### uniq
 - retorna o conteúdo de um arquivo, sem exibir linhas com conteúdo repetido em sequência;
 - para retornar sem qualquer repetição, usar uma sintaxe de redirecionamento do output: ```$ sort file | uniq```.
-- __opções:__
+- **opções:**
     - '-d' exibe somente as linhas que se repetem;
     - '-c' conta e exibe a quantidade de vezes que uma linha se repete.
 
-### nl *file*
+### nl
 - numera as linhas de um arquivo, usando a sintaxe:
 
 	- ```$ cat /caminho/do/arquivo | nl ```
@@ -270,7 +267,7 @@ da distribuição.
 
 ### sed
 - editor de fluxo de texto simples.
-- __opções e parâmetros:__
+- **opções e parâmetros:**
 	- retornar uma linha com um padrão:
 
 		- ```$ sed -n /PATTERN/p FILENAME ```
@@ -298,7 +295,7 @@ da distribuição.
 
 ### tr
 - translate:
-- __Opções e parâmetros:__
+- **Opções e parâmetros:**
 
 	- mudar minúsculas para maiúsculas:
 
@@ -315,7 +312,7 @@ da distribuição.
 		- ```$ tr -d [:blank:] ```
 
 ### cut
-- corta e exibe partes de um arquivo de texto, separando-o em colunas, usando um caractere fornecido como referência ```-d'caractere'```, seguido da posição \(campos) dos elementos a serem exibidos com 					```-f número,número,número```:
+- corta e exibe partes de um arquivo de texto, separando-o em colunas, usando um caractere fornecido como referência ```-d'caractere'``` \(delimitador), seguido da posição \(campos) dos elementos a serem exibidos com 					```-f número,número,número```:
 
 	- ```$ cut -d; -f1,6,7 /caminho/do/arquivo ```
 
@@ -323,23 +320,22 @@ da distribuição.
 
 	- ```$ cut -d; -c2-8 /caminho/do/arquivo ```
 
-### paste *file1 file2*
-
-- retorna uma comparação linha a linha de dois arquivos em paralelo;
+### paste
+- retorna uma comparação linha a linha de dois arquivos fornecidos em paralelo;
 
 	- ```$ paste -d, FILE FILE``` une dois arquivos incluindo ',' como delimitador de campos.
 
 ### split *file newfile*
 - divide um arquivo em vários arquivos;
-- __opções:__
+- **opções:**
     - '-l N' divide o arquivo em arquivos de 'N' linhas;
 	- '-b N' divide o arquivo em arquivos de 'N' bytes;
 	- '-d PATTERN' numera os arquivos resultantes seguindo um padrão;
 - se o parâmetro '-l' não for definido, o split separa por padrão em arquivos com 1000 linhas.
 
-### od *file*
-- 'octal dump' retorna o conteúdo do arquivo em formato octal; 
-- __opções:__
+### od
+- 'octal dump' retorna o conteúdo do arquivo fornecido em formato octal; 
+- **opções:**
 	- '-x' retorna em hexadecimal; frequentemente usado com '-tx'.
 	- '-c' retorna caracteres que normalmente não são visíveis, feito marcas de quebra de linha '\n';
 	- '-An' oculta a primeira coluna de deslocamento de bytes.
@@ -351,13 +347,13 @@ da distribuição.
 - a opção '-o' ou '--output' pode ser usada no lugar do redirecionamento.
 
 
-============================================================
+------------------------------------------------------------
 
 ## PRINTING:
 
 ### lpadmin
 - comando legado para gerenciamento de impressão e adição de impressora;
-- __opções:__
+- **opções:**
 	- '-p' destino do trabalho de impressão \(nome da impressora);
 	- '-L' define a localização física da impressora entre aspas;
 	- '-v' define a URI do dispositivo;
@@ -373,7 +369,7 @@ da distribuição.
 		- 'abort-job'
 		- 'stop-printer'
 		- 'retry-current-job'
-	'-x' seguido do nome da impressora remove uma impressora, semelhante ao '__cupsreject -r__'.
+	'-x' seguido do nome da impressora remove uma impressora, semelhante ao '**cupsreject -r**'.
 
 ### lpinfo
 - comando que lista os arquivos PPD instalados;
@@ -415,12 +411,12 @@ da distribuição.
 - comando que exclui um trabalho de impressão cujo ID de trabalho seja fornecido;
 - a opção '-P' permite especificar a impressora pelo nome;
 - um hífen '-' no lugar do ID exclui todos os trabalhos da impressora padrão;
-- '__cancel__' é um comando alternativo do CUPS para a mesma finalidade, seguido do nome da impressora e do ID do trabalho, separados por um traço.
+- '**cancel**' é um comando alternativo do CUPS para a mesma finalidade, seguido do nome da impressora e do ID do trabalho, separados por um traço.
 
 ### lpmove
 - comando que move um trabalho de uma fila de impressão para outra, ao se fornecerem o nome da impressora, o ID do trabalho após um traço e o nome da impressora destino após um espaço.
 
-============================================================
+------------------------------------------------------------
 
 ## FILE MANAGEMENT
 
@@ -429,21 +425,21 @@ da distribuição.
 
 ### cd */path/to/directory/*
 - muda o diretório corrente;
-- __opções:__
+- **opções:**
     - .. equivale ao diretório pai;
     - ~ equivale ao diretório home do usuário ou /root;
     - \- equivale ao diretório anteriormente visitado.
 
 ### mv */origin/path /final/path*
 - move ou renomeia arquivos e diretórios;
-- __opções:__
+- **opções:**
     - '-i' interactive: pede confirmação para sobrescrever;
     - '-f' force: força sobrescrever;
     - '-v' verbose: mostra o processo.
 
 ### cp */origin/pash /final/path*
 - copia arquivos e diretórios;
-- __opções:__
+- **opções:**
     - '-i', '-f' e '-v' equivale aos mesmos em 'mv';
     - '-r', '-R' ou '--recursive' copiam inclusive arquivos e subdiretórios de um diretório;
     - '-b' backup: cria uma cópia de segurança dos arquivos que eventualmente sejam substituídos no diretório de destino;
@@ -451,14 +447,14 @@ da distribuição.
 
 ### mkdir */path/to/directory/*
 - cria diretórios;
-- __opções:__
+- **opções:**
     - '-v' equivale ao mesmo em 'mv';
     - '-m' mode: permite definir permissões do novo diretório;
     - '-p' parents ou path: permite criar diretórios pais até o diretório desejado.
 
 ### rm *file*
 - remove arquivos e diretórios;
-- __opções:__
+- **opções:**
     - '-i', '-f' e '-v' equivale aos mesmos em 'mv';
     - '-R', '-r' incluem arquivos e diretórios filhos à remoção de um diretório.
 
@@ -469,40 +465,40 @@ da distribuição.
 
 ### ls
 - comando básico para listar conteúdo de diretórios;
-- __opções:__
+- **opções:**
 	- '-l' exibe os resultados em forma de lista;
 	- '-a' exibe todos os arquivos, incluindo ocultos;
 	- '-h' exibe dados de forma humanizada;
 	- '-d' exibe atributos de arquivos para um diretório fornecido, em vez de listar seu conteúdo;
 	- '-i' exibe inodes dos arquivos.
 
-- o comando '__ls -la__' retorna uma coluna com símbolos alfabéticos representando o tipo do arquivo e as permissões de:
+- o comando '**ls -la**' retorna uma coluna com símbolos alfabéticos representando o tipo do arquivo e as permissões de:
 	- 'u' usuário, 
 	- 'g' grupo, 
 	- 'o' outros;
-- __tipos de arquivo:__
+- **tipos de arquivo:**
 	- '-' arquivo normal;
 	- 'd' diretório;
 	- 'l' link simbólico - symlink;
 	- 'b' dispositivo de bloco;
 	- 'c' dispositivo de caracter, que pode ser a representação de um dispositivo virtual ou físico;
 	- 's' socket;
-- __permissões:__
+- **permissões:**
 	- '-' nenhuma permissão; octal 0;
 	- 'x' execução; para diretórios, permite abrir o diretório; octal 1;
 	- 'w' gravação, escrita; octal 2;
 	- 'r' leitura; octal 4.
-	- __permissões especiais:__
-		- 't' __Stick Bit__ substitui 'x' em outros; octal 1:
+	- **permissões especiais:**
+		- 't' **Stick Bit** substitui 'x' em outros; octal 1:
 			- reforça a propriedade exclusiva do usuário sobre arquivos criados no diretório, impedindo a exclusão por outros usuários;
-		- 's' __Set GID__ substitui 'x' em grupo; octal 2:
+		- 's' **Set GID** substitui 'x' em grupo; octal 2:
 			- aplicado a diretórios, faz com que arquivos criados no diretório herdem o grupo do diretório no lugar do grupo do usuário;
-		- 's'  __Set UID__ substitui 'x' em usuário; octal 4:
+		- 's'  **Set UID** substitui 'x' em usuário; octal 4:
 			- dá aos usuários as permissões de execução de arquivos a outros usuários.
 
 ### tar *options directory*
 - arquiva diretórios e seus respectivos conteúdos em pacotes \*.tar;
-- __opções para empacotamento:__
+- **opções para empacotamento:**
     - '-c', '--create' criam o arquivo \*.tar;
     - '-v' verbose para exibir cada arquivo que será incluído;
     - '-p' para preservar as propriedades dos arquivos a serem arquivados;
@@ -512,26 +508,26 @@ da distribuição.
         - com gzip: '-z' em '-czvf';
         - com bzip2: '-j' em '-cjvf'
     - '-tf' exibe a lista dos arquivos que foram arquivados no pacote especificado;
-- __opções para desempacotamento:__
+- **opções para desempacotamento:**
     - '-x', '--extract' opção para desempacotar, normalmente usada na combinação '-xvf', o nome do arquivo \*.tar, '-C' para em seguida especificar o diretório destino;
     - para desempacotar e descompactar: '-xzvf' ou '-xjvf'.
 
-### gzip *file*
+### gzip
 - comprime arquivos em arquivos \*.gz;
-- __opções:__
+- **opções:**
     - '-d' para descomprimir com gzip;
-    ou usar __gunzip__ sem opções, para descompactar sem precisar de opções;
+    ou usar **gunzip** sem opções, para descompactar sem precisar de opções;
     - '-c' para comprimir e manter o arquivo original, com a sintaxe:
     	- ```$ gzip -c file.tar > finalfile.tar.gz ```
 
-### bzip2 *file*
+### bzip2
 - comprime arquivos com compressão maior, em arquivos \*.bz2;
-    - usa-se __bunzip2__ para descomprimir;
+    - usa-se **bunzip2** para descomprimir;
     - '-k' é a opção que substitui o '-c' do *gzip*.
 
-### xz *file*
+### xz
 - comprime arquivos com maior taxa de compressão dos três, em arquivos \*.xz;
-    - usa-se __unxz__ para descomprimir;
+    - usa-se **unxz** para descomprimir;
     - assim como no *bzip2*, o *xz* mantém o arquivo original com a opção '-k'.
 
 ### cpio
@@ -543,7 +539,7 @@ da distribuição.
 
 ### dd
 - faz cópias de arquivos byte a byte;
-- __sintaxe:__
+- **sintaxe:**
 	- ```$ dd if=oldfile of=newfile ```
 
 - exemplo:
@@ -569,15 +565,15 @@ da distribuição.
 - comando para criar links;
 - sintaxe: ```ln TARGET LINK_NAME```, em que:
 	- 'TARGET' é o destino para onde o link aponta;
-		- sem opçẽs, o 'ln' cria um __hardlink__, que se baseia em 'inodes' \(index nodes);
+		- sem opçẽs, o 'ln' cria um **hardlink**, que se baseia em 'inodes' \(index nodes);
 	- 'LINK_NAME' é o nome do link;
-	- com a opção '-s', o 'ln' cria um __symlink__ ou __soft link__ \(link simbólico) que, para poder ser movido, 
+	- com a opção '-s', o 'ln' cria um **symlink** ou **soft link** \(link simbólico) que, para poder ser movido, 
 precisa que o TARGET seja o caminho completo e exato para onde o symlink aponta.
 
 ### locate
 - comando que realiza busca por padrões fornecidos através do banco de dados '/var/lib/mlocate.db', gerado pelo updatedb;
-- __sintaxe de exemplo:__ ```$ locate jpg ```;
-- __opções:__
+- **sintaxe de exemplo:** ```$ locate jpg ```;
+- **opções:**
 	- '-i' ignora maiúsculas e minúsculas;
 	- '-A' refina por resultados que contenham todos os padrões fornecidos separados por espaço;
 	- '-c' conta e retorna o número de vezes que um padrão ocorre;
@@ -591,21 +587,21 @@ precisa que o TARGET seja o caminho completo e exato para onde o symlink aponta.
 	- 'PRUNEPATHS=' caminhos que devem ser ignorados;
 	- 'PRUNE_BIND_MOUNTS=' com 'yes' ou 'no', define se as bind mounts serão ignoradas.
 
-### md5sum *file*
-- retorna o registro hash da última alteração de um arquivo.
+### md5sum
+- retorna o registro hash da última alteração de um arquivo fornecido.
 - outputs a 32-character hexadecimal number.
 
-### sha256sum *file*
+### sha256sum
 - algoritmo aprimorado do comando anterior.
 - outputs a 64-character hexadecimal number.
 
-### sha512sum *file*
+### sha512sum
 - algoritmo aprimorado do comando anterior.
 - outputs a 128-character hexadecimal number.
 
 ### find STARTING_PATH OPTIONS EXPRESSION
 - busca arquivos de acordo com opções específicas;
-- __opções:__
+- **opções:**
     - '-name': opção case-sensitive para procurar pelo nome dos arquivos;
     - '-iname': opção para buscar sem case-sensitive;
     - '-type': filtra por tipo:
@@ -634,19 +630,19 @@ precisa que o TARGET seja o caminho completo e exato para onde o symlink aponta.
 	- '-user USERNAME' retorna apenas resultados com arquivos de 'USERNAME';
 	- '-group GROUPNAME' retorna apenas resultados com arquivos do 'GROUPNAME';
 	- '-delete' exclui os arquivos do resultado da busca;
-	- __permissões especiais__:
+	- **permissões especiais**:
 		- ```-perm numeric-value``` ou ```-perm symbolic-value``` exclusivamente;
 		- ```-perm -numeric-value``` ou ```-perm -symbolic-value``` inclusivamente;
 		- ```-perm /numeric-value``` ou ```-perm /symbolic-value``` qualquer permissão especial;
 		- em que 'numeric-value' pode ser 4000 para SUID ou 2000 para SGID ou /6000 para qualquer; e symbolic-value u+s ou g+s.
 
-============================================================
+------------------------------------------------------------
 
 ## REDIRECTS:
 
-### __xargs__
+### xargs
 - transforma comandos em argumentos de outros programas;
-- __exemplos__
+- **exemplos**
 	- passar o output de 'find' como argumento de 'ls -l';
 
 		- ```$ find /usr/sbin -iname 'i*' | xargs ls -l ```
@@ -655,25 +651,25 @@ precisa que o TARGET seja o caminho completo e exato para onde o symlink aponta.
 
 		- ```$ find /etc -iname '*.conf' -maxdepth 1 | xargs -i bash -c "echo listando o arquivo de configuração {}; ls -l {}" ```
 
-### __tee__
+### tee
 - permite visualizar e salvar em um arquivo o stdout de um programa
 em um redirecionamento.
 
-### __|__ Pipe
+### | Pipe
 - redireciona a saída (std-output) de um comando para a entrada (std-input) do que se seguir, trabalhando portanto da esquerda para a direita.
 
-### __\<__ Less Than \(menor que) - STDIN
-- entrada de dados padrão, equivale a __'0>'__;
+### \< Less Than - STDIN
+- entrada de dados padrão, equivale a **'0>'**;
 - exemplo:
 ```
 # cat </etc/shadow
 ```
 exibe o conteúdo de shadow;
 
-### __\>__ Greater Than \(maior que) - STDOUT
-- saída de dados padrão, equivale a __'1>'__;
+### \> Greater Than - STDOUT
+- saída de dados padrão, equivale a **'1>'**;
 - redireciona a saída para um arquivo, cujo nome deve seguir o símbolo, e então o cria ou sobrescreve;
-- __>>__ uma vez duplicado, o maior que adiciona a saída para o final do arquivo (append - apensar), mas também cria o arquivo, caso não exista.
+- **>>** uma vez duplicado, o maior que adiciona a saída para o final do arquivo (append - apensar), mas também cria o arquivo, caso não exista.
 
 - exemplos:
 
@@ -690,7 +686,7 @@ exibe o conteúdo de shadow;
 		- ```$ set -o noclobber``` ou ```$ set -C```; 
 		- desabilita-se com: ```$ set +o noclobber``` ou ```$ set +C```
 
-### __2> 2>>__ STDERR
+### 2> 2>> STDERR
 - saída de erro padrão, equivale a '2>'.
 
 ### Here Document and Here String
@@ -706,14 +702,14 @@ $ test.txt <<EOF
 - Here String permite redirecionar uma linha para um documento ou comando:
 	- ```$ test.txt <<<"string line 1" ```
 
-### __&__ Ampersand \(e comercial)
+### & Ampersand
 - executa um comando em segundo plano;
 - combinado a um redirecionador, alude aos descritores de arquivo 1 e 2 simultaneamente, permitindo operações com o stdout e stderr em conjunto, feito em:
 	- ``` &> ``` ou ```>&```;
 - combinado a um dos descritores de arquivo permite redirecionamentos de um descritor para outro:
 	- ``` 1>&2 ``` redireciona o stdout para o stderr; o inverso se expressa com: ``` 2>&1```.
 
-============================================================
+------------------------------------------------------------
 
 # SYSTEM ADMINISTRATION:
 
@@ -739,7 +735,7 @@ $ test.txt <<EOF
 
 ### modprobe
 - comando para carregar ou descarregar módulos do kernel;
-- __sintaxe:__ 
+- **sintaxe:** 
 	- ```# modprobe -r MODULE_NAME```.
 
 ### dmesg
@@ -751,7 +747,7 @@ $ test.txt <<EOF
 
 ### journalctl
 - utilitário que exibe os registros de log gerados pelo 'systemd-journald', os quais são armazenados em diários binários;
-- __opções:__
+- **opções:**
 	- '-r' exibe as mensagens em ordem reversa;
 	- '-f' retorna as mensagens mais recentes enquanto estiver em execução, equivalente a 'tail -f';
 	- '-e' salta para o final do diário;
@@ -786,7 +782,7 @@ $ test.txt <<EOF
 - comando que envia os sinais SIGTERM e SIGKILL a todos os processos;
 - quando as opções '-h' e '-r' não são usadas, o sistema alterna para o nível 1 de execução;
 - o parâmetro 'time' é obrigatório e recebe valores como hora exata para desligamento no formato 'hh:mm', '+m', em que 'm' é o valor em minutos, ou ainda 'now' ou '0', para desligamento imediato;
-- __opções:__
+- **opções:**
 	- '-h' encerra o sistema;
 	- '-r' reinicia o sistema;
 	- '-F' força a checagem do sistema de arquivos durante o boot;
@@ -810,7 +806,7 @@ ou
 - utilitário que retorna informações sobre arquivos objeto;
 	- '-p' ou '--private-headers' retorna dados de cabeçalho que podem ser filtrados com '| grep', feito NEEDED, SONAME etc..
 
-============================================================
+------------------------------------------------------------
 
 ## PARTITIONS
 
@@ -820,7 +816,7 @@ ou
 
 	- ```# fdisk /dev/sda```
 
-- __opções importantes:__
+- **opções importantes:**
 	- '-l' lista os discos ou partições em um disco fornecido;
 	- 'm' menu de ajuda com as opções de interação do fdisk;
 	- 'p' detalha informações a respeito do disco selecionado;
@@ -842,7 +838,7 @@ ou
 
 	- ```# gdisk /dev/sda```
 
-- __opções importantes:__
+- **opções importantes:**
 	- '?' ou 'h' para o menu de ajuda;
 	- 'p' detalha informações a respeito do disco selecionado;
 	- 'o' cria uma nova tabela de partições GUID - GPT;
@@ -865,9 +861,9 @@ ou
 	- as configurações do 'mke2fs' podem ser verificadas no arquivo '/etc/mke2fs'.
 	
 ### mkfs.ext4
-- os utilitários mkfs.ext2, mkfs.ext3 e mkfs.ext4 são links simbólicos para padrões de funcionamento do formatador de sistema de arquivos __mke2fs__.
+- os utilitários mkfs.ext2, mkfs.ext3 e mkfs.ext4 são links simbólicos para padrões de funcionamento do formatador de sistema de arquivos **mke2fs**.
 - a sintaxe de uso é ```# mkfs.ext4 /dev/sda1```;
-- __parâmetros e opções:__
+- **parâmetros e opções:**
 	- '-b SIZE' define o tamanho dos blocos, em que SIZE pode ser de 1024, 2048 ou 4096 por bloco;
 	- '-c' verifica se a partição tem blocos defeituosos; '-c -c' faz uma verificação lenta;
 	- '-d DIRECTORY' copia o conteúdo de um diretório específico para a raiz de um novo sistema de arquivos;
@@ -880,7 +876,7 @@ ou
 
 ### mkfs.xfs
 - 'xfs' é o sistema de arquivos padrão  de distribuições feito RedHat 7;
-- __opções:__
+- **opções:**
 	- '-b size=VALUE' define o tamanho do bloco em bytes, sendo o mínimo 512, 4096 o padrão e 65536 o máximo;
 	- '-m uuid=VALUE' define UUID da partição;
 	- '-f' força a criação de um sistema de arquivos xfs;
@@ -900,7 +896,7 @@ ou
 
 	- ```# select /dev/sdb```
 
-- __comandos:__
+- **comandos:**
 	- 'print' exibe as partições existentes no disco selecionado;
 	- 'print devices' lista todos os dispositivos de bloco conectados ao sistema;
 	- 'print all' exibe mas informações sobre os dispositivos;
@@ -929,13 +925,13 @@ ou
 		- ``` resizepart 3 300m	```
 	- 'quit' para sair do utilitário.
 
-============================================================
+------------------------------------------------------------
 
 ## FILE SYSTEMS:
 
 ### du
 - comando que retorna quantos blocos de 1 kilobyte estão sendo usados pelo diretório atual e pelos seus subdiretórios;
-- __opções:__
+- **opções:**
 	- '-h' retorna uma descrição mais humanizada, em megabytes, gigabytes etc.;
 	- '-a' retorna uma contagem individual para cada arquivo contido no diretório e subdiretórios;
 	- '-S' retorna o espaço utilizado pelo diretório atual menos os subdiretórios;
@@ -946,7 +942,7 @@ ou
 
 ### df
 - comando que retorna uma lista de dados dos sistemas de arquivos montados;
-- __opções:__
+- **opções:**
 	- '-h' retorna uma descrição mais humanizada, em megabytes, gigabytes etc.;
 	- '-i' retorna por inodes, em vez de blocos;
 	- '-T' inclui uma coluna com o tipo do sistema de arquivos de cada dispositivo montado;
@@ -961,7 +957,7 @@ ou
 - sua sintaxe é ```# fsck /dev/sdb1 ```;
 - o fsck deve ser usado somente em sistemas de arquivos não montados, sob pena de perda de dados;
 - sem especificar o sistema de arquivos, o fsck chama o e2fsck, próprio para sistemas do tipo ext2/3/4;
-- __opções:__
+- **opções:**
 	- '-t' especifica o tipo do sistema de arquivos da partição fornecida a seguir;
 	- '-A' verifica todos os sistemas de arquivos listados em '/etc/fstab';
 	- '-C' exibe uma barra de progresso no caso dos sistemas ext2/3/4;
@@ -976,7 +972,7 @@ ou
 ### tune2fs
 - utilitário de verificação e ajuste de parâmetros dos sistemas de arquivo ext2/3/4;
 - sintaxe: ```# tune2fs -l /dev/sda1```;
-- __opções:__
+- **opções:**
 	- '-l' lista os parâmetros de uma partição;
 	- '-c N' altera a contagem máxima de montagens até a próxima verificação automática, em que 'N' é o número de montagens;
 	- '-C N' altera o status da contagem atual;
@@ -999,7 +995,7 @@ ou
 ### xfs_repair
 - é o equivalente ao fsck para o sistema de arquivos XFS;
 - sintaxe: ```# xfs_repair -n /dev/sdb1 ```;
-- __opções:__
+- **opções:**
 	- '-n' verifica se há erros, sem ações de reparação; caso haja erros, executar o utiliário sem o parâmetro para corrigir;
 	- '-v' modo verboso; '-v -v' ainda mais detalhes são exibidos;
 	- '-d' modo dangerous, para reparar sistemas montados como somente leitura;
@@ -1010,7 +1006,7 @@ ou
 - utilitário para montagem de sistemas de arquivos;
 - sintaxe: ```# mount -t TYPE DEVICE MOUNTPOINT ```;
 - usando apenas 'mount', retorna uma lista de todos os sistemas de arquivo montados;
-- __opções:__
+- **opções:**
 	- '-t' indica que o próximo dado é o tipo do sistema de arquivos:
 		- '-t TYPE' retorna dispositivos montados com um tipo fornecido;
 		- pode-se informar vários separados por vírgula;
@@ -1029,8 +1025,8 @@ ou
 		- 'ro' e 'rw': define montagem somente leitura ou gravável;
 		- 'remount': tentar remontar um sistema de arquivos já montado, como em ```# mount -o remount,ro /dev/sdb1```, 
 		em que o sistema de arquivos é montado novamente como somente leitura; pode ser usado o ponto de montagem: ```# mount -o remount,ro /mnt/data```
-- para desmontar um sistema de arquivos, usa-se __unmount__, seguido pelo nome do dispositivo ou do ponto de montagem;
-- __opções para umount:__
+- para desmontar um sistema de arquivos, usa-se **unmount**, seguido pelo nome do dispositivo ou do ponto de montagem;
+- **opções para umount:**
 	- '-a' desmonta todos os sistemas de arquivos listados em '/etc/fstab';
 	- '-f' força a desmontagem;
 	- '-r' se o sistema de arquivos não puder ser desmontado, torna-o somente leitura.
@@ -1038,11 +1034,11 @@ ou
 ### lsof
 - utilitário que, seguido do nome do dispositivo que contém um sistema de arquivos que não pôde ser desmontado, lista os arquivos que estão sendo usados nesse sistema de arquivos e quais processos os estão usando.
  - ```$ lsof /dev/sdd2 ```
-- __lsof -i__ lista arquivos usados pela rede da 'internet':
+- **lsof -i** lista arquivos usados pela rede da 'internet':
 	- pode-se incluir o IP de um host para filtrar: 'lsof -i@192.168.1.7';
 	- ou porta: 'lsof -i :22';
 	- ou uma ou mais portas de um host específico: 'lsof -i@192.168.1.7:22,80';
-	- __outras opções além de -i:__
+	- **outras opções além de -i:**
 		- '-u' filtra por um usuário fornceido a seguir;
 		- '-c' filtra por um comando.
 
@@ -1061,13 +1057,13 @@ ou
 - utilitário alternativo para exibir os sistemas de arquivos;
 - com '-o list', os dados são organizados na tela.
 
-============================================================
+------------------------------------------------------------
 
 ## PROCESS MANAGEMENT:
 
 ### ps
 - retorna um instantâneo dos processos da sessão atual;
-- __opções:__
+- **opções:**
 	- '-u username' retorna todos os processos para um usuário fornecido;
 	- '-u username u' retorna todos os processos para um usuário, adicinando uma coluna descrevendo qual usuário iniciou o processo;
 	- 'au' retorna todos os processos; caso a saída for muito longa, usa-se ```ps ua | less``` para o comando 'less' paginar a saída;
@@ -1090,7 +1086,7 @@ ou
 	- 'P' lista os processos que usam mais processamento;
 	- 'L' permite digitar uma string com o nome de um processo a se localiar na lista;
 	- 'q' para quit;
-- __opções:__
+- **opções:**
 	- *'-p PID'* mostra o processo pelo PID fornecido;
 	- "'-u username'* mostra os processos de um determinado usuário.
 	
@@ -1123,7 +1119,7 @@ ou
 
 ### jobs
 - exibe os processos em segundo plano, inclusive os iniciados com o caracter especial '&';
-- __opções__
+- **opções**
 	- '-l' lista os processos em segundo plano com o PID;
 	- '-n' lista os que mudaram de status desde a última notificação;
 	- '-p' lista os IDs dos processos;
@@ -1137,7 +1133,7 @@ ou
 
 ### fg %
 - fg seguindo de '%' e o número do processo em segundo plano \(bg), traz o processo para o primeiro plano;
-- ctrl+z e '__bg %ID__' retornam o processo para o segundo plano.
+- ctrl+z e '**bg %ID**' retornam o processo para o segundo plano.
 
 ### nohup
 - mantém um comando em segundo plano ativo mesmo quando uma sessão é encerrada e reaberta:
@@ -1154,7 +1150,7 @@ $ kill -9 5542
 
 ### free
 - retorna o consumo de memória RAM e SWAP pelo sistema;
-- __opções:__
+- **opções:**
 	- '-m' retorna em megabytes.
 
 ### uptime
@@ -1186,11 +1182,11 @@ os números do 'load average' sinalizam a utilização dos recursos de um servid
 - comando que agenda tarefas únicas, para o daemon 'atd', cujo status é verificado com 'systemctl status atd';
 - o comando abre um prompt para inserção de comandos a executar que é encerrado por ctrl+D;
 - tem como equivalente o comando 'batch', que trabalha em carga baixa de sistema;
-- __sintaxe:__
+- **sintaxe:**
  ```$ at HOUR:MIN DD.MM.YY```
 	- em que a data e hora podem ser substituídas por palavras reservadas como:
 		- teatime, now, noon, midnight, today, tomorrow, now +valor etc.;
-- __opções para at:__
+- **opções para at:**
 	- '-c' retorna o conteúdo de comandos de um trabalho pelo ID fornecido;
 	- '-d' exclui trabalhos por ID, que pode ser consultado com 'atq'; 'at -d' é um alias para 'atrm';
 	- '-f' lê o trabalho a partir de um arquivo em vez da entrada padrão;
@@ -1243,13 +1239,13 @@ os números do 'load average' sinalizam a utilização dos recursos de um servid
 	- encerrar sessão única: '$ tmux kill-session'
 	- encerrar uma sessão entre várias: '$ tmux kill-session -t sessionname'
 
-============================================================
+------------------------------------------------------------
 
 ## LOCAL AND TIME:
 
 ### date
 - comando que exibe a hora e a data do sistema, além do fuso horário atual;
-- __opções:__
+- **opções:**
 	- '-u' exibe o horário UTC;
 	- '-s' altera a data e a hora, como exemplificado abaixo;
 	- '-I' formato ISO 8601; pode-se anexar '-Idate', '-Ihours', '-Iminutes', '-Iseconds' ou '-Ins' para refinar o resultado;
@@ -1278,13 +1274,13 @@ os números do 'load average' sinalizam a utilização dos recursos de um servid
 - comando systemd que exibe mais detalhes a respeito de hora, data e fuso horário;
 - o campo 'RTC time' exibe a hora do relógio do hardware;
 	- 'timedatectl set-time 'AAAA-MM-DD HH:MM:SS'' ajusta a hora, como comando preferencial com systemd;
-	- 'timedatectl set-ntp no' desativa o NTP: __Network Time Protocol__, hora da rede;
+	- 'timedatectl set-ntp no' desativa o NTP: **Network Time Protocol**, hora da rede;
  	- 'timedatectl list-timezones' lista timezones disponíveis;
 	- 'timedatectl set-timezone TIME/ZONE' redefine o link simbólico '/etc/localtime', que aponta para dados em '/usr/share/zoneinfo/;
-	- '__/usr/share/zoneinfo/__':
+	- '**/usr/share/zoneinfo/**':
 		- diretório que contém informações sobre diferentes fusos horários possíveis;
-		- a estrutura de subdiretórios e arquivos em '__/usr/share/zoneinfo/__', segue:
-			- __/usr/share/zoneinfo/REGION/LOCALE__
+		- a estrutura de subdiretórios e arquivos em '**/usr/share/zoneinfo/**', segue:
+			- **/usr/share/zoneinfo/REGION/LOCALE**
 		- para definir um fuso horário, cria-se um link simbólico em '/etc/localtime', como no exemplo:
 		 ```$ ln -s /usr/share/zoneinfo/Canada/Eastern /etc/localtime```
 		 ```# hwclock --systohc```, para sincronizar o relógio do hardware a partir do relógio do sistema;
@@ -1309,7 +1305,7 @@ os números do 'load average' sinalizam a utilização dos recursos de um servid
 
 ### tzselect
 - 'time zone select' é o programa interativo que permite configurar o fuso horário do sistema;
-- __$TZ__ é a variável de ambiente que contém o nome da região correspondente ao fuso configurado.
+- **$TZ** é a variável de ambiente que contém o nome da região correspondente ao fuso configurado.
 
 ### localectl
 - comando systemd que permite consultar ou definir a localidade do sistema:
@@ -1328,13 +1324,13 @@ os números do 'load average' sinalizam a utilização dos recursos de um servid
 - 'locale -a' exibe todas as configurações possíveis;
 - a atribuição 'LANG=C' \(Common), em script, força resultados iguais aos do padrão do sistema em que ele foi escrito.
 
-============================================================
+------------------------------------------------------------
 
 ## PACKAGE MANAGEMENT:
 
 ### dpkg *options package*
 - gerenciador de pacotes básico do Debian;
-- __opções:__
+- **opções:**
 	- '-i' instala o pacote cujo nome é fornecido a seguir;
 	- '-r' remove o pacote fornecido;
 	- '-P' *purge* remove o pacote fornecido e os arquivos de configuração correspondentes;
@@ -1351,7 +1347,7 @@ os números do 'load average' sinalizam a utilização dos recursos de um servid
 
 ### apt-get *options package*
 - 'advanced package tool' é o gerenciador de pacotes que inclui ferramentas de resolução de dependências;
-- __parâmetros e opções:__
+- **parâmetros e opções:**
 	- 'update' atualiza o índice de pacotes;
 	- 'install' instala um pacote fornecido na sequência; opções para install:
 		- '-f' procura consertar os pacotes quebrados, instalando dependências ausentes;
@@ -1369,7 +1365,7 @@ os números do 'load average' sinalizam a utilização dos recursos de um servid
 	
 ### apt-cache
 - ferramenta para executar operações com o índice de pacotes;
-- __parâmetros:__
+- **parâmetros:**
 	- 'depends' retorna a lista de dependências de um pacote fornecido na sequência;
 	- 'rdepends' retorna uma lista de dependência reversa, contendo os pacotes que dependem do pacote fornecido; 
 	- 'search' retorna uma lista com todos os pacotes que contêm um padrão fornecido na sequência;
@@ -1377,7 +1373,7 @@ os números do 'load average' sinalizam a utilização dos recursos de um servid
 	- 'showsrc' retorna os registros de pacotes fonte de um pacote fornecido.
 ### RPM Package Manager
 - ferramenta essencial de sistemas RedHat e derivados; equivale ao dpkg do Debian;
-- __opções:__
+- **opções:**
 	- '-i' instala o pacote fornecido a seguir;
 	- '-v' verbose - detalha o processo;
 	- '-h' exibe uma barra de cerquilhas, representando o progresso do processo; 
@@ -1385,7 +1381,7 @@ os números do 'load average' sinalizam a utilização dos recursos de um servid
 	- '-U' se existir uma versão anterior no sistema, atualiza para a mais recente;
 	- '-F' se caso usando '-U', só exista a versão recente, em vez de uma antiga, evita que uma nova cópia do mesmo pacote seja instalada;
 	- '-e' erase - desinstala um pacote fornecido na sequência;
-- __opções modo query:__
+- **opções modo query:**
 	- '-qa' query all - lista todos os pacotes instalados no sistema;
 	- '-qi' query info - lista informações sobre um pacote *instalado*;
 	- '-ql' query list - lista os arquivos que estão dentro de um pacote *instalado*;
@@ -1395,7 +1391,7 @@ os números do 'load average' sinalizam a utilização dos recursos de um servid
 
 ### YellowDog Updater Modified *YUM*
 - ferramenta capaz de resolver dependências e com outros recursos; equivale ao 'apt-get' do Debian;
-- __parâmetros e opções:__
+- **parâmetros e opções:**
 	- 'search' retorna os pacotes que possuem nome ou descrição contendo algum padrão fornecido na sequência;
 	- 'install' instala um ou mais pacotes fornecidos na sequência;
 	- 'update' atualiza o pacote fornecido ou todos os pacotes com atualização disponível, caso nenhum pacote seja fornecido;
@@ -1436,7 +1432,7 @@ baseurl=url://endereço/para/o/repositório
 ### DNF
 - o dnf é um fork do yum, usado no Fedora, e equivale ao apt do Debian;
 - muitas opções e parâmetros são os mesmos do 'yum': search, install, remove, info;
-- __parâmetros e opções:__
+- **parâmetros e opções:**
 	- 'upgrade' equivale ao 'update' do yum e ao 'upgrade' do apt;
 	- 'provides' equivale ao 'whatprovides' do yum;
 	- 'list --installed' equivale ao '-qa' do rpm;
@@ -1448,7 +1444,7 @@ baseurl=url://endereço/para/o/repositório
 
 ### Zypper
 - o zypper é a ferramenta de gerenciamento de pacotes OpenSUSE;
-- __operadores, parâmetros e opções:__
+- **operadores, parâmetros e opções:**
 	- 'refresh' atualiza metadados de pacotes; equivale ao 'update' do apt;
 	- 'search' ou 'se' procura um pacote fornecido a seguir; 
 		- com '-i', retorna se o pacote está instalado; sem fornecer o pacote, retorna todos os instalados no sistema;
@@ -1467,7 +1463,7 @@ baseurl=url://endereço/para/o/repositório
 	- 'addrepo' seguido da URL do repositório adiciona um repositório;
 	- 'removerepo' seguido do alias do repositório o remove.
 
-============================================================
+------------------------------------------------------------
 
 # SECURITY:
 
@@ -1495,13 +1491,13 @@ baseurl=url://endereço/para/o/repositório
 - nessa configuração o comando retorna o padrão em octais da seguinte forma:
 	- ``` 007 ```.
 
-============================================================
+------------------------------------------------------------
 
 ## USER MANAGEMENT:
 
 ### useradd
 - cria um novo usuário cujo nome for fornecido no final do comando;
-- __opções:__
+- **opções:**
 	- '-c' cria uma nova conta com comentários personalizados;
 	- '-d' com diretório pessoal personalizado;
 	- '-e' permite definir uma data de expiração da nova conta, quando ela será desabilitada;
@@ -1519,19 +1515,19 @@ baseurl=url://endereço/para/o/repositório
 - com a sintaxe ```su - ``` garante o carregamento do ambiente do usuário destino: ler arquivo '.profile' e ir para o respectivo diretório home;
 - sem fornecer o nome de usuário, o padrão é mudar para 'root';
 - com a opção '-c', permite executar um comando com o privilégio de outro usuário fornecido.
-- com o comando __su__ se pode chamar shell de login ou sem login;
+- com o comando **su** se pode chamar shell de login ou sem login;
 	- ```# su - user2```, ```# su -l user2``` ou ```# su --login user2``` iniciam shell de login interativo como 'user2';
 	- ```# su user2``` inicia um shell sem login interativo como 'user2';
 	- ```# su - root``` ou ```# su -``` iniciam um shell de login interativo como root;
 	- ```# su root``` ou ```# su``` iniciam um shell interativo sem login como root.
 
 ### sudo 
-- permite que usuários constantes no arquivo __'/etc/sudoers':__ possam executar comandos como superusuário temporariamente;
+- permite que usuários constantes no arquivo **'/etc/sudoers':** possam executar comandos como superusuário temporariamente;
 - para incluir usuário entre os 'sudoers':
 
 	- ```# usermod -aG sudo USERNAME```
 	- ```# useradd -aG sudo USERNAME ```
-- __sintaxe do arquivo '/etc/sudoers':__
+- **sintaxe do arquivo '/etc/sudoers':**
 		- ``` usuário host=(usuário:grupo) comando ```;
 		- exemplo: ``` root	ALL=(ALL:ALL) ALL ```;
 		- leia-se: o usuário root pode se logar com todos os hosts, em nome de todos os usuários e todos os grupos, além de executar todos os comandos;
@@ -1547,7 +1543,7 @@ baseurl=url://endereço/para/o/repositório
 	- ```$ sudo -i <command>``` para um shell de login interativo como root retornando ao usuário original após a execução do comando.
 	- ```$ sudo su root``` ou ```$ sudo su``` iniciam um shell sem login interativo como root;
 	- ```$ sudo -s``` ou ```$ sudo -u root -s``` iniciam um shell sem login como root.
-- os usuários que podem  '__sudo__', cuja sintaxe padrão é: 
+- os usuários que podem  '**sudo**', cuja sintaxe padrão é: 
  ```$ sudo -u USERNAME COMMAND ```;
 
 ### id
@@ -1561,7 +1557,7 @@ baseurl=url://endereço/para/o/repositório
 - permite configurar senha do usuário fornecido no fim do comando;
 - no caso de um novo usuário, recomenda-se a sintexe: ```# passwd -e USERNAME```;
 - a opção '-e' expira a nova senha, forçando o novo usuário criar uma nova no próximo login.
-__opções gerais:__
+**opções gerais:**
 	- '-d' apaga a senha de um usuário, desabilitando a conta;
 	- '-e' força a alteração da senha;
 	- '-i' define dias de inatividade após a expiração de uma senha, para que ela seja atualizada antes de uma desativação; o valor -1 remove a inatividade;
@@ -1582,7 +1578,7 @@ __opções gerais:__
 
 ### chage
 - 'change age' é um comando para alterar validade de senhas de um usuário, usado apenas pelo root;
-- __opções:__
+- **opções:**
 	- '-d N USERNAME' ou '--lastday N USERNAME' especificam 'N' dias até a senha expirar; 0 força alteração no próximo login;
 	- '-E YYYY-MM-DD USERNAME' ou '--expiredate YYYY-MM-DD USERNAME' especificam data de bloqueio da conta.
 	- '-I N USERNAME' ou '--inactive N USERNAME' para 'N' dias de inatividade, feito '-f' e '--inactive' de usermod; 0 para desabilitar o bloqueio; o valor -1 remove a inatividade;
@@ -1594,7 +1590,7 @@ __opções gerais:__
 
 ### chfn
 - altera o campo de comentário \(5º campo) do arquivo '/etc/passwd', com opções, string entre aspas e o nome do usuário a ter os dados alterados;
-- __opções:__
+- **opções:**
 	- '-f' '--full-name';
 	- '-h' '--home-phone';
 	- '-o' '--other-info';
@@ -1603,7 +1599,7 @@ __opções gerais:__
 
 ### usermod
 - permite modificar atributos de um usuário fornecido no final do comando;
-- __opções:__
+- **opções:**
 	- '-c' adiciona comentários personalizados;
 	- '-d' altera o diretório; combinada à '-m', move o que estiver no diretório pessoal atual para o novo diretório pessoal;
 	- '-e' altera data de expiração;
@@ -1626,8 +1622,8 @@ __opções gerais:__
 
 ### gpasswd
 - define senhas de grupo, quando desejado;
-- usuários de outros grupos que tiverem a senha podem ingressar temporariamente com o comando '__newgrp__';
-- __opções:__
+- usuários de outros grupos que tiverem a senha podem ingressar temporariamente com o comando '**newgrp**';
+- **opções:**
 	- '-a' adiciona um usuário fornecido a seguir a um grupo informado no final do comando;
 	- '-d' remove usuário do grupo;
 	- '-r' remove a senha do grupo;
@@ -1674,7 +1670,7 @@ __opções gerais:__
 
 ### ulimit
 - utilitário que retorna blocos de arquivos flexíveis do usuário corrente;
-- __opções:__
+- **opções:**
 	- '-S' especifica os flexíveis \(soft);
 	- '-H' especifica os rígidos \(hard);
 	- '-a' retorna todos os limites flexíveis atuais; o mesmo que '-Sa';
@@ -1686,8 +1682,8 @@ __opções gerais:__
 		- '-m' tamanho máximo do conjunto residente \(RSS, resident set size) para um processo na RAM;
 		- '-v' quantidade de memória virtual;
 		- '-u' número máximo de processos disponíveis para um usuário;
-- __sintaxe:__ '-f' seguido de um valor em kilobytes ou 'unlimited' define um limite de blocos para '-S' ou '-H' ou para ambos, se não especificar.
-- __/etc/security/limits.conf__
+- **sintaxe:** '-f' seguido de um valor em kilobytes ou 'unlimited' define um limite de blocos para '-S' ou '-H' ou para ambos, se não especificar.
+- **/etc/security/limits.conf**
 	- arquivo que mantém as configurações de limite, o qual deve ser alterado para que as configurações de limite sejam permanentes; pode haver o diretório '/etc/security/limits.d/';
 	- o arquivo contém orientações para o preenchimento das colunas; 
 	- pode-se atribuir configuarção para usuário ou grupo, este último precedido por '@'.
@@ -1696,13 +1692,13 @@ __opções gerais:__
 - comando que retorna uma lista detalhada dos últimos usuários logados e suas sessões;
 - seguido de um nome de usuário, last retorna suas respectivas sessões;
 - a coluna após o nome de usuário na lista indica o terminal: pts significa 'Pseudo Terminal Slave', oposto a tty, 'TeleTypeWriter';
-- os dados são extraídos do arquivo '__/var/log/wtmp__';
-- __lastb__ exibe tentativas de login incorretas; dados de '__/var/log/btmp__';
+- os dados são extraídos do arquivo '**/var/log/wtmp**';
+- **lastb** exibe tentativas de login incorretas; dados de '**/var/log/btmp**';
 - a opção '-f' para last e lastb permite selecionar outros arquivos wtmp e btmp gerados pelo logrotate.
 
 ### who
 - exibe usuários atualmente logados, com dados extraídos do binário '/var/log/wtmp';
-- __opções:__
+- **opções:**
 	- '-b' ou '--boot' exibem a hora da última inicialização do sistema;
 	- '-r' ou '--runlevel' exibe o nível de execução atual;
 	- '-H' ou '--heading' exibe o cabeçalho das colunas;
@@ -1724,13 +1720,13 @@ __opções gerais:__
 		- WHAT: processo atual;
 - pode-se passar nome de usuário para especificá-lo, como com who.
 
-============================================================
+------------------------------------------------------------
 
 ## NETWORK:
 
 ### nmcli
 - utilitário de linha de comando, equivalente ao 'nmtui', que permite configurar o daemon do NetworkManager;
-- __categorias ou objetos do nmcli:__
+- **categorias ou objetos do nmcli:**
 	- general: status e operações gerais do NetworkManager:
 		- STATE: coluna do status da conexão;
 		- CONNECTIVITY: 
@@ -1753,12 +1749,12 @@ __opções gerais:__
 	- monitor: monitor das mudanças no daemon.
 
 ### ifconfig
-- comando legado, ainda fornecido pelo pacote '__net-tools__';
+- comando legado, ainda fornecido pelo pacote '**net-tools**';
 - sem opções, o comando exibe as interfaces de rede ativas:
 	- RX linha que mostra a taxas de recebimento de pacotes,
 	- TX taxas de transmissão de pacotes;
 - com o nome de uma interface, um IPv4 e máscara CIDR e 'add', permite configurar um IP;
-- __opções e subcomandos:__
+- **opções e subcomandos:**
 	- '-a' exibe todas as interfaces, incluindo inativas;
 	- 'add' precede a adição de um endereço IPv6;
 	- 'netmask' precede a inserção de uma máscara de rede;
@@ -1767,7 +1763,7 @@ __opções gerais:__
 
 ### ip
 - comando completo para gerenciamento de configurações de rede;
-- __objetos, opções e subcomandos:__
+- **objetos, opções e subcomandos:**
 	- 'address', 'addr', 'a' ou 'ip-address' equivalem a 'ifconfig -a';
 	- 'link' lista links de interface;
 	- 'add' adiciona IPv4 ou IPv6;
@@ -1776,11 +1772,11 @@ __opções gerais:__
 		- 'ip link set IFACE_NAME down' desativa uma interface; up para ativar;
 		- 'ip link show' lista as interfaces com detalhes; pode se especificar para obter detalhes dela;
 		- 'ip link set IFACE_NAME mtu 2000' permite ajustar o MTU de uma interface;
-	- '__ip route__' equivale a '__netstat -r__' e '__route__', retornando uma tabela de roteamento; para IPv6: '__ip -6 route__', '__netstat -6r__' e '__route -6__', respectivamente; 'via' é a palavra que antecede a adição do IP de um roteador \(gateway) com 'ip route'.
+	- '**ip route**' equivale a '**netstat -r**' e '**route**', retornando uma tabela de roteamento; para IPv6: '**ip -6 route**', '**netstat -6r**' e '**route -6**', respectivamente; 'via' é a palavra que antecede a adição do IP de um roteador \(gateway) com 'ip route'.
 
 ### netstat
 - exibe conexões ativas de rede e sockets Unix;
-__opções:__
+**opções:**
 	- '-a' exibe os status de cada conexão;
 	- '-e' exibe o usuário dos processos que estão requisitando as conexões;
 	- '-i' exibe dados de interfaces de rede;
@@ -1793,18 +1789,18 @@ __opções:__
 
 ### route
 - comando que retorna uma tabela de dados de rotas da rede local e permite editar rotas, feito 'ip route';
-- __palavras-chave__:
+- **palavras-chave**:
 	- 'add' antecede a adição de um IP;
 	- 'gw' antecede a adição do IP de um roteador \(gateway).
 
 ### ping
 - comando que permite testar uma conexão, com eco ICMP; 
-- '__ping6__' é o equivalente para IPv6;
+- '**ping6**' é o equivalente para IPv6;
 - sintaxe comum: ```$ ping -c 3 192.168.50.2```, em que '-c 3' limita o teste ao envio de 3 pacotes.
 
 ### traceroute
 - utilitário que retorna a rota de um pacote até um destino fornecido a seguir pelo IP;
-- '__traceroute6__' é o equivalente para IPv6;
+- '**traceroute6**' é o equivalente para IPv6;
 - cada reteador no caminho responde com uma mensagem ICMP de Time-To-Live \(TTL) excedido;
 - são enviados 3 pacotes UDP com dados inúteis para a porta 33434, que são incrementados a cada vez que são enviados;
 - o comando retorna uma linha para cada roteador que os pacotes atravessam, com o IP de cada interface e o tempo de ida e volta dos pacotes;
@@ -1815,18 +1811,18 @@ __opções:__
 ### tracepath
 - semelhante ao 'traceroute', mas rastreia tamanhos de 'Maximum Transmission Unit' \(MTU) pelo caminho, enviando pacote com datagrama UDP extenso;
 - o MTU é uma configuração de interface ou limite de hardware para a maior unidade de dado de protocolo que é possível transmitir ou receber;
-- '__tracepath6__' é o equivalente para IPv6.
+- '**tracepath6**' é o equivalente para IPv6.
 
 ### nc
-- '__netcat__' utilitário simples para o Sendmail, que é intalado pelo pacote ncat ou nmap-ncat, e permite testar conexões; 
-- __opções:__
+- '**netcat**' utilitário simples para o Sendmail, que é intalado pelo pacote ncat ou nmap-ncat, e permite testar conexões; 
+- **opções:**
 	- '-l' recebe dados, em vez de enviar;
 	- '-u' UDP;
 	- '-e' instrui a encaminhar tudo o que recebe para a entrada padrão de um executável fornecido a seguir.
 
 ### ss
-- 'socket service', assim como o legado '__netstat__', retorna o status de *listeners* e conexões atuais;
-- __opções:__
+- 'socket service', assim como o legado '**netstat**', retorna o status de *listeners* e conexões atuais;
+- **opções:**
 	- '-a' exibe todos os sockets;
 	- '-l' sockets de escuta;
 	- '-p' processos associados à conexão;
@@ -1846,13 +1842,13 @@ __opções:__
 
 ### ssh-keygen
 - permite gerar chaves 'secure shell' através de um prompt próprio, que solicita a confirmação do local onde o arquivo será armazenado e uma PASSPHRASE;
-- __opções:__
+- **opções:**
 	- '-b' permite definir o número de bits do algoritmo, conforme possível;
 	- '-t' especifica um algoritmo fornecido a seguir;
 	- '-l -f' lista as impressões digitais das chaves, passando o caminho do arquivo da chave após '-f';
 	- '-v' exibe a arte aleatória \(randomart);
 	- '-R' exclui as chaves pertencentes a um host fornecido a seguir;
-- __ssh-copy-id__ para enviar a chave pública para o arquivo '~/.ssh/authorized_keys' de um host remoto: ```$ ssh-copy-id -i ~/.ssh/PUBLIC_KEY_FILE.pub USERNAME@IP_HOST ```.
+- **ssh-copy-id** para enviar a chave pública para o arquivo '~/.ssh/authorized_keys' de um host remoto: ```$ ssh-copy-id -i ~/.ssh/PUBLIC_KEY_FILE.pub USERNAME@IP_HOST ```.
 
 ### ssh-agent
 - utilitário executado em segundo plano que armazena a PASSPHRASE, a fim de agilizar conexões.
@@ -1865,7 +1861,7 @@ __opções:__
 - o servidor SSH é instalado pelo pacote 'openssh-server';
 - sintaxe comum para estabelecer conexão: ```$ ssh USERNAME@HOST_IP ```;
 - quando o USERNAME é omitido, a conexão é feita com o nome de usuário local;
-- __opções:__
+- **opções:**
 	- '-f' segundo plano, usado com '-N';
 	- '-l' permite inserir o nome de usuário para login;
 	- '-L' inserir 'LOCAL_PORT:REMOTE_HOST:HOST_PORT' para tunelamento;
