@@ -418,7 +418,7 @@ da distribuição.
 
 ------------------------------------------------------------
 
-## FILE MANAGEMENT
+## FILE HANDLING
 
 ### file */path/to/file*
 - retorna o tipo de um arquivo.
@@ -1869,3 +1869,14 @@ baseurl=url://endereço/para/o/repositório
 	- '-p' inserir a porta;
 	- '-R' tunelamento para porta remota;
 	- '-X' tunelamento para interface X11.
+
+### curl
+- utilitário que permite transferir dados de ou para servidores via protocolos de rede como HTTP, HTTPS, FTP;
+- amplamente utilizado para baixar arquivos, fazer requisições web e enviar dados para APIs;
+- **opções:**
+	- '-o FILE' salva a saída em um arquivo, ao invés de exibir na tela;
+	- '-L' segue redirecionamentos HTTP;
+	- '-s' silencia a saída, mostrando apenas erros;
+	- '-X METHOD' especifica o método HTTP \(GET, POST, etc.);
+	- '-d DATA'	envia dados no corpo da requisição \(ex: para POST);
+	- '--data' precede dados entre aspas.
