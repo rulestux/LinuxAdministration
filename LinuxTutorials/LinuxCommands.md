@@ -47,6 +47,9 @@ da distribuição.
 - a opção '-m' retorna a localização do manual;
 - a opção '-s' retorna a localização do código fonte.
 
+### basename
+- comando que retorna somente o nome de um arquivo cujo caminho completo seja fornecido a seguir.
+
 ### echo
 - exibe as strings e variáveis informadas;
 - **opções:** 
@@ -55,17 +58,37 @@ da distribuição.
 		- nova linha: '\n';
 	- '-n' remove a quebra de linha (Enter) em scripts, sendo normalmente usando antes do comando 'read', para entrada de dados.
 
-### read
-- comando para entrada (leitura) de dados;
-- **opções:**
-	- '-p' permite inserir um 'prompt' entre aspas para se exibir antes da entrada dos dados;
-	- '-s' oculta o que é digitado, sendo útil para a inserção de senhas.
-
 ### printf
 - comando para exibir dados na tela com funcionamento semelhante ao da linguagem 'C':
 	- '%s' substitui texto \(strings);
 	- '%d' inteiros;
 	- '\n' para quebras de linha em final de strings longas.
+
+### read
+- comando para entrada \(leitura) de dados;
+- **sintaxe:**
+	
+	- ```$ read OPTIONS VARIABLE(S) ```
+
+- **opções:**
+	- '-a' lê um array;
+	- '-d' define um delimitador personalizado para a entrada;
+	- '-p' permite inserir um 'prompt' entre aspas para se exibir antes da entrada dos dados;
+	- '-r' permite interpretar barras invertidas '\\' como escape;
+	- '-s' oculta o que é digitado, sendo útil para a inserção de senhas.
+
+### sleep
+- utilizado em scripts de shell para pausar a execução por um determinado período de tempo;
+- **sintaxe:**
+
+	- ```$ sleep NT ```
+
+		- em que 'N' é um número de tempo e 
+		- 'T' uma unidade de tempo, que pode ser:
+			- 's' segundos;
+			- 'm' minutos;
+			- 'h' horas;
+			- 'd' dias.
 
 ### history
 - exibe os comandos executados anteriormente, acessando-os através do buffer e do conteúdo do arquivo '.bash_history' \(ou '.zsh_history'); 
@@ -90,7 +113,7 @@ da distribuição.
 ### exec
 - antecedendo um comando, sai da sessão do shell quando a execução desse comando é encerrada; útil para assegurar o encerramento de uma sessão iniciada por um script.
 
-### echo $0
+### $0
 - variável que contém o tipo de shell, que pode retornar:
 	- '-bash' ou '-su' interativo de login;
 	- 'bash' ou '/bin/bash' interativo sem login;
@@ -168,15 +191,19 @@ da distribuição.
 - **opções para test**
 	- podem-se usar variáveis para estas opções, desde que sejam referenciadas entre aspas duplas;
 	- **ARQUIVOS**	
-	- '-a' testa se o destino de um caminho fornecido é um arquivo;
+	- '-a' testa se o destino de um caminho fornecido a seguir é um arquivo;
 	- '-b' se é um bloco especial;
 	- '-c' se é um caractere especial;
 	- '-d' se é um diretório;
 	- '-e' se existe no sistema de arquivos;
 	- '-f' se é um arquivo regular;
 	- '-g' se tem permissão SGID;
+	- '-G' se pertence ao grupo do usuário corrente;
 	- '-h' ou '-L' se é um symlink;
 	- '-k' se tem permissão sticky bit;
+	- '-n' testa se o conteúdo de uma variável de string não está vazia;
+	- '-N' se foi modificado desde o último acesso;
+	- '-O' se é de propriedade do usuário corrente;
 	- '-p' se é um arquivo pipe;
 	- '-r' se é legível pelo usuário corrente;
 	- '-s' se não está vazio;
@@ -185,15 +212,11 @@ da distribuição.
 	- '-u' se tem permissão SUID;
 	- '-w' se é gravável pelo usuário corrente;
 	- '-x' se é executável pelo usuário corrente;
-	- '-O' se é de propriedade do usuário corrente;
-	- '-G' se pertence ao grupo do usuário corrente;
-	- '-N' se foi modificado desde o último acesso;
+	- '-z' testa se o conteúdo de uma variável de string está vazia, feito uma string de tamanho 0;
 	- '-nt' se o destino de um caminho anteriormente fornecido é mais recente que o caminho seguinte, conforme última modificação;
 	- '-ot' se é mais antigo;
 	- '-ef' se é link físico um para o outro;
-	- **TEXTOS**
-	- '-z' testa se o conteúdo de uma variável de texto está vazia, feito uma string de tamanho 0;
-	- '-n' se não está vazia;
+	- **TEXTOS \(STRINGS)**
 	- '=' ou '==' compara se duas variáveis têm conteúdos de texto iguais;
 	- '!=' se diferentes;
 	- '<' e '>' se vêm antes ou depois em ordem alfabética, respectivamente;
@@ -206,7 +229,7 @@ da distribuição.
 	- '-ne' diferente;
 	- **MODIFICADORES**
 	- '!' testa se uma expressão que se seguir é falsa;
-	- '-a' testa se uma anterior e outra seguinte são verdadeiras;
+	- '-a' entre expressões, testa se uma anterior e outra seguinte são verdadeiras;
 	- '-o' testa se ou a anterior ou a seguinte é verdadeira.
 
 ------------------------------------------------------------
@@ -320,13 +343,17 @@ da distribuição.
 
 	- ```$ cut -d; -c2-8 /caminho/do/arquivo ```
 
+### awk
+- utilitário para analisar e manipular dados em linha, separando colunas usando espaço como delimitador;
+- a opção '-F' pode ser utilizada para escolher outro delimidador fornecido imediatamente a seguir, como em ```-F,```, onde a vírgula se torna delimidador, como em arquivos CSV.
+
 ### paste
-- retorna uma comparação linha a linha de dois arquivos fornecidos em paralelo;
+- retorna uma comparação linha a linha de dois arquivos fornecidos em paralelo, juntando conteúdos de arquivos;
 
 	- ```$ paste -d, FILE FILE``` une dois arquivos incluindo ',' como delimitador de campos.
 
-### split *file newfile*
-- divide um arquivo em vários arquivos;
+### split
+- divide um arquivo fornecido em vários arquivos com padrão de nomes fornecido a seguir;
 - **opções:**
     - '-l N' divide o arquivo em arquivos de 'N' linhas;
 	- '-b N' divide o arquivo em arquivos de 'N' bytes;
