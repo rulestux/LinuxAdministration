@@ -69,33 +69,6 @@ da distribuição.
 - a opção '-m' retorna a localização do manual;
 - a opção '-s' retorna a localização do código fonte.
 
-### echo
-- exibe as strings e variáveis informadas;
-- **opções:** 
-	- '-e' seguida de strings em aspas, permite formatação de conteúdo, habilitando a exibição de caracteres especiais com escape '\', como
-		- tabulação: '\t';
-		- nova linha: '\n';
-	- '-n' remove a quebra de linha (Enter) em scripts, sendo normalmente usando antes do comando 'read', para entrada de dados.
-
-### printf
-- comando para exibir dados na tela com funcionamento semelhante ao da linguagem 'C':
-	- '%s' substitui texto \(strings);
-	- '%d' inteiros;
-	- '\n' para quebras de linha em final de strings longas.
-
-### read
-- comando para entrada \(leitura) de dados;
-- **sintaxe:**
-	
-	- ```$ read OPTIONS VARIABLE(S) ```
-
-- **opções:**
-	- '-a' lê um array;
-	- '-d' define um delimitador personalizado para a entrada;
-	- '-p' permite inserir um 'prompt' entre aspas para se exibir antes da entrada dos dados;
-	- '-r' permite interpretar barras invertidas '\\' como escape;
-	- '-s' oculta o que é digitado, sendo útil para a inserção de senhas.
-
 ### sleep
 - utilizado em scripts de shell para pausar a execução por um determinado período de tempo;
 - **sintaxe:**
@@ -277,8 +250,22 @@ da distribuição.
 - **tac** retorna o conteúdo de um arquivo de forma invertida;
 - **bzcat**, **xzcat** e **zcat** processam ou lêem arquivos comprimidos usando os métodos bzip2, xz e gzip, respectivamente.
 
+### echo
+- exibe as strings e variáveis informadas;
+- **opções:** 
+	- '-e' seguida de strings em aspas, permite formatação de conteúdo, habilitando a exibição de caracteres especiais com escape '\', como
+		- tabulação: '\t';
+		- nova linha: '\n';
+	- '-n' remove a quebra de linha (Enter) em scripts, sendo normalmente usando antes do comando 'read', para entrada de dados.
+
+### printf
+- comando para exibir dados na tela com funcionamento semelhante ao da linguagem 'C':
+	- '%s' substitui texto \(strings);
+	- '%d' inteiros;
+	- '\n' para quebras de linha em final de strings longas.
+
 ### less
-- pagina o conteúdo de um arquivo fornecido a seguir, possibilitando navegação e pesquisa.
+- pagina o conteúdo de um arquivo fornecido a seguir, possibilitando navegação e pesquisa, sendo uma versão mais moderna do **more**.
 
 ### head
 - exibe as dez primeiras linhas de um arquivo fornecido a seguir; 
@@ -289,6 +276,19 @@ da distribuição.
 - **opções:**
 	- '-n N' permite personalizá-lo, enumerando a quantidade de linhas desejadas em 'N'; 
 	- '-f' segue a saída do arquivo de texto conforme novos dados são acrescidos a ele em tempo real.
+
+### read
+- comando para entrada \(leitura) de dados;
+- **sintaxe:**
+	
+	- ```$ read OPTIONS VARIABLE(S) ```
+
+- **opções:**
+	- '-a' lê um array;
+	- '-d' define um delimitador personalizado para a entrada;
+	- '-p' permite inserir um 'prompt' entre aspas para se exibir antes da entrada dos dados;
+	- '-r' permite interpretar barras invertidas '\\' como escape;
+	- '-s' oculta o que é digitado, sendo útil para a inserção de senhas.
 
 ### diff
 - compara dois arquivos fornecidos a seguir e não retorna coisa alguma se eles forem idênticos;
@@ -348,7 +348,9 @@ da distribuição.
 
 ### awk
 - utilitário para analisar e manipular dados em linha, separando colunas usando espaço como delimitador;
-- a opção '-F' pode ser utilizada para escolher outro delimidador fornecido imediatamente a seguir, como em ```-F,```, onde a vírgula se torna delimidador, como em arquivos CSV.
+- a opção '-F' pode ser utilizada para escolher outro delimidador fornecido imediatamente a seguir
+	- ```-F,```, onde a vírgula se torna delimidador, como em arquivos CSV; 
+	- ```-F'</td>'``` com aspas simples, para mais de um elemento, como divisões de tabelas HTML.
 
 ### paste
 - retorna uma comparação linha a linha de dois arquivos fornecidos em paralelo, juntando conteúdos de arquivos;
