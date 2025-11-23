@@ -156,6 +156,12 @@ da distribuição.
 
 	``` basename "$0" ```
 
+### dirname
+- comando que retorna o diretório de um arquivo cujo nome seja fornecido a seguir;
+- útil em scripts seguido de '"$0"', para obter o diretório do arquivo do script:
+
+	``` dirname "$0" ```
+
 ### alias
 - cria aliases temporários na sessão, com a sintaxe
 	- ```alias var=COMMAND```
