@@ -1,3 +1,23 @@
+1. [GENERAL COMMANDS](#GENERAL COMMANDS)
+	1.1. [GENERAL COMMANDS](#GENERAL COMMANDS)
+	1.2. [TEXT FILTERING](#TEXT FILTERING)
+	1.3. [PRINTING](#PRINTING)
+	1.4. [FILE HANDLING](#FILE HANDLING)
+	1.5. [REDIRECTS](#REDIRECTS)
+2. [SYSTEM ADMINISTRATION](#SYSTEM ADMINISTRATION)
+	2.1. [SYSTEM BASE](#SYSTEM BASE)
+	2.2. [PARTITIONS](#PARTITIONS)
+	2.3. [FILE SYSTEMS](#FILE SYSTEMS)
+	2.4. [PROCESS MANAGEMENT](#PROCESS MANAGEMENT)
+	2.5. [LOCAL AND TIME](#LOCAL AND TIME)
+	2.6. [PACKAGE MANAGEMENT](#PACKAGE MANAGEMENT)
+	2.7. [PARTITIONS](#PARTITIONS)
+3. [SECURITY](#SECURITY)
+	3.1. [PERMISSIONS](#PERMISSIONS)
+	3.2. [USER MANAGEMENT](#USER MANAGEMENT)
+	3.1. [NETWORK](#NETWORK)
+
+
 # GENERAL COMMANDS
 
 ### pwd
@@ -46,9 +66,6 @@ da distribuição.
 - a opção '-b' filtra o resultado pelo binário;
 - a opção '-m' retorna a localização do manual;
 - a opção '-s' retorna a localização do código fonte.
-
-### basename
-- comando que retorna somente o nome de um arquivo cujo caminho completo seja fornecido a seguir.
 
 ### echo
 - exibe as strings e variáveis informadas;
@@ -131,12 +148,18 @@ da distribuição.
 	- $IFS variável 'Input Field Separator', por padrão: espaço, tabulação e nova linha;
 		- ```$ IFS=$'\n'``` configura quebra de linha como separador, por exemplo.
 
+### basename
+- comando que retorna somente o nome de um arquivo cujo caminho completo seja fornecido a seguir;
+- útil em scripts seguido de '"$0"', para obter somente o nome do arquivo do script:
+
+	``` basename "$0" ```
+
 ### alias
 - cria aliases temporários na sessão, com a sintaxe
 	- ```alias var=COMMAND```
 
-### export VAR
-- passa uma variável de ambiente para os subshells (shells filhos);
+### export
+- passa uma variável fornecida a seguir para os subshells (shells filhos);
 - 'export -n' retorna uma variável ao status local;
 - 'export -p' lista todas as variáveis de ambiente.
 
@@ -234,7 +257,7 @@ da distribuição.
 
 ------------------------------------------------------------
 
-## TEXT FILTERING:
+## TEXT FILTERING
 
 ### cat
 - combina e retorna o conteúdo de arquivos de texto simples fornecidos;
@@ -287,34 +310,6 @@ da distribuição.
 
 	- ```$ cat /caminho/do/arquivo | nl ```
 	- ```$ nl /caminho/do/arquivo ```
-
-### sed
-- editor de fluxo de texto simples.
-- **opções e parâmetros:**
-	- retornar uma linha com um padrão:
-
-		- ```$ sed -n /PATTERN/p FILENAME ```
-
-	- localizar e substituir primeira ocorrência na linha:
-
-		- ```$ sed s/conteúdo/novo_conteúdo/ /caminho/do/arquivo ```
-		- ```$ sed s|conteúdo|novo_conteúdo| /caminho/do/arquivo```
-
-	- incluir número da posição para trocar outra ocorrência:
-
-		- ```$ sed s|conteúdo|novo_conteúdo|2 /caminho/do/arquivo ```
-
-	- incluir 'g' para substituir tudo:
-
-		- ```$ sed s/conteúdo/novo_conteúdo/g /caminho/do/arquivo ```
-
-	- substituir dados para um novo arquivo:
-
-		- ```$ sed -i.backup s/conteúdo/novo_conteúdo/ /caminho/do/arquivo ```
-
-	- deletar da linha 1 até a linha 25 linha:
-
-		- ```$ sed -i 1,25 /caminho/do/arquivo ```
 
 ### tr
 - translate:
@@ -373,10 +368,107 @@ da distribuição.
 - a opção '-l' ou '--list' lista as codificações suportadas;
 - a opção '-o' ou '--output' pode ser usada no lugar do redirecionamento.
 
+### grep
+- localizador de padrões;
+- **opções:**
+	- '-i' ignora a propriedade case sensitive;
+	- '-v' diferente do 'verbose' da maioria dos casos, com 'grep' essa opção
+	retorna quaisquer linhas, exceto as que tiverem o padrão de caracteres que segue 
+	a opção;
+	- '-c' conta e retorna a quantidade de linhas em que um padrão de caracteres
+	ocorre no arquivo fornecido;
+	- '--color' destaca as ocorrências que o 'grep' encontra; pode-se usar o alias
+	'grep='grep --color';
+	- '-E' permite estender metacaracteres em expressões regulares;
+	- 'egrep' equivale a 'grep -E';
+	- 'fgrep' impede expressões regulares.
+
+- **caracteres especiais para expressões regulares:**
+- Atoms
+	- **.** \(ponto) representa qualquer caractere, independente de sua natureza, exceto quebra de linha;
+	- **^** \(circunflexo) sinaliza o início de uma linha;
+	- **$** sinaliza o final de uma linha;
+- Brackets
+	- expressões em colchetes formam um átomo, normalmente constituídos de uma lista:
+	- **\[]** \(colchetes) delimita uma lista de caracteres que podem ocupar uma mesma posição em um padrão:
+		- '\[1b]' delimita um espaço que pode ser ocupado seja por '1' ou 'b';
+		- '\[0−9]' ou '\[a-z]' com '-' representando um intervalo de zero a nove ou de 'a' a 'z';
+		- '\[:alnum:]' corresponde a um caractere alfanumérico;
+		- '\[:alpha:]' corresponde a um caractere alfabético;
+		- '\[:ascii:]' caractere ASCII;
+		- '\[:blank:]' espaço ou tabulação;
+		- '\[:lower:]' ou '\[:upper:]' minúsculo ou maiúsculo;
+		- '\[:space:]' espaço, alimentação de formulário \(\f), nova linha \(\n), retorno de carro \(\r), tabulação horizontal \(\t) e tabulação vertical \(\v);
+		- '\[:xdigit:]' hexadecimal de '0' a 'f'.
+	- **\[^]** \(circunflexo em colchetes) representa a negação dos caracteres na lista:
+		- '\[^1b]' delimita um espaço que exclui '1' ou 'b'.
+	- **\*** \(asterisco) representa a ocorrência de um caracter precedido de 0 a n vezes;
+	- **+** sinaliza que uma ocorrência aparece uma ou mais vezes;
+	- **?** \(interrogação) sinaliza que o caractere imediatamente anterior é opcional;
+	- **{n}** \(chaves) sinaliza o número 'n' de vezes que um átomo precedido pode ocorrer;
+		- '{n,}' sinaliza que o átomo precedido deve ocorrer ao menos 'n' vezes;
+		- '{n1,n2}' sinaliza que deve ocorrer entre 'n1' e 'n2' vezes.
+	- **|** pipes, em expressões regulares, têm o valor de um operador lógico de alternância;
+
+- **exemplos de uso:**
+	- ``` $ grep -E '(root){3}' /tmp/passwd_copy ``` retorna as linhas em que a sequência de caracteres 'root' ocorre exatamente três vezes aglutinadas;
+	- ``` '(root){3,}' ``` retorna ocorrências aglutinadas três ou mais vezes;
+	- ``` 'o{2}t' ``` retorna ocorrências aglutinadas duas vezes de 'o' seguidas de 't' \(oot).
+
+### sed
+- editor de fluxo de texto simples.
+- **opções e parâmetros:**
+	- retornar uma linha com um padrão:
+
+		- ```$ sed -n /PATTERN/p FILENAME ```
+
+	- localizar e substituir primeira ocorrência na linha:
+
+		- ```$ sed s/conteúdo/novo_conteúdo/ /caminho/do/arquivo ```
+		- ```$ sed s|conteúdo|novo_conteúdo| /caminho/do/arquivo```
+
+	- incluir número da posição para trocar outra ocorrência:
+
+		- ```$ sed s|conteúdo|novo_conteúdo|2 /caminho/do/arquivo ```
+
+	- incluir 'g' para substituir tudo:
+
+		- ```$ sed s/conteúdo/novo_conteúdo/g /caminho/do/arquivo ```
+
+	- substituir dados para um novo arquivo:
+
+		- ```$ sed -i.backup s/conteúdo/novo_conteúdo/ /caminho/do/arquivo ```
+
+	- deletar da linha 1 até a linha 25 linha:
+
+		- ```$ sed -i 1,25 /caminho/do/arquivo ```
+
+- **exemplos de uso:**
+
+	- com o comando 's' \(buscar e substituir), localizar ocorrências de 'nologin' no final de cada linha, representado por '$', e substituir por 'REGEX FOUND', no arquivo '/tmp/passwd_copy':
+
+		- ``` # sed 's/nologin$/REGEX FOUND/' /tmp/passwd_copy ```
+
+	- permitir um agrupamento de caracteres na posição da referência de busca 'false|nologin' \(em que o pipe '|' representa o operador 'or'), para substituir qualquer ocorrência de 'false' ou 
+	'nologin' no final de cada linha por 'INVALID SHELL':
+
+		- ``` # sed -E 's/(false|nologin)$/INVALID SHELL/' /tmp/passwd_copy ```
+
+	- substituir o '$' cifrão pelo '^' circunflexo no início do agrupamento de caracteres para sinalizar que qualquer ocorrência de 'root' ou 'daemon' ou 'www-data' no início de uma linha deverá ser substituída por 'REGEX'; a saída da expressão terá linhas numeradas pelo comando 'nl':
+
+		- ``` # sed -E 's/^(root|daemon|www-data)/REGEX/' /tmp/passwd_copy | nl```
+
+	- buscar sequências de caracteres que se iniciem por qualquer letra entre 'a' e 'f' minúsculos no começo de cada linha, seguidas de mais dois caracteres quaisquer:
+
+		- ``` 's/^[a-f]../REGEX/g' ```
+
+	- substitir as sequências de até 3 caracteres no início de cada linha que NÃO se iniciem por qualquer letra minúscula entre 'a' e 'f':
+
+		- ``` 's/^[^a-f]../REGEX/g' ``` 
 
 ------------------------------------------------------------
 
-## PRINTING:
+## PRINTING
 
 ### lpadmin
 - comando legado para gerenciamento de impressão e adição de impressora;
@@ -447,24 +539,24 @@ da distribuição.
 
 ## FILE HANDLING
 
-### file */path/to/file*
-- retorna o tipo de um arquivo.
+### file 
+- retorna o tipo de um arquivo cujo caminho for fornecido a seguir.
 
-### cd */path/to/directory/*
+### cd 
 - muda o diretório corrente;
 - **opções:**
     - .. equivale ao diretório pai;
     - ~ equivale ao diretório home do usuário ou /root;
     - \- equivale ao diretório anteriormente visitado.
 
-### mv */origin/path /final/path*
+### mv 
 - move ou renomeia arquivos e diretórios;
 - **opções:**
     - '-i' interactive: pede confirmação para sobrescrever;
     - '-f' force: força sobrescrever;
     - '-v' verbose: mostra o processo.
 
-### cp */origin/pash /final/path*
+### cp 
 - copia arquivos e diretórios;
 - **opções:**
     - '-i', '-f' e '-v' equivale aos mesmos em 'mv';
@@ -472,20 +564,20 @@ da distribuição.
     - '-b' backup: cria uma cópia de segurança dos arquivos que eventualmente sejam substituídos no diretório de destino;
     - '-a', '-d', '-p': preservam as propriedades do arquivo, como data de modificação e permissões.
 
-### mkdir */path/to/directory/*
+### mkdir
 - cria diretórios;
 - **opções:**
     - '-v' equivale ao mesmo em 'mv';
     - '-m' mode: permite definir permissões do novo diretório;
     - '-p' parents ou path: permite criar diretórios pais até o diretório desejado.
 
-### rm *file*
+### rm 
 - remove arquivos e diretórios;
 - **opções:**
     - '-i', '-f' e '-v' equivale aos mesmos em 'mv';
     - '-R', '-r' incluem arquivos e diretórios filhos à remoção de um diretório.
 
-### rmdir *directory*
+### rmdir 
 - remove diretórios vazios;
 	- '-p' remove o diretório com subdiretórios especificados.
 
@@ -665,7 +757,7 @@ precisa que o TARGET seja o caminho completo e exato para onde o symlink aponta.
 
 ------------------------------------------------------------
 
-## REDIRECTS:
+## REDIRECTS
 
 ### xargs
 - transforma comandos em argumentos de outros programas;
@@ -738,9 +830,9 @@ $ test.txt <<EOF
 
 ------------------------------------------------------------
 
-# SYSTEM ADMINISTRATION:
+# SYSTEM ADMINISTRATION
 
-## SYSTEM BASE:
+## SYSTEM BASE
 
 ### lspci
 - lista componentes PCI conectados e seus endereços hexadecimais;
@@ -954,7 +1046,7 @@ ou
 
 ------------------------------------------------------------
 
-## FILE SYSTEMS:
+## FILE SYSTEMS
 
 ### du
 - comando que retorna quantos blocos de 1 kilobyte estão sendo usados pelo diretório atual e pelos seus subdiretórios;
@@ -1086,7 +1178,7 @@ ou
 
 ------------------------------------------------------------
 
-## PROCESS MANAGEMENT:
+## PROCESS MANAGEMENT
 
 ### ps
 - retorna um instantâneo dos processos da sessão atual;
@@ -1266,9 +1358,19 @@ os números do 'load average' sinalizam a utilização dos recursos de um servid
 	- encerrar sessão única: '$ tmux kill-session'
 	- encerrar uma sessão entre várias: '$ tmux kill-session -t sessionname'
 
+
+### update-alternatives
+- o comando permite alterar links simbólicos do sistema contidos no diretório 
+/etc/alternatives/
+- o uso mais comum desse comando é com a sintaxe:
+
+	- ``` $ update-alternatives --config vim```
+
+		- permitindo selecionar o comportamento do comando 'vim'.
+
 ------------------------------------------------------------
 
-## LOCAL AND TIME:
+## LOCAL AND TIME
 
 ### date
 - comando que exibe a hora e a data do sistema, além do fuso horário atual;
@@ -1353,7 +1455,7 @@ os números do 'load average' sinalizam a utilização dos recursos de um servid
 
 ------------------------------------------------------------
 
-## PACKAGE MANAGEMENT:
+## PACKAGE MANAGEMENT
 
 ### dpkg *options package*
 - gerenciador de pacotes básico do Debian;
@@ -1492,9 +1594,9 @@ baseurl=url://endereço/para/o/repositório
 
 ------------------------------------------------------------
 
-# SECURITY:
+# SECURITY
 
-## PERMISSIONS:
+## PERMISSIONS
 
 	
 ### chmod
@@ -1520,7 +1622,7 @@ baseurl=url://endereço/para/o/repositório
 
 ------------------------------------------------------------
 
-## USER MANAGEMENT:
+## USER MANAGEMENT
 
 ### useradd
 - cria um novo usuário cujo nome for fornecido no final do comando;
@@ -1749,7 +1851,7 @@ baseurl=url://endereço/para/o/repositório
 
 ------------------------------------------------------------
 
-## NETWORK:
+## NETWORK
 
 ### nmcli
 - utilitário de linha de comando, equivalente ao 'nmtui', que permite configurar o daemon do NetworkManager;
