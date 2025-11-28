@@ -679,8 +679,8 @@ da distribuição.
 		- 'status=progress' opcional e exibe o andamento do processo, opção sem a qual o comando não exibe coisa agluma até finalizar;
 		- '/dev/zero' exemplifica o arquivo de entrada usando o arquivo 'zero';
 		- 'of' significa output file;
-		- 'bs' para informar a quantidade de bytes por vez; aqui a unidade está especificada em megabytes, mas sem especificação a unidade usada é byte;
-		- 'count' contando a quantidade de vezes, que aqui resulta num arquivo de 1GB.
+		- 'bs' para informar a quantidade de bytes por segundo; aqui a unidade está especificada em megabytes, mas sem especificação a unidade usada é byte;
+		- 'count' contando a quantidade de segundos, que aqui resulta num arquivo de 1GB.
 
 - como exemplo, pode-se usar esse comando para copiar um hd inteiro, cum sua lista de partições, com a sintaxe:
 
@@ -1629,6 +1629,16 @@ baseurl=url://endereço/para/o/repositório
 	- ```$ umask u=rwx,g=rwx,o=```;
 - nessa configuração o comando retorna o padrão em octais da seguinte forma:
 	- ``` 007 ```.
+
+### chroot
+- permite usar um diretório como novo diretório root isolado do root do sistema;
+- ferramenta equivalente aos recursos de conteinerização;
+- **sintaxe:** ```# chroot OPTIONS DIRECTORY COMMAND ```;
+	- COMMAND frequentemente é um shell, cujo binário passa a ser usado a partir desse diretório.
+
+### unshare
+- permite instanciar namespaces isoladas do sistema operacional, como ferramenta suplementar para isolamento de processos;
+- **sintaxe** ```# unshare OPTIONS DIRECTORY COMMAND ```.
 
 ------------------------------------------------------------
 
