@@ -2029,3 +2029,16 @@ baseurl=url://endereço/para/o/repositório
 	- '-X METHOD' especifica o método HTTP \(GET, POST, etc.);
 	- '-d DATA'	envia dados no corpo da requisição \(ex: para POST);
 	- '--data' precede dados entre aspas.
+
+### getent
+- o utilitário retorna entradas de bancos de dados de serviços de nome a partir de qualquer fonte configurável pelo '/etc/nsswitch.conf', como com a sintaxe ```$ getent hosts```.
+
+### host
+- utilitário que permite procurar entradas DNS para um nome ou IP fornecido;
+- retorna os conjuntos de registros A, AAAA e MX;
+- a opção '-t' permite especificar um registro feito 'NS' nameserver, 'MX' mailserver ou 'SOA'.
+
+### dig
+- comando mais detalhado que 'host';
+- consulta registros A;
+- podem ser usadas opções como '+short' ou '+nocookie', além da '-t', feito 'host'.
