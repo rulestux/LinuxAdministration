@@ -1637,7 +1637,7 @@ baseurl=url://endereço/para/o/repositório
 	- COMMAND frequentemente é um shell, cujo binário passa a ser usado a partir desse diretório.
 
 ### unshare
-- permite instanciar namespaces isoladas do sistema operacional, como ferramenta suplementar para isolamento de processos;
+- permite instanciar namespaces \(espaços lógicos) isoladas do sistema operacional, como ferramenta suplementar para isolamento de processos;
 - **sintaxe** ```# unshare OPTIONS DIRECTORY COMMAND ```.
 
 ------------------------------------------------------------
@@ -1965,9 +1965,10 @@ baseurl=url://endereço/para/o/repositório
 ### nc
 - '**netcat**' utilitário simples para o Sendmail, que é intalado pelo pacote ncat ou nmap-ncat, e permite testar conexões; 
 - **opções:**
+	- '-e' instrui a encaminhar tudo o que recebe para a entrada padrão de um executável fornecido a seguir;
 	- '-l' recebe dados, em vez de enviar;
 	- '-u' UDP;
-	- '-e' instrui a encaminhar tudo o que recebe para a entrada padrão de um executável fornecido a seguir.
+	- '-v' verbose é útil para testar conexões, quando não há o Ping instalado, ao passar o nome do host destinatário e a porta.
 
 ### ss
 - 'socket service', assim como o legado '**netstat**', retorna o status de *listeners* e conexões atuais;
