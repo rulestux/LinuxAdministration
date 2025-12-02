@@ -1478,13 +1478,13 @@ os números do 'load average' sinalizam a utilização dos recursos de um servid
 	- '--get-selections' lista todos os pacotes instalados o sistema;
 	- '-L' lista todos os arquivos instalados por um pacote fornecido.
 
-### dpkg-query -S */exact/path/to/file*
+### dpkg-query -S /exact/path/to/file
 - retorna a que pacote pertence o arquivo fornecido através de seu caminho.
 
-### dpkg-reconfigure *package*
+### dpkg-reconfigure package
 - refaz as configurações de um pacote fornecido, voltando às configurações da primeira instalação.
 
-### apt-get *options package*
+### apt-get
 - 'advanced package tool' é o gerenciador de pacotes que inclui ferramentas de resolução de dependências;
 - **parâmetros e opções:**
 	- 'update' atualiza o índice de pacotes;
