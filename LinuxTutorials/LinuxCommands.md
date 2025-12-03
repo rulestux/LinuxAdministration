@@ -913,8 +913,8 @@ $ test.txt <<EOF
 - o parâmetro 'time' é obrigatório e recebe valores como hora exata para desligamento no formato 'hh:mm', '+m', em que 'm' é o valor em minutos, ou ainda 'now' ou '0', para desligamento imediato;
 - **opções:**
 	- '-h' encerra o sistema;
-	- '-r' reinicia o sistema;
 	- '-F' força a checagem do sistema de arquivos durante o boot;
+	- '-r' reinicia o sistema;
 	- '-c' cancela uma programação de shutdown configurada.
 
 ### wall
