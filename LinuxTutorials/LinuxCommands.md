@@ -13,7 +13,6 @@
 	- [PROCESS MANAGEMENT](#PROCESS-MANAGEMENT)
 	- [LOCAL AND TIME](#LOCAL-AND-TIME)
 	- [PACKAGE MANAGEMENT](#PACKAGE-MANAGEMENT)
-	- [PARTITIONS](#PARTITIONS)
 - [SECURITY](#SECURITY)
 	- [PERMISSIONS](#PERMISSIONS)
 	- [USER MANAGEMENT](#USER-MANAGEMENT)
@@ -951,6 +950,17 @@ ou
 
 ## PARTITIONS
 
+### lsblk
+- utilitário que lista os dispositivos de bloco, partições e sistemas de arquivos;
+- a opção '-f' seguida do caminho de uma partição retorna as seguintes informações:
+	- NAME: nome do dispositivo que contém um sistema de arquivos;
+	- FSTYPE: tipo do sistema de arquivos;
+	- LABEL: rútulo do sistema de arquivos;
+	- UUID: identificador universal;
+	- FSAVAIL: espaço disponível;
+	- FSUSE%: porcentagem de uso;
+	- MOUNTPOINT: onde é montado.
+
 ### fdisk
 - utilitário padrão para gerenciar partições MBR - Master Boot Record;
 - para editar uma tabela de partição no disco 'sda':
@@ -1197,17 +1207,6 @@ ou
 	- **outras opções além de -i:**
 		- '-u' filtra por um usuário fornceido a seguir;
 		- '-c' filtra por um comando.
-
-### lsblk
-- utilitário que lista os sistemas de arquivos;
-- a opção '-f' seguida do caminho de uma partição retorna as seguintes informações:
-	- NAME: nome do dispositivo que contém um sistema de arquivos;
-	- FSTYPE: tipo do sistema de arquivos;
-	- LABEL: rútulo do sistema de arquivos;
-	- UUID: identificador universal;
-	- FSAVAIL: espaço disponível;
-	- FSUSE%: porcentagem de uso;
-	- MOUNTPOINT: onde é montado.
 
 ### blkid
 - utilitário alternativo para exibir os sistemas de arquivos;
