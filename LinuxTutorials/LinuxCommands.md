@@ -1154,15 +1154,29 @@ ou
 		- 'ro' e 'rw': define montagem somente leitura ou gravável;
 		- 'remount': tentar remontar um sistema de arquivos já montado, como em ```# mount -o remount,ro /dev/sdb1```, 
 		em que o sistema de arquivos é montado novamente como somente leitura; pode ser usado o ponto de montagem: ```# mount -o remount,ro /mnt/data```
-- para desmontar um sistema de arquivos, usa-se **unmount**, seguido pelo nome do dispositivo ou do ponto de montagem;
+
+- **unmount** para desmontar um sistema de arquivos, seguido pelo nome do dispositivo ou do ponto de montagem;
 - **opções para umount:**
 	- '-a' desmonta todos os sistemas de arquivos listados em '/etc/fstab';
 	- '-f' força a desmontagem;
 	- '-r' se o sistema de arquivos não puder ser desmontado, torna-o somente leitura.
+
+- **/etc/fstab** é o arquivo que contém descrições sobre os sistemas de arquivos que podem ser montados;
+	- os campos do arquivo são: ```FILESYSTEM MOUNTPOINT TYPE OPTIONS DUMP PASS```
+		- FILESYSTEM: dispositivo, UUID ou rótulo da partição, feito abaixo:
+			- 'UUID=6e2c12e3-472d-4bac-a257-c49ac07f3761' ou
+			- 'LABEL=homedisk'
+		- MOUNTPOINT: onde o sistema de arquivos é montado;
+		- TYPE: tipo do sistema de arquivos;
+		- OPTIONS: opções de montagem que são passadas ao comando 'mount -o', conforme acima;
+		- DUMP: indica se qualquer sistema de arquivos pode ser considerado para backup com dump; normalmente o valor é 0;
+		- PASS: uma vez diferente de zero, define a ordem na qual os sistemas de arquivos são checados na inicialização;
 	
 ### lsof
-- utilitário que, seguido do nome do dispositivo que contém um sistema de arquivos que não pôde ser desmontado, lista os arquivos que estão sendo usados nesse sistema de arquivos e quais processos os estão usando.
- - ```$ lsof /dev/sdd2 ```
+- utilitário que, seguido do nome do dispositivo que contém um sistema de arquivos que não pôde ser desmontado, lista os arquivos que estão sendo usados nesse sistema de arquivos e quais processos os estão usando, com a sintaxe:
+
+	- ```$ lsof /dev/sdd2 ```
+
 - **lsof -i** lista arquivos usados pela rede da 'internet':
 	- pode-se incluir o IP de um host para filtrar: 'lsof -i@192.168.1.7';
 	- ou porta: 'lsof -i :22';
