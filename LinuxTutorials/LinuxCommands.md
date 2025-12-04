@@ -1161,7 +1161,8 @@ ou
 	- '-f' força a desmontagem;
 	- '-r' se o sistema de arquivos não puder ser desmontado, torna-o somente leitura.
 
-- **/etc/fstab** é o arquivo que contém descrições sobre os sistemas de arquivos que podem ser montados;
+- **/etc/fstab** 
+	- é o arquivo que contém descrições sobre os sistemas de arquivos que podem ser montados;
 	- os campos do arquivo são: ```FILESYSTEM MOUNTPOINT TYPE OPTIONS DUMP PASS```
 		- FILESYSTEM: dispositivo, UUID ou rótulo da partição, feito abaixo:
 			- 'UUID=6e2c12e3-472d-4bac-a257-c49ac07f3761' ou
