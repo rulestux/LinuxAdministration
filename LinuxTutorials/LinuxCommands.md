@@ -1,7 +1,7 @@
-## GLOSSARIVM
+# GLOSSARIVM
 
 - [GENERAL COMMANDS](#GENERAL-COMMANDS)
-	- [GENERAL COMMANDS](#GENERAL-COMMANDS)
+	- [GENERAL SHELL COMMANDS](#GENERAL-SHELL-COMMANDS)
 	- [TEXT FILTERING](#TEXT-FILTERING)
 	- [PRINTING](#PRINTING)
 	- [FILE HANDLING](#FILE-HANDLING)
@@ -21,6 +21,8 @@
 
 
 # GENERAL COMMANDS
+
+## GENERAL SHELL COMMANDS
 
 ### pwd
 - exibe o caminho do diretório corrente.
@@ -906,6 +908,16 @@ $ test.txt <<EOF
 - equivalente systemd ao logger, normalmente concatenado com echo;
 - ```$ systemd-cat -p emerg echo "This is not a real emergency."```.
 
+### update-grub
+- '**update-grub**' é um atalho para 'grub-mkconfig -o /boot/grub/grub.cfg', um utilitário que torna efetivas quaisquer alterações no arquivo '**/etc/default/grub**';
+- parâmetros mais importantes do arquivo:
+	- 'GRUB_DEFAULT=' seleciona a o sistema de inicialização padrão a partir do valor '0' ou do nome de um item de menu;
+	- 'GRUB_SAVEDEFAULT=' se estiver definida como 'true' e a 'GRUB_DEFAULT=' como 'saved', o padrão de inicialização será o selecionado pela última vez;
+	- 'GRUB_TIMEOUT=' tempo limite em segundos;
+	- 'GRUB_CMDLINE_LINUX=' lista as opções de linha de comando que serão adicionadas às entradas do Kernel Linux;
+	- 'GRUB_CMDLINE_LINUX_DEFAULT=' para inclusão de parâmetros extras apenas à entrada padrão;
+	- 'GRUB_ENABLE_CRYPTODISK=' definido como 'y', passa a exigir uma senha para descriptogravar discos.
+- o diretório '/etc/grub.d/' contém scripts para mais configurações do GRUB.
 
 ### shutdown
 - comando que envia os sinais SIGTERM e SIGKILL a todos os processos;
