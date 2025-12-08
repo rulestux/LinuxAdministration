@@ -592,7 +592,6 @@ da distribuição.
 - remove diretórios vazios;
 	- '-p' remove o diretório com subdiretórios especificados.
 
-
 ### ls
 - comando básico para listar conteúdo de diretórios;
 - **opções:**
@@ -625,6 +624,30 @@ da distribuição.
 			- aplicado a diretórios, faz com que arquivos criados no diretório herdem o grupo do diretório no lugar do grupo do usuário;
 		- 's'  **Set UID** substitui 'x' em usuário; octal 4:
 			- dá aos usuários as permissões de execução de arquivos a outros usuários.
+
+### stat
+- comando que retorna o status de um arquivo ou sistema de arquivos;
+- **sintaxe**:
+	- ```stat --printf=FORMAT FILE ```
+- **formatos para FORMAT**:
+	- %a permission bits in octal
+	- %F file type
+	- %g group ID of owner
+	- %G group name of owner
+	- %h number of hard links
+	- %i inode number
+	- %m mount point
+	- %n file name
+	- %N quoted file name with dereference if symbolic link
+	- %s total size, in bytes
+	- %u user ID of owner
+	- %U user name of owner
+	- %w time of file birth, human-readable; - if unknown
+	- %x time of last access, human-readable
+	- %y time of last data modification, human-readable
+	- %z time of last status change, human-readable
+	- %n file name
+	- ver mais no com 'man'.
 
 ### tar *options directory*
 - arquiva diretórios e seus respectivos conteúdos em pacotes \*.tar;
