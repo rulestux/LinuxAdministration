@@ -868,6 +868,11 @@ $ test.txt <<EOF
 
 ## SYSTEM BASE
 
+### dmidecode
+- utilitário de privilégios elevados que retorna dados a respeito da placa-mãe, processador e memória, como fabricante e capacidade;
+- a opção '-t' '--type', seguida de parâmetros como baseboard, bios, system, processor, 17 \(memória) etc. permitem filtrar pelos elementos equivalentes;
+- ver 'man dmidecode' para mais detalhes.
+
 ### lspci
 - lista componentes PCI conectados e seus endereços hexadecimais;
 - opções: 
