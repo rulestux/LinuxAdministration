@@ -18,6 +18,7 @@
 	- [USER MANAGEMENT](#USER-MANAGEMENT)
 	- [NETWORK](#NETWORK)
 
+------------------------------------------------------------
 
 # GENERAL COMMANDS
 
