@@ -2,6 +2,7 @@
 	- [NETWORK TYPES](#NETWORK-TYPES)
 	- [INTERNET](#INTERNET)
 	- [PROXY](#PROXY)
+	- [VPN](#VPN)
 
 ------------------------------------------------------------
 
@@ -86,12 +87,19 @@
 	- está em desuso, pois não é possível fazer cache de dados criptografados, caso da maioria dos dados que trafegam pela internet atualmente;
 - uso II: **mascaramento de cliente**:
 	- mais frequentemente substituído por uma VPN, por segurança;
-- uso III: **controle de acesso à internet**, *i. e.*, tráfego para fora:
+- uso III: **controle de acesso à internet**, *i. e.*, tráfego para a internet:
 	- uso mais comum atualmente, como um firewall;
 
 ### Proxy Reverso
 - uso I: **controle de acesso** da internet para a rede local, como um firewall;
 - uso II: **CDN: Content Delivery Network**:
 	- rede de servidores espalhados pelo mundo que armazenam caches para aumento de eficiência de acesso a serviços na internet;
-	- pode ter função de firewall;
+	- pode ter função de firewall, filtrando acessos;
 - uso III: **Balanceador de Carga**:
+	- rodízio de tráfego de acesso a servidores;
+
+------------------------------------------------------------
+
+## VPN
+
+### site-to-site
