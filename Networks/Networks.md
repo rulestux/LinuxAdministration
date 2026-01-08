@@ -1,6 +1,7 @@
 - [INTRODUCTION](#INTRODUCTION)
 	- [NETWORK TYPES](#NETWORK-TYPES)
 	- [INTERNET](#INTERNET)
+	- [CENTRALIZED AND DISTRIBUTED COMPUTING](#CENTRALIZED-AND-DISTRIBUTED-COMPUTING)
 	- [PROXY](#PROXY)
 	- [VPN](#VPN)
 
@@ -43,7 +44,7 @@
 - versão de longo alcance de uma MAN, estendendo-se por mais de uma cidade;
 
 ### GAN: Global Area Network
-- o mesmo que a rede mundial de computadores, *i. e.*, a própria **internet**;
+- o mesmo que a rede mundial de computadores, *i. e.*, a própria [INTERNET](#INTERNET);
 
 ### IAN: Internet Area Network
 - caracteriza uma rede que possui elementos armazenados em cloud;
@@ -77,6 +78,34 @@
 - acesso remoto a uma rede privada;
 - um sistema pode ser acessado com login e senha a partir de páginas públicas;
 - através de uma VPN, tal acesso se torna mais seguro;
+
+------------------------------------------------------------
+
+## CENTRALIZED AND DISTRIBUTED COMPUTING
+
+### Computação Centralizada
+- terminais conectados a um mainframe;
+- telnet e ssh;
+
+### Computação Distribuída
+- poder de processamento nos próprios dispositivos, que se comportam como dispositivos autônomos;
+	- **CLIENTE-SERVIDOR**: 
+		- servidor web, 
+		- servidor de arquivos, 
+		- servidor de impressão,
+		- **servidor de autenticação** e **serviço de diretório** em redes locais:
+			- inclui-se gerenciamento de permissões,
+			- acesso à internet,
+			- acesso a impressoras etc..
+	- **PEER-TO-PEER P2P**:
+		- redes ponto-a-ponto em ambientes SOHO \(Small Office/Home Office):
+			- sem serviço de autenticação ou serviço de diretório,
+			- cada máquina gerencia o compartilhamento de seus diretórios;
+		- redes ponto-a-ponto para compartilhamento de arquivos na internet:
+			- compartilhamento de blocos segmentados de arquivos por peers na internet;
+
+### Redes Frontend-Backend
+- tipo de rede cliente-servidor utilizado por aplicações web;
 
 ------------------------------------------------------------
 
