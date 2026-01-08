@@ -9,6 +9,7 @@
 	- [CONVERSIONS](#CONVERSIONS)
 	- [BIT ORDERING](#BIT-ORDERING)
 	- [BINARY WORDS](#BINARY-WORDS)
+	- [UNITS OF MEASURE](#UNITS-OF-MEASURE)
 
 ------------------------------------------------------------
 
@@ -316,7 +317,7 @@
 - **Most Significant Bit - msb**: o bit mais significativo é aquele que se posiciona na maior potência de 2 do binário, *i. e.*, à esquerda do bináro;
 - **Least Significant Bit - lsb**: o bit menos significativo é o que se posiciona na potência 2⁰, à direita do binário;
 
-### Sistema de Ordenação
+### Sistemas de Ordenação
 - **lsb0**: sistema que identifica os bits como: b0, b1, b2, b3 etc. no mesmo sentido das potências de 2, da direita para a esquerda; 
 	- os números das posições, nesse caso, coincidem com as potências, pois parte do bit menos significativo;
 	- o sistema *lsb0* é o mais utilizado em *eletrônica digital*;
@@ -327,18 +328,54 @@
 
 ## BINARY WORDS
 
-¹²³⁴⁵⁶⁷⁸⁹⁰₀₁₂₃₄₅₆₇₈₉
 ### Nibble
-- palavra binária com 4 bits | variação: 2⁴ = 16, de 0 a 15 unidades;
+- palavra binária com 4 bits;
+	- variações possíveis: 2⁴ = 16, de 0 a 15;
 
 ### Byte
-- palavra binária com 8 bits, também chamado de **octeto** | variação: 2⁸ = 256, de 0 a 255 unidades;
+- palavra binária com 8 bits, também chamado de **octeto**;
+	- variações possíveis: 2⁸ = 256, de 0 a 255;
 
 ### Word
-- palavra binária com 16 bits | variação: 2¹⁶ = 65.536, de 0 a 65.535 unidades;
+- palavra binária com 16 bits;
+	- variações possíveis: 2¹⁶ = 65.536, de 0 a 65.535;
 
 ### Double Word - DWord
-- palavra binária com 32 bits | variação: 2³² = 4.294.967.296;
+- palavra binária com 32 bits;
+	- variações possíveis: 2³² = 4.294.967.296;
 
 ### Quad Word - QWord
-- palavra binária com 64 bits | variação: 2⁶⁴ = 18.446.744.073.709.551.616;
+- palavra binária com 64 bits;
+	- variações possíveis: 2⁶⁴ = 18.446.744.073.709.551.616;
+
+### Sistemas de Ordenação de Bytes
+- **Little Endian**: sistema que identifica os bytes como: B0, B1, B2, B3 etc., da direita para a esquerda; 
+	- o sistema *Little Endian* é o mais utilizado em relação a *processadores x86*;
+- **Big Endian**: sistema que idenficia os bytes da esquerda para a direita;
+	- o sistema *Big Endian* é o mais utilizado em *redes*;
+
+------------------------------------------------------------
+
+## UNITS OF MEASURE
+
+¹²³⁴⁵⁶⁷⁸⁹⁰₀₁₂₃₄₅₆₇₈₉
+### Unidades de Grandeza Decimais
+- **kilo** K 10³;
+- **mega** M 10⁶;
+- **giga** G 10⁹;
+- **tera** T 10¹²;
+- **peta** P 10¹⁵;
+- **exa** E 10¹⁸;
+- **zeta** Z 10²¹;
+- **yotta** Y 10²⁴;
+
+### Unidades de Grandeza Binárias
+- **kibi** Ki 2¹⁰ = 1024¹ = 1.024;
+- **mebi** Mi 2²⁰ = 1024² = 1.048.576;
+- **gibi** Gi 2³⁰ = 1024³ = 1.073.741.824;
+- **tebi** Ti 2⁴⁰ = 1024⁴ = 1.099.511.627.776;
+- **pebi** Pi 2⁵⁰ = 1024⁵ = 1.125.899.906.842.624;
+- **exbi** Ei 2⁶⁰ = 1024⁶ = 1.152.921.504.606.846.976;
+- **zebi** Zi 2⁷⁰ = 1024⁷ = 1.180.591.620.717.411.303.424;
+- **yobi** Yi 2⁸⁰ = 1024⁸ = 1.208.925.819.614.629.174.706.176;
+
