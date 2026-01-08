@@ -102,4 +102,19 @@
 
 ## VPN
 
+### Meaning
+- Virtual Private Network;
+- a VPN estabelece um 'túnel' criptografados para o tráfego de dados;
+
 ### site-to-site
+- VPN para acesso a rede privada, servindo de caminho para uma 'Extranet', por exemplo;
+
+### host-to-host
+- VPN que entrega um serviço semelhante a um proxy para mascaramento de cliente, com a diferença que a VPN é obrigatoriamente criptografada;
+- este tipo de serviço também provê uma camada anonimidade;
+
+### software
+- **VPN SSL** plugin para navegador web, com protocolo **TLS**, na camada 6 do modelo OSI \(apresentação);
+- **VPN IPsec** software adicional para site-to-site ou servidor VPN host-to-host, com protocolo **IPsec**, na camada 3 do modelo OSI \(rede);
+
+------------------------------------------------------------
