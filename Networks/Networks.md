@@ -282,7 +282,6 @@
 		- o binário do bloco acima equivale a \(12)₁₀, *i. e.*, \(C)₁₆;
 - multiplicar pelo 1 ou 0 que as ocupa, somando os resultados de cada bloco;
 - considerar para cada bloco: 10 = A, 11 = B, 12 = C, 13 = D, 14 = E, 15 = F;
-¹²³⁴⁵⁶⁷⁸⁹⁰₀₁₂₃₄₅₆₇₈₉
 
 ### Hexadecimal para Binário
 - inverter a estrutura de blocos 4 bits; 
@@ -327,3 +326,19 @@
 ------------------------------------------------------------
 
 ## BINARY WORDS
+
+¹²³⁴⁵⁶⁷⁸⁹⁰₀₁₂₃₄₅₆₇₈₉
+### Nibble
+- palavra binária com 4 bits | variação: 2⁴ = 16, de 0 a 15 unidades;
+
+### Byte
+- palavra binária com 8 bits, também chamado de **octeto** | variação: 2⁸ = 256, de 0 a 255 unidades;
+
+### Word
+- palavra binária com 16 bits | variação: 2¹⁶ = 65.536, de 0 a 65.535 unidades;
+
+### Double Word - DWord
+- palavra binária com 32 bits | variação: 2³² = 4.294.967.296;
+
+### Quad Word - QWord
+- palavra binária com 64 bits | variação: 2⁶⁴ = 18.446.744.073.709.551.616;
