@@ -1,3 +1,6 @@
+# INDEX
+
+
 - [INTRODUCTION](#INTRODUCTION)
 	- [NETWORK TYPES](#NETWORK-TYPES)
 	- [INTERNET](#INTERNET)
@@ -10,6 +13,9 @@
 	- [BIT ORDERING](#BIT-ORDERING)
 	- [BINARY WORDS](#BINARY-WORDS)
 	- [UNITS OF MEASURE](#UNITS-OF-MEASURE)
+- [DATA TRANSMISSION](#DATA-TRANSMISSION)
+	- [TYPES](#TYPES)
+	- [TRANSMISSION MEDIA](#TRANSMISSION-MEDIA)
 
 ------------------------------------------------------------
 
@@ -277,10 +283,13 @@
 
 ### Binário para Hexadecimal
 - separar o binário em estruturas de bloco de 4 bits;
-- considerar as potências de 2 para cada casa do bloco: ``` 8, 4, 2, 1 ```;
+- considerar as potências de 2 para cada casa do bloco: ``` 8, 4, 2, 1 ```:
+
 		- ``` 8		 4		 2		 1 	```
 		- ``` 1		 1		 1		 0	```
+
 		- o binário do bloco acima equivale a \(12)₁₀, *i. e.*, \(C)₁₆;
+
 - multiplicar pelo 1 ou 0 que as ocupa, somando os resultados de cada bloco;
 - considerar para cada bloco: 10 = A, 11 = B, 12 = C, 13 = D, 14 = E, 15 = F;
 
@@ -346,7 +355,7 @@
 
 ### Quad Word - QWord
 - palavra binária com 64 bits;
-	- variações possíveis: 2⁶⁴ = 18.446.744.073.709.551.616;
+	- números possíveis: 2⁶⁴ = 18.446.744.073.709.551.616;
 
 ### Sistemas de Ordenação de Bytes
 - **Little Endian**: sistema que identifica os bytes como: B0, B1, B2, B3 etc., da direita para a esquerda; 
@@ -358,7 +367,6 @@
 
 ## UNITS OF MEASURE
 
-¹²³⁴⁵⁶⁷⁸⁹⁰₀₁₂₃₄₅₆₇₈₉
 ### Unidades de Grandeza Decimais
 - **kilo** K 10³;
 - **mega** M 10⁶;
@@ -378,4 +386,46 @@
 - **exbi** Ei 2⁶⁰ = 1024⁶ = 1.152.921.504.606.846.976;
 - **zebi** Zi 2⁷⁰ = 1024⁷ = 1.180.591.620.717.411.303.424;
 - **yobi** Yi 2⁸⁰ = 1024⁸ = 1.208.925.819.614.629.174.706.176;
+
+
+¹²³⁴⁵⁶⁷⁸⁹⁰₀₁₂₃₄₅₆₇₈₉
+------------------------------------------------------------
+
+
+# DATA TRANSMISSION
+
+
+## TYPES
+
+### Simplex - SX
+- transmissão em uma única direção, de um **transmissor - Tx** para um **receptor Rx**;
+
+### Half-duplex - HDX
+- transmissão bidirecional de dados do transmissor ao receptor em alternância, não simultânea;
+- **exemplos**: walkie-talkie, radio, rede com cabo coaxial, redes de par trançado Fast Ethernet, redes Wi-Fi, sistemas antigos de fibra óptica;
+
+### Full-duplex - FDX
+- transmissão bidirecional simultânea;
+- implementações: 
+	- com **dois canais** SX \(simplex):
+		- para duas conexões de fibra óptica;
+		- em redes de par trançado com um par para transmissão e outro para transmissão;
+	- com **um canal**:
+		- implementado com **multiplexação** por divisão de comprimento de onda em um canal de fibra óptica;
+		- implementado de forma **híbrida** com par trançado de Gbit/s Ethernet e superiores, com transformador híbrido de casamento de impedância, reduzindo um sistema de 4 fios para um sistema de 2 fios;
+
+------------------------------------------------------------
+
+## TRANSMISSION MEDIA
+
+### Meios e Canais de Transmissão de dados
+
+- os *meios* de transmissão de dados, como *ondas eletromagnéticas*, cabos metálicos com *impulsos elétricos* ou fibra óptica com *pulsos luminosos*, podem ser fracionados em várias *frequências*, e cada frequência utilizada é um **canal** de transmissão de dados;
+
+- um meio fracionado em vários canais é um meio **multicanal** ou **banda larga**;
+
+- um meio que usa apenas um canal, é um meio **unicanal** ou **banda base**;
+
+
+
 
