@@ -16,6 +16,7 @@
 - [DATA TRANSMISSION](#DATA-TRANSMISSION)
 	- [TYPES](#TYPES)
 	- [TRANSMISSION MEDIA](#TRANSMISSION-MEDIA)
+	- [TRANSMISSION METHODS](#TRANSMISSION-METHODS)
 
 ------------------------------------------------------------
 
@@ -387,7 +388,6 @@
 - **zebi** Zi 2⁷⁰ = 1024⁷ = 1.180.591.620.717.411.303.424;
 - **yobi** Yi 2⁸⁰ = 1024⁸ = 1.208.925.819.614.629.174.706.176;
 
-
 ¹²³⁴⁵⁶⁷⁸⁹⁰₀₁₂₃₄₅₆₇₈₉
 ------------------------------------------------------------
 
@@ -419,13 +419,42 @@
 ## TRANSMISSION MEDIA
 
 ### Meios e Canais de Transmissão de dados
-
 - os *meios* de transmissão de dados, como *ondas eletromagnéticas*, cabos metálicos com *impulsos elétricos* ou fibra óptica com *pulsos luminosos*, podem ser fracionados em várias *frequências*, e cada frequência utilizada é um **canal** de transmissão de dados;
 
 - um meio fracionado em vários canais é um meio **multicanal** ou **banda larga**;
-
 - um meio que usa apenas um canal, é um meio **unicanal** ou **banda base**;
 
+### Conexão Ponto-a-ponto
+- uma conexão dedicada, conectando diretamente dois dispositivos, permitindo o maior desempenho possível;
+- um **switch**, dispositivo comutador, realiza chaveamentos que permitem conexões diretas entre dispositivos em uma rede local, em topologia estrela;
 
+### Barramento
+- um canal compartilhado para conexões, usando dispositivos de **controle de acesso ao meio**;
+- em conexão por barramento há redução de desempenho em relação à conexão *ponto-a-ponto*;
+- numa conexão por barramento, todos os dados são enviados a todos os dispositivos, contudo só a máquina identificada no campo de enderaçamento do dado vai capturar o dado;
 
+### Controle de Acesso ao Meio
+- mecanismos de controle do uso do meio pelos dispositivos conectados:
 
+- **contenção**:
+	- algoritmo CSMA/CD \(Carrier-Sense Multiple Access with Collision Detection):
+		- Detecção de Colisão:
+			- um dispositivo detecta a colisão de uso do meio por outro dispositivo e aguarda um período de tempo aleatório para tentar novamente;
+		- usado em redes Ethernet de topologia linear, em barramento;
+	- algoritmo CSMA/CA \(Carrier-Sense Multiple Access with Collision Avoidance):
+		- Evasão de Colisão;
+			- um dispositivo aguarda o canal de transmissão estar livre para iniciar uma transmissão, evitando a colisão;
+		- usado em redes Wi-Fi;
+
+- **token passing \(passagem de ficha)**:
+	- uma *ficha* vazia habilita a transmissão de dados de um dispositivo que a aguarda, o qual a "preenche" com os dados a serem transmitidos;
+	- uma *ficha* ocupada está transmitindo dados de outros dispositivos conectados à rede;
+
+- **polling \(varredura)**:
+	- método que utiliza um elemento centralizador, **arbitrador**, que faz uma varredura na rede ordenando os dispositivos que solicitam transmissão de dados;
+	- um elemento arbitrador é utilizado em redes Wi-Fi quando o QoS está ativado;
+	- quando não há um elemento arbitrador, os pŕoprios dispositivos definem a lista de acesso ao meio;
+
+------------------------------------------------------------
+
+## TRANSMISSION METHODS
