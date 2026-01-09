@@ -501,6 +501,7 @@
 			- **Sync**, em conexões USB;
 
 			- **Quadro Ethernet**
+
 | Sincronismo 		| Cabeçalho 						| Dados	| Rodapé 	|
 |:-----------------:|:---------------------------------:|:-----:|:---------:|
 | Preâmbulo - SDF 	| Destino - Origem - Comprimento 	| Dados | FCS 		|
