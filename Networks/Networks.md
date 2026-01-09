@@ -506,7 +506,7 @@
 |:-----------------:|:---------------------------------:|:-----:|:---------:|
 | Preâmbulo - SDF 	| Destino - Origem - Comprimento 	| Dados | FCS 		|
 
-- no quadro Ethernet acima, o Preâmbulo é uma sequência de 7 bytes, alternando 0 e 1 para indicar o clock e o SDF \(Start Frame Delimiter) indica o final do clock com 1 byte, cuja estrutura é ``` 10101011 ```;
+- no quadro Ethernet acima, o Preâmbulo é uma sequência de 7 bytes, alternando 0 e 1 para indicar o clock, e o SDF \(Start Frame Delimiter) indica o final do sincronismo com 1 byte, cuja estrutura é ``` 10101011 ```;
 
 ### Codificação
 
