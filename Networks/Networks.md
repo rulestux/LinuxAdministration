@@ -458,3 +458,39 @@
 ------------------------------------------------------------
 
 ## TRANSMISSION METHODS
+
+### Transmissão em Série
+- transmissão padrão em um único canal, com dados sendo transmitidos um por vez;
+
+### Transmissão em Paralelo
+- transmissão que utiliza meios multicanal, com mais de um dado sendo transmitido ao mesmo tempo, utilizando mais cabos ou mais canais de radiofrequência;
+
+### Multiplexação
+
+- **\(SDM) Space-Division Multiplexing - Space-Division Multiple Access**:
+	- *Multiplexação por Divisão Espacial*, em que é usada uma conexão em paralelo através de canais separados; 
+	- é utilizada com **switch** em conexões cabeadas de topologia estrela;
+	- redes sem fio com **MIMO - Multiple Input, Multiple Output**, com antenas diversas para prover mais de um fluxo espacial;
+
+- **\(TDM) Time-Division Multiplexing - Time-Division Multiple Access**:
+	- *Multiplexação por Divisão de Tempo*, utilizando uma alternância acelerada na transmissão de dados, causando a sensação de simultaneidade;
+	- é a técnica mais popular de transmissão de dados; 
+
+- **\(FDM) Frequency-Division Multiplexing - Frequency-Division Multiple Access**:
+	- *Multiplexação por Divisão de Frequência*, usada em TV e Rádio analógicos;
+	- *Orthogonal Frequency-Division Multiplexing \(OFDM)* é uma técnica que permide subtividir os canais em subcanais em uma FDM, para transmitir dados em paralelo através de um canal, usada em TV Digital e Wi-Fi;
+
+- **\(CDM) Code-Division Multiplexing - Code-Division Multiple Access**:
+	- *Multiplexação por Divisão de Código* utiliza uma *faixa de frequência alongada \(spread spectrum)*, criando fluxos de dados "embaralhados", mas codificados, de modo a identificar o emissor e o destinatário que compartilham as chaves de um mesmo código;
+	- provê uma camada de seguraça extra através da codificação dos dados;
+
+- **\(WDM) Wavelength-Division Multiplexing - Wavelength-Division Multiple Access**:
+	- *Multiplexação por Divisão de Comprimento de Onda* é utilizada por um tipo de fibra óptica específica *NZ-DSF*;
+	- permite a utilização de conexão bidirecional com fibra óptica;
+
+
+
+
+
+
+
