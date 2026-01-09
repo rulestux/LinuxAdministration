@@ -488,6 +488,30 @@
 	- *Multiplexação por Divisão de Comprimento de Onda* é utilizada por um tipo de fibra óptica específica *NZ-DSF*;
 	- permite a utilização de conexão bidirecional com fibra óptica;
 
+### Sincronia
+- em uma transmissão em série, torna-se necessário identificar o tempo de duração do sinal de cada bit;
+- a *sincronia* é a técnica usada para que a ponta receptora consiga identificar e separar os bits recebidos;
+- técnicas de sincronia de dados:
+	- **transmissão síncrona** ou sincronia fora de banda:
+		- um canal paralelo transmite o sinal de sincronia chamado *clock*;
+	- **transmissão assíncrona** ou sincronia em banda:
+		- no mesmo canal, o emissor inicia a transmissão de dado com uma **palavra de sincronismo**: 
+			- **preâmbulo**, em rede Ethernet; 
+			- **start bit**, em porta serial RS-232; 
+			- **Sync**, em conexões USB;
+
+			- **Quadro Ethernet**
+| Sincronismo 		| Cabeçalho 						| Dados	| Rodapé 	|
+|:-----------------:|:---------------------------------:|:-----:|:---------:|
+| Preâmbulo - SDF 	| Destino - Origem - Comprimento 	| Dados | FCS 		|
+
+- no quadro Ethernet acima, o Preâmbulo é uma sequência de 7 bytes, alternando 0 e 1 para indicar o clock e o SDF \(Start Frame Delimiter) indica o final do clock com 1 byte, cuja estrutura é ``` 10101011 ```;
+
+### Codificação
+
+
+
+
 
 
 
