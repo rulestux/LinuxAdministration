@@ -17,7 +17,6 @@
 	- [TYPES](#TYPES)
 	- [TRANSMISSION MEDIA](#TRANSMISSION-MEDIA)
 	- [TRANSMISSION METHODS](#TRANSMISSION-METHODS)
-	- [DATA PACKAGE](#DATA-PACKAGE)
 
 ------------------------------------------------------------
 
@@ -525,10 +524,6 @@
 	- **PAM4 \(Pulse Amplitude Modulation 4)**: PAM2 convertido em 4 níveis de tensão para combinações de dois bits, como por exemplo: -5v = 00 | -2,5v = 01 | +2,5v = 10 | +5v = 11;
 		- taxa de transferência 100Mbd \(megabauds em Baud Rate, grandeza de número de elementos sinalizadores por segundo) para 200Mbit/s, sendo mais eficiente;
 
-------------------------------------------------------------
-
-## DATA PACKAGE
-
 ### Estrutura do Pacote de Dados
 - basicamente: 
 
@@ -573,7 +568,50 @@
 - **CRC \(Ciclical Redundancy Check)**: um processo similar ao Checksum é feito, mas utilizando a divisão por um polinômio, resultando um *FCS \(Frame Check Sequence) formando uma sequência de bits com o total de bits do polinômio menos um bit; o FCS é acrescido ao dado; é o mecanismo mais utilizado;
 
 ### Correção de Erros
+- algoritmo que é capaz de detectar e corrigir o erro pode ser cjamado de:
+	- **ECC \(Error Correction Code)**: para memórias e sistemas de armazenamento;
+	- **FEC \(Forward Error Correction)**: para sitemas de transmissão de dados e telecomunicações;
+- ao ECC e ao FEC são adicionados bits de redundância que permitem a recuperação do dado original em caso de corrupção;
+- quanto maior a redundância, maior o potencial de correção de erros;
 
+### Comutação de Pacotes
+- tipo mais comum de rede que opera no esquema de melhor esforço;
+- principais características:
+	- pode haver mais de um caminho entre a origem e o destino; não sabemos de antemão qual
+caminho será usado; o caminho pode variar a cada pacote de dados;
+	- pacotes podem ser recebidos fora de ordem;
+	- não há garantia de velocidade;
+	- não há garantia de latência; não sabemos quando o pacote de dados chegará ao destino; pode haver atraso na entrega de pacotes de dados;
+	- recursos não são previamente alocados, *i. e.*, são alocados dinamicamente;
+ 	- pode haver perda de pacotes de dados;
+	- normalmente não há garantia de entrega dos pacotes de dados;
+- sistemas de confirmação de entrega e qualidade de serviço \(QoS) podem mitigar alguns destes pontos;
+
+### Comutação de Circuito
+- tipo oriundo do sistema telefônico tradicional, é utilizado por redes de longo alcance \(WAN) oferecidas por operadoras de telefonia, usando tecnologias como *Frame Relay* e *ATM*;
+- principais características:
+	- monta-se um circuito entre a origem e o destino que é sempre o mesmo, sendo sempre usado o mesmo caminho entre a origem e o destino;
+	- pacotes são sempre recebidos em ordem; 
+	- há garantia de velocidade;
+	- há garantia de latência, permitindo saber quando o pacote de dados chegará ao destino;
+	- funcionamento determinístico;
+	- recursos são previamente alocados;
+	- não há perda de pacotes de dados;
+	- há garantia de entrega dos pacotes de dados;
+
+- atualmente, operadoras de telefonia criam redes por comutação de circuito em cima de uma rede por comutação de pacotes, usando uma técnica chamada circuito virtual \(**VC, Virtual Circuit**):
+	- *PVC \(Permanent Virtual Circuit)*: circuito permanente, permanece montado mesmo quando dados não estão sendo transmitidos;
+	- *SVC \(Switched Virtual Circuit)*: circuito temporário, montado somente quando há dados a serem transmitidos; serviço mais barato;
+
+### Taxa de Transferência
+- é a velocidade com que os dados trafegam por um canal;
+- a taxa é dada na base 10 para bit/s ou frequentemente na base 10 para B/s, podendo eventualmente ser na base 2 para esse último caso;
+
+### Largura de Banda
+- **Banda Base** é o sistema de uso da frequência máxima de operação de um meio pelo canal;
+- **Banda Larga** ou *multicanal* é o sistema em que os canais fracionam a banda máxima do meio;
+
+### Latência
 
 
 
