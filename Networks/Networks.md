@@ -17,6 +17,7 @@
 	- [TYPES](#TYPES)
 	- [TRANSMISSION MEDIA](#TRANSMISSION-MEDIA)
 	- [TRANSMISSION METHODS](#TRANSMISSION-METHODS)
+	- [DATA PACKAGE](#DATA-PACKAGE)
 
 ------------------------------------------------------------
 
@@ -500,7 +501,7 @@
 			- **start bit**, em porta serial RS-232; 
 			- **Sync**, em conexões USB;
 
-			- **Quadro Ethernet**
+- **Quadro Ethernet**
 
 | Sincronismo 		| Cabeçalho 						| Dados	| Rodapé 	|
 |:-----------------:|:---------------------------------:|:-----:|:---------:|
@@ -509,10 +510,35 @@
 - no quadro Ethernet acima, o Preâmbulo é uma sequência de 7 bytes, alternando 0 e 1 para indicar o clock, e o SDF \(Start Frame Delimiter) indica o final do sincronismo com 1 byte, cuja estrutura é ``` 10101011 ```;
 
 ### Codificação
+- codificar os dados permite criar *sistema de sincronia* entre transmissor e receptor e evitar **baseline wandering** \(desvio da linha de base), impedindo sequências longas de 0 e 1;
+- tipos de codificação:
+	- **NRZ \(Non Return to Zero)**: codificação padrão, baseada em alternância de tensão \(0v/5v ou -3v/+3v) ou alternância de sinal luminoso;
+		- não usada, pois não evita *baseline wandering*;
+	- **NRZI \(Non Return to Zero Iverted)**: o sinal 1 inverte o código enquanto o sinal 0 mantém;
+	- 4B/5B ou 8B/10B: mais usada atualmente, convertendo pacotes de 4 bits em pacotes de 5 bits ou 8 bits em 10 bits; os bits a mais podem servir de sinal de sincronia;
 
+### Modulação
+- é a conversão do código no sinal analógico compatível com o meio a ser utilizado;
+- tipos de modulação:
+	- **PAM2 \(Pulse Amplitude Modulation 2)**: para NRZ, considera-se a variação de amplitude da onda quadrática de variação de tensão, como por exemplo: -5v = 0 | +5v = 1;
+		- taxa de transferência 100Mbd \(megabauds em Baud Rate, grandeza de número de elementos sinalizadores por segundo) para 100Mbit/s;
+	- **PAM4 \(Pulse Amplitude Modulation 4)**: PAM2 convertido em 4 níveis de tensão para combinações de dois bits, como por exemplo: -5v = 00 | -2,5v = 01 | +2,5v = 10 | +5v = 11;
+		- taxa de transferência 100Mbd \(megabauds em Baud Rate, grandeza de número de elementos sinalizadores por segundo) para 200Mbit/s, sendo mais eficiente;
 
+------------------------------------------------------------
 
+## DATA PACKAGE
 
+### Estrutura do Pacote de Dados
+- basicamente: 
+
+| *cabeçalho* | *área de dados* | *rodapé* |
+
+	- cabeçalho: contém o endereçamento de origem e destino do pacote; bits de controle;
+	- área de dados: o dado propriamente;
+	- rodapé: estrutura opcional; bits de controle;
+
+- *overhead* \(desperdício): a maior parte dos dados é dado de usuário, mas além deles há os dados de controle;
 
 
 
