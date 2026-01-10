@@ -540,6 +540,53 @@
 
 - *overhead* \(desperdício): a maior parte dos dados é dado de usuário, mas além deles há os dados de controle;
 
+### Tipos de Pacote
+- **quadro**: pacote de dados no meio físico;
+- **célula**: pacote de dados no meio físico com tamanho fixo;
+- **datagrama**: pacote de dados sem confirmação de recebimento;
+- **segmento**;
+
+### Tipos de Mensagem
+- **Unicast**: mensagem para um único destinatário, mais comum;
+- **Broadcast**: mensagem destinada a todos os dispositivos na rede;
+- **Multicast**: mensagem para um grupo determinado de dispositivos na rede;
+- **Anycast**: mensagem destinada a um dispositivo mais próximo de determinado tipo para atender determinada demanda;
+
+### Confirmação de Entrega de Dado
+- um pacote é enviado ao destino buscando o retorno de um **ACK \(Acknowledge)** que confirma a entrega;
+
+- o pacote enviado inicialmente considera um temporizador para mensurar o tempo de resposta com o retorno do *ACK*, verificando se há erro de *timeout*;
+
+- os protocolos que utilizam a confirmação de recebimento de dados são chamados de **protocolos confiáveis**, com maior **overhead**, feito o protocolo *TCP*, em oposição aos protocolos não confiáveis com menor complexidade \(menor overhead), feito o *UDP*;
+
+- **NACK \(Negative Acknowledge)** é o mecanismo de envio de pacote de notificação de não recebimento de um pacote esperado;
+
+### Handshake \(Conexão)
+- pacote de controle que solicita o estabalecimento de conexão;
+
+- protocolos que utilizam esse mecanismo são **Protocolos Orientados a Conexão**, com pacotes sempre enviados em ordem, feito o protocolo *TCP*, em oposição a protocolos sem conexão **Conectionless**, com pacotes enviados fora de ordem, feito o *UDP*;
+
+### Detecção de Erros
+- **Paridade**: um bit de paridade é adicionado a fim de que o total de bits de um pacote seja par; 1 para um pacote com número ímpar de bits 1 e 0 para um pacote que já tenha um número par de bits 1;
+- **Repetição**: o mesmo pacote é enviado mais de uma vez, normalmente 3 vezes, para serem conferidos pelo receptor que, pela comparação dos pacotes, pode ou não solicitar uma retransmissão;
+- **Checksum \(Soma de Verificação)**: um algoritmo de soma de todos os dados é utilizado para anexar um código ao rodapé do pacote que serve de verificação pelo receptor, que usa o mesmo algoritmo para checar o pacote recebido;
+- **CRC \(Ciclical Redundancy Check)**: um processo similar ao Checksum é feito, mas utilizando a divisão por um polinômio, resultando um *FCS \(Frame Check Sequence) formando uma sequência de bits com o total de bits do polinômio menos um bit; o FCS é acrescido ao dado; é o mecanismo mais utilizado;
+
+### Correção de Erros
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
