@@ -436,21 +436,23 @@
 ### Controle de Acesso ao Meio
 - mecanismos de controle do uso do meio pelos dispositivos conectados:
 
-- **contenção**:
-	- algoritmo CSMA/CD \(Carrier-Sense Multiple Access with Collision Detection):
+- **CONTENÇÃO**:
+	- algoritmo probabilístico CSMA/CD \(Carrier-Sense Multiple Access with Collision Detection):
 		- Detecção de Colisão:
 			- um dispositivo detecta a colisão de uso do meio por outro dispositivo e aguarda um período de tempo aleatório para tentar novamente;
 		- usado em redes Ethernet de topologia linear, em barramento;
-	- algoritmo CSMA/CA \(Carrier-Sense Multiple Access with Collision Avoidance):
+	- algoritmo probabilístico CSMA/CA \(Carrier-Sense Multiple Access with Collision Avoidance):
 		- Evasão de Colisão;
 			- um dispositivo aguarda o canal de transmissão estar livre para iniciar uma transmissão, evitando a colisão;
 		- usado em redes Wi-Fi;
 
-- **token passing \(passagem de ficha)**:
+- **TOKEN PASSING \(passagem de ficha)**:
+	- algoritmo determinístico, sendo possível prever quando terá acesso ao meio;
 	- uma *ficha* vazia habilita a transmissão de dados de um dispositivo que a aguarda, o qual a "preenche" com os dados a serem transmitidos;
 	- uma *ficha* ocupada está transmitindo dados de outros dispositivos conectados à rede;
 
-- **polling \(varredura)**:
+- **POLLING \(varredura)**:
+	- algoritmo determinístico, sendo possível prever quando terá acesso ao meio;
 	- método que utiliza um elemento centralizador, **arbitrador**, que faz uma varredura na rede ordenando os dispositivos que solicitam transmissão de dados;
 	- um elemento arbitrador é utilizado em redes Wi-Fi quando o QoS está ativado;
 	- quando não há um elemento arbitrador, os pŕoprios dispositivos definem a lista de acesso ao meio;
@@ -612,6 +614,27 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 - **Banda Larga** ou *multicanal* é o sistema em que os canais fracionam a banda máxima do meio;
 
 ### Latência
+- tempo médio, medido em milisegundos, que um pacote leva para ser transmitido na rede;
+- **RTT \(Round-Trip Time)** é o tempo de ida e volta de um pacote numa rede, utilizado no **ping**;
+
+### Melhor Esforço
+- técnica empregada em **redes por comutação de pacotes**, em que não há 
+	- garantia de entrega de um dado;
+	- garantia de desempenho;
+	- garantia de latência;
+	- garantia de ordem de entrega;
+- pode-se habilitar o **ACK \(Acknowledge)**;
+- pode-se implementar **QoS \(Quality of Service)**;
+
+### QoS - Quality of Service
+- a *qualidade do serviço* indica os parâmetros de funcionamento de uma rede para prioridade de determinados pacotes;
+- parâmetros de QoS em contrato *SLA - Service Level Agreement*:
+	- Desempenho: largura de banda disponível e porcentagem de tempo dessa disponibilidade;
+	- Classes de Tráfego: marcação de pacotes de acordo com a classe de prioridade, ex.: vídeo-conferência, comunicação em tempo real, dados etc.;
+	- Confiabilidade: percentual de erros possíveis;
+	- Disponibilidade: tempo de disponibilidade da rede;
+	- Segurança;
+
 
 
 
