@@ -21,8 +21,9 @@
 	- [OSI MODEL](#OSI-MODEL)
 	- [TCP/IP STACK](#TCP/IP-STACK)
 - [TOPOLOGY](#TOPOLOGY)
-	- [TOPOLOGY TYPES](#TOPOLOGY TYPES)
-
+	- [TOPOLOGY TYPES](#TOPOLOGY-TYPES)
+- [CABLING](#CABLING)
+	- [CABLING TYPES](#CABLING-TYPES)
 ------------------------------------------------------------
 
 
@@ -746,7 +747,59 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 
 ## TOPOLOGY TYPES
 
-### MALHA
+### TOPOLOGIA TOTALMENTE CONECTADA
+- topologia pela qual todos os nós numa rede estão diretamente conectados entre si; 
+- fórmula para cálculo dos cabos necessários: ``` n(n-1)/2 ```;
+- modelo teórico que não é implementado;
+- *vantagens*:
+	- não há atraso entre conexões, porque não há intermediários;
+	- não há perda de conectividade, pois há redundância completa de conecções, com caminhos alternativos para as conexões;
+- *desvantagens*:
+	- inviabilidade por excesso de conexões;
+
+### TOPOLOGIA EM MALHA OU MESH
+- topologia com redundância de conectividade para nós críticos de rede;
+
+### TOPOLOGIA EM ANEL
+- topologia em que os nós de uma rede são conectados em anel, com duas conexões, para entrada e saída, de cada um;
+- utiliza-se um sistema de **token**, em que o dispositivo insere os dados e a identificação de endereçamento a serem transmitidos para outro dispositivo ao longo do caminho circular;
+
+### TOPOLOGIA EM BARRAMENTO, LINEAR OU BUS
+- topologia mais básica entre os modelos que usam o padrão *Ethernet*;
+- utiliza apenas um cabo de conexão e apenas um dispositivo pode se comunicar por vez;
+- os *quadros* são enviados a todos os dispositivos, mas são recebidos apenas por aquele ao qual eles são endereçados, sendo ignorados pelos outros dispositivos;
+- quando dois dispositivos tentam se comunicar ao mesmo tempo, ocorre a *colisão*, conforme visto acima em *controle de acesso ao meio*;
+- por haver apenas um cabo, há apenas um único domínio de colisão e de broadcast; ocorre contenção;
+
+### TOPOLOGIA EM ESTRELA
+- topologia mais utilizada, centrada em um **dispositivo concentrador**, do qual parte apenas um cabo para cada dispositivo final;
+- com **hub**:
+	- opera na camada 1 do modelo OSI, o que leva a rede a se comportar como uma rede de topologia em barrmento: todos os *quadros* são enviados para todas as portas do *hub*, caracterizando apenas um único domínio de colisão e broadcast; ocorre contenção;
+	- tem-se aqui uma *topologia física em estrela*, mas uma *topologia lógica em barramento*;
+	- hubs operam apenas no modo *half-duplex*;
+- com **switch**:
+	- opera na camada 3 do modelo OSI, pois o switch lê os *quadros* e verifica seus endereçamentos, enviando-os apenas para o dispositivo de destino, criando domínios de colisão e broadcast separados;
+	- switches operam no modo *full-duplex*;
+
+### TOPOLOGIA EM ÁRVORE OU HIERÁRQUICA
+- topologia que conecta mais de uma rede de *topologia em estrela*, conectando *dispositivos concentradores* entre si;
+
+
+------------------------------------------------------------
+
+
+# CABLING
+
+## CABLING TYPES
+
+
+
+
+
+
+
+
+
 
 
 
