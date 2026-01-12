@@ -20,6 +20,8 @@
 - [PROTOCOLS](#PROTOCOLS)
 	- [OSI MODEL](#OSI-MODEL)
 	- [TCP/IP STACK](#TCP/IP-STACK)
+- [TOPOLOGY](#TOPOLOGY)
+	- [TOPOLOGY TYPES](#TOPOLOGY TYPES)
 
 ------------------------------------------------------------
 
@@ -666,7 +668,8 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 		- gera uma **Mensagem** com os dados e os comandos sobre o que fazer com os dados;
 
 	- 6 **Apresentação**:
-		- camada que identifica o **Formato dos Dados**;
+		- camada que identifica ou modifica **Formato dos Dados**, resolvendo problemas de representação de informação existente entre *sistemas heterogêneos interconectados;
+		- camada relacionada à *sintaxe* e à *semântica*;
 		- responsável por comprimir ou descomprimir os dados;
 		- responsável por criptografar dados, com o protocolo **TLS - Transport Layer Security** \(ou *SSL - Secure Socket Layer*, versão obsoleta antecessora ao *TSL*);
 		- aqui, a *mensagem* ainda não está fracionada em pacotes menores;
@@ -677,19 +680,26 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 
 	- 4 **Transporte**:
 		- camada intermediária entre as camadas de alto nível \(5-7) e as camadas de baixo nível \(1-3);
+		- camada em que se identificam origem e destino de dados;
 		- nesta camada, inicia-se o **fracionamento em pacotes menores**;
+		- definem-se *segmentos TCP* ou *datagramas UDP*;
+		- camada responsável também pelo ordenamento e pela integridade dos dados, com mecanismos como a numeração e a *soma de verificação*;
 
 	- 3 **Rede \(*Internet*)**:
+		- camada de roteamento de dados;
+		- camada responsável pelo endereçamento lógico dos pacotes;
 		- camada de operação de **roteadores** e **switches** direcionando os dados, normalmente com os protocolos IPv4, IPv6, IPsec ou ICMP;
 		- camada responsável por gerar PDUs chamadas *datagramas IP*;
 
 	- 2 **Link de Dados \(Enlace de Dados)**:
-		- camada de operação de **switches** que é responsável por inserir os *datagramas IP* em PDUs chamadas *quadros* ou *células*;
- 		- camada responsável por gerar PDUs cahamdas *quadros*, com os endereços físicos, **MAC - Medium Access Control** de origem e destino;
+		- camada de operação de **switches**. que é responsável por inserir os *datagramas IP* em PDUs chamadas *quadros* ou *células*;
+ 		- camada responsável por gerar PDUs chamadas *quadros*;
+		- camada responsável por identificar os *endereços físicos*, **MAC - Medium Access Control** de origem e destino dos pacotes;
 
 	- 1 **Física**:
 		- camada de operação dos **hubs**;
-		- camada responsável pela modulação dos dados conforme o meio a ser usado;
+		- camada que opera com protocolos de transmissão de dados em nível de bits;
+		- camada responsável pela modulação e demodulação dos dados conforme o meio a ser usado;
 
 ------------------------------------------------------------
 
@@ -709,7 +719,7 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 - a *mensagem* é encaminhada para a *Camada Transporte* como um fluxo de dados, sendo fracionada byte a byte, para caber no espaço da PDU de transporte;
 	- se **TCP**, a camada Transporte gera uma PDU chamada **Segmento**, contendo a *mensagem*;
 		- no destinatário, o *TCP* é identificado e é gerado um pacote *ACK \(Acknowledge)* para o remetente;
-		- protocolo *orientado à conexão* e *confiável*, pois confirma o recebimento dos dados;
+		- o protocolo *TCP* é *orientado à conexão* e *confiável*, pois confirma o recebimento dos dados;
 		- os segmentos são numerados, para serem organizados pelo receptor, caso necesário;
 		- há controle de fluxo pelo receptor, com base nessa numeração, para não sobrecarregar o processamento dos dados recebidos;
 	- se **UDP**, a camada Transporte gera uma PDU chamada **Datagrama**, contendo a *mensagem*;
@@ -728,6 +738,15 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 - o processo inverso de desencapsulamento é feito pelo destinatário;
 
 
+------------------------------------------------------------
+
+
+# TOPOLOGY
+
+
+## TOPOLOGY TYPES
+
+### MALHA
 
 
 
