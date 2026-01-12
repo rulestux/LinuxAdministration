@@ -654,17 +654,44 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 ## OSI MODEL
 
 ### Estrutura do Modelo
-- modelo de 7 camadas por que um dado passa após sair do **aplicativo** e antes de chegar ao **meio** em que será transmitido:
-	- 7 - Aplicação;
-	- 6 - Apresentação;
-	- 5 - Sessão;
-	- 4 - Transporte;
-	- 3 - Rede \(*Internet*);
-	- 2 - Link de Dados \(**Enlace**);
-	- 1 - Física;
-- cada camada gera um **Protocol Data Unit \(PDU)** que é repassado para a camada imediatamente inferior;
-- na camada inferior, o *PDU* é inserido na *área de dados* do pacote recebido da camada superior, resultando em um cabeçalho específico;
+- modelo de 7 camadas por que um dado passa após sair do **aplicativo** e antes de chegar ao **meio** em que será transmitido;
+- cada camada gera uma **Protocol Data Unit \(PDU)** que é repassado para a camada imediatamente inferior;
+- na camada inferior, a *PDU* é inserido na *área de dados* do pacote recebido da camada superior, resultando em um cabeçalho específico;
 - **Service Access Point \(SAP)** é o sistema de endereçamento no cabeçalho de cada *PDU* que direciona o pacote ao protocolo correto numa camada superior;
+
+- **CAMADAS**:
+
+	- 7 **Aplicação**:
+		- camada que identifica os **Protocolos de Aplicação**;
+		- gera uma **Mensagem** com os dados e os comandos sobre o que fazer com os dados;
+
+	- 6 **Apresentação**:
+		- camada que identifica o **Formato dos Dados**;
+		- responsável por comprimir ou descomprimir os dados;
+		- responsável por criptografar dados, com o protocolo **TLS - Transport Layer Security** \(ou *SSL - Secure Socket Layer*, versão obsoleta antecessora ao *TSL*);
+		- aqui, a *mensagem* ainda não está fracionada em pacotes menores;
+
+	- 5 **Sessão**:
+		- camada que cria uma *sessão* de conexão que, em caso de interrupção, a transferência é retomada a partir desse *sessão*;
+		- *mensagem* ainda íntegra;
+
+	- 4 **Transporte**:
+		- camada intermediária entre as camadas de alto nível \(5-7) e as camadas de baixo nível \(1-3);
+		- nesta camada, inicia-se o **fracionamento em pacotes menores**;
+
+	- 3 **Rede \(*Internet*)**:
+		- camada de operação de **roteadores** e **switches** direcionando os dados, normalmente com os protocolos IPv4, IPv6, IPsec ou ICMP;
+		- camada responsável por gerar PDUs chamadas *datagramas IP*;
+
+	- 2 **Link de Dados \(Enlace de Dados)**:
+		- camada de operação de **switches** que é responsável por inserir os *datagramas IP* em PDUs chamadas *quadros* ou *células*;
+ 		- camada responsável por gerar PDUs cahamdas *quadros*, com os endereços físicos, **MAC - Medium Access Control** de origem e destino;
+
+	- 1 **Física**:
+		- camada de operação dos **hubs**;
+		- camada responsável pela modulação dos dados conforme o meio a ser usado;
+
+------------------------------------------------------------
 
 ## TCP/IP STACK
 
@@ -672,6 +699,33 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 - na pilha TCP/IP, as camadas 5, 6 e 7 do modelo OSI foram fundidas um uma única camada *Aplicação*;
 - as camadas 1 e 2 são abordadas tradicionalmente como uma camada chamada **Interface com a rede**;
 - a *Interface com a rede* é definida pela arquitetura de redes, e não pela pilha TCP/IP; 
+
+### Dinâmica de encapsulamento de dado
+- **Camada Aplicação**: gera uma PDU com um comando e os dados a serem transmitidos chamada **Mensagem**, acrescidos de 
+	- **Número de Porta** de origem e destino, indicando o **Protocolo de Aplicação**:
+		- protocolo de transporte a usar: **TCP** ou **UDP**;
+
+- **Camada Transporte**:
+- a *mensagem* é encaminhada para a *Camada Transporte* como um fluxo de dados, sendo fracionada byte a byte, para caber no espaço da PDU de transporte;
+	- se **TCP**, a camada Transporte gera uma PDU chamada **Segmento**, contendo a *mensagem*;
+		- no destinatário, o *TCP* é identificado e é gerado um pacote *ACK \(Acknowledge)* para o remetente;
+		- protocolo *orientado à conexão* e *confiável*, pois confirma o recebimento dos dados;
+		- os segmentos são numerados, para serem organizados pelo receptor, caso necesário;
+		- há controle de fluxo pelo receptor, com base nessa numeração, para não sobrecarregar o processamento dos dados recebidos;
+	- se **UDP**, a camada Transporte gera uma PDU chamada **Datagrama**, contendo a *mensagem*;
+
+- **Camada Rede**: recebe o *segmento TCP* ou o *datagrama UDP* e o encapsula na área de dados de uma UDP chamada **Datagrama IP**, sendo também fracionado, caso necessário;
+	- no cabeçalho do *datagrama IP* estarão o IP de origem e o IP de destino;
+	- também é acrescido o campo **EtherType**, que servirá para indicar à Camada de Enlace do destinatário qual o protocolo de rede \(IPv4, IPv6 ou ICMP);
+	- **Datagramas**, como os *datagramas IP*, ao contrário de segmentos, não possuem idenficação para orientação à conexão e não retornam confirmação de recebimento \(não são confiáveis);
+
+- **Camada de Enlace \(link de dados)**: gera uma UDP chamada **Quadro**, com o *datagrama IP* em sua área de dados;
+	- a camada de enlace é definida pela arquitetura de rede utilizada;
+	- no cabeçalho do *quadro* são inseridos os endereços físicos, **MAC - Medium Access Control**, de origem e destino;
+
+- **camada física**: recebe os *quadros* para *modular* e *codificar* conforme conveniente ao *meio* utilizado na transmissão;
+
+- o processo inverso de desencapsulamento é feito pelo destinatário;
 
 
 
