@@ -17,6 +17,9 @@
 	- [TYPES](#TYPES)
 	- [TRANSMISSION MEDIA](#TRANSMISSION-MEDIA)
 	- [TRANSMISSION METHODS](#TRANSMISSION-METHODS)
+- [PROTOCOLS](#PROTOCOLS)
+	-[OSI MODEL](#OSI-MODEL)
+	-[TCP/IP STACK](#TCP/IP-STACK)
 
 ------------------------------------------------------------
 
@@ -494,13 +497,17 @@
 - em uma transmissão em série, torna-se necessário identificar o tempo de duração do sinal de cada bit;
 - a *sincronia* é a técnica usada para que a ponta receptora consiga identificar e separar os bits recebidos;
 - técnicas de sincronia de dados:
-	- **transmissão síncrona** ou sincronia fora de banda:
-		- um canal paralelo transmite o sinal de sincronia chamado *clock*;
-	- **transmissão assíncrona** ou sincronia em banda:
-		- no mesmo canal, o emissor inicia a transmissão de dado com uma **palavra de sincronismo**: 
+	- **transmissão em série síncrona** ou sincronia fora de banda:
+		- um canal paralelo, *canal de controle*, transmite o sinal de sincronismo chamado *clock*;
+		- circuito mais complexo e mais caro;
+		- maior eficiência na transmissão de dados, *i. e.*, mais dados podem ser transmitidos em um intervalo de tempo;
+	- **transmissão em série assíncrona** ou sincronia em banda:
+		- no mesmo canal de dados, o emissor inicia a transmissão de dado com uma **palavra de sincronismo**: 
 			- **preâmbulo**, em rede Ethernet; 
 			- **start bit**, em porta serial RS-232; 
 			- **Sync**, em conexões USB;
+		- circuito mais simples e mais barato;
+		- menor eficiência na transmissão de dados, *i. e.*, menos dados podem ser transmitidos em um intervalo de tempo, pois parte da banda é usada para os sinais de controle;
 
 - **Quadro Ethernet**
 
@@ -514,9 +521,11 @@
 - codificar os dados permite criar *sistema de sincronia* entre transmissor e receptor e evitar **baseline wandering** \(desvio da linha de base), impedindo sequências longas de 0 e 1;
 - tipos de codificação:
 	- **NRZ \(Non Return to Zero)**: codificação padrão, baseada em alternância de tensão \(0v/5v ou -3v/+3v) ou alternância de sinal luminoso;
-		- não usada, pois não evita *baseline wandering*;
+		- não evita *baseline wandering*;
 	- **NRZI \(Non Return to Zero Iverted)**: o sinal 1 inverte o código enquanto o sinal 0 mantém;
-	- 4B/5B ou 8B/10B: mais usada atualmente, convertendo pacotes de 4 bits em pacotes de 5 bits ou 8 bits em 10 bits; os bits a mais podem servir de sinal de sincronia;
+		- não evita *baseline wandering*;
+	- **Manchester**: inverte o sinal a cada bit, evitando *baseline wandering*, mas dobrando o *baud rate* \(grandeza de número de elementos sinalizadores por segundo), reduzindo pela metade a taxa de bit, perdendo a eficiência em 50%;
+	- **4B/5B ou 8B/10B**: mais usada atualmente, convertendo pacotes de 4 bits em pacotes de 5 bits ou 8 bits em 10 bits; os bits a mais podem servir de sinal de sincronia;
 
 ### Modulação
 - é a conversão do código no sinal analógico compatível com o meio a ser utilizado;
@@ -610,7 +619,7 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 - a taxa é dada na base 10 para bit/s ou frequentemente na base 10 para B/s, podendo eventualmente ser na base 2 para esse último caso;
 
 ### Largura de Banda
-- **Banda Base** é o sistema de uso da frequência máxima de operação de um meio pelo canal;
+- **Banda Base** é o sistema de uso da frequência máxima de operação de um meio pelo canal, sendo mais frequentemente usado;
 - **Banda Larga** ou *multicanal* é o sistema em que os canais fracionam a banda máxima do meio;
 
 ### Latência
@@ -636,10 +645,33 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 	- Segurança;
 
 
+------------------------------------------------------------
 
 
+# PROTOCOLS
 
 
+## OSI MODEL
+
+### Estrutura do Modelo
+- modelo de 7 camadas por que um dado passa após sair do **aplicativo** e antes de chegar ao **meio** em que será transmitido:
+	- 7 - Aplicação;
+	- 6 - Apresentação;
+	- 5 - Sessão;
+	- 4 - Transporte;
+	- 3 - Rede \(*Internet*);
+	- 2 - Link de Dados \(**Enlace**);
+	- 1 - Física;
+- cada camada gera um **Protocol Data Unit \(PDU)** que é repassado para a camada imediatamente inferior;
+- na camada inferior, o *PDU* é inserido na *área de dados* do pacote recebido da camada superior, resultando em um cabeçalho específico;
+- **Service Access Point \(SAP)** é o sistema de endereçamento no cabeçalho de cada *PDU* que direciona o pacote ao protocolo correto numa camada superior;
+
+## TCP/IP STACK
+
+### Estrutura em 4 camadas
+- na pilha TCP/IP, as camadas 5, 6 e 7 do modelo OSI foram fundidas um uma única camada *Aplicação*;
+- as camadas 1 e 2 são abordadas tradicionalmente como uma camada chamada **Interface com a rede**;
+- a *Interface com a rede* é definida pela arquitetura de redes, e não pela pilha TCP/IP; 
 
 
 
