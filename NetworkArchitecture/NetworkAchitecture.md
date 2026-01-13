@@ -24,6 +24,9 @@
 	- [TOPOLOGY TYPES](#TOPOLOGY-TYPES)
 - [CABLING](#CABLING)
 	- [CABLING TYPES](#CABLING-TYPES)
+
+
+
 ------------------------------------------------------------
 
 
@@ -664,40 +667,40 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 
 - **CAMADAS**:
 
-	- 7 **Aplicação**:
+	- 7. **Aplicação**:
 		- camada que identifica os **Protocolos de Aplicação**;
 		- gera uma **Mensagem** com os dados e os comandos sobre o que fazer com os dados;
 
-	- 6 **Apresentação**:
+	- 6. **Apresentação**:
 		- camada que identifica ou modifica **Formato dos Dados**, resolvendo problemas de representação de informação existente entre *sistemas heterogêneos interconectados;
 		- camada relacionada à *sintaxe* e à *semântica*;
 		- responsável por comprimir ou descomprimir os dados;
 		- responsável por criptografar dados, com o protocolo **TLS - Transport Layer Security** \(ou *SSL - Secure Socket Layer*, versão obsoleta antecessora ao *TSL*);
 		- aqui, a *mensagem* ainda não está fracionada em pacotes menores;
 
-	- 5 **Sessão**:
+	- 5. **Sessão**:
 		- camada que cria uma *sessão* de conexão que, em caso de interrupção, a transferência é retomada a partir desse *sessão*;
 		- *mensagem* ainda íntegra;
 
-	- 4 **Transporte**:
+	- 4. **Transporte**:
 		- camada intermediária entre as camadas de alto nível \(5-7) e as camadas de baixo nível \(1-3);
 		- camada em que se identificam origem e destino de dados;
 		- nesta camada, inicia-se o **fracionamento em pacotes menores**;
 		- definem-se *segmentos TCP* ou *datagramas UDP*;
 		- camada responsável também pelo ordenamento e pela integridade dos dados, com mecanismos como a numeração e a *soma de verificação*;
 
-	- 3 **Rede \(*Internet*)**:
+	- 3. **Rede \(*Internet*)**:
 		- camada de roteamento de dados;
 		- camada responsável pelo endereçamento lógico dos pacotes;
 		- camada de operação de **roteadores** e **switches** direcionando os dados, normalmente com os protocolos IPv4, IPv6, IPsec ou ICMP;
 		- camada responsável por gerar PDUs chamadas *datagramas IP*;
 
-	- 2 **Link de Dados \(Enlace de Dados)**:
+	- 2. **Link de Dados \(Enlace de Dados)**:
 		- camada de operação de **switches**. que é responsável por inserir os *datagramas IP* em PDUs chamadas *quadros* ou *células*;
  		- camada responsável por gerar PDUs chamadas *quadros*;
 		- camada responsável por identificar os *endereços físicos*, **MAC - Medium Access Control** de origem e destino dos pacotes;
 
-	- 1 **Física**:
+	- 1. **Física**:
 		- camada de operação dos **hubs**;
 		- camada que opera com protocolos de transmissão de dados em nível de bits;
 		- camada responsável pela modulação e demodulação dos dados conforme o meio a ser usado;
@@ -790,8 +793,76 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 
 # CABLING
 
+
 ## CABLING TYPES
 
+### Cabo Coaxial
+- tipo de cabeamento coaxial com impedância 50ohms;
+	- cabo fino: thinnet 10base2 conector BNC;
+	- cabo grosso: thicknet 10base5 conector transceptor;
+- *10base* sinaliza a lrgura de banda de 10Mbits/s e tipo de transmissão banda base;
+- 2 ou 5 equivale ao comprimento máximo do cabo preto, com 185 metros, ou cabo amarelo, 500 metros;
+
+### Par Trançado
+- cabeamento mais usual para redes Ethernet atualmente;
+- usado em topologia estrela e árvore;
+- utiliza **transmissão diferencial**: um fio do par com sinal *D+* e outro *D-*, com o sinal inverso como espelhamento do sinal, para realizar proteção contra ruído;
+- par trançado para Ethernet com 4 pares:
+	- **UTP - Unshielded Twisted Pair**: par trançado sem blindagem, suscetível a *cross-talk - diafonia*;
+	- **STP - Shielded Twisted Pair**: par trançado com blindagem;
+	- **conector 8P8C**: "RH-45";
+	- subdivide-se em categorias, sendo o mais comum a **categoria 5e**, que suporta conexões de até 2,5 Gbit/s;
+	- *10base-T* para *Twisted pair*;
+
+### Fibra Óptica
+- tipo de cabeamento cuja transmissão de dados opera através de um *laser - light amplification by stimulated emission of radiation* em comprimento de onda infravermelho;
+
+- **SMF - Single-Mode Fiber** fibra monomodo:
+	- a luz segue em linha reta, num percurso único;
+	- mais fina \(9/125);
+	- processo de fusão de emendas mais difícil, devido ao menor núcleo;
+	- mais cara;
+	- maior alcance \(mais longa);
+	- maior largura de banda;
+	- onda mais longa 1300nm;
+	- mais usada em redes MANs e WANs;
+		- 10 Gbit/s até 80km;
+		- distâncias maiores com amplificadores ópticos;
+
+- **MMF - Multi-Mode Fiber** fibra multimodo:
+	- a luz reflete pela borda interna da fibra, por **índice degrau** ou **índice gradual**;
+	- ocorre **dispersão modal** que deve ser corrigida pelo receptor;
+	- a *dispersão modal* é menor com *índice gradual*;
+	- mais grossa \(50/125 ou 62,5/125);
+	- melhor processo de fusão de emendas, devido ao maior núcleo;
+	- mais barata;
+	- menor alcance \(mais curta);
+	- menor largura de banda;
+	- onda mais curta 850nm;
+	- mais usada em redes LANs e CANs;
+		- 100 Mbit/s até 2km;
+		- 1 Gbit/s até 1km;
+		- 10 Gbit/s até 500m;
+
+- **SMF NZ-DSF - Single-Mode Fiber Non-Zero, Dispersion-Shifted Fiber** fibra monomodo adaptada para multiplexação por comprimento de onda **WDM - Wavelength Division Multiplexing**, com mais de um laser, implementando múltiplos comprimentos de onda para transmitir mais de um fluxo de dados separados;
+	- com esse recurso, pode-se obter transmissão bidirecional;
+
+- **conectores**:
+	- **individuais**: SC - subscriber channel, ST straight tip, LC;
+	- **multimodo**: MT-RJ;
+
+
+- **classificação Ethernet com fibra óptica**:
+	- *1000base-LX*, em que X pode ser F ou S \(short) para multimodo ou L \(long) para monomodo;
+
+### Cabeamento Estruturado
+- subsistemas:
+	- 1. *ponto de entrada \(entrance facilities)*: chegada do sinal externo, entrada do prédio;
+	- 2. *sala de equipamento \(equipament room)*: sala de servidores, com racks ou armários;
+	- 3. *backbone cabling*: cabeamento de backbone \(espinha dorsal);
+	- 4. *telecommunications rooms and enclosure*: salas ou armários de telecomunicação, normalmente com *patch panels*;
+	- 5. *horizontal cabling*: cabeamento que conecta as salas de comunicação às tomadas de rede;
+	- 6. *work area*: áreas de trabalho;
 
 
 
