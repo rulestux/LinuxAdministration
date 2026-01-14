@@ -23,7 +23,12 @@
 - [TOPOLOGY](#TOPOLOGY)
 - [CABLING](#CABLING)
 - [NETWORK EQUIPMENT](#NETWORK-EQUIPMENT)
-- [WI-FI NETWORKS](#WI-FI-NETWORKS)
+- [WIRELESS NETWORKS](#WIRELESS-NETWORKS)
+	- [WIRELESS TYPES](#WIRELESS-TYPES)
+	- [WI-FI NETWORKS](#WI-FI-NETWORKS)
+	- [ELECTROMAGNETIC SPECTRUM](#ELECTROMAGNETIC-SPECTRUM)
+	- [IEEE 802 STANDARDS](#IEEE-802-STANDARDS)
+	- [WI-FI SECURITY](#WI-FI-SECURITY)
 
 
 
@@ -450,11 +455,11 @@
 	- algoritmo probabilístico CSMA/CD \(Carrier-Sense Multiple Access with Collision Detection):
 		- Detecção de Colisão:
 			- um dispositivo detecta a colisão de uso do meio por outro dispositivo e aguarda um período de tempo aleatório para tentar novamente;
-		- usado em redes Ethernet de topologia linear, em barramento;
+		- *usado em redes Ethernet* de topologia linear, em barramento;
 	- algoritmo probabilístico CSMA/CA \(Carrier-Sense Multiple Access with Collision Avoidance):
 		- Evasão de Colisão;
 			- um dispositivo aguarda o canal de transmissão estar livre para iniciar uma transmissão, evitando a colisão;
-		- usado em redes Wi-Fi;
+		- *usado em redes Wi-Fi*;
 
 - **TOKEN PASSING \(passagem de ficha)**:
 	- algoritmo determinístico, sendo possível prever quando terá acesso ao meio;
@@ -913,7 +918,7 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 - cria uma interface entre uma rede cabeada e uma rede wireless;
 - *modos de operação*:
 	- *modo ESS* para expandir o alcance de uma rede Wi-Fi;
-	- *modo MBSS \(mesh)* para expandir o alcance através de conexões sem fio para outros pontos de acesso;
+	- *modo MBSS \(mesh)* para expandir o alcance através de conexões sem uso de cabos para outros pontos de acesso;
 	- *modo repetidor* para retransmitir quadros, com menor eficiência;
 	- *modo ponte* para permitir uma conexão dedicada entre dois pontos de acesso sem fio, sendo útil para conectar duas redes sem cabeamento, através de um *enlace de micro-ondas \(conexão ponto-a-ponto)*;
 - *características técnicas*:
@@ -935,7 +940,7 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 
 ### Repetidor Sem Fio
 - equipamento para expandir o alcance para redes sem fio;
-- apresenta operacionalidade limitada, pois na prática cria uma nova rede *_EXT*;
+- apresenta operacionalidade limitada, pois na prática cria um novo *SSID - Service Set ID* de rede com final *_EXT*;
 
 ### Balanceador de Carga
 - equipamento dedicado a distribuir o tráfego de rede para mais de um servidor;
@@ -969,10 +974,239 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 ------------------------------------------------------------
 
 
-# WI-FI NETWORKS
+# WIRELESS NETWORKS
 
 
-##
+## WIRELESS TYPES
+
+### PAN - Personal Area Network
+- bluetooth;
+- infravermelho - IrDA, *IEEE 802.11-1997*;
+
+### LAN and CAN
+- Wi-Fi *IEEE 802.11*;
+
+### MAN and WAN
+- WiMAX - *IEEE 802.16* - banda larga sem fio para regiões metropolitanas;
+- Redes 4G e 5G;
+- Microwave Link - Enlace de Micro-ondas: linha reta com 80km de alcance;
+- Satélite;
+
+
+------------------------------------------------------------
+
+## WI-FI NETWORKS
+
+### Modos de Operação
+
+- **IBSS - Independent Basic Service Set** Conjunto de Serviços Básico Independente **Ad-hoc**:
+	- *sem ponto de acesso*;
+	- cada estação controla a conexão de forma independente, como em uma conexão ponto a ponto;
+
+- **BSS - Basic Service Set** Conjunto de Serviços Básico:
+	- *com ponto de acesso*;
+	- o ponto de acesso serve como concentrador, feito uma topologia estrela;
+	- **Infrastructure BSS - Infrastructure Basic Service Set** Conjunto de Serviços Básicos de Infraestrutura: com ponto de acesso oferecendo conexão com a internet, como ocorre com um roteador de banda larga, mais comum em redes residenciais;
+	- *SSID - Service Set ID* é o *nome* da rede, pelo qual ela é identificada publicamente;
+
+- **ESS - Extended Service Set** Conjunto de Serviços *Extendido*:
+	- utiliza *pontos de acesso* para expansão da rede com o mesmo SSID;
+	- nas áreas de *sobreposição de sinal*, devem-se usar *canais* diferentes;
+
+- **MBSS - Mesh Basic Service Set** Conjunto de Serviços Básico em Malha:
+	- modo *mesh* aplicado ao wi-fi, mas sem uso de qualquer cabo conectando os pontos de acesso;
+	- o modo *bridge* implementa a conexão entre os pontos de acesso, através do sistema *WDS - Wireless Distribution System*;
+	- devem-se usar *canais* diferentes;
+	- o ponto de acesso principal é chamado *portal*, normalmente um roteador de banda larga, e os outros são chamados *nós*;
+
+### Serviços de Estação
+- Serviços disponíveis para as estações \(clientes):
+	- *Autenticação*:
+		- habilita a conexão da estação;
+		- solicita chave criptográfica, caso a criptografia esteja ativada;
+	- *Desautenticação*;
+	- *Privacidade*:
+		- criptografa os dados sendo transmitidos, caso ativada;
+	- *Entrega de Dados*;
+
+- *Serviços de Distribuição*, disponíveis para os pontos de acesso:
+	- *Associação*:
+		- associa uma estação a um ponto de acesso, para que ela não esteja conectada a mais de um ponto de acesso da mesma rede;
+	- *Desassociação*;
+	- *Reassociação*:
+		- movimenta uma estação para outro ponto de acesso na mesma rede;
+	- *Distribuição*:
+		- comunicação com demais pontos de acesso;
+	- *Integração*:
+		- interfaceamento da rede Wi-Fi com redes de outras arquiteturas, com tradução de quadros;
+
+### Acesso ao Meio
+
+- **contenção**:
+	- algoritmo probabilístico CSMA/CA \(Carrier-Sense Multiple Access with Collision Avoidance) *usado em redes Wi-Fi*:
+		- Evasão de Colisão;
+			- um dispositivo aguarda o canal de transmissão estar livre para iniciar uma transmissão, evitando a colisão;
+		- verifica se o meio está livre antes do envio do quadro, através da escuta do canal pelo sistema de rádio, rastreando inatividade;
+	- diferente do 	algoritmo probabilístico CSMA/CD \(Carrier-Sense Multiple Access with Collision Detection) *usado em redes Ethernet*, por detecção de Colisão;
+
+- **multiplexação por divisão de tempo** para a transmissão de quadros para cada nó;
+
+- **multiplexação por divisão de frequência** para separar canais de dados;
+
+------------------------------------------------------------
+
+## ELECTROMAGNETIC SPECTRUM
+
+### Uso do Espectro Eletromagnético
+- **band ISM - Industrial, Scientific and Medical**:
+	- faixas de frequência livres para uso; ICM no BR:
+		- 900 MHz: 902 a 907,5 MHz; 915 a 928 MHz;
+		- **2,4 GHz: 2.400 a 2.483,5 MHz**;
+		- **5,8 GHz: 5.725 a 5.875 MHz**;
+		- 24 GHz: 24,00 a 24,25 GHz;
+- regulamentadas pela FCC nos EUA e ANATEL no BR;
+
+### Faixa 2,4 GHz
+- BR, Europa: 
+	- de 2.415 MHz até 2.472 MHz; 
+- dividida em 13 canais, com intervalos de 5 MHz;
+- 4 canais de 20 MHz sem sobreposição;
+- faixa de canais saturados, utilizada por diversos equipamentos;
+
+### Faixa 5 GHz
+- ANATEL Ato 14.448/2017 com padrão FCC/EUA:
+	- U-NII-1: de 5.150 a 5.250 MHz, canais 32 a 48:
+		- ambientes internos; 
+		- DFS opcional;
+	- U-NII-2A: de 5.250 a 5.350 MHz, canais 52 a 68:
+		- ambientes internos; 
+		- DFS obrigatório;
+	- U-NII-2B: de 5.350 a 5.470 MHz: 
+		- não usado;
+	- U-NII-2C: de 5.470 a 5.725 MHz, canais 96 a 144:
+		- ambientes internos ou externos;
+		- DFS obrigatório;
+	- U-NII-2C: de 5.725 a 5.850 MHz, canais 149 a 165:
+		- ambientes internos ou externos;
+	- *DFS - Dynamic Frequency Selection*: detecta se há radar utilizando a frequência;
+- possui 28 canais de 20 MHz sem sobreposição;
+- possui 12 canais de 40 MHz sem sobreposição;
+- possui 6 canais de 80 MHz sem sobreposição;
+- possui 2 canais de 160 MHz sem sobreposição;
+
+### Faixa 6 GHz
+- BR e EUA:
+	- de 5.925 MHz a 7.125 MHz;
+	- até 59 canais de 20 MHz sem sobreposição;
+- faixa suportada a partir do padrão Wi-Fi 6E - IEEE 802.11ax, com extensão de 6GHz;
+- canais de até 320 MHz, a partir do padrão Wi-Fi 7 - IEEE 802.11be;
+- suporta 3 tipos de equipamento 6 GHz:
+	- *Standard Power*:
+		- opera em ambientes externos;
+	- *Low Power Indoor*:
+		- tipo mais comum, opera em ambientes internos;
+		- diferente de outros casos, ao dobrar a largura do canal pode-se dobrar a potência de transmissão é dobrada, compensando a dobra do nível de ruído;
+	- *Very Low Power*:
+		- pode ser usado em ambientes externos, sem interferência sistemas de comunicação que operam nessa faixa;
+
+------------------------------------------------------------
+
+## IEEE 802 STANDARDS
+
+### IEEE 802.11-1997 - Wi-Fi 0
+- opera na faixa 2,4 GHz;
+- canais de 22 MHz;
+- método de transmissão: 
+	- infravermelho; 
+	- FHSS - Frequency Hopping Spread Spectrum; 
+	- DSSS - Direct Sequence Spread Spectrum;
+- velocidades: 2 Mbit/s ou 1 Mbit/s;
+
+### IEEE 802.11b - Wi-Fi 1
+- ano 1999;
+- opera na faixa 2,4 GHz;
+- canais de 22 MHz;
+- método de transmissão: DSSS - Direct Sequence Spread Spectrum;
+- velocidades: 11, 5,5, 2 ou 1 Mbit/s;
+
+### IEEE 802.11a - Wi-Fi 2
+- ano 1999;
+- opera na faixa 5 GHz;
+- canais de 20 MHz;
+- método de transmissão: OFDM;
+- velocidades: 54, 48, 36, 24, 18, 12, 9 ou 6 Mbit/s;
+
+### IEEE 802.11g - Wi-Fi 3
+- ano 2003;
+- opera na faixa 2,4 GHz;
+- canais de 20 MHz;
+- método de transmissão: OFDM;
+- velocidades: 54, 48, 36, 24, 18, 12, 9 ou 6 Mbit/s;
+- conversão do padrão IEEE 802.11a para 2,4 GHz;
+
+### IEEE 802.11n - Wi-Fi 4
+- ano 2009;
+- opera nas faixas 2,4 GHz ou 5 GHz;
+- canais de 20 MHz ou 40 MHz;
+- método de transmissão: MIMO-OFDM, com até 4 fluxos espaciais \(multiplexação espacial);
+- velocidades: até 32 larguras de banda com o método MIMO de até 4 fluxos;
+
+### IEEE 802.11ac - Wi-Fi 5
+- ano 2013 \(wave 1) e 2016 \(wave 2);
+- opera na faixa 5 GHz;
+- canais de 20 MHz, 40 MHz e 80 MHz na *wave 1*; 80+80 MHz e 160 MHz na *wave 2*;
+- método de transmissão: 
+	- MIMO-OFDM com até 3 fluxos espaciais na *wave 1*;
+	- MIMO-OFDM com até 4 na *wave 2*; 
+	- Beamforming, permitindo seccionamento e direcionamento de fluxos espaciais para transmissão simultânea; 
+	- MU-MIMO-OFDM para downlink na *wave 2*, permitindo transmissão simultânea de quadros;
+- velocidades: até 32 larguras de banda com o método MIMO de até 4 fluxos;
+
+### IEEE 802.11ax - Wi-Fi 6/6E
+- ano 2019 \(Wi-Fi 6) e 2021 \(Wi-Fi 6E);
+- opera nas faixas de 1 a 6 GHz;
+- canais de 20 MHz, 40 MHz, 80, 80+80 e 160 MHz;
+- método de transmissão: MU-MIMO-OFDMA com até 8 fluxos espaciais;
+
+### IEEE 802.11be - Wi-Fi 7
+- ano 2024;
+- opera nas faixas de 1 a 7 GHz \(multi-link operation);
+- canais de até 320 MHz;
+- método de transmissão: MU-MIMO-OFDMA com até 16 fluxos espaciais;
+
+### IEEE 802.16
+- regulamentação para WiMAX, banda larga sem fio para regiões metropolitanas;
+
+------------------------------------------------------------
+
+## WI-FI SECURITY
+
+### Protocolos Padrão IEEE 802.11
+- WEP: obsoleto quebrado;
+- WPA: obsoleto quebrado;
+- WPA2: preferencial;
+- WPA3: preferencial;
+
+### WPS
+- Wi-Fi Protected Setup;
+- autenticação por PIN ou por acionamento de botão WPS;
+- PIN costuma ser inseguro, pois é facilmente quebrado com ferramentas adequadas;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
