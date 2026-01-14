@@ -1209,11 +1209,13 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 ### Virtualização SDN/VLAN
 - **Software Defined Network**:
 	- componentes de rede podem ser modificados através de software: um switch que, suportando a tecnolgia, pode ser virtualmente dividio em dois switches lógicos gerenciando duas redes independentes;
+	- *Plano de Controle* do equipamento passa a ser controlado por software;
 
 ### Virtualização NFV
 - **Network Function Virtualization**:
 	- utilização de pequenas máquinas como equipamentos de rede através de softwares apropriados;
 	- máquinas podem exercer função de firewall, balanceador de carga etc.;
+	- *Plano de Controle* e *Plano de Dados* são controlados por software;
 
 ### Virtualização de Desktop
 - um Desktop virtual acessado por uma estação fica armazenado em um servidor, sendo acesível em qualquer estação conectada à rede;
