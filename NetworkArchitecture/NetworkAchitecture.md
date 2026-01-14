@@ -29,7 +29,7 @@
 	- [ELECTROMAGNETIC SPECTRUM](#ELECTROMAGNETIC-SPECTRUM)
 	- [IEEE 802 STANDARDS](#IEEE-802-STANDARDS)
 	- [WI-FI SECURITY](#WI-FI-SECURITY)
-
+- [NETWORK VIRTUALIZATION](#NETWORK-VIRTUALIZATION)
 
 
 ------------------------------------------------------------
@@ -898,11 +898,15 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 - *inundação* - difusão - transmissão em *broadcast* para identificar um destinatário;
 - os equipamentos mais sofisticados, permitem a configuração de redes virtuais **VLANs**, separando domínios de *broadcast*, isolando-as;
 - **bridge \(ponte)** um equipamento obsoleto para interligar segmentos de rede de cabo coaxial, operando na **camada 2 - Enlace** filtrando quadros e isolando os segmentos de rede, reduzindo a frequência de colisões;
+- **plano de controle** para configurações do equipamento;
+- **plano de dados** para processar e controlar quadros, examinando endereço físico MAC;
 
 ### Roteador
 - equipamento utilizado para conectar duas redes distintas;
 - opera na **camada 3 - Rede \(Internet)** do modelo OSI, analisando o endereçamento lógico dos *datagramas IP*, processando o encaminhamento de pacotes para a *rede local* e para a *rede externa*;
 - possui apenas duas portas: uma LAN \(interna) e uma WAN \(externa);
+- **plano de controle** para configurações do equipamento;
+- **plano de dados** para processar e controlar datagramas;
 
 ### Switch Camada 3 \(Layer 3)
 - switch habilitado a analisar endereçamento lógico de *datagramas IP*, conectando apenas *redes locais*;
@@ -991,7 +995,6 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 - Redes 4G e 5G;
 - Microwave Link - Enlace de Micro-ondas: linha reta com 80km de alcance;
 - Satélite;
-
 
 ------------------------------------------------------------
 
@@ -1193,16 +1196,30 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 - PIN costuma ser inseguro, pois é facilmente quebrado com ferramentas adequadas;
 
 
+------------------------------------------------------------
 
 
+# NETWORK VIRTUALIZATION
 
 
+### Virtualização Interna
+- simulação de uma rede e do tráfego de dados em uma máquina;
+- softwares específicos são desenvolvidos para dar suporte a essa simulação;
 
+### Virtualização SDN/VLAN
+- **Software Defined Network**:
+	- componentes de rede podem ser modificados através de software: um switch que, suportando a tecnolgia, pode ser virtualmente dividio em dois switches lógicos gerenciando duas redes independentes;
 
+### Virtualização NFV
+- **Network Function Virtualization**:
+	- utilização de pequenas máquinas como equipamentos de rede através de softwares apropriados;
+	- máquinas podem exercer função de firewall, balanceador de carga etc.;
 
+### Virtualização de Desktop
+- um Desktop virtual acessado por uma estação fica armazenado em um servidor, sendo acesível em qualquer estação conectada à rede;
 
-
-
+### Virtualização de Armazenamento
+- centralização do armazenamento, feito armazenamento em nuvem;
 
 
 
