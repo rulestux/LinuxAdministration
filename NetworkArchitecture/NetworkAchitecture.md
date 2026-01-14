@@ -23,6 +23,7 @@
 - [TOPOLOGY](#TOPOLOGY)
 - [CABLING](#CABLING)
 - [NETWORK EQUIPMENT](#NETWORK-EQUIPMENT)
+- [WI-FI NETWORKS](#WI-FI-NETWORKS)
 
 
 
@@ -440,6 +441,7 @@
 - um canal compartilhado para conexões, usando dispositivos de **controle de acesso ao meio**;
 - em conexão por barramento há redução de desempenho em relação à conexão *ponto-a-ponto*;
 - numa conexão por barramento, todos os dados são enviados a todos os dispositivos, contudo só a máquina identificada no campo de enderaçamento do dado vai capturar o dado;
+- apenas um domínio de broadcast e um domínio de colisão;
 
 ### Controle de Acesso ao Meio
 - mecanismos de controle do uso do meio pelos dispositivos conectados:
@@ -659,7 +661,7 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 ## OSI MODEL
 
 ### Estrutura do Modelo
-- modelo de 7 camadas por que um dado passa após sair do **aplicativo** e antes de chegar ao **meio** em que será transmitido;
+- modelo de 7 camadas \(Layers) por que um dado passa após sair do **aplicativo** e antes de chegar ao **meio** em que será transmitido;
 - cada camada gera uma **Protocol Data Unit \(PDU)** que é repassado para a camada imediatamente inferior;
 - na camada inferior, a *PDU* é inserido na *área de dados* do pacote recebido da camada superior, resultando em um cabeçalho específico;
 - **Service Access Point \(SAP)** é o sistema de endereçamento no cabeçalho de cada *PDU* que direciona o pacote ao protocolo correto numa camada superior;
@@ -879,13 +881,16 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 - opera na **camada 1 - Física** do modelo OSI, não possuindo qualquer tipo de processamento, sendo apenas um *repetidor*, sem controle de quadro ou tráfego;
 - limitado em desempenho e segurança;
 - opera em mecanismo de contenção;
-- **repetidor** equipamento obsoleto equivalente rudimentar do Hub para estender redes de cabo coaxial;
+- pode ser ativo, realizando amplificação e restauração do sinal, ou passivo;
+- **repetidor** equipamento obsoleto equivalente rudimentar do Hub para estender redes de cabo coaxial, amplificando e restaurando o sinal;
 
 ### Switch
 - *equipamento concentrador* para redes em topologia estrela em nível físico e lógico;
 - opera na **camada 2 - Enlace** do modelo OSI, podendo analisar os quadros que trafegam pela rede, eliminando a colisão, atuando como comutador do tráfego de rede;
 - maior segurança, pois os quadros são direcionados considerando origem e destino;
+- possui *buffer* para armazenamento temporário de quadros, até que sejam efetivamente transmitidos;
 - o reconhecimento dos nós da rede ocorre através de um processo chamado **flooding \(inundação)**, para realizar o checagem dos endereços físicos dos nós da rede;
+- *inundação* - difusão - transmissão em *broadcast* para identificar um destinatário;
 - os equipamentos mais sofisticados, permitem a configuração de redes virtuais **VLANs**, separando domínios de *broadcast*, isolando-as;
 - **bridge \(ponte)** um equipamento obsoleto para interligar segmentos de rede de cabo coaxial, operando na **camada 2 - Enlace** filtrando quadros e isolando os segmentos de rede, reduzindo a frequência de colisões;
 
@@ -894,7 +899,7 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 - opera na **camada 3 - Rede \(Internet)** do modelo OSI, analisando o endereçamento lógico dos *datagramas IP*, processando o encaminhamento de pacotes para a *rede local* e para a *rede externa*;
 - possui apenas duas portas: uma LAN \(interna) e uma WAN \(externa);
 
-### Switch Camada 3 \(L3)
+### Switch Camada 3 \(Layer 3)
 - switch habilitado a analisar endereçamento lógico de *datagramas IP*, conectando apenas *redes locais*;
 - possui apenas portas LAN;
 - utilizados para suportar comunicação entre redes virtuais VLANs, de forma análoga a um roteador;
@@ -961,8 +966,13 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 	- não há soma de capacidade de armazenamento disponível;
 
 
+------------------------------------------------------------
 
 
+# WI-FI NETWORKS
+
+
+##
 
 
 
