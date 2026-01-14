@@ -21,9 +21,8 @@
 	- [OSI MODEL](#OSI-MODEL)
 	- [TCP/IP STACK](#TCP/IP-STACK)
 - [TOPOLOGY](#TOPOLOGY)
-	- [TOPOLOGY TYPES](#TOPOLOGY-TYPES)
 - [CABLING](#CABLING)
-	- [CABLING TYPES](#CABLING-TYPES)
+- [NETWORK EQUIPMENT](#NETWORK-EQUIPMENT)
 
 
 
@@ -748,8 +747,6 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 # TOPOLOGY
 
 
-## TOPOLOGY TYPES
-
 ### TOPOLOGIA TOTALMENTE CONECTADA
 - topologia pela qual todos os nós numa rede estão diretamente conectados entre si; 
 - fórmula para cálculo dos cabos necessários: ``` n(n-1)/2 ```;
@@ -793,8 +790,6 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 
 # CABLING
 
-
-## CABLING TYPES
 
 ### Cabo Coaxial
 - tipo de cabeamento coaxial com impedância 50ohms;
@@ -863,6 +858,110 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 	- 4. *telecommunications rooms and enclosure*: salas ou armários de telecomunicação, normalmente com *patch panels*;
 	- 5. *horizontal cabling*: cabeamento que conecta as salas de comunicação às tomadas de rede;
 	- 6. *work area*: áreas de trabalho;
+
+
+------------------------------------------------------------
+
+
+# NETWORK EQUIPMENT
+
+
+### NIC - Network Interface Card or Controller
+- interface de rede do dispositivo, normalmente conhecido como *placa de rede*;
+- normalmente, possuem um endereço físico **MAC - Medium Access Control**;
+
+### Modem
+- *modulador/demodulador* de sinal que conecta dispositivos ou, mais comumente, redes;
+- muito frequentemente incorporado ao *roteador de banda-larga*;
+
+### Hub
+- *equipamento concentrador* para redes em topologia estrela;
+- opera na **camada 1 - Física** do modelo OSI, não possuindo qualquer tipo de processamento, sendo apenas um *repetidor*, sem controle de quadro ou tráfego;
+- limitado em desempenho e segurança;
+- opera em mecanismo de contenção;
+- **repetidor** equipamento obsoleto equivalente rudimentar do Hub para estender redes de cabo coaxial;
+
+### Switch
+- *equipamento concentrador* para redes em topologia estrela em nível físico e lógico;
+- opera na **camada 2 - Enlace** do modelo OSI, podendo analisar os quadros que trafegam pela rede, eliminando a colisão, atuando como comutador do tráfego de rede;
+- maior segurança, pois os quadros são direcionados considerando origem e destino;
+- o reconhecimento dos nós da rede ocorre através de um processo chamado **flooding \(inundação)**, para realizar o checagem dos endereços físicos dos nós da rede;
+- os equipamentos mais sofisticados, permitem a configuração de redes virtuais **VLANs**, separando domínios de *broadcast*, isolando-as;
+- **bridge \(ponte)** um equipamento obsoleto para interligar segmentos de rede de cabo coaxial, operando na **camada 2 - Enlace** filtrando quadros e isolando os segmentos de rede, reduzindo a frequência de colisões;
+
+### Roteador
+- equipamento utilizado para conectar duas redes distintas;
+- opera na **camada 3 - Rede \(Internet)** do modelo OSI, analisando o endereçamento lógico dos *datagramas IP*, processando o encaminhamento de pacotes para a *rede local* e para a *rede externa*;
+- possui apenas duas portas: uma LAN \(interna) e uma WAN \(externa);
+
+### Switch Camada 3 \(L3)
+- switch habilitado a analisar endereçamento lógico de *datagramas IP*, conectando apenas *redes locais*;
+- possui apenas portas LAN;
+- utilizados para suportar comunicação entre redes virtuais VLANs, de forma análoga a um roteador;
+
+### Firewall
+- equipamento com um sistema de filtragem e controle de acesso baseado em regras;
+- pode atuar impedindo acessos determinados à rede externa;
+
+### Ponto de Acesso
+- equipamento que gerencia redes do tipo Wi-Fi;
+- cria uma interface entre uma rede cabeada e uma rede wireless;
+- *modos de operação*:
+	- *modo ESS* para expandir o alcance de uma rede Wi-Fi;
+	- *modo MBSS \(mesh)* para expandir o alcance através de conexões sem fio para outros pontos de acesso;
+	- *modo repetidor* para retransmitir quadros, com menor eficiência;
+	- *modo ponte* para permitir uma conexão dedicada entre dois pontos de acesso sem fio, sendo útil para conectar duas redes sem cabeamento, através de um *enlace de micro-ondas \(conexão ponto-a-ponto)*;
+- *características técnicas*:
+	- padrões de compatibilidade *IEEE 802.11*;
+	- bandas de operação *2,4GHz*, *5GHz* e *6GHz*;
+		- pode ser banda dupla ou banda tripla;
+	- potência de transmissão, dada em *mW* ou *dBm*;
+	- potência de transmissão acrescida do ganho de amplificação proporcionado pela antena, chamada *EIRP - Equivalent Isotropic Radiated Power*;
+	- capacidade *MIMO - Multiple Input, Multiple Output*, que permite transmissão e recepção simultâneas: 2x2, 3x3, 4x4 \(qantidade de antenas para transmissão de dados X qantidade de antenas para recepção de dados);
+
+### Roteador de Banda Larga
+- equipamento que acumula diversas funções normalmente atribuídas a outros equipamentos; *all-in-one*:
+	- roteador;
+	- servidor DHCP;
+	- ponto de aceso;
+	- switch;
+	- firewall;
+	- modem, eventualmente;
+
+### Repetidor Sem Fio
+- equipamento para expandir o alcance para redes sem fio;
+- apresenta operacionalidade limitada, pois na prática cria uma nova rede *_EXT*;
+
+### Balanceador de Carga
+- equipamento dedicado a distribuir o tráfego de rede para mais de um servidor;
+
+### Armazenamento
+- **DAS Directly-Attached Storage** Armazenamento Conectado Diretamente:
+	- classifica dispositivos conectados diretamente em uma máquina, feito HD, SSD, Flashdrive etc.;
+- **NAS Network-Attached Storage** Armazenamento Conectado em Rede:
+	- servidor de armazenamento autônomo;
+- **SAN Storage Area Network** Rede de Área de Armazenamento:
+	- conexão dedicada para unir várias unidades de armazenamento;
+	- acessível como se fosse uma unidade *DAS*;
+	- *padrões*:
+		- InfiniBand;
+		- iSCSI;
+		- Fibre Channel;
+	- conexão física a uma placa de expansão especial acrescida ao servidor;
+
+### RAID - Redundant Array of Independent Disks
+- **RAID 0** - Divisão de Dados - Aumento de Desempenho;
+	- dados são dividos entre as unidades de armazenamento disponibilizadas e gravados de forma fracionada;
+	- a consulta simultânea a diferentes frações do mesmo arquivo divididas entre os dispositivos, aumenta o desempenho de leitura;
+	- há soma da capacidade de armazenamento, conforme as unidades de armazenamento disponíveis;
+
+- **RAID 1** - Espelhamento - Aumento da Confiabilidade - Backup em tempo real;
+	- dados são replicados e gravados simultaneamente em cada uma das unidades de armazenamento disponibilizadas;
+	- através de conexão **hot swap**, a substituição de um dispositivo defeituoso, com o sistema em operação, não afeta o armazenamento e uso de dados;
+	- não há soma de capacidade de armazenamento disponível;
+
+
+
 
 
 
