@@ -30,6 +30,9 @@
 	- [IEEE 802 STANDARDS](#IEEE-802-STANDARDS)
 	- [WI-FI SECURITY](#WI-FI-SECURITY)
 - [NETWORK VIRTUALIZATION](#NETWORK-VIRTUALIZATION)
+- [SECURITY](#SECURITY)
+	- [CIA](#CIA)
+	- [CREDENTIALS](#CREDENTIALS)
 
 
 ------------------------------------------------------------
@@ -1222,6 +1225,108 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 
 ### Virtualização de Armazenamento
 - centralização do armazenamento, feito armazenamento em nuvem;
+
+
+------------------------------------------------------------
+
+
+# SECURITY
+
+
+## CIA
+
+### Confidentiality
+- queremos que apenas pessoas autorizadas tenham acesso à informação;
+- comprometimentos:
+	- roubo ou furto de equipamentos como celular ou notebook;
+	- e-mail enviado a endereço errado;
+	- leitura de documento por pessoa não autorizada
+	- captura de pacotes de dados;
+- mitigação:
+	- criptografia;
+	- autenticação em dois fatores \(2FA);
+	- biometria;
+	- uso de computador sem qualquer tipo de conexão \(air-gapped) em conjunto com medidas de proteção física para uso e acesso, autenticação etc.;
+
+### Integrity
+- queremos que a informação não seja adulterada;
+- comprometimentos:
+	- adulteração de documento;
+	- adulteração de pacotes de dados;
+- mitigação:
+	- cópia autenticada;
+	- soma de verificação \(checksum) e CRC;
+
+### Availability \(Disponibilidade)
+- queremos que a infraestrutura esteja disponível sempre em que haja demanda;
+- comprometimentos:
+	- ataque do tipo DDoS \(Distributed Denial of Service, negação de serviço distribuída);
+	- falha de hardware;
+- mitigação:
+	- firewall;
+	- sistema de detecção de intrusos \(IDS);
+	- manutenção preventiva da infraestrutura \(hardware e software);
+
+### Autenticação e Autorização
+- *Autenticação* ou Identificação é um desdobramento do princípio da Confidencialidade;
+	- verificação de credenciais de usuário;
+- *Autorização* é a verificação dos privilégios de um usuário em um sistema;
+- comprometimentos:
+	- roubo de credenciais \(login e senha);
+- mitigação:
+	- autenticação em dois fatores \(2FA);
+	- biometria;
+
+### Autenticidade
+- queremos que a informação não seja adulterada;
+- comprometimentos:
+	- falsidade ideológica;
+	- golpes \(scam) em que o remetente diz ser de uma determinada empresa;
+- mitigação:
+	- reconhecimento de firma;
+	- certificado digital;
+
+### Conformidade
+- estar de acordo com as políticas e normas de segurança da organização e de acordo com a lei;
+
+### Irretratabilidade
+- característica dos atos jurídicos que, por imposição legal ou acordo entre as partes, não podem ser desmentidos, revogados ou desfeitos;
+
+### Privacidade
+- queremos que informações sejam usadas apenas pelo seu destinatário original e apenas para os fins propostos;
+- comprometimentos:
+	- venda ou disponibilização de dados pessoais a terceiros;
+	- envio de e-mails não solicitados \(spam);
+- mitigação:
+	- legislação que descreva e proíba o uso não autorizado da informação;
+
+------------------------------------------------------------
+
+## CREDENTIALS
+
+### Senhas
+- não armazenar senhas em texto puro \(plain text) nos bancos de dados, mas através de Funções Hash \(resistência à primeira inversão ou propriedade unidirecional) e Checksums: 
+	- algoritmos frágeis: MD5 e SHA1;
+
+### Criptografia
+- *criptografia simétrica*: a mesma chave criptografa e descriptografa;
+
+- *criptografia assimétrica*: um par de chave é usado, com um chave pública, usada para criptografar os dados, e uma chave privada, para descriptografar os dados;
+
+### IDS - IPS
+- *IDS - Intrusion Detection System* Sistema de Detecção de Intrusos: apenas emite alerta;
+- *IPS - Intrusion Prevention System* Sistema de Prevenção de Intrusos: impede o acesso;
+- *IDPS* combina as funções; 
+- NIDS, NIPS e NIDPS atuam na rede \(network);
+- HIDS, HIPS e HIDPS atuam na máquina \(host);
+
+### DoS
+- *Denial of Service* é um ataque de negação de serviço, normalmente provocado por sobrecarga de acessos a um serviço;
+- *Distributed DoS - DDoS* é um ataque DoS a partir de diversos clientes;
+
+
+
+
 
 
 
