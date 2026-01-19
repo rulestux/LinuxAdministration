@@ -1,9 +1,9 @@
 # INDEX
 
 - [INTRODUCTION](#INTRODUCTION)
-
-
-
+- [IPv4](#IPv4)
+	- [NETWORK ADDRESS TRANSLATION](#NETWORK-ADDRESS-TRANSLATION)
+	- [DHCPv4](#DHCPv4)
 
 
 ------------------------------------------------------------
@@ -46,6 +46,8 @@
 
 - camada controlada pelo *Software*;
 
+- **endereços específicos**;
+
 ### Camada de Transporte
 - **Protocolo TCP - Transmission Control Protocol**: *orientado à conexão*, com handshake e pacote numerados para ordenamento - *confiável*, com mecanismo de confirmação de entrega dos dados - maior *overhead*, complexidade e atraso;
 
@@ -58,6 +60,8 @@
 - identificação da *porta* de origem e destino;
 
 - camada controlada pelo *Sistema Operacional*;
+
+- **Endereçamento de portas**;
 
 ### Camada de Rede \(Internet)
 - camada *entre-redes*;
@@ -79,7 +83,7 @@
 - **Endereçamento Lógico**: *endereços IP* - endereços roteáveis;
 
 ### Camada de Enlace \(Link de Dados)
-- camada de *Controle de Acesso ao Meio*;
+- camada de *Controle de Acesso ao Meio*; camada de dados ou de interface com a rede;
 
 - **PDU - Protocol Data Unit**: 
 	- **Quadro**: tamanho variável;
@@ -113,14 +117,167 @@
 - **IETF - Internet Engineering Task Force** estabelece os padrões da pilha de protocolos TCP/IP através dos documentos **RFC - Request for Comments**;
 
 
+------------------------------------------------------------
 
 
+# IPv4
 
 
+### Protocolos ARP e RARP
+- **ARP - Address Resolution Protocol**: protocolo de quadros enviados em broadcast buscando um retorno de *endereço físico* correspondente a um *endereço IP* conhecido;
 
+- **RARP - Reverse Address Resolution Protocol**: protocolo de quadros enviados em broadcast buscando um retorno de *endereço IP* correspondente a um *endereço físico* conhecido;
 
+- essas funcionalidades foram absorvidas pelo **protocolo DHCP**;
 
+### Tipos de Endereço IP
+- **Unicast**
+	- identifica um único nó;
 
+- **Broadcast**
+	- identifica todos os nós de uma rede;
+
+- **Multicast**
+	- identifica um grupo de nós dentro de uma rede;
+	- utiliza o protocolo *IGMP - Internet Group Message Protocol*;
+
+- **Anycast**
+	- identifica mais de um nó com o mesmo endereço IP dentro de uma rede;
+	- acessa o nó fisicamente mais próximo com o IP compartilhado;
+	- utilizado em sistemas *CDN - Content Delivery Network*;
+	- não é nativo no IPv4, sendo implementado via BGP;
+
+### Estrutura do Endereçamento IPv4
+- endereço de *32 bits*;
+- **CIDR - Clasless Inter-Domain Routing**: roteamento entre domínios sem uso de classes: 
+	- ``` 192.168.0.0/24 ```;
+
+- Máscara de Subrede \(ou Máscara de Rede):
+	- ``` 255.255.255.0 ```;
+
+- Endereço de Rede \(primeiro endereço da rede):
+	- ``` 192.168.0.0 ```;
+
+- Endereço de  Broadcast da Rede \(último endereço da rede):
+	- ``` 192.168.0.255 ```;
+
+- o número de endereços disponíveis em uma rede sempre é: ``` 2ⁿ - 2 ```, em que *n* é o número de bits reservados para a identificação de nós, à direita;
+
+### VLSM \(Segmentação)
+- **Variable-Length Subnet Masking**: Mascaramento de Subrede de Comprimento Variável;
+- permite dobrar o número de redes disponíveis acrescentando mais um bit ao CIDR, por outro lado, dividindo por 2 o número de nós possíveis;
+
+### Agregação de Rotas
+- consiste na união de redes próximas em entradas de *tabelas de roteamento* em roteadores;
+- possível apenas quando várias redes são acessadas por um mesmo caminho, *i. e.*, por um mesmo roteador;
+
+### Máscara Coringa
+- consiste na utilização de máscara com bits 0 marcando valores fixos e bits 1 marcando valores variáveis de uma faixa de endereço IP;
+
+### Classes
+- 0.0.0.0 a 127.255.255.255 - CIDR /8 - CLASSE A
+	- bit inicial: 0
+
+- 128.0.0.0 a 191.255.255.255 - CIDR /16 - CLASSE B
+	- bits iniciais: 10
+
+- 192.0.0.0 a 223.255.255.255 - CIDR /24 - CLASSE C
+	- bits iniciais: 110
+
+- 224.0.0.0 a 239.255.255.255 - CLASSE D - MULTICAST
+	- bits iniciais: 1110
+
+- 240.0.0.0 a 255.255.255.255 - CLASSE E - RESERVADA
+	- bits iniciais: 1111
+
+### Faixas Especiais
+- ``` 0.0.0.0/8 ```
+	- indica a rede local ou qualquer rede;
+
+- ``` 10.0.0.0/8 | 172.16.0.0/12 | 192.168.0.0/16 ```
+	- endereçamento privado;
+
+- ``` 127.0.0.0/8 ```
+	- loopback \(realimentação) - o próprio host;
+
+- ``` 192.0.2.0/24 | 198.51.100.0/24 | 203.0.113.0/24 ```
+	- documentação e exemplos;
+
+- ``` 169.254.0.0/16 ```
+	- Zeroconf/APIPA, endereçamento automático normalmente usado por sistemas Windows quando um servidor DHCP não retorna um endereço IP;
+
+- ``` 198.18.0.0/15 ```
+	- equipamentos para teste de rede;
+
+- ``` 192.88.99.0/24 ```
+	- conversão de endereços IPv6 em IPv4;
+
+- ``` 192.0.0.0/24 | 224.0.0.0/4 | 240.0.0.0/4 ```
+	- reservada, derivadas das antigas classes D e E;
+
+### Endereçamento IPv4 Públicos
+- os blocos de endereçamento são distribuídos pela **IANA - Internet Assigned Numbers Authority**;
+- a *LACNIC* é a entidade que distribui as faixas na América do Sul;
+
+### Endereçamento IPv4 Privados
+
+| Faixa				| Endereço Inicial	| Endereço Final 	|
+|------------------*|-------------------|-------------------|
+| 10.0.0.0/8 		| 10.0.0.0			| 10.255.255.255	|
+| 172.16.0.0/12		| 172.16.0.0		| 172.31.255.255	|
+| 192.168.0.0/16	| 192.168.0.0		| 192.168.255.255	|
+
+------------------------------------------------------------
+
+## NETWORK ADDRESS TRANSLATION
+
+### NAT
+- mecanismo pelo qual o roteador que habilita o acesso à WAN substitui o IP privado pelo IP público;
+
+### NAT Dinâmico
+- é realizada uma associação dinâmica de IPs privados em um índice com IPs públicos disponíveis para o roteador;
+- o número de conexões é limitado pelo número de IPs públicos disponíveis para o roteador;
+- **NAT Estático**
+	- força a conversão de um IP privado sempre no mesmo IP público dentro do sistema NAT dinâmico;
+
+### NAT Overload
+- ou **PAT - Port Address Translation** é o método mais utilizado;
+- o roteador passa a manipular também os campos *porta* nos 4 primeiros bytes do *datagrama IP*;
+- pelo método *PAT*, o número da porta é também substituído, de modo a identificar no roteador o IP de origem e a porta de origem, gerando um índice de conversão;
+
+### CGNAT
+- **Carrier-Grade Network Address Translation** é o mecanismo pelo qual um provedor configura sua rede em uma faixa de endereçamento privado para prover serviços de IP público dinamicamente, para solucionar a exaustão de endereços IPv4;
+
+------------------------------------------------------------
+
+## DHCPv4
+
+### Dynamic Host Configuration Protocol v4
+- protocolo de aplicação responsável por realizar a configuração dos endereços em uma rede;
+
+### Modos de Configuração
+- **Manual**;
+
+- **Dinâmico**: o servidor DHCP entrega um endereço IP dentro da faixa de rede configurada, sem garantia de que sempre será a mesma;
+
+- **Automático**: o servidor DHCP tenta entregar um mesmo endereço IP a um nó apenas quando possível;
+
+- **Estático**: o servidor DHCP sempre entrega o mesmo endereço IP a um nó;
+
+### Protocolo de Comunicação
+- o protocolo DHCP utiliza como método de transporte o protocolo **UDP**:
+	- porta 67 *servidor*;
+	- porta 68 *cliente*;
+
+- **etapas de comunicação**
+	- 1. um nó cliente solicita a entrada na rede através de uma mensagem **DHCPDISCOVERY** em *broadcast*;
+	- 2. o servidor DHCP responde com uma mensagem **DHCPOFFER**; pode haver mais de um servidor DHCP na rede, e todos respondem;
+	- 3. o cliente direciona uma mensagem **DHCPREQUEST** em *broadcast*, mas direcionada a um servidor DHCP escolhido;
+	- 4. o servidor retorna uma mensagem DHCP Acknowledge **DHCPACK**;
+
+- **outras mensagens**:
+	- *DHCPRELEASE*: mensagem do cliente liberando seu IP e solicitando a renovação;
+	- *DHCPINFORM*: mensagem de solicitação de informações ao servidor DHCP;
 
 
 
