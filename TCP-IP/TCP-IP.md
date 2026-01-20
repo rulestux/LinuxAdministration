@@ -1,9 +1,10 @@
 # INDEX
 
 - [INTRODUCTION](#INTRODUCTION)
-- [IPv4](#IPv4)
+- [IPv4 ADDRESSING](#IPv4-ADDRESSING)
 	- [NETWORK ADDRESS TRANSLATION](#NETWORK-ADDRESS-TRANSLATION)
 	- [DHCPv4](#DHCPv4)
+- [IPv6 ADDRESSING](#IPv6-ADDRESSING)
 
 
 ------------------------------------------------------------
@@ -120,17 +121,16 @@
 ------------------------------------------------------------
 
 
-# IPv4
+# IPv4 ADDRESSING
 
 
 ### Protocolos ARP e RARP
 - **ARP - Address Resolution Protocol**: protocolo de quadros enviados em broadcast buscando um retorno de *endereço físico* correspondente a um *endereço IP* conhecido;
 
 - **RARP - Reverse Address Resolution Protocol**: protocolo de quadros enviados em broadcast buscando um retorno de *endereço IP* correspondente a um *endereço físico* conhecido;
+	- essa funcionalidade foi absorvida pelo **protocolo DHCP**;
 
-- essas funcionalidades foram absorvidas pelo **protocolo DHCP**;
-
-### Tipos de Endereço IP
+### Tipos de Endereçamento IPv4
 - **Unicast**
 	- identifica um único nó;
 
@@ -143,7 +143,7 @@
 
 - **Anycast**
 	- identifica mais de um nó com o mesmo endereço IP dentro de uma rede;
-	- acessa o nó fisicamente mais próximo com o IP compartilhado;
+	- acessa o nó fisicamente mais próximo com o IP compartilhado, com o menor número de saltos;
 	- utilizado em sistemas *CDN - Content Delivery Network*;
 	- não é nativo no IPv4, sendo implementado via BGP;
 
@@ -266,8 +266,8 @@
 
 ### Protocolo de Comunicação
 - o protocolo DHCP utiliza como método de transporte o protocolo **UDP**:
-	- porta 67 *servidor*;
-	- porta 68 *cliente*;
+	- *servidor: porta 67*;
+	- *cliente: porta 68*;
 
 - **etapas de comunicação**
 	- 1. um nó cliente solicita a entrada na rede através de uma mensagem **DHCPDISCOVERY** em *broadcast*;
@@ -280,6 +280,149 @@
 	- *DHCPINFORM*: mensagem de solicitação de informações ao servidor DHCP;
 
 
+------------------------------------------------------------
+
+
+# IPv6 ADDRESSING
+
+### Simplificação do Endereçamento IPv6
+- zeros à esquerda podem ser removidos;
+- um bloco com apenas zeros deve ser sinalizado com pelo menos um zero;
+- vários blocos em sequência com zeros podem ser sinalizados com apenas um par de dois pontos ``` :: ```; apenas uma sequência em um endereço IPv6 pode ser abreviada dessa forma;
+
+### Outras Características
+- possui configuração automática **SLAAC - StateLess Address AutoConfiguration**, tornando o protocolo DHCP opcional;
+- não há ARP/RARP;
+- não há sistema de broadcast, que é substituído pelo sistema multicast:
+
+### Tipos de Endereçamento IPv6
+- **Unicast**
+	- identifica um único nó;
+
+- **Multicast**
+	- substitui o *broadcast* em IPv6;
+	- endereço padrão multicast:
+		- multicast padrão para máquinas: *ff02::1*;
+		- multicast padrão para roteadores: *ff02::2*;
+	- identifica um grupo de nós dentro de uma rede;
+	- utiliza o protocolo *IGMP - Internet Group Message Protocol*;
+
+- **Anycast**
+	- identifica mais de um nó com o mesmo endereço IP dentro de uma rede;
+	- acessa o nó fisicamente mais próximo com o IP compartilhado, com o menor número de saltos;
+	- utilizado em sistemas *CDN - Content Delivery Network*;
+	- suporte nativo com IPv6;
+	- o primeiro endereço IPv6 sempre identifica o gateway padrão de uma rede;
+
+### Escopos IPv6
+
+| Valor hex	| Escopo			| Equivalência IPv4	| Uso					|
+|-----------|-------------------|-------------------|-----------------------|
+| 0 		| reservado			|					|						|
+| 1 		| interface-local 	| loopback 			| uso em loopback;		|
+| 2			| link-local		| privado			| endereçamento privado |
+| 3			| realm-local		| 					| definido auto			|
+| 4			| admin-local		| 					| definido pelo admin	|
+| 5			| site-local		|					| definido pelo admin	|
+| 8			| organization-local|					| definido pelo admin	|
+| e			| global			| público			| endereçamento público |
+| f 		| reservado			|					|						|
+
+
+### Endereçamento IPv6 Unicast e Anycast Globais
+- 128 bits em 8 blocos de 16 bits;
+- Prefixo | Sub-rede | IID 64 bits:
+	- Prefixo + Sub-rede = Identificação da Rede em 64 bits;
+	- IID = Identificação do Nó;
+- faixa de endereços públicos: 
+	- ``` 2000:: até 3 ```;
+
+### Endereçamento IPv6 Local
+- **Local-Link**:
+	- Prefixo 
+		- ``` fe80::/64 ```;
+	- não permite configuração de sub-redes - sem segmentação;
+	- usado em redes menores;
+
+- **ULA - Unique Local Address**:
+	- permite segmentação em sub-redes;
+	- usado em redes de médio porte;
+	- estrutura: 
+		- ``` fd | 40 bits aleatórios de prefixo | 16 bits sub-rede | IID 64 bits ```
+
+### IID Interface Identifier
+- o campo de identificação da interface é constituído pelo endereço físico da interface quando o prefixo *não* se inicia por 0 ou 1;
+	- utiliza-se o formato *EUI-64* de 64 bits, convertido a partir do endereço físico que comumente se apresenta com 48 bits:
+		- o endereço MAC é separado em dois grupos de 3 bytes \(24 bits);
+		- entre eles são acrescentados os 2 bytes FF FE;
+		- inverte-se o valor do terceiro bit \(U/L), o que implica normalmente em tornar o primeiro byte 00 um byte 02;
+		- separar em 4 grupos de 4 algarismos para obter o IID;
+
+### Índices e Colchetes
+- *Windows*:
+	- fe80::1234%1 - 1ª interface
+	- fe80::1234%2 - 2ª interface
+
+- *Unix*:
+	- fe80::1234%eth0 - 1ª interface
+	- fe80::1234%eth1 - 2ª interface
+
+- Colchetes:
+	- são usados para marcar endereçamento IPv6 em URL;
+	- isso evita ambiguidade com números de porta, separados por dois pontos;
+
+### NDP - Neighbor Discovery Protocol
+- o *Protocolo de Descoberta de Vizinhos* equivale ao Protocolo ARP do IPv4, que permite descobrir o endereço físico de um nó a partir do endereço IP;
+
+- o *NDP* faz parte do sistema de auto-configuração **SLAAC - StateLess Address AutoConfiguration** do IPv6, provendo informações que equivalem ao Protocolo DHCP do IPv4, funcionando apenas quando o sistema SLAAC estiver ativado;
+
+- o *NDP* fornece ainda o prefixo da rede, o endereço IPv6 do gateway padrão e o endereço IPv6 do servidor DNS;
+
+- o *NDP* utiliza o protocolo **ICMPv6** para o envio das mensagens:
+
+	- 1. **solicitação de roteador** *ICMPv6 tipo 133*:
+		- mensagem enviada por um nó a todos os roteadores de uma rede para obter informações sobre os parâmetros da rede;
+		- mensagem enviada para o multicast padrão de roteador: ``` ff02::2 ```;
+
+	- 2. **anúncio de roteador** *ICMPv6 tipo 134*:
+		- enviada por todos os roteadores de uma rede em resposta à *solicitação de roteador*;
+
+	- 3. **solicitação de vizinho** *ICMPv6 tipo 135*:
+		- mensagem equivalente ao ARP do IPv4;
+		- solicita o endereço físico da máquina de destino;
+
+	- 4. **anúncio de vizinho** *ICMPv6 tipo 136*:
+		- mensagem equivalente a uma operação de resposta ARP do IPv4;
+		- contém o endereço físico da máquina-alvo;
+
+	- 5. **redirecionamento** *ICMPv6 tipo 137*:
+		- enviada à orgigem de um roteador para informá-la que existe outro roteador com menor número de saltos até um determinado alvo;
+		- equivale à mensagem ICMPv4 de redirecionamento - tipo 5;
+
+### DHCPv6
+- utiliza também o protocolo *UDP* na *camada de transporte*, mas em portas diferentes:
+	- *cliente: porta 546*;
+	- *servidor: porta 547*;
+
+- utiliza endereços de multicast:
+	- *ff02::1:2* usado por todos os servidores e relays DHCP da rede;
+	- *ff05::1:3* usado por todos os servidores DHCP da rede para acesso por relays;
+
+- os parâmetros principais para acesso à internet, endereço IP e dervidor DNS, são obtidos de forma automática pelo sistema *SLAAC - StateLess Address AutoConfiguration*, através do  protocolo *NDP*; o procotolo *DHCPv6* faz-se opcional, sendo usado apenas quando se deseja incluir outros parâmetros de configuração, feito seleção de servidor DNS alternativo;
+
+- mensagens com SLAAC ativo:
+	- *information_request* com a especificação do dado que o cliente busca do servidor DHCPv6, para o endereço multicast *ff02::1:2*;
+	- *reply* com a resposta solicitada;
+
+- mensagens com SLAAC desativado com apenas um servidor DHCPv6:
+	- *solicit* com a opção de configuração expressa, *rapid commit*, para que todos os dados necessários retornem em mensagem única;
+	- *reply* com a resposta solicitada;
+
+- mensagens com SLAAC desativado em operação completa, com mais de um servidor DHCPv6:
+	- *solicit*;
+	- *advertise* anúncio enviado por todos os servidores DHCPv6 da rede;
+	- *request* para o servidor escolhido;
+	- *reply* com a resposta solicitada;
 
 
 
