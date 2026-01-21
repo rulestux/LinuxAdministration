@@ -7,7 +7,7 @@
 - [IPv6 ADDRESSING](#IPv6-ADDRESSING)
 - [IPv4-IPv6 TRANSITIONING](#IPv4-IPv6-TRANSITIONING)
 - [PORTS](#PORTS)
-- [UDP - USER DATAGRAM PROTOCOL](#UDP---USER-DATAGRAM-PROTOCOL)
+- [USER DATAGRAM PROTOCOL](#USER-DATAGRAM-PROTOCOL)
 
 
 ------------------------------------------------------------
@@ -507,7 +507,66 @@
 ------------------------------------------------------------
 
 
-# UDP - USER DATAGRAM PROTOCOL
+# USER DATAGRAM PROTOCOL
+
+
+### UDP
+- características básicas:
+	- protocolo simples;
+	- sem conexão;
+	- não confiável: não confirma recebimento de dados;
+
+- *estrutura de dado*: **DATAGRAMA**;
+
+- *vantagens*: mais simples, mais ágil, mais rápido, demanda menor processamento;
+- *desvantagens*: não confirma recebimento; dados fora de ordem para a aplicação;
+
+- uso mais frequente por:
+	- *Aplicações de Controle, Estado e Configuração de Rede*:
+		- DNS;
+		- DHCP;
+		- RIP - Routing Information Protocol;
+
+	- *Aplicações de Tempo Real*:
+		- Streaming de Vídeo;
+		- Vídeoconferência;
+		- Jogos Online;
+
+### Estrutura do Datagrama UDP
+- cabeçalho com:
+	- campo de porta de origem - 2 bytes;
+	- campo de porta de destino - 2 bytes;
+	- campo com o tamanho do datagrama - 2 bytes;
+	- checksum - 2 bytes;
+
+- área de dados com tamanho variável entre 0 e 65.527 bytes \(= 65.535 bytes - 8 bytes de cabeçalho);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
