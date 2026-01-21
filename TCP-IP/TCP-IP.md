@@ -6,6 +6,7 @@
 	- [DHCPv4](#DHCPv4)
 - [IPv6 ADDRESSING](#IPv6-ADDRESSING)
 - [IPv4-IPv6 TRANSITIONING](#IPv4-IPv6-TRANSITIONING)
+- [PORTS](#PORTS)
 
 
 ------------------------------------------------------------
@@ -476,15 +477,30 @@
 	- prefixo:0000:IPv4Te:redo:flags:portaUDPofuscado:IPv4doNATofuscado
 
 
+------------------------------------------------------------
 
 
+# PORTS
 
 
+### Organização das Portas
+- o campo *porta*, em segmentos TCP ou datagramas UDP, possui 16 bits: 2¹⁶ = 65.536 \(0 a 65.535);
 
+- **portas bem conhecidas ou privilegiadas**: 
+	- portas 0 a 1.023;
+	- só podem ser usadas no lado do servidor;
+	- não podems ser usadas no lado do cliente;
+	- padronizadas pela IANA para protocolos com RFC regulamentadora;
 
+- **portas registradas**: 
+	- portas 1.024 a 49.151;
+	- padronizadas pela IANA para protocolos sem RFC regulamentadora;
+	- podem ser usadas no lado do servidor, como porta bem conhecida, e no lado do cliente, como porta dinâmica;
 
-
-
+- **portas dinâmicas, privadas ou efêmeras**: 
+	- portas 49.152 a 65.535;
+	- podem ser usadas livremente por aplicações;
+	- usadas, por exemplo, em diferentes abas de um navegador, como cliente HTTP;
 
 
 

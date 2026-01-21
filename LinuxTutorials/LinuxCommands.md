@@ -1979,7 +1979,7 @@ baseurl=url://endereço/para/o/repositório
 	- '**ip route**' equivale a '**netstat -r**' e '**route**', retornando uma tabela de roteamento; para IPv6: '**ip -6 route**', '**netstat -6r**' e '**route -6**', respectivamente; 'via' é a palavra que antecede a adição do IP de um roteador \(gateway) com 'ip route'.
 
 ### netstat
-- exibe conexões ativas de rede e sockets Unix;
+- exibe conexões ativas de rede e sockets \(IP + port address) Unix;
 **opções:**
 	- '-a' exibe os status de cada conexão;
 	- '-e' exibe o usuário dos processos que estão requisitando as conexões;
