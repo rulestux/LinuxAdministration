@@ -5,6 +5,7 @@
 	- [NETWORK ADDRESS TRANSLATION](#NETWORK-ADDRESS-TRANSLATION)
 	- [DHCPv4](#DHCPv4)
 - [IPv6 ADDRESSING](#IPv6-ADDRESSING)
+- [IPv4-IPv6 TRANSITIONING](#IPv4-IPv6-TRANSITIONING)
 
 
 ------------------------------------------------------------
@@ -423,6 +424,62 @@
 	- *advertise* anúncio enviado por todos os servidores DHCPv6 da rede;
 	- *request* para o servidor escolhido;
 	- *reply* com a resposta solicitada;
+
+
+------------------------------------------------------------
+
+
+# IPv4-IPv6 TRANSITIONING
+
+### Pilha Dupla: IPv4 mapeado em IPv6
+- usado para acessar máquinas IPv4 em redes IPv6, sendo o mais utilizado;
+- endereço IPv4 é convertido em um endereço IPv6 prefixo *::ffff:0:0/96*:
+
+	- IPv4 192.0.2.33 - IPv6 ::ffff:192.0.2.33 ou ::ffff:c000:221;
+
+### Tradução: SIIT - Stateless IP/ICMP Translation
+- usado para acessar máquinas IPv4 em redes IPv6;
+- sistema de tradução de cabeçalho, usando o prefixo *::ffff:0:0:0/96*:
+
+	- IPv4 192.0.2.33 - IPv6 ::ffff:0:192.0.2.33 ou ::ffff:0:c000:221;
+
+### Tradução: NAT64
+- usado para conectar uma rede IPv4 a uma rede IPv6;
+- sistema de tradução de endereços em um roteador, adicionando ou removendo dos IPv4s o prefixo bem conhecido *64:ff9b::/96*:
+
+	- IPv4 192.0.2.33 - IPv6 64:ff9b::192.0.2.33 ou 64:ff9b::c000:221;
+
+### Tradução: DNS64
+- usado para converter endereços IPv4 em IPv6 em requisições DNS;
+- sistema de tradução de endereços em um servidor DNS, adicionando ou removendo dos IPv4s o prefixo *64:ff9b::/96*, como no NAT64;
+
+### Tunelamento: Túnel 6to4
+- usado quando uma conexão entre redes IPv6 passa por uma rede IPv4 no caminho;
+- os roteadores envolvidos no tunelamento precisam ser compatíveis com a tecnologia 6to4;
+- prefixo *2002::/16*;
+- apresenta problemas anycast;
+- necessita de endereços IPv4 públicos;
+
+### Tunelamento: Túnel 6rd
+- *rapid deployment* - implementação rápida;
+- usado quando uma conexão entre redes IPv6 passa por uma rede IPv4 no caminho;
+- prefixo IPv6 público do provedor de acesso;
+- baseado no 6to4 sem problemas anycast;
+- necessita de endereços IPv4 públicos;
+
+### Tunelamento: Túnel Teredo
+- soluciona a necessidade de endereços IPv4 públicos pela compatibilidade com a tradução NAT de endereços IPv4 privados;
+- utiliza um servidor *Teredo*, que pode estar na internet, para criar endereços IPv6 públicos;
+- estrutura:
+
+	- 2001:0000:aabb:ccdd:xxxx:pppp:aabb:ccdd
+	- prefixo:0000:IPv4Te:redo:flags:portaUDPofuscado:IPv4doNATofuscado
+
+
+
+
+
+
 
 
 
