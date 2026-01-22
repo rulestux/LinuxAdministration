@@ -8,6 +8,9 @@
 - [IPv4-IPv6 TRANSITIONING](#IPv4-IPv6-TRANSITIONING)
 - [PORTS](#PORTS)
 - [USER DATAGRAM PROTOCOL](#USER-DATAGRAM-PROTOCOL)
+- [TRANSMISSION CONTROL PROTOCOL](#TRANSMISSION-CONTROL-PROTOCOL)
+
+
 
 
 ------------------------------------------------------------
@@ -53,6 +56,8 @@
 - **endereços específicos**;
 
 ### Camada de Transporte
+- camada em que se identificam origem e destino de dados;
+
 - **Protocolo TCP - Transmission Control Protocol**: *orientado à conexão*, com handshake e pacote numerados para ordenamento - *confiável*, com mecanismo de confirmação de entrega dos dados - maior *overhead*, complexidade e atraso;
 
 - **Protocolo UDP - User Datagram Protocol**: mais simples e ágil;
@@ -68,7 +73,7 @@
 - **Endereçamento de portas**;
 
 ### Camada de Rede \(Internet)
-- camada *entre-redes*;
+- - camada de roteamento de dados com endereçamento lógico; camada *entre-redes*;
 
 - **Protocolo IP**: protocolo de comunicação entre redes;
 - **Protocolo IPsec**: criptografia para VPN;
@@ -87,7 +92,7 @@
 - **Endereçamento Lógico**: *endereços IP* - endereços roteáveis;
 
 ### Camada de Enlace \(Link de Dados)
-- camada de *Controle de Acesso ao Meio*; camada de dados ou de interface com a rede;
+- camada de *Controle de Acesso ao Meio*; camada de dados ou de interface com a rede que usa como referência os *endereços físicos*;
 
 - **PDU - Protocol Data Unit**: 
 	- **Quadro**: tamanho variável;
@@ -542,13 +547,42 @@
 - área de dados com tamanho variável entre 0 e 65.527 bytes \(= 65.535 bytes - 8 bytes de cabeçalho);
 
 
+------------------------------------------------------------
 
 
+# TRANSMISSION CONTROL PROTOCOL
 
 
+### TCP
+- características básicas:
+	- protocolo mais complexo;
+	- orientado à conexão: segmentos são numerados para fins de reordenamento;
+	- confiável: possui mecanismo de confirmação de recebimento de dados com segmento Acknowledge;
 
+- *estrutura de dado*: **SEGMENTO**;
 
+- usado para transportar dados de usuário:
+	- comunicação Web: HTTP ou HTTPS;
+	- email: POP3, IMAP, SMTP;
+	- transferência de arquivo: FTP;
+	- serviços de terminal: SSH e Telnet;
 
+### Abertura de Conexão
+- *handshake de três vias*:
+	- transmissor envia um segmento TCP contendo o *número de sequência*, aleatório, inicial e um bit de sincronia *SYN*;
+	- o receptor retorna um segmento TCP com o mesmo número de sequência + *SYN* + *ACK* \(aknowledge);
+	- o transmissor retorna um segmento TCP com um *ACK* confirmando a conexão;
+
+- *SYN* e *ACK* são bits de controle;
+
+### Fechamento de Conexão
+- *handshake de quatro vias*:
+	- a máquina que toma iniciativa do encerramento da conexão envia um segmento TPC contendo um bit *FIN* ativado;
+	- o receptor retorna um segmento TCP com *ACK*;
+	- o receptor envia outro segmento TCP com *FIN*;
+	- o transmissor confirma com segmento TCP com *ACK*;
+
+- *FIN* e *ACK* são bits de controle;
 
 
 
