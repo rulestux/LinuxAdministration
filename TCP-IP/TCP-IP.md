@@ -584,20 +584,40 @@
 
 - *FIN* e *ACK* são bits de controle;
 
+### Confirmação de Recebimento
+- segmentos TCP são numerados aleatoriamente no início e depois com números ordenados;
 
+- a confirmação é realizada através de um segmento TCP de confirmação com o bit *ACK* \(aknowledge) ativado;
 
+- acrescenta-se um valor no campo *número de confirmação* que serve também para ordenar os segmentos TCP;
 
+- a ordem é definida e reprendentada pela adição ao número aleatório inicial do valor que representa o tamanho da área de dados em bytes;
 
+- o segmento TCP com *ACK* ativado retorna com o campo de número de confirmação contendo a numeração do próximo segmento TCP esperado do emissor \(número do pacote anterior + tamanho da área de dados);
 
+- **RTT - Return Trip Time** é o tempo entre o envio de um segmento e o retorno de sua confirmação;
 
+### Full Duplex
+- uma vez estabelecida a conexão, a máquina A pode enviar segmentos TCP para a máquina B e vice-versa simultaneamente, em uma mesma conexão;
 
+- **Piggybacking**
+	- como a comunicação é em *full-duplex*, pacote transmitindo dados também podem transmitir confirmação de recebimento de outros pacotes;
 
+### Janela TCP
+- **janela** é o mecanismo pelo qual um grupo de pacotes é definido para intervalo de retorno *ACK*, para fins de otimização de tempo de transmissão;
 
+- como a numeração dos segmentos TCP é feita com base no tamanho do campo de dados, a janela pode ser medida pela quantidade de dados transmitidos em um intervalo de pacotes;
 
+- **SACK - Selective Acknowledge** é um mecanismo opcional pelo qual se evita a retransmissão de pacotes recebidos de um intervalo, em caso de perda de dados;
 
-
-
-
+- **Campo Tamanho da Janela**:
+	- 2 bytes = 16 bits = 2¹⁶ = 65.536 = a janela pode ser configurada pelo receptor entre 0 e 65,535 bytes;
+	- o tamanho da janela é configurado através de um mecanismo de *controle de fluxo*;
+	- *SWS - Silly Window Syndrome* síndrome da janela pequena: 
+		- o *controle de fluxo* é feito com base na capacidade do receptor dos pacotes processar o recebimento sem congestionamento;
+		- a área de dados pode ser continuamente tão reduzida que ocorre *overhead* \(desperdício), em que o tamanho da área de dados não é compensador se comparado ao cabeçalho do pacote;
+		- o valor *0* colocado no campo *tamanho da janela* pausa a transmissão de dados e aciona um temporizador até um novo envio de pacote;
+	
 
 
 
