@@ -10,6 +10,8 @@
 - [USER DATAGRAM PROTOCOL](#USER-DATAGRAM-PROTOCOL)
 - [TRANSMISSION CONTROL PROTOCOL](#TRANSMISSION-CONTROL-PROTOCOL)
 	- [TCP SEGMENT STRUCTURE](#TCP-SEGMENT-STRUCTURE)
+- [APPLICATION LAYER PROTOCOLS](#APPLICATION-LAYER-PROTOCOLS)
+	- [DNS](#DNS)
 
 
 
@@ -694,6 +696,107 @@
 		- Opções e Preenchimento:
 			- o preenchimento são os bytes acrescendados, quando necessário, para que o total de bytes sempre seja igual a um múltiplo de 4 bytes \(largura de 32 bits);
 			- quando houver mais de uma opção, apenas a última terá o campo preenchimento ocupado por zeros; nos outros casos, com uns;
+
+
+------------------------------------------------------------
+
+
+# APPLICATION LAYER PROTOCOLS
+
+
+## DNS
+
+### DOMAIN NAME SYSTEM
+- resolve nomes de domínio em IP;
+
+### URL - Uniform Resource Locator
+- endereço web, *link*;
+
+- estrutura:
+
+	- protocolo: http://, https://, ftp://;
+
+	- **FQDN - Fully-Qualified Domain Name** \(Nome de Domínio Totalmente Qualificado):
+		- **host, máquina ou subdoínio**: www.;
+		- **Domínio**: nome do site;
+		- **TLD - Top-Level Domain**: .com.br, .co.uk, .edu, .net etc;
+
+	- **User**: nome de usuário em endereço de email, antes do *arroba*, i. e., *at*:
+		- user@site.com: user at site = user at FQDN;
+
+- não há distinção entre maúsculas e minúsculas;
+
+### Servidores DNS
+- servidores DNS para URLs acessados pelos clientes são **resolvedores** ou **servidores recursivos**;
+
+- armazenam nomes e IPs por meio de cache, em registros com **TTL - Time To Live**: tempo de vida do cache do registro, após o qual ele é atualizado;
+
+- podem ser *privados* ou *públicos*, como:
+	- Google: ``` 8.8.8.8 ```;
+	- CloudFlare: ``` 1.1.1.1 ```;
+
+- solicitações DNS são enviadas para a **porta 53** do servidor DNS, através de:
+	- *datagrama UDP*, quando mensagens até 512 bytes;
+	- *segmento TCP*, quando mensagens com mais de 512 bytes;
+
+- servidores consultados pelos *resolvedores* para atualização de cache são:
+	- **servidores root - servidores raiz**: retorna o IP de um determinado *servidor TLD*; há apenas 13 endereços IP anycast de servidores root;
+	- **servidor TLD**: retorna o IP de um *servidor autoritativo*;
+	- **servidor autoritativo**: servidor de registro de IPs de FQDNs;
+
+### Consulta DNS
+- *nslookup*: comando para consultar uma URL por linha de comando;
+
+- serviços DNS estáticos locais ficam armazenados em:
+	- Windows: ``` C:\windows\system32\drivers\etc\hosts ```;
+	- Linux: ``` /etc/resolv.conf ```;
+
+- **consultas recursivas**: 
+	- consulta a servidores *resolvedores*, sendo realizada recursivamente até que todo o FQDN esteja completo;
+
+- **consultas iterativas \(não recursivas)**: consulta que o servidor responde apenas quando é o responsável pela resolução do nome consultado; 
+	- consulta a servidores *root*, servidores *TLD* e servidores *autoritativo*;
+
+- **registros RR - Resource Records**:
+	- A: endereço IPv4;
+	- AAAA: endereço IPv6;
+	- MX: Mail eXchange;
+	- CNAME: nome alternativo para um registro;
+
+- **consulta reversa**: retorna o FQDN para um IP fornecido;
+
+### DNSsec
+- *cache poisoning* é um tipo de ataque a *servidores recursivos* com a finalidade de alterar o cache;
+- o *protocolo DNSsec* é um protocolo de autenticação que atesta a veracidade de registros DNS;
+
+------------------------------------------------------------
+
+## HTTP
+
+### HyperText Transfer Protocol
+- protocolo para navegação pela internet através de textos com links entre si, formando a World-Wide Web;
+
+### Funcionamento
+- inserido o nome do endereço no browser, um *servidor DNS* resolve o nome em um *endereço IP*;
+- o browser estabelece uma *conexão TCP* com o servidor Web, através da porta:
+	- **80** sem criptografia;
+	- **443** com criptografia - HTTPS;
+
+- *principais métodos de requisição HTTP*:
+	- GET: solicita arquivos do servidor Web, como uma página inicial */*:
+		- o servidor retorna o HTML da página com códigos de resposta:
+			- 200: Ok;
+			- 301: Moved Permanently;
+			- 304: Not Modified;
+			- 403: Forbidden;
+			- 404: Not Found;
+			- 500: Internal Server Error;
+	- POST: envia dados do cliente para o servidor Web, como formulários;
+
+
+
+
+
 
 
 
