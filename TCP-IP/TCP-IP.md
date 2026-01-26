@@ -9,6 +9,7 @@
 - [PORTS](#PORTS)
 - [USER DATAGRAM PROTOCOL](#USER-DATAGRAM-PROTOCOL)
 - [TRANSMISSION CONTROL PROTOCOL](#TRANSMISSION-CONTROL-PROTOCOL)
+	- [TCP SEGMENT STRUCTURE](#TCP-SEGMENT-STRUCTURE)
 
 
 
@@ -538,10 +539,10 @@
 		- Jogos Online;
 
 ### Estrutura do Datagrama UDP
-- cabeçalho com:
-	- campo de porta de origem - 2 bytes;
-	- campo de porta de destino - 2 bytes;
-	- campo com o tamanho do datagrama - 2 bytes;
+- cabeçalho:
+	- porta de origem - 2 bytes;
+	- porta de destino - 2 bytes;
+	- tamanho do datagrama - 2 bytes;
 	- checksum - 2 bytes;
 
 - área de dados com tamanho variável entre 0 e 65.527 bytes \(= 65.535 bytes - 8 bytes de cabeçalho);
@@ -617,7 +618,107 @@
 		- o *controle de fluxo* é feito com base na capacidade do receptor dos pacotes processar o recebimento sem congestionamento;
 		- a área de dados pode ser continuamente tão reduzida que ocorre *overhead* \(desperdício), em que o tamanho da área de dados não é compensador se comparado ao cabeçalho do pacote;
 		- o valor *0* colocado no campo *tamanho da janela* pausa a transmissão de dados e aciona um temporizador até um novo envio de pacote;
-	
+
+------------------------------------------------------------
+
+## TCP SEGMENT STRUCTURE
+
+### Estrutura do Segmento TCP
+
+- **cabeçalho**:
+	- porta de origem - 2 bytes;
+	- porta de destino - 2 bytes;
+	- número de sequência - 4 bytes:
+		- número de identificação de cada segmento TCP;
+	- número de confirmação - 4 bytes:
+		- número inserido pelo receptor do próximo segmento TCP esperado;
+	- deslocamento - 4 bits:
+		- *HLEN - header length*: tamanho do cabeçalho em número de linhas:
+			- pode conter um número 5 ou 6 ou mais, que são as linhas, sendo 6 ou mais quando o campo *opções* estiver presente, considerando sua quantidade de linhas;
+	- reservado - 3 bits;
+	- controle - 9 bits:
+		- *control flags*;
+	- tamanho da janela - 2 bytes;
+	- checksum - 2 bytes;
+	- ponteiro de urgência - 2 bytes:
+		- usado apenas quando o bit de controle *URG* está ativado;
+	- opções + preenchimento - tamanho variável;
+
+- **área de dados** com tamanho variável até 65.535 bytes \(*MMS - Maximum Segment Size*);
+	- idealmente de acordo com o *Datagrama IP*:
+		- IPv4: 576 bytes - 20 bytes de cabeçalho = 556 bytes de dados no *Datagrama IP*:
+			- Segmento TCP: 556 - 20 bytes de cabeçalho sem opções = 536 bytes no *Segmento TCP*;
+
+		- IPv6: 1.280 bytes - 40 bytes de cabeçalho = 1.240 bytes de dados no *Datagrama IP*:
+			- Segmento TCP: 1.240 - 20 bytes de cabeçalho sem opções = 1.220 bytes no *Segmento TCP*;
+
+- **bits de controle**:
+	- NS:
+		- *ECN-Nonce*: bit experimental para evitar a manipulação de bits *ECE* e *CWR*;
+		- os três primeiros bits de controle são usados pelo sisstema *ECN - Explicit Congestion Notification*, que interage com o *Protocolo IP* na *camada de rede*;
+	- CWR:
+		- *Congestion Window Reduced*;
+		- bit ativado em resposta ao bit *EXE*;
+	- ECE:
+		- *ECN-Echo*: terceiro *ECN*, ativado durante a abertura de conexão, com o *SYN*, indicando que a máquina é compatível com o sistema *ECN*;
+		- caso o *ECE* esteja ativado sem a ativação do *SYN*, fica indicado ao protocolo IP que há problema de congestionamento na rede;
+
+	- URG:
+		- *Urgent*, para indicar a ativação do *campo ponteiro de urgência*;
+	- PSH:
+		- *Push*;
+		- força o envio de um segmento, mesmo que sua área de dados não esteja completamente preenchida;
+		- usado em terminais \(Telnet ou SSH), por exemplo, para enviar sinais de dispositivos de entrada;
+	- RST:
+		- *Reset*;
+		- reinicia a conexão;
+	- SYN:
+		- usado na abertura de conexão;
+	- FIN:
+		- usado para encarrar conexão;
+
+- **campo opções**:
+	- campo opcional para instruções;
+	- pode ter mais de uma linha;
+	- subcampos:
+		- Tipo - 1 byte:
+			- 2: para tamanho da área de dados;
+			- 3: para *escala da janela*, em que o valor é a potência cuja base é 2, pelo que se multiplica o *tamanho da janela*;
+			- 4: confirmação seletiva SACK permitida;
+			- 5: confirmação seletiva com o campo opções transportando o número de sequência do segmento a confirmar;
+			- 8: timestamp;
+			- 14: algoritmo para método alternativo de checksum;
+			- 15: transporte do valor checksum, caso maior que 16 bits, não cabendo no campo checksum padrão;
+		- Comprimento - 1 byte:
+			- indica o tamnho total do campo opções em bytes;
+		- Opções e Preenchimento:
+			- o preenchimento são os bytes acrescendados, quando necessário, para que o total de bytes sempre seja igual a um múltiplo de 4 bytes \(largura de 32 bits);
+			- quando houver mais de uma opção, apenas a última terá o campo preenchimento ocupado por zeros; nos outros casos, com uns;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
