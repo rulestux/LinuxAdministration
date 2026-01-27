@@ -12,7 +12,10 @@
 	- [TCP SEGMENT STRUCTURE](#TCP-SEGMENT-STRUCTURE)
 - [APPLICATION LAYER PROTOCOLS](#APPLICATION-LAYER-PROTOCOLS)
 	- [DNS](#DNS)
-
+	- [HTTP](#HTTP)
+	- [FTP](#FTP)
+	- [EMAIL PROTOCOLS](#EMAIL-PROTOCOLS)
+- [TRANSPORT LAYER SECURITY](#TRANSPORT-LAYER-SECURITY)
 
 
 
@@ -793,17 +796,81 @@
 			- 500: Internal Server Error;
 	- POST: envia dados do cliente para o servidor Web, como formulários;
 
+------------------------------------------------------------
+
+## FTP
+
+### File Transfer Protocol
+- protocolo de transferência de arquivo;
+- autenticação obrigatória, com possibilidade de autenticação anônima;
+
+- aplicações para transferência de arquivos:
+	- ftp: linha de comando;
+	- Filezila: gráfico;
+
+### Funcionamento
+- FTP utiliza duas conexões TCP:
+	- *conexão controle*:
+		- mantida aberta durante toda a conexão;
+	- *conexão dados*
+		- é aberta e fechada para cada arquivo transferido;
+
+- **abertura de conexão**:
+	- solicitação abertura de *conexão TCP controle* com a *porta 21* do servidor;
+	- servidor retorna uma mensagem de boas vindas *220 - client connection accepted*;
+	- cliente solicita conexão segura através do comando *AUTH TLS*, com protocolo de criptografia TLS;
+	- servidor retorna a mensagem *530 - Please login with USER and PASS*;
+	- cliente envia comandos USER e PASS;
+	- servidor retorna a mensagem *230 - Login successful*;
+
+- **modo ativo**:
+	- solicitação abertura pelo cliente de *conexão TCP dados*, através da *porta 20* do servidor, com o comando *PORT* + IP do cliente + porta enviado à porta 21 do servidor;
+	- a conexão é aberta pelo servidor, no *modo ativo*, com three-way handshake;
+	- cliente solicita arquivo com comando *RETR* através da conexão de controle;
+	- o arquivo é enviado pela conexão de dados;
+	- servidor envia pela conexão de controle a mensagem *226 - Transfer complete* quando a transferência é concluída;
+
+- **modo passivo**:
+	- solicitação abertura pelo cliente de *conexão TCP dados*, com o comando *PASV*;
+	- servidor retorna a mensagem *227 Entering passive mode* com seu IP e porta aleatória para a conexão de dados;
+	- cliente abre a conexão, no *modo passivo*, com three-way handshake;
+	- o modo passivo é o mais utilizado devido ao frequente uso de firewall do lado do cliente;
+
+------------------------------------------------------------
+
+## EMAIL PROTOCOLS
+
+### SMTP
+- *Simple Mail Transfer Protocol* é um protocolo usado entre servidores de email e entre um cliente e um servidor de email para envio de emails;
+
+- **porta 25** ou **porta 587 - submission TLS**;
+
+### POP3
+- *Post Office Protocol v. 3* é um protocolo usado para acesso a caixas postais localizadas no servidor de email;
+
+- servidor ouve na **porta 110** ou **porta 995**, com criptografia POP3S;
+
+- características principais:
+	- remove os emails do servidor assim que são baixados pelo cliente;
+	- não permite mais de um cliente acessando uma mesma caixa postal simultaneamente;
+	- concentrado no lado do cliente;
+
+### IMAP4
+- *Internet Message Access Protocol v. 4* é um protocolo usado para acesso a caixas postais localizadas no servidor de email;
+
+- servidor ouve na **porta 143** ou **porta 993**, com criptografia IMAPS;
+
+- características principais:
+	- mantém emails no servidor, mesmo depois de baixados pelo cliente;
+	- há sincronia entre cliente e servidor;
+	- permite criar novas pastas e regras no cliente e no servidor;
+	- concentrado no lado do servidor;
 
 
+------------------------------------------------------------
 
 
-
-
-
-
-
-
-
+# TRANSPORT LAYER SECURITY
 
 
 
