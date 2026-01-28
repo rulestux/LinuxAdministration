@@ -971,11 +971,39 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 	- dados são dividos entre as unidades de armazenamento disponibilizadas e gravados de forma fracionada;
 	- a consulta simultânea a diferentes frações do mesmo arquivo divididas entre os dispositivos, aumenta o desempenho de leitura;
 	- há soma da capacidade de armazenamento, conforme as unidades de armazenamento disponíveis;
+	- mínimo de dois discos;
 
-- **RAID 1** - Espelhamento - Aumento da Confiabilidade - Backup em tempo real;
+- **RAID 1** - Espelhamento - Redundância - Aumento da Confiabilidade - Backup em tempo real;
 	- dados são replicados e gravados simultaneamente em cada uma das unidades de armazenamento disponibilizadas;
 	- através de conexão **hot swap**, a substituição de um dispositivo defeituoso, com o sistema em operação, não afeta o armazenamento e uso de dados;
 	- não há soma de capacidade de armazenamento disponível;
+	- mínimo de dois discos;
+
+- **RAID 2** - Divisão de Dados - Aumento de Desempenho - semelhante ao *RAID 0*, mas com *ECC*;
+	- possui um algoritmo específico para detecção de erros **ECC**:
+		- *Error Correcting Code*;
+	- mínimo de dois discos;
+	- método obsoleto;
+
+- **RAID 3**:
+	- **paridade**: informação de redundância com detecção de erros na transmissão de dados; anexo de um bit de paridade extra para cada byte transmitido; um erro é detectado se a paridade do byte não coincidir com o bit de paridade;
+	- acrescenta *um disco de paridade* exclusivo para os bits de paridade;
+	- mínimo de três discos;
+	- método obsoleto;
+
+- **RAID 4**:
+	- equivalente ao *RAID 3* com dados de paridade em blocos maiores no disco exclusivo;
+	- mínimo de três discos;
+	- método obsoleto;
+
+- **RAID 5**: 
+	- equivalente ao *RAID 3* com dados de paridade em setores de todos os discos, sem um disco exclusivo para paridade;
+	- paridade distribuída: se um disco apresentar falhas, não há comprometimento da integridade dos dados;
+	- mínimo de três discos;
+
+- **RAID 6**:
+	- equivalente ao *RAID 5* com maior tolerância a falhas, em que até dois discos podem apresentar falhas sem comprometimento da integridade dos dados;
+	- mínimo de quatro discos \(capacidade de dois discos dedicada à paridade);
 
 
 ------------------------------------------------------------

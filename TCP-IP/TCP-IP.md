@@ -873,7 +873,31 @@
 # TRANSPORT LAYER SECURITY
 
 
+### TLS
+- é um protocolo de segurança que sucede o *SSL - Secure Socket Layer*;
 
+- objetivos básicos de segurança:
+	- **autenticidade**: confirmar a origem de um dado;
+	- **integridade**: confirmar que os dados não foram adulterados;
+	- **confidencialidade**: confirmar que os dados não sejam capturados sem autorização;
+
+- o *TLS* opera na camada de *Apresentação*, ou *Aplicação* na pilha TCP/IP;
+- portanto, atua apenas em *mensagens*, protegendo apenas *dados de usuário*;
+- ativado pela própria aplicação, sem requerer intervenção do usuário;
+
+### Handshake
+- protocolo *TLS* responsável pela autenticação;
+	- obrigatória para o servidor;
+	- opcional para o cliente;
+
+- realiza troca de chaves e parâmetros de configuração;
+
+- a autenticação se baseia no uso de certificado digital;
+
+### Registro \(Record)
+- protocolo *TLS* responsável pela integridade e pela confidencialidade;
+
+- fraciona a *mensagem* em registros, criptografando cada um individualmente;
 
 
 
