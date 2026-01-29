@@ -721,9 +721,11 @@
 	- protocolo: http://, https://, ftp://;
 
 	- **FQDN - Fully-Qualified Domain Name** \(Nome de Domínio Totalmente Qualificado):
-		- **host, máquina ou subdoínio**: www.;
+		- **TLD - Top-Level Domain**: 
+			- *country top-level*: .com.br, .co.uk etc.; 
+			- *generic top-level*: .edu, .net etc;
 		- **Domínio**: nome do site;
-		- **TLD - Top-Level Domain**: .com.br, .co.uk, .edu, .net etc;
+		- **host, máquina ou subdomínio**: www.;
 
 	- **User**: nome de usuário em endereço de email, antes do *arroba*, i. e., *at*:
 		- user@site.com: user at site = user at FQDN;
@@ -731,9 +733,9 @@
 - não há distinção entre maúsculas e minúsculas;
 
 ### Servidores DNS
-- servidores DNS para URLs acessados pelos clientes são **resolvedores** ou **servidores recursivos**;
+- servidores DNS para URLs acessados pelos clientes são **resolvedores** ou **servidores recursivos** \(Recursive Resolver);
 
-- armazenam nomes e IPs por meio de cache, em registros com **TTL - Time To Live**: tempo de vida do cache do registro, após o qual ele é atualizado;
+- armazenam nomes e IPs por meio de *cache*, em registros com **TTL - Time To Live**: tempo de vida do cache do registro, após o qual ele é atualizado;
 
 - podem ser *privados* ou *públicos*, como:
 	- Google: ``` 8.8.8.8 ```;
@@ -742,6 +744,8 @@
 - solicitações DNS são enviadas para a **porta 53** do servidor DNS, através de:
 	- *datagrama UDP*, quando mensagens até 512 bytes;
 	- *segmento TCP*, quando mensagens com mais de 512 bytes;
+
+- **forwarding** é a consulta de um nome a servidores raiz que não estão no cache dos servidores recursivos;
 
 - servidores consultados pelos *resolvedores* para atualização de cache são:
 	- **servidores root - servidores raiz**: retorna o IP de um determinado *servidor TLD*; há apenas 13 endereços IP anycast de servidores root;
@@ -762,16 +766,24 @@
 	- consulta a servidores *root*, servidores *TLD* e servidores *autoritativo*;
 
 - **registros RR - Resource Records**:
-	- A: endereço IPv4;
-	- AAAA: endereço IPv6;
-	- MX: Mail eXchange;
-	- CNAME: nome alternativo para um registro;
+	- A: mapeia nome em endereço *IPv4*;
+	- AAAA: mapeia nome em endereço *IPv6*;
+	- MX: *Mail eXchange*;
+	- CNAME: mapeia um nome alternativo para um registro; alias;
+	- PTR: converte IP para domínio; inverso de A;
+	- NS: equivale ao registro A exclusivo para nome do *Name Server*;
+	- SOA: *Start Of Authority*: declara que será um Servidor Autoritativo;
 
 - **consulta reversa**: retorna o FQDN para um IP fornecido;
 
 ### DNSsec
 - *cache poisoning* é um tipo de ataque a *servidores recursivos* com a finalidade de alterar o cache;
 - o *protocolo DNSsec* é um protocolo de autenticação que atesta a veracidade de registros DNS;
+
+### bind
+- aplicação Open Source que implementa DNS no Linux;
+- o nome do daemon é *named*;
+- arquivo de configuração: /etc/named.conf;
 
 ------------------------------------------------------------
 
