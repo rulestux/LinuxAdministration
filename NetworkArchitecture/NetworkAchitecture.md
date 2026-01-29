@@ -980,19 +980,19 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 	- não há soma de capacidade de armazenamento disponível;
 	- mínimo de dois discos;
 
-- **RAID 2** - Divisão de Dados - Aumento de Desempenho - semelhante ao *RAID 0*, mas com *ECC*;
+- *RAID 2* - Divisão de Dados - Aumento de Desempenho - semelhante ao *RAID 0*, mas com *ECC*;
 	- possui um algoritmo específico para detecção de erros **ECC**:
 		- *Error Correcting Code*;
 	- mínimo de dois discos;
 	- método obsoleto;
 
-- **RAID 3**:
+- *RAID 3*:
 	- **paridade**: informação de redundância com detecção de erros na transmissão de dados; anexo de um bit de paridade extra para cada byte transmitido; um erro é detectado se a paridade do byte não coincidir com o bit de paridade;
 	- acrescenta *um disco de paridade* exclusivo para os bits de paridade;
 	- mínimo de três discos;
 	- método obsoleto;
 
-- **RAID 4**:
+- *RAID 4*:
 	- equivalente ao *RAID 3* com dados de paridade em blocos maiores no disco exclusivo;
 	- mínimo de três discos;
 	- método obsoleto;
@@ -1005,6 +1005,11 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 - **RAID 6**:
 	- equivalente ao *RAID 5* com maior tolerância a falhas, em que até dois discos podem apresentar falhas sem comprometimento da integridade dos dados;
 	- mínimo de quatro discos \(capacidade de dois discos dedicada à paridade);
+
+- **RAID 10**:
+	- combinação do *RAID 0* com *RAID 1*;
+	- 2 *RAID 1* compõem 1 *RAID 0*;
+	- mínimo de 4 discos;
 
 
 ------------------------------------------------------------
