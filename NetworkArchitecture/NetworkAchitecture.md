@@ -745,6 +745,7 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 - **Camada de Enlace \(link de dados)**: gera uma UDP chamada **Quadro**, com o *datagrama IP* em sua área de dados;
 	- a camada de enlace é definida pela arquitetura de rede utilizada;
 	- no cabeçalho do *quadro* são inseridos os endereços físicos, **MAC - Medium Access Control**, de origem e destino;
+	- a área de dados do *quadro* é a **MTU - Maximum Transmission Unit**;
 
 - **camada física**: recebe os *quadros* para *modular* e *codificar* conforme conveniente ao *meio* utilizado na transmissão;
 

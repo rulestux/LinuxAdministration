@@ -2007,14 +2007,14 @@ baseurl=url://endereço/para/o/repositório
 - '**traceroute6**' é o equivalente para IPv6;
 - cada reteador no caminho responde com uma mensagem ICMP de Time-To-Live \(TTL) excedido;
 - são enviados 3 pacotes UDP com dados inúteis para a porta 33434, que são incrementados a cada vez que são enviados;
-- o comando retorna uma linha para cada roteador que os pacotes atravessam, com o IP de cada interface e o tempo de ida e volta dos pacotes;
+- o comando retorna uma linha para cada roteador \(salto) que os pacotes atravessam, com o IP de cada interface e o tempo de ida e volta dos pacotes;
 - quando retorna '*' no lugar do tempo, significa que a mensagem TTL excedido para um pacote não foi recebida;
 - a opção '-I', usada como root, substitui solicitações de eco UDP por ICMP, que são mais eficazes;
 - a opção '-T -p 80', como root, solicita eco TCP, em que '-p' especifica a porta; esta opção é útil, considerando que respostas ICMP podem estar bloqueadas.
 
 ### tracepath
-- semelhante ao 'traceroute', mas rastreia tamanhos de 'Maximum Transmission Unit' \(MTU) pelo caminho, enviando pacote com datagrama UDP extenso;
-- o MTU é uma configuração de interface ou limite de hardware para a maior unidade de dado de protocolo que é possível transmitir ou receber;
+- semelhante ao 'traceroute', mas rastreia tamanhos de *Maximum Transmission Unit* \(MTU) pelo caminho, enviando pacote com datagrama UDP extenso;
+- o MTU é uma configuração de interface ou limite de hardware para a maior unidade de dado de protocolo que é possível transmitir ou receber; equivale a área de dados de um *quadro* transmitido na rede: seu tamanho total menos o seu cabeçalho;
 - '**tracepath6**' é o equivalente para IPv6.
 
 ### nc

@@ -16,6 +16,7 @@
 	- [FTP](#FTP)
 	- [EMAIL PROTOCOLS](#EMAIL-PROTOCOLS)
 - [TRANSPORT LAYER SECURITY](#TRANSPORT-LAYER-SECURITY)
+- [IPv4 PROTOCOL](IPv4-PROTOCOL)
 
 
 
@@ -874,30 +875,104 @@
 
 
 ### TLS
-- é um protocolo de segurança que sucede o *SSL - Secure Socket Layer*;
+- é um protocolo de segurança que sucede o *SSL - Secure Socket Layer*, para segmentos TCP;
 
 - objetivos básicos de segurança:
 	- **autenticidade**: confirmar a origem de um dado;
 	- **integridade**: confirmar que os dados não foram adulterados;
 	- **confidencialidade**: confirmar que os dados não sejam capturados sem autorização;
 
-- o *TLS* opera na camada de *Apresentação*, ou *Aplicação* na pilha TCP/IP;
+- o *TLS* opera na camada de *Apresentação*, ou entre *Aplicação* e *Transporte* na pilha TCP/IP;
 - portanto, atua apenas em *mensagens*, protegendo apenas *dados de usuário*;
 - ativado pela própria aplicação, sem requerer intervenção do usuário;
+- ultiliza a porta 443 *HTTPS* do lado do servidor;
 
 ### Handshake
-- protocolo *TLS* responsável pela autenticação;
+- subprotocolo *TLS* responsável pela autenticação;
 	- obrigatória para o servidor;
 	- opcional para o cliente;
 
 - realiza troca de chaves e parâmetros de configuração;
 
-- a autenticação se baseia no uso de certificado digital;
+- cliente e servidor negociam um conjunto de códigos \(CipherSuite), por meio das primeiras mensagens da comunicação, definindo os algoritmos criptográficos que serão usados;
+
+- a autenticação se baseia no uso de certificado digital do lado do servidor obrigatoriamente e opcional para o cliente;
+
+- são usadas chaves criptográficas públicas para o handshake;
 
 ### Registro \(Record)
-- protocolo *TLS* responsável pela integridade e pela confidencialidade;
+- subprotocolo *TLS* responsável pela integridade e pela confidencialidade;
 
 - fraciona a *mensagem* em registros, criptografando cada um individualmente;
+
+- são usadas chaves criptográficas simétricas \(chaves compartilhadas) para o registro;
+
+
+------------------------------------------------------------
+
+
+# IPv4 PROTOCOL
+
+
+### Estrutura do Datagrama IPv4
+- **cabeçalho**:
+	- 1ª linha de 32 bits:
+		- versão: 4 bits:
+			- valor 4;
+		- tamanho do cabeçalho *IHL - Internet Header Length*: 4 bits:
+			- número de linhas do cabeçalho, com valor de no mínimo 5 ou até 15, caso o campo opções seja usado, entre 0 a 10 linhas além das 5 linhas mínimas do cabeçalho;
+		- serviço diferenciado *DS*: 6 bits:
+			- tipo de serviço ou *qualidade do serviço*;
+			- dos 64 códigos disponíveis, 32 são utilizados para classificar a prioridade do datagrama;
+		- *ECN - Explicit Congestion Notification*: 2 bits;
+			- sistema para sinalizar congestionamento nos roteadores pelo caminho, com a ativação dos dois bits pelo roteador congestionado;
+			- o segmento TCP de confirmação retorna com o bit ACK e ECE ativados, para sinalizar a necessidade de redução da taxa de envio de dados pelo transmissor;
+		- tamanho total: 2 bytes:
+			- até 65.535 bytes;
+	- 2ª linha de 32 bits \(Campos de Fragmentação):	
+		- identificação: 2 bytes:
+			- número sequencial que identifica o fragmento;
+		- flags: 3 bits;
+			- bit DF: 'don't fragment', quando valor 1, não pode fragmentar o datagrama;
+				- se um datagrama precisar ser fragmentado com a flag DF ativada, um roteador no caminho retorna uma mensagem de erro ICMP;
+			- bit MF: 'more fragments', quando valor 0, é o último fragmento de uma seqência; 
+		- deslocamento do fragmento: 13 bits;
+			- número de ordem do fragmento;
+	- 3ª linha de 32 bits:
+		- tempo de vida: 1 byte:
+			- carrega um valor com o número de saltos em roteadores que um datagrama pode passar pelo caminho, sendo decrementado a cada salto; se chegar a zero, o datagrama é descartado;
+		- protocolo: 1 byte:
+			- indica qual protocolo acima do protocolo IPv4 foi responsável pelo datagrama IPv4;
+			- códigos mais comuns:
+				- 1: ICMPv4
+				- 2: IGMP
+				- 3: GGP
+				- 4: IPv4
+				- 6: TCP
+				- 8: EGP
+				- 9: IGP
+				- 17: UDP
+				- 41: IPv6
+				- 50: ESP \(IPsec)
+				- 51: AH \(IPsec)
+				- 89: OSPF
+		- checksum do cabeçalho: 2 bytes:
+			- o checksum sempre é recalculado quando há alteração no cabeçalho;
+	- 4ª linha de 32 bits:
+		- endereço IP da origem;
+	- 5ª linha de 32 bits:
+		- endereço IP do destino;
+	- 6ª linha de 32 bits:
+		- opções e preenchimento;
+- **área de dados**:
+	- até 65.535 bytes menos no mínimo 20 bytes do cabeçalho: 65.515 bytes;
+	- tamanho típico: 576 bytes menos 20 bytes: 556 bytes, para garantir suporte pelos equipamentos no caminho;
+
+### Fragmentação de Datagrama IPv4
+- pode ser feita pelo transmissor ou por qualquer roteador no caminho;
+	- no caso do IPv6, apenas pelo transmissor;
+
+- a fragmentação é realizada considerando que o datagrama IP, que já possui cabeçalhos e dados de um *segmento TCP*, por exemplo, em sua área de dados, precisa encapsular o segmento e seu próprio cabeçalho de modo a caber na *área de dados* de um *quadro*: **MTU - Maximum Transmission Unit**;
 
 
 
