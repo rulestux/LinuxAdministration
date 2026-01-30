@@ -18,6 +18,7 @@
 - [TRANSPORT LAYER SECURITY](#TRANSPORT-LAYER-SECURITY)
 - [IPv4 PROTOCOL](#IPv4-PROTOCOL)
 - [IPv6 PROTOCOL](#IPv6-PROTOCOL)
+- [IPsec](#IPsec)
 
 
 
@@ -890,6 +891,8 @@
 ### TLS
 - é um protocolo de segurança que sucede o *SSL - Secure Socket Layer*, para segmentos TCP;
 
+- atua protegendo apenas dados de usuário; cabeçalhos TCP e UDP não são protegidos;
+
 - objetivos básicos de segurança:
 	- **autenticidade**: confirmar a origem de um dado;
 	- **integridade**: confirmar que os dados não foram adulterados;
@@ -1034,6 +1037,100 @@
 		- até 65.535 bytes;
 		- *jumbograma* até 4 GiB;
 		- tamanho típico: datagrama mínimo total 1.280 bytes menos 40 bytes: 1.240 bytes;
+
+
+------------------------------------------------------------
+
+
+# IPsec
+
+
+### IPsec
+- enquanto TLS, SSL e SSH atuam na camada de aplicação, o IPsec atua na **camada de rede \(internet)**;
+
+- tanto dados de usuário quanto cabeçalhos de segmento TCP e datagrama UDP são protegidos;
+
+- usado em VPNs;
+
+- garantia de:
+	- autenticidade que certifica a origem;
+	- integridade dos dados;
+	- confidencialidade opcional com criptografia;
+
+### Modos de Implementação
+- **modo nativo**:
+	- IPsec atua no lugar do protocolo IP na camada de rede;
+	- *AH - Authentication Header*: cabeçalho autenticado exceto em campos variáveis;
+	- *ESP - Encapsulating Security Payload*: cabeçalho não autenticado;
+
+- **BITS - Bump In The Stack**:
+	- o cabeçalho IP é encapsulado na área de dados, e um novo cabeçalho IP é adicionado com o cabeçalho AH ou ESP;
+
+- **BITW - Bump In The Wire**:
+	- encapsulamento equivalente ao BITS, mas realizado entre roteadores no caminho;
+
+### Modos de Operação
+- **modo transporte**:
+	- quando a comunicação é suportada pelos equipamentos nas duas extremidades da comunicação;
+
+- **modo túnel**:
+	- quando parte dos equipamentos no caminho não suporta nativamente o IPsec, como no modo de implementação BITW;
+
+### IKE - Internet Key Exchange
+- protocolo de troca de chaves, associação de segurança e definições de parâmetros, como algoritmo de criptografia que será utilizado;
+
+- dividido em duas fases:
+	- 1. associação de segurança IKE, mantida a mesma durante toda a conexão;
+	- 2. associação de segurança IPsec, para AH ou ESP, refeita em lapsos de tempo durante a conexão;
+
+### AH - Authentication Header
+- garantia de proteção contra ataques do tipo *replay*, em que um pacote capturado é interceptado, modificado e retransmitido;
+	- o número de sequência é único para cada datagrama até os números serem esgotados e a associação IKE de fase 2 ser refeita;
+
+- integridade e autenticidade garantidas por soma de verificação;
+
+- **estrutura do cabeçalho**:
+	- campo próximo cabeçalho \(1 byte - linha 1 de 32 bits):
+		- valor 6 para TCP no modo transporte;
+		- valor 17 para UDP no modo transporte;
+		- valor 4 pra IPv4 no modo túnel;
+		- valor 41 para IPv6 no modo túnel;
+	- comprimento do cabeçalho \(1 byte - linha 1 de 32 bits);
+	- campo reservado  \(2 bytes - linha 1 de 32 bits);
+	- índice de parâmetro de segurança \(SPI) \(4 bytes - linha 2 de 32 bits):
+		- número da associação de segurança definido no IKE fase 2;
+	- número de sequência \(4 bytes - linha 3 de 32 bits);
+		- número de sequência é único para cada datagrama;
+	- dados de autenticação \(ICV) \(variável - linha 4 de 32 bits);
+		- valor de checksum de dados não variáveis;
+
+### ESP - Encapsulating Security Payload
+- subprotocolo que adiciona criptografia ao IPsec;
+
+- **estrutura**:
+	- índice de parâmetro de segurança \(SPI) \(4 bytes - linha 1 de 32 bits):
+		- número da associação de segurança definido no IKE fase 2;
+	- número de sequência \(4 bytes - linha 2 de 32 bits);
+		- número de sequência é único para cada datagrama;
+	- *área de dados*;
+	- rodapé ESP:
+		- preenchimento;
+		- comprimento do preenchimento:
+			- tamanho variável, conforme algoritmo de criptografia;
+		- próximo cabeçalho;
+	- dados de autenticação \(ICV);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
