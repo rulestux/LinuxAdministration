@@ -932,54 +932,49 @@
 
 ### Estrutura do Datagrama IPv4
 - **cabeçalho**:
-	- 1ª linha de 32 bits:
-		- versão: 4 bits:
-			- valor 4;
-		- tamanho do cabeçalho *IHL - Internet Header Length*: 4 bits:
-			- número de linhas do cabeçalho, com valor de no mínimo 5 ou até 15, caso o campo opções seja usado, entre 0 a 10 linhas além das 5 linhas mínimas do cabeçalho;
-		- serviço diferenciado *DS*: 6 bits:
-			- tipo de serviço ou *qualidade do serviço*;
-			- dos 64 códigos disponíveis, 32 são utilizados para classificar a prioridade do datagrama;
-		- *ECN - Explicit Congestion Notification*: 2 bits;
-			- sistema para sinalizar congestionamento nos roteadores pelo caminho, com a ativação dos dois bits pelo roteador congestionado;
-			- o segmento TCP de confirmação retorna com o bit ACK e ECE ativados, para sinalizar a necessidade de redução da taxa de envio de dados pelo transmissor;
-		- tamanho total: 2 bytes:
-			- até 65.535 bytes;
-	- 2ª linha de 32 bits \(Campos de Fragmentação):	
-		- identificação: 2 bytes:
-			- número sequencial que identifica o fragmento;
-		- flags: 3 bits;
-			- bit DF: 'don't fragment', quando valor 1, não pode fragmentar o datagrama;
-				- se um datagrama precisar ser fragmentado com a flag DF ativada, um roteador no caminho retorna uma mensagem de erro ICMP;
-			- bit MF: 'more fragments', quando valor 0, é o último fragmento de uma seqência; 
-		- deslocamento do fragmento: 13 bits;
-			- número de ordem do fragmento;
-	- 3ª linha de 32 bits:
-		- tempo de vida: 1 byte:
-			- carrega um valor com o número de saltos em roteadores que um datagrama pode passar pelo caminho, sendo decrementado a cada salto; se chegar a zero, o datagrama é descartado;
-		- protocolo: 1 byte:
-			- indica qual protocolo acima do protocolo IPv4 foi responsável pelo datagrama IPv4;
-			- códigos mais comuns:
-				- 1: ICMPv4
-				- 2: IGMP
-				- 3: GGP
-				- 4: IPv4
-				- 6: TCP
-				- 8: EGP
-				- 9: IGP
-				- 17: UDP
-				- 41: IPv6
-				- 50: ESP \(IPsec)
-				- 51: AH \(IPsec)
-				- 89: OSPF
-		- checksum do cabeçalho: 2 bytes:
-			- o checksum sempre é recalculado quando há alteração no cabeçalho;
-	- 4ª linha de 32 bits:
-		- endereço IP da origem;
-	- 5ª linha de 32 bits:
-		- endereço IP do destino;
-	- 6ª linha de 32 bits:
-		- opções e preenchimento;
+	- versão \(4 bits7ª - linha 1 de 32 bits):
+		- valor 4;
+	- tamanho do cabeçalho *IHL - Internet Header Length* \(4 bits - linha 1 de 32 bits):
+		- número de linhas do cabeçalho, com valor de no mínimo 5 ou até 15, caso o campo opções seja usado, entre 0 a 10 linhas além das 5 linhas mínimas do cabeçalho;
+	- serviço diferenciado *DS* \(6 bits - linha 1 de 32 bits):
+		- tipo de serviço ou *qualidade do serviço*;
+		- dos 64 códigos disponíveis, 32 são utilizados para classificar a prioridade do datagrama;
+	- *ECN - Explicit Congestion Notification* \(2 bits - linha 1 de 32 bits):
+		- sistema para sinalizar congestionamento nos roteadores pelo caminho, com a ativação dos dois bits pelo roteador congestionado;
+		- o segmento TCP de confirmação retorna com o bit ACK e ECE ativados, para sinalizar a necessidade de redução da taxa de envio de dados pelo transmissor;
+	- tamanho total \(2 bytes - linha 1 de 32 bits):
+		- até 65.535 bytes;
+	- identificação \(2 bytes - linha 2 de 32 bits):
+		- número sequencial que identifica o fragmento;
+	- flags \(3 bits - linha 2 de 32 bits)
+		- bit DF: 'don't fragment', quando valor 1, não pode fragmentar o datagrama;
+			- se um datagrama precisar ser fragmentado com a flag DF ativada, um roteador no caminho retorna uma mensagem de erro ICMP;
+		- bit MF: 'more fragments', quando valor 0, é o último fragmento de uma seqência; 
+	- deslocamento do fragmento \(13 bits - linha 2 de 32 bits);
+		- número de ordem do fragmento;
+	- tempo de vida \(1 byte - linha 3 de 32 bits):
+		- carrega um valor com o número de saltos em roteadores que um datagrama pode passar pelo caminho, sendo decrementado a cada salto; se chegar a zero, o datagrama é descartado;
+	- protocolo \(1 byte - linha 3 de 32 bits):
+		- indica qual protocolo acima do protocolo IPv4 foi responsável pelo datagrama IPv4;
+		- códigos mais comuns:
+			- 1: ICMPv4
+			- 2: IGMP
+			- 3: GGP
+			- 4: IPv4
+			- 6: TCP
+			- 8: EGP
+			- 9: IGP
+			- 17: UDP
+			- 41: IPv6
+			- 50: ESP \(IPsec)
+			- 51: AH \(IPsec)
+			- 89: OSPF
+	- checksum do cabeçalho \(2 bytes - linha 3 de 32 bits):
+		- o checksum sempre é recalculado quando há alteração no cabeçalho;
+	- endereço IP da origem, na linha 4 de 32 bits;
+	- endereço IP do destino, na linha 5 de 32 bits;
+	- opções e preenchimento, a partir da linha 6 de 32 bits;
+
 - **área de dados**:
 	- até 65.535 bytes menos no mínimo 20 bytes do cabeçalho: 65.515 bytes;
 	- tamanho típico: datagrama mínimo total 576 bytes menos 20 bytes: 556 bytes, para garantir suporte pelos equipamentos no caminho;
@@ -1009,34 +1004,31 @@
 
 ### Estrutura do Datagrama IPv6
 - **cabeçalho**:
-	- 1ª linha de 32 bits:
-		- versão: 4 bits:
-			- valor 6;
-		- classe do tráfego \(traffic class):
-			- equivalente ao tipo de serviço: 1 byte:
-				- *DSCP - serviços diferenciado* - 6 bits s;
-				- *ECN - Explicit Congestion Notification*: 2 bits;
-		- rótulo do fluxo \(flow label): 20 bits; 
-				- campo para definir qualidade de serviço, mas o campo não é utilizado;
-	- 2ª linha de 32 bits;
-		- tamanho dos dados \(playload length): 2 bytes:
-				- se *0*, é um *jumbograma*;
-				- o tamanho da área de dados é fornecido: datagrama IPv6 subtraído o cabeçalho;
-		- próximo cabeçalho \(next header): 1 byte:
-				- caso não existam cabeçalhos extras, esse campo que transporta o código do protocolo responsável pelo datagrama IP, sendo equivalente ao campo *protocolo* do cabeçalho IPv4;
-					- note-se que o último cabeçalho quase sempre será o cabeçalho de um segmento TCP ou de um datagrama UDP;
-				- caso exista cabeçalho extra na área de dados, um código indica o primeiro cabeçalho extra a seguir na área de dados, assim sucesivamente;
-				- o código 59 indica que não há mais cabeçalhos nem área de dados a seguir;
-		- limite de saltos \(hop limit): 1 byte:
-				- equivale ao TTL;
-	- 3ª linha de 32 bits;
-		- endereço IP de origem, até a 6ª linha de 32 bits;
-	- 7ª linha de 32 bits;
-		- endereço IP de destino, até a 10ª linha de 32 bits;
+	- versão \(4 bits - linha 1 de 32 bits):
+		- valor 6;
+	- classe do tráfego \(traffic class)  \(linha 1 de 32 bits):
+		- equivalente ao tipo de serviço: 1 byte:
+			- *DSCP - serviços diferenciado* - 6 bits s;
+			- *ECN - Explicit Congestion Notification*: 2 bits;
+	- rótulo do fluxo \(flow label) \(20 bits - linha 1 de 32 bits); 
+			- campo para definir qualidade de serviço, mas o campo não é utilizado;
+	- tamanho dos dados \(playload length) \(2 bytes - linha 2 de 32 bits):
+			- se *0*, é um *jumbograma*;
+			- o tamanho da área de dados é fornecido: datagrama IPv6 subtraído o cabeçalho;
+	- próximo cabeçalho \(next header) \(1 byte - linha 2 de 32 bits):
+			- caso não existam cabeçalhos extras, esse campo que transporta o código do protocolo responsável pelo datagrama IP, sendo equivalente ao campo *protocolo* do cabeçalho IPv4;
+				- note-se que o último cabeçalho quase sempre será o cabeçalho de um segmento TCP ou de um datagrama UDP;
+			- caso exista cabeçalho extra na área de dados, um código indica o primeiro cabeçalho extra a seguir na área de dados, assim sucesivamente;
+			- o código 59 indica que não há mais cabeçalhos nem área de dados a seguir;
+	- limite de saltos \(hop limit) \(1 byte - linha 2 de 32 bits):
+			- equivale ao TTL;
+	- endereço IP de origem, da 3ª linha até a 6ª linha de 32 bits;
+	- endereço IP de destino, da 7ª linha até a 10ª linha de 32 bits;
+
 - **área de dados**:
-		- até 65.535 bytes;
-		- *jumbograma* até 4 GiB;
-		- tamanho típico: datagrama mínimo total 1.280 bytes menos 40 bytes: 1.240 bytes;
+	- até 65.535 bytes;
+	- *jumbograma* até 4 GiB;
+	- tamanho típico: datagrama mínimo total 1.280 bytes menos 40 bytes: 1.240 bytes;
 
 
 ------------------------------------------------------------
@@ -1059,6 +1051,7 @@
 
 ### Modos de Implementação
 - **modo nativo**:
+	- IPsec suportado por todos os componentes entre origem e destino;
 	- IPsec atua no lugar do protocolo IP na camada de rede;
 	- *AH - Authentication Header*: cabeçalho autenticado exceto em campos variáveis;
 	- *ESP - Encapsulating Security Payload*: cabeçalho não autenticado;
@@ -1074,7 +1067,7 @@
 	- quando a comunicação é suportada pelos equipamentos nas duas extremidades da comunicação;
 
 - **modo túnel**:
-	- quando parte dos equipamentos no caminho não suporta nativamente o IPsec, como no modo de implementação BITW;
+	- quando parte dos equipamentos no caminho não suporta nativamente o IPsec, como no modos de implementação BITS e BITW;
 
 ### IKE - Internet Key Exchange
 - protocolo de troca de chaves, associação de segurança e definições de parâmetros, como algoritmo de criptografia que será utilizado;
@@ -1113,7 +1106,7 @@
 	- número de sequência \(4 bytes - linha 2 de 32 bits);
 		- número de sequência é único para cada datagrama;
 	- *área de dados*;
-	- rodapé ESP:
+	- rodapé ESP \(trailer):
 		- preenchimento;
 		- comprimento do preenchimento:
 			- tamanho variável, conforme algoritmo de criptografia;
