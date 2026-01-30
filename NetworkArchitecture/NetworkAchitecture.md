@@ -859,7 +859,15 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 
 
 - **classificação Ethernet com fibra óptica**:
-	- *1000base-LX*, em que X pode ser F ou S \(short) para multimodo ou L \(long) para monomodo;
+	- *1000Base-LX*, em que L pode ser F ou S \(short) para multimodo ou L \(long) para monomodo;
+
+		- 1000BASE-SX é um padrão Gigabit Ethernet para transmissão de curta distância em fibra multimodo (MMF) usando um comprimento de onda de 850 nm. Ele suporta até 550 metros em MMF padrão (OM1/OM2) e 1 quilômetro em fibra otimizada para laser (OM3/OM4/OM5). Utiliza transmissores VCSEL e é ideal para data centers, LANs e redes corporativas devido ao seu baixo custo e eficiência em curtas distâncias.
+
+		- 1000BASE-LX é um padrão Gigabit Ethernet para distâncias maiores, operando tanto em fibra monomodo (SMF) quanto em fibra multimodo (MMF) usando um comprimento de onda de 1310 nm. Ele suporta até 550 metros em MMF e 10 quilômetros em SMF. Utiliza lasers FP ou DFB, tornando-o adequado para redes backbone, WANs e interconexões entre edifícios. Embora o padrão original IEEE 802.3z não definisse alcances além de 10 km, versões estendidas (por exemplo, 20 km) são comuns na indústria.
+
+		- 1000BASE-FX é um padrão legado de Gigabit Ethernet definido pelo IEEE 802.3z, que especifica a transmissão em fibra multimodo usando um comprimento de onda de 1300 nm. Ele suporta até 2 quilômetros em fibra multimodo e era comumente usado nas primeiras redes de fibra óptica. Atualmente, foi amplamente substituído pelos padrões 1000BASE-SX e 1000BASE-LX, que oferecem melhor desempenho e compatibilidade com os tipos de fibra modernos. Observação: o 1000BASE-FX não é um padrão para módulos SFP em implantações modernas e é normalmente encontrado em equipamentos mais antigos.
+
+		- Todos os três padrões utilizam codificação 8b/10b e são normalmente implementados como transceptores SFP para conectividade hot-swappable em switches e roteadores.
 
 ### Cabeamento Estruturado
 - subsistemas:
@@ -966,6 +974,7 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 		- iSCSI;
 		- Fibre Channel;
 	- conexão física a uma placa de expansão especial acrescida ao servidor;
+	- SANs operam em nível de bloco (block-level), geralmente usando Fibre Channel ou iSCSI, diferenciando-se do NAS que opera em nível de arquivo;
 
 ### RAID - Redundant Array of Independent Disks
 - **RAID 0** - Divisão de Dados - Aumento de Desempenho;
@@ -1358,7 +1367,13 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 - *Denial of Service* é um ataque de negação de serviço, normalmente provocado por sobrecarga de acessos a um serviço;
 - *Distributed DoS - DDoS* é um ataque DoS a partir de diversos clientes;
 
-
+### Ameaças e Ataques
+- as ameaças à segurança da informação são ações ou fatores que podem comprometer a confidencialidade, integridade e disponibilidade dos dados de uma organização; entre as principais ameaças destacam-se:
+	- Malware: software malicioso que infecta sistemas, podendo causar danos, roubar dados ou controlar dispositivos; 
+	- Ransomware: tipo de malware que criptografa arquivos, exigindo pagamento \(geralmente em criptomoedas) para liberá-los — não é recomendado pagar, pois os dados muitas vezes não são restaurados; 
+	- Phishing: enganação por e-mail ou site falso para obter senhas, dados bancários ou informações confidenciais; 
+	- Spyware: software que coleta informações silenciosamente, como senhas e atividades do usuário;
+	- Engenharia social: manipulação psicológica para induzir colaboradores a revelar informações sensíveis; 
 
 
 

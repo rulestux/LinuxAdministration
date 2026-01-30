@@ -16,7 +16,8 @@
 	- [FTP](#FTP)
 	- [EMAIL PROTOCOLS](#EMAIL-PROTOCOLS)
 - [TRANSPORT LAYER SECURITY](#TRANSPORT-LAYER-SECURITY)
-- [IPv4 PROTOCOL](IPv4-PROTOCOL)
+- [IPv4 PROTOCOL](#IPv4-PROTOCOL)
+- [IPv6 PROTOCOL](#IPv6-PROTOCOL)
 
 
 
@@ -781,7 +782,7 @@
 - o *protocolo DNSsec* é um protocolo de autenticação que atesta a veracidade de registros DNS;
 
 ### bind
-- aplicação Open Source que implementa DNS no Linux;
+- aplicação Open Source que implementa servidor DNS no Linux;
 - o nome do daemon é *named*;
 - arquivo de configuração: /etc/named.conf;
 
@@ -838,7 +839,7 @@
 
 - **modo ativo**:
 	- solicitação abertura pelo cliente de *conexão TCP dados*, através da *porta 20* do servidor, com o comando *PORT* + IP do cliente + porta enviado à porta 21 do servidor;
-	- a conexão é aberta pelo servidor, no *modo ativo*, com three-way handshake;
+	- o servidor abre a conexão, no *modo ativo*, com three-way handshake; pode haver problemas com firewall do lado do cliente;
 	- cliente solicita arquivo com comando *RETR* através da conexão de controle;
 	- o arquivo é enviado pela conexão de dados;
 	- servidor envia pela conexão de controle a mensagem *226 - Transfer complete* quando a transferência é concluída;
@@ -978,7 +979,7 @@
 		- opções e preenchimento;
 - **área de dados**:
 	- até 65.535 bytes menos no mínimo 20 bytes do cabeçalho: 65.515 bytes;
-	- tamanho típico: 576 bytes menos 20 bytes: 556 bytes, para garantir suporte pelos equipamentos no caminho;
+	- tamanho típico: datagrama mínimo total 576 bytes menos 20 bytes: 556 bytes, para garantir suporte pelos equipamentos no caminho;
 
 ### Fragmentação de Datagrama IPv4
 - pode ser feita pelo transmissor ou por qualquer roteador no caminho;
@@ -987,21 +988,52 @@
 - a fragmentação é realizada considerando que o datagrama IP, que já possui cabeçalhos e dados de um *segmento TCP*, por exemplo, em sua área de dados, precisa encapsular o segmento e seu próprio cabeçalho de modo a caber na *área de dados* de um *quadro*: **MTU - Maximum Transmission Unit**;
 
 
+------------------------------------------------------------
 
 
+# IPv6 PROTOCOL
+
+### Diferenças entre IPv4 e IPv6
+- tamanho do endereçamento;
+- simplificação do cabeçalho IPv6, aumentando a eficiência dos saltos pelos roteadores, otimizando o tempo de leitura:
+	- tamanho fixo do cabeçalho, em 40 bytes, excluindo o campo opções, dispensando a necessidade de cálculo de delimitação; opções são incluídas em cabeçalhos extras na área de dados;
+	- não há checksum de cabeçalho, dispensando o tempo de recálculo de soma de verificação em qualquer alteração; IPv6 confia na verificação da camada de transporte nos segmentos TCP e datagramas UDP;
+	- remoção do campo de fragmentação, cujas informações são incluídas em cabeçalhos extras;
+- datagrama mínimo maior, aumentado de 576 bytes para 1.280 bytes;
+- não há fragmentação de datagrama por roteadores no caminho:
+	- hosts e roteadores determinam o tamanho do datagrama de forma dinâmica, trocando informações a respeito do menor MTU ao longo do caminho;
 
 
-
-
-
-
-
-
-
-
-
-
-
+### Estrutura do Datagrama IPv6
+- **cabeçalho**:
+	- 1ª linha de 32 bits:
+		- versão: 4 bits:
+			- valor 6;
+		- classe do tráfego \(traffic class):
+			- equivalente ao tipo de serviço: 1 byte:
+				- *DSCP - serviços diferenciado* - 6 bits s;
+				- *ECN - Explicit Congestion Notification*: 2 bits;
+		- rótulo do fluxo \(flow label): 20 bits; 
+				- campo para definir qualidade de serviço, mas o campo não é utilizado;
+	- 2ª linha de 32 bits;
+		- tamanho dos dados \(playload length): 2 bytes:
+				- se *0*, é um *jumbograma*;
+				- o tamanho da área de dados é fornecido: datagrama IPv6 subtraído o cabeçalho;
+		- próximo cabeçalho \(next header): 1 byte:
+				- caso não existam cabeçalhos extras, esse campo que transporta o código do protocolo responsável pelo datagrama IP, sendo equivalente ao campo *protocolo* do cabeçalho IPv4;
+					- note-se que o último cabeçalho quase sempre será o cabeçalho de um segmento TCP ou de um datagrama UDP;
+				- caso exista cabeçalho extra na área de dados, um código indica o primeiro cabeçalho extra a seguir na área de dados, assim sucesivamente;
+				- o código 59 indica que não há mais cabeçalhos nem área de dados a seguir;
+		- limite de saltos \(hop limit): 1 byte:
+				- equivale ao TTL;
+	- 3ª linha de 32 bits;
+		- endereço IP de origem, até a 6ª linha de 32 bits;
+	- 7ª linha de 32 bits;
+		- endereço IP de destino, até a 10ª linha de 32 bits;
+- **área de dados**:
+		- até 65.535 bytes;
+		- *jumbograma* até 4 GiB;
+		- tamanho típico: datagrama mínimo total 1.280 bytes menos 40 bytes: 1.240 bytes;
 
 
 
