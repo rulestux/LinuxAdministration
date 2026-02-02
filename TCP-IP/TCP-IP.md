@@ -19,6 +19,7 @@
 - [IPv4 PROTOCOL](#IPv4-PROTOCOL)
 - [IPv6 PROTOCOL](#IPv6-PROTOCOL)
 - [IPsec](#IPsec)
+- [ICMP](#ICMP)
 
 
 
@@ -1114,9 +1115,46 @@
 	- dados de autenticação \(ICV);
 
 
+------------------------------------------------------------
 
 
+# ICMP
 
+
+### Internet Control Message Protocol
+- protocolo que opera na camada de rede da pilha TCP/IP \(camada 3 do modelo OSI);
+
+- protocolo para mensagens de diagnóstico, controle e erro;
+
+- mensagens ICMP já vistas:
+	- retorno de um roteador com bit DF \(Don't Fragment) ativado;
+	- datagrama IPv6, que não suporta fragmentação, precisa ser fragmentado;
+	- TTL excedido após o limite de saltos;
+	- ping e traceroute;
+
+### Mensagem ICMP
+- estrutura apenas com cabeçalho IP e a Mensagem na área de dados, uma vez que o datagrama IP é gerado já na camada de rede;
+
+- IPv4 com valor 1 no campo *protocolo* e valor 58 no campo *próximo cabeçalho*;
+
+- a mensagem é estruturada com:
+	- tipo da mensagem \(1 byte);
+	- código da mensagem \(1 byte);
+	- checksum \(2 bytes):
+		- checksum IPv6 considera um pseudocabeçalho;
+	- área de dados opcional, podendo conter os dados dos 8 primeiros bytes de cabeçalho de datagrama UDP ou segmento TCP que gerou a mensagem de erro;
+
+### ping
+- trabalha com mensagem ICMP com código de pedido de eco \(tipo 8, código 0) e recebe mensagem de resposta de eco \(tipo 0, código 0);
+- o intervalo até a resposta é o **RTT - Round Trip-Time**;
+- pelo valor TTL retornado no ping é possível saber o SO do destino, considerando:
+	- Linux/Unix: 64;
+	- Windows: 128;
+	- AIX/Solaris/Cisco: 254 ou 255;
+
+### traceroute
+- trabalha com mensagem ICMP com código de pedido de eco para os roteadores ao longo de um caminho;
+- o datagrama IP parte com IP do destino final, mas com TTL 1, e o primeiro roteador retorna uma mensagem ICMP de TTL excedido com seu respectivo IP; um novo datagrama parte com o TTL incrementado para atingir o segundo roteador e assim por diante até o destino;
 
 
 
