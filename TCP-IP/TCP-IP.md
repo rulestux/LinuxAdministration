@@ -20,6 +20,9 @@
 - [IPv6 PROTOCOL](#IPv6-PROTOCOL)
 - [IPsec](#IPsec)
 - [ICMP](#ICMP)
+- [ROUTING](#ROUTING)
+	- [RIP](#RIP)
+	- [EIGRP](#EIGRP)
 
 
 
@@ -1155,6 +1158,56 @@
 ### traceroute
 - trabalha com mensagem ICMP com código de pedido de eco para os roteadores ao longo de um caminho;
 - o datagrama IP parte com IP do destino final, mas com TTL 1, e o primeiro roteador retorna uma mensagem ICMP de TTL excedido com seu respectivo IP; um novo datagrama parte com o TTL incrementado para atingir o segundo roteador e assim por diante até o destino;
+
+
+------------------------------------------------------------
+
+
+# ROUTING
+
+
+### Roteamento Estático vs. Roteamento Dinâmico
+- *estático* é o modo em que a *tabela de roteamento* é atualizada manualmente, a fim de definir o caminho entre uma origem e um destino;
+
+- *dinâmico* é o modo que utiliza *protocolos de roteamento* para definir a *tabela de roteamento*;
+
+### Vetor de Distância vs. Estado do Link
+- *vetor de distância*: para definir o melhor caminho entre uma origem e um destino, são enviadas mensagens de protocolo de roteamento que avaliam o *vetor de distância*, com o critério de *menos saltos* \(custo por vetor), como ocorre com o *protocolo RIP*;
+
+- *estado do enlace*: o melhor caminho é avaliado tendo como critério o *caminho mais rápido* \(que não necessariamente é mais curto), considerando parâmetros como latência, como ocorre com o *protocolo OSPF*;
+
+------------------------------------------------------------
+
+## RIP
+
+### Routing Information Protocol
+- protocolo de roteamento *interno* em um *AS - Autonomous System*;
+
+- protocolo baseado em algoritmo de *vetor de distância*;
+
+- versões:
+	- RIPv1 - versão obsoleta sem autenticação; 
+	- RIPv2 versão para IPv4; 
+	- RIPng versão para IPv6;
+
+- apresenta limitações como *convergência lenta* e *loop de roteamento*;
+
+### Temporizador
+- update timer: mensagens enviadas para outros roteadores a cada 30 segundos com sua tabela de roteamento atualizada;
+
+- invalid timer: 180 segundos sem receber atualizações de um roteador leva uma tabela a considerá-lo inválido, marcando usa distância \(custo) com valor 16 \(inacessível - 15 é o limite de saltos com o RIP);
+
+- flush timer: 240 segundos sem receber atualizações de um roteador para que ele seja removido da tabela;
+
+- **estrutura das mensagens**:
+	- as mensagens RIPv2 são encapsuladas em datagramas UDP para a porta 520 no endereço multicast 224.0.0.9;
+
+	- as mensagens RIPng são encapsuladas em datagramas UDP para a porta 521 no endereço multicast ff02::9; utiliza IPsec para autenticação;
+
+------------------------------------------------------------
+
+## EIGRP
+
 
 
 
