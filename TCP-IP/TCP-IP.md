@@ -23,6 +23,8 @@
 - [ROUTING](#ROUTING)
 	- [RIP](#RIP)
 	- [EIGRP](#EIGRP)
+	- [OSPF](#OSPF)
+	- [BGP](#BGP)
 
 
 
@@ -1247,9 +1249,37 @@
 
 - para obter mais detalhes sobre os links, cada roteador envia pedidos de informações completas de cada link atravésde uma mensagem *LSR - Link-State Request* e o roteador que tiver a informação completa responde com uma *LSU - Link-State Updatde* com uma *LSA - Link-State Announcement* completa respondida com uma confirmação *LSACK*;
 
+------------------------------------------------------------
 
+## BGP
 
+### Border Gateway Protocol
+- BGP-4 protocolo de roteamento *externo* ou *exterior*, estabelecendo a comunicação externa entre *sistemas autônomos*;
 
+- utiliza *protocolo TCP*, na *porta 179*;
+
+- protocolo de *vetor de caminho*:
+	- dá preferência ao menor número de *sistemas autônomos* ao longo do caminho, diferente do número de saltos, considerado pelo vetor de distância;
+
+### Boundary Router
+- Roteador de Borda;
+
+- o roteador que comunida um Sistema Autônomo com a Rede Mundial de Computadores é chamado *ASBR - Autonomous System Boundary Router*;
+
+- em um sistema *multihoming*, com mais de uma conexão com o mundo externo, são utilizados váruios *ASBR - Autonomous System Boundary Routers*, que comunicam entre si:
+	- através do protocolo iBGP \(internal);
+	- através do protocolo eBGP \(external) com o mundo externo;
+
+### Temporizador e Mensagens
+- *open*: mensagem de abertura de comunicação de vizinhança; mensagem *keepalive* é enviada confirmando, quando não é negada;
+
+- *keepalive*: mensagem enviada a cada 60 segundos aos vizinhos; *hold-down* padrão de 180 segundos para ser considerado inoperante;
+
+- *update*: mensagem para atualização de rotas, acrescentando ou removendo;
+
+- *notification*: mensagem de erro;
+
+- *route refresh*: mensagem enviada em caso de atualização de políticas;
 
 
 
