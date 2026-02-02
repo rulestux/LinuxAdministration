@@ -1186,18 +1186,18 @@
 - protocolo baseado em algoritmo de *vetor de distância*;
 
 - versões:
-	- RIPv1 - versão obsoleta sem autenticação; 
+	- RIPv1 - versão obsoleta sem autenticação e sem suporte a máscara de rede \(CIDR); 
 	- RIPv2 versão para IPv4; 
 	- RIPng versão para IPv6;
 
 - apresenta limitações como *convergência lenta* e *loop de roteamento*;
 
-### Temporizador
-- update timer: mensagens enviadas para outros roteadores a cada 30 segundos com sua tabela de roteamento atualizada;
+### Temporizador e Mensagens
+- *update timer*: mensagens enviadas para outros roteadores a cada 30 segundos com sua tabela de roteamento atualizada;
 
-- invalid timer: 180 segundos sem receber atualizações de um roteador leva uma tabela a considerá-lo inválido, marcando usa distância \(custo) com valor 16 \(inacessível - 15 é o limite de saltos com o RIP);
+- *invalid timer*: 180 segundos sem receber atualizações de um roteador leva uma tabela a considerá-lo inválido, marcando usa distância \(custo) com valor 16 \(inacessível - 15 é o limite de saltos com o RIP);
 
-- flush timer: 240 segundos sem receber atualizações de um roteador para que ele seja removido da tabela;
+- *flush timer*: 240 segundos sem receber atualizações de um roteador para que ele seja removido da tabela;
 
 - **estrutura das mensagens**:
 	- as mensagens RIPv2 são encapsuladas em datagramas UDP para a porta 520 no endereço multicast 224.0.0.9;
@@ -1207,6 +1207,58 @@
 ------------------------------------------------------------
 
 ## EIGRP
+
+### Enhanced Interior Gateway Routing Protocol
+- protocolo de roteamento *interno* proprietário da Cisco;
+- protocolo híbrido, com características de protocolo de vetor de distância e protocolo de estado do link;
+
+------------------------------------------------------------
+
+## OSPF
+
+### Open Shortest Path First
+- protocolo baseado no *estado do link*, utilizando ao algoritmo SPF de Dijkstra;
+
+- mensagens encapsuladas diretamente no datagrama IP;
+
+- versões:
+	- OSPFv2 versão para IPv4; 
+	- OSPFv3 versão para IPv6;
+
+- convergência rápida, com no máximo 45 segundos;
+
+### Topologia Hierárquica
+- o protocolo OSPF permite seccionar um *AS - Autonomous System* em áreas, como se fossem subsistemas autônomos separados;
+- roteadores internos numa determinada área conhecem apenas a topologia daquela área em seu *LSDB - Link-State DataBase*;
+- permite utilizar roteadoress mais simples, de menor custo, dentro deas mesma área;
+
+- a *área 0* é a rede que conecta as outras áreas através de seus *ABR - Area Border Routers* e do Backbone que os conecta;
+
+### Temporizador e Mensagens
+- *hello*: mensagem enviada a cada 10 segundos para os roteadores vizinhos;
+
+- *dead interval*: 4 vezes o tempo de hello aguardando a resposta de um outro roteador da rede;
+
+- *update SPF*: 5 segundos de espera sem resposta após o *dead interval*, o roteador é considerado inoperante pelo vizinho;
+
+- *DBD - DataBase Description*: descrição reduzida da tabela de roteamento enviada através de um mensagem chamada *LSA - Link-State Announcement*;
+
+- um roteador é eleito como *DR - Designated Router* para receber e retransmitir as mensagens de DBD em uma determinada área, através de um endereço de multicast;
+
+- para obter mais detalhes sobre os links, cada roteador envia pedidos de informações completas de cada link atravésde uma mensagem *LSR - Link-State Request* e o roteador que tiver a informação completa responde com uma *LSU - Link-State Updatde* com uma *LSA - Link-State Announcement* completa respondida com uma confirmação *LSACK*;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
