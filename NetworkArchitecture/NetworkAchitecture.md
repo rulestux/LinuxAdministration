@@ -426,7 +426,7 @@
 - implementações: 
 	- com **dois canais** SX \(simplex):
 		- para duas conexões de fibra óptica;
-		- em redes de par trançado com um par para transmissão e outro para transmissão;
+		- em redes de par trançado com um par para transmissão e outro para recepção;
 	- com **um canal**:
 		- implementado com **multiplexação** por divisão de comprimento de onda em um canal de fibra óptica;
 		- implementado de forma **híbrida** com par trançado de Gbit/s Ethernet e superiores, com transformador híbrido de casamento de impedância, reduzindo um sistema de 4 fios para um sistema de 2 fios;
@@ -524,13 +524,13 @@
 		- circuito mais simples e mais barato;
 		- menor eficiência na transmissão de dados, *i. e.*, menos dados podem ser transmitidos em um intervalo de tempo, pois parte da banda é usada para os sinais de controle;
 
-- **Quadro Ethernet**
+### Quadro Ethernet
 
-| Sincronismo 		| Cabeçalho 						| Dados	| Rodapé 	|
-|:-----------------:|:---------------------------------:|:-----:|:---------:|
-| Preâmbulo - SDF 	| Destino - Origem - Comprimento 	| Dados | FCS 		|
+| Sincronismo 		| Cabeçalho 											| Dados		| Rodapé 	|
+|:-----------------:|:-----------------------------------------------------:|:----------------:|:---------:|
+| Preâmbulo - SDF 	| MAC Destino - MAC Origem - Comprimento - EtherType	| Payload		| FCS - CRC	|
 
-- no quadro Ethernet acima, o Preâmbulo é uma sequência de 7 bytes, alternando 0 e 1 para indicar o clock, e o SDF \(Start Frame Delimiter) indica o final do sincronismo com 1 byte, cuja estrutura é ``` 10101011 ```;
+- no quadro Ethernet acima, o Preâmbulo é uma sequência de 7 bytes, alternando 0 e 1 para indicar o clock, e o *SDF - Start Frame Delimiter* indica o início do quadro com 1 byte, cuja estrutura é ``` 10101011 ```;
 
 ### Codificação
 - codificar os dados permite criar *sistema de sincronia* entre transmissor e receptor e evitar **baseline wandering** \(desvio da linha de base), impedindo sequências longas de 0 e 1;
@@ -562,7 +562,7 @@
 - *overhead* \(desperdício): a maior parte dos dados é dado de usuário, mas além deles há os dados de controle;
 
 ### Tipos de Pacote
-- **quadro**: pacote de dados no meio físico;
+- **quadro**: pacote de dados no meio físico - *frame*;
 - **célula**: pacote de dados no meio físico com tamanho fixo;
 - **datagrama**: pacote de dados sem confirmação de recebimento;
 - **segmento**;
@@ -591,7 +591,7 @@
 - **Paridade**: um bit de paridade é adicionado a fim de que o total de bits de um pacote seja par; 1 para um pacote com número ímpar de bits 1 e 0 para um pacote que já tenha um número par de bits 1;
 - **Repetição**: o mesmo pacote é enviado mais de uma vez, normalmente 3 vezes, para serem conferidos pelo receptor que, pela comparação dos pacotes, pode ou não solicitar uma retransmissão;
 - **Checksum \(Soma de Verificação)**: um algoritmo de soma de todos os dados é utilizado para anexar um código ao rodapé do pacote que serve de verificação pelo receptor, que usa o mesmo algoritmo para checar o pacote recebido;
-- **CRC \(Ciclical Redundancy Check)**: um processo similar ao Checksum é feito, mas utilizando a divisão por um polinômio, resultando um *FCS \(Frame Check Sequence) formando uma sequência de bits com o total de bits do polinômio menos um bit; o FCS é acrescido ao dado; é o mecanismo mais utilizado;
+- **CRC \(Cyclic Redundancy Check)**: um processo similar ao Checksum é feito, mas utilizando a divisão por um polinômio, resultando um *FCS - Frame Check Sequence*, formando uma sequência de bits com o total de bits do polinômio menos um bit; o FCS é acrescido ao dado; é o mecanismo mais utilizado;
 
 ### Correção de Erros
 - algoritmo que é capaz de detectar e corrigir o erro pode ser cjamado de:
@@ -634,6 +634,7 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 - a taxa é dada na base 10 para bit/s ou frequentemente na base 10 para B/s, podendo eventualmente ser na base 2 para esse último caso;
 
 ### Largura de Banda
+- *throughput*;
 - **Banda Base** é o sistema de uso da frequência máxima de operação de um meio pelo canal, sendo mais frequentemente usado;
 - **Banda Larga** ou *multicanal* é o sistema em que os canais fracionam a banda máxima do meio;
 
@@ -669,50 +670,51 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 ## OSI MODEL
 
 ### Estrutura do Modelo
+- **Open Systems Interconnection**;
 - modelo de 7 camadas \(Layers) por que um dado passa após sair do **aplicativo** e antes de chegar ao **meio** em que será transmitido;
 - cada camada gera uma **Protocol Data Unit \(PDU)** que é repassado para a camada imediatamente inferior;
 - na camada inferior, a *PDU* é inserido na *área de dados* do pacote recebido da camada superior, resultando em um cabeçalho específico;
 - **Service Access Point \(SAP)** é o sistema de endereçamento no cabeçalho de cada *PDU* que direciona o pacote ao protocolo correto numa camada superior;
 
-- **CAMADAS**:
+### CAMADAS
+- 7. **Aplicação**:
+	- camada que identifica os **Protocolos de Aplicação**;
+	- gera uma **Mensagem** com os dados e os comandos sobre o que fazer com os dados;
 
-	- 7. **Aplicação**:
-		- camada que identifica os **Protocolos de Aplicação**;
-		- gera uma **Mensagem** com os dados e os comandos sobre o que fazer com os dados;
+- 6. **Apresentação**:
+	- camada que identifica ou modifica **Formato dos Dados**, resolvendo problemas de representação de informação existente entre *sistemas heterogêneos interconectados;
+	- camada relacionada à *sintaxe* e à *semântica*;
+	- responsável por comprimir ou descomprimir os dados;
+	- responsável por criptografar dados, com o protocolo **TLS - Transport Layer Security** \(ou *SSL - Secure Socket Layer*, versão obsoleta antecessora ao *TSL*);
+	- aqui, a *mensagem* ainda não está fracionada em pacotes menores;
 
-	- 6. **Apresentação**:
-		- camada que identifica ou modifica **Formato dos Dados**, resolvendo problemas de representação de informação existente entre *sistemas heterogêneos interconectados;
-		- camada relacionada à *sintaxe* e à *semântica*;
-		- responsável por comprimir ou descomprimir os dados;
-		- responsável por criptografar dados, com o protocolo **TLS - Transport Layer Security** \(ou *SSL - Secure Socket Layer*, versão obsoleta antecessora ao *TSL*);
-		- aqui, a *mensagem* ainda não está fracionada em pacotes menores;
+- 5. **Sessão**:
+	- camada que cria uma *sessão* de conexão que, em caso de interrupção, a transferência é retomada a partir desse *sessão*;
+	- *mensagem* ainda íntegra;
 
-	- 5. **Sessão**:
-		- camada que cria uma *sessão* de conexão que, em caso de interrupção, a transferência é retomada a partir desse *sessão*;
-		- *mensagem* ainda íntegra;
+- 4. **Transporte**:
+	- camada intermediária entre as camadas de alto nível \(5-7) e as camadas de baixo nível \(1-3);
+	- camada em que se identificam origem e destino de dados;
+	- nesta camada, inicia-se o **fracionamento em pacotes menores**;
+	- definem-se *segmentos TCP* ou *datagramas UDP*;
+	- camada responsável também pelo ordenamento e pela integridade dos dados, com mecanismos como a numeração e a *soma de verificação*;
 
-	- 4. **Transporte**:
-		- camada intermediária entre as camadas de alto nível \(5-7) e as camadas de baixo nível \(1-3);
-		- camada em que se identificam origem e destino de dados;
-		- nesta camada, inicia-se o **fracionamento em pacotes menores**;
-		- definem-se *segmentos TCP* ou *datagramas UDP*;
-		- camada responsável também pelo ordenamento e pela integridade dos dados, com mecanismos como a numeração e a *soma de verificação*;
+- 3. **Rede \(*Internet*)**:
+	- camada de roteamento de dados;
+	- camada responsável pelo endereçamento lógico dos pacotes;
+	- camada de operação de **roteadores** e **switches** direcionando os dados, normalmente com os protocolos IPv4, IPv6, IPsec ou ICMP;
+	- camada responsável por gerar PDUs chamadas *datagramas IP*;
 
-	- 3. **Rede \(*Internet*)**:
-		- camada de roteamento de dados;
-		- camada responsável pelo endereçamento lógico dos pacotes;
-		- camada de operação de **roteadores** e **switches** direcionando os dados, normalmente com os protocolos IPv4, IPv6, IPsec ou ICMP;
-		- camada responsável por gerar PDUs chamadas *datagramas IP*;
+- 2. **Link de Dados \(Enlace de Dados)**:
+	- *Data Link Layer*;
+	- camada de operação de **switches**. que é responsável por inserir os *datagramas IP* em PDUs chamadas *quadros* \(frames) ou *células*;
+	- camada responsável por gerar PDUs chamadas *quadros*;
+	- camada responsável por identificar os *endereços físicos*, **MAC - Medium Access Control** de origem e destino dos pacotes;
 
-	- 2. **Link de Dados \(Enlace de Dados)**:
-		- camada de operação de **switches**. que é responsável por inserir os *datagramas IP* em PDUs chamadas *quadros* ou *células*;
- 		- camada responsável por gerar PDUs chamadas *quadros*;
-		- camada responsável por identificar os *endereços físicos*, **MAC - Medium Access Control** de origem e destino dos pacotes;
-
-	- 1. **Física**:
-		- camada de operação dos **hubs**;
-		- camada que opera com protocolos de transmissão de dados em nível de bits;
-		- camada responsável pela modulação e demodulação dos dados conforme o meio a ser usado;
+- 1. **Física**:
+	- camada de operação dos **hubs**;
+	- camada que opera com protocolos de transmissão de dados em nível de bits;
+	- camada responsável pela modulação e demodulação dos dados conforme o meio a ser usado;
 
 ------------------------------------------------------------
 
@@ -742,7 +744,7 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 	- também é acrescido o campo **EtherType**, que servirá para indicar à Camada de Enlace do destinatário qual o protocolo de rede \(IPv4, IPv6 ou ICMP);
 	- **Datagramas**, como os *datagramas IP*, ao contrário de segmentos, não possuem idenficação para orientação à conexão e não retornam confirmação de recebimento \(não são confiáveis);
 
-- **Camada de Enlace \(link de dados)**: gera uma UDP chamada **Quadro**, com o *datagrama IP* em sua área de dados;
+- **Camada de Enlace \(link de dados)**: gera uma UDP chamada **Quadro** \(frame), com o *datagrama IP* em sua área de dados;
 	- a camada de enlace é definida pela arquitetura de rede utilizada;
 	- no cabeçalho do *quadro* são inseridos os endereços físicos, **MAC - Medium Access Control**, de origem e destino;
 	- a área de dados do *quadro* é a **MTU - Maximum Transmission Unit**;
@@ -770,10 +772,11 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 
 ### TOPOLOGIA EM MALHA OU MESH
 - topologia com redundância de conectividade para nós críticos de rede;
+- elevada tolerância a falhas;
 
 ### TOPOLOGIA EM ANEL
 - topologia em que os nós de uma rede são conectados em anel, com duas conexões, para entrada e saída, de cada um;
-- utiliza-se um sistema de **token**, em que o dispositivo insere os dados e a identificação de endereçamento a serem transmitidos para outro dispositivo ao longo do caminho circular;
+- utiliza-se um sistema de **token ring**, em que o dispositivo insere os dados e a identificação de endereçamento a serem transmitidos para outro dispositivo ao longo do caminho circular;
 
 ### TOPOLOGIA EM BARRAMENTO, LINEAR OU BUS
 - topologia mais básica entre os modelos que usam o padrão *Ethernet*;
@@ -801,13 +804,14 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 
 # CABLING
 
-
 ### Cabo Coaxial
 - tipo de cabeamento coaxial com impedância 50ohms;
-	- cabo fino: thinnet 10base2 conector BNC;
-	- cabo grosso: thicknet 10base5 conector transceptor;
-- *10base* sinaliza a lrgura de banda de 10Mbits/s e tipo de transmissão banda base;
-- 2 ou 5 equivale ao comprimento máximo do cabo preto, com 185 metros, ou cabo amarelo, 500 metros;
+	- cabo fino: thinnet **10BASE-2** conector BNC;
+	- cabo grosso: thicknet **10BASE-5** conector transceptor;
+
+- **classificação Ethernet**
+	- *10BASE* sinaliza a largura de banda de 10Mbit/s e tipo de transmissão banda base;
+	- 2 ou 5 equivale ao comprimento máximo do cabo preto, com 185 metros, ou cabo amarelo, 500 metros;
 
 ### Par Trançado
 - cabeamento mais usual para redes Ethernet atualmente;
@@ -818,10 +822,19 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 	- **STP - Shielded Twisted Pair**: par trançado com blindagem;
 	- **conector 8P8C**: "RH-45";
 	- subdivide-se em categorias, sendo o mais comum a **categoria 5e**, que suporta conexões de até 2,5 Gbit/s;
-	- *10base-T* para *Twisted pair*;
+
+- **classificação Ethernet**
+	- **10BASE-T**: Ethernet \(*Twisted pair*) padrão *IEEE 802.3*, de 1990, a 10Mib/s, cabo CAT3;
+	- **100BASE-T**: FastEthernet padrão *IEEE 802.3u*, de 1995, a 100Mbit/s, cabo CAT5;
+	- **1000BASE-T**: GigabitEthernet padrão *IEEE 802.3ab*, de 1999, a 1000Mbit/s, cabo CAT5e;
+	- **10GBASE-T**: 10 GigabitEthernet padrão *IEEE 802.3ae*, de 2006, a 10Gbit/s, cabo CAT6 ou CAT6a;
 
 ### Fibra Óptica
 - tipo de cabeamento cuja transmissão de dados opera através de um *laser - light amplification by stimulated emission of radiation* em comprimento de onda infravermelho;
+
+- *reflexão total interna* ocorre devido às diferenças nos índices de refração entre o núcleo \(a parte central da fibra) e a casca \(a camada exterior que envolve o núcleo); quando a luz entra no núcleo da fibra em um ângulo apropriado, ela é refletida de volta no núcleo, permanecendo confinada;
+	- Índice de Refração do Núcleo: É maior que o índice de refração da casca, permitindo a passagem da luz sem perda significativa;
+	- Índice de Refração da Casca: É menor, facilitando a reflexão da luz na interface entre núcleo e casca;
 
 - **SMF - Single-Mode Fiber** fibra monomodo:
 	- a luz segue em linha reta, num percurso único;
@@ -832,7 +845,8 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 	- maior largura de banda;
 	- onda mais longa 1300nm;
 	- mais usada em redes MANs e WANs;
-		- 10 Gbit/s até 80km;
+		- 1000 Mbit/s até 2km 1000BASE-LX
+		- 10 Gbit/s até 80km 10GBASE-LR;
 		- distâncias maiores com amplificadores ópticos;
 
 - **MMF - Multi-Mode Fiber** fibra multimodo:
@@ -846,35 +860,33 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 	- menor largura de banda;
 	- onda mais curta 850nm;
 	- mais usada em redes LANs e CANs;
-		- 100 Mbit/s até 2km;
-		- 1 Gbit/s até 1km;
-		- 10 Gbit/s até 500m;
+		- 100 Mbit/s até 2km 100BASE-FX;
+		- 1 Gbit/s até 1km 1000BASE-SX;
+		- 10 Gbit/s até 500m 10GBASE-SR;
 
 - **SMF NZ-DSF - Single-Mode Fiber Non-Zero, Dispersion-Shifted Fiber** fibra monomodo adaptada para multiplexação por comprimento de onda **WDM - Wavelength Division Multiplexing**, com mais de um laser, implementando múltiplos comprimentos de onda para transmitir mais de um fluxo de dados separados;
 	- com esse recurso, pode-se obter transmissão bidirecional;
 
 - **conectores**:
-	- **individuais**: SC - subscriber channel, ST straight tip, LC;
+	- **individuais**: SC - subscriber channel, ST - straight tip, LC;
 	- **multimodo**: MT-RJ;
 
 
 - **classificação Ethernet com fibra óptica**:
-	- *1000Base-LX*, em que L pode ser F ou S \(short) para multimodo ou L \(long) para monomodo;
+	- **1000BASE-SX** é um padrão Gigabit Ethernet para transmissão de curta distância *short* em fibra **multimodo** \(MMF) usando um comprimento de onda de 850 nm. Ele suporta até 550 metros em MMF padrão \(OM1/OM2) e 1 quilômetro em fibra otimizada para laser \(OM3/OM4/OM5). Utiliza transmissores VCSEL e é ideal para data centers, LANs e redes corporativas devido ao seu baixo custo e eficiência em curtas distâncias.
 
-		- 1000BASE-SX é um padrão Gigabit Ethernet para transmissão de curta distância em fibra multimodo (MMF) usando um comprimento de onda de 850 nm. Ele suporta até 550 metros em MMF padrão (OM1/OM2) e 1 quilômetro em fibra otimizada para laser (OM3/OM4/OM5). Utiliza transmissores VCSEL e é ideal para data centers, LANs e redes corporativas devido ao seu baixo custo e eficiência em curtas distâncias.
+	- **1000BASE-LX** é um padrão Gigabit Ethernet para distâncias maiores *long*, operando tanto em fibra **monomodo** \(SMF) quanto em fibra multimodo \(MMF) usando um comprimento de onda de 1310 nm. Ele suporta até 550 metros em MMF e 10 quilômetros em SMF. Utiliza lasers FP ou DFB, tornando-o adequado para redes backbone, WANs e interconexões entre edifícios. Embora o padrão original IEEE 802.3z não definisse alcances além de 10 km, versões estendidas \(por exemplo, 20 km) são comuns na indústria.
 
-		- 1000BASE-LX é um padrão Gigabit Ethernet para distâncias maiores, operando tanto em fibra monomodo (SMF) quanto em fibra multimodo (MMF) usando um comprimento de onda de 1310 nm. Ele suporta até 550 metros em MMF e 10 quilômetros em SMF. Utiliza lasers FP ou DFB, tornando-o adequado para redes backbone, WANs e interconexões entre edifícios. Embora o padrão original IEEE 802.3z não definisse alcances além de 10 km, versões estendidas (por exemplo, 20 km) são comuns na indústria.
+	- **1000BASE-FX** é um padrão legado de Gigabit Ethernet definido pelo IEEE 802.3z, que especifica a transmissão em fibra **multimodo** usando um comprimento de onda de 1300 nm. Ele suporta até 2 quilômetros em fibra multimodo e era comumente usado nas primeiras redes de fibra óptica. Atualmente, foi amplamente substituído pelos padrões 1000BASE-SX e 1000BASE-LX, que oferecem melhor desempenho e compatibilidade com os tipos de fibra modernos. Observação: o 1000BASE-FX não é um padrão para módulos SFP em implantações modernas e é normalmente encontrado em equipamentos mais antigos.
 
-		- 1000BASE-FX é um padrão legado de Gigabit Ethernet definido pelo IEEE 802.3z, que especifica a transmissão em fibra multimodo usando um comprimento de onda de 1300 nm. Ele suporta até 2 quilômetros em fibra multimodo e era comumente usado nas primeiras redes de fibra óptica. Atualmente, foi amplamente substituído pelos padrões 1000BASE-SX e 1000BASE-LX, que oferecem melhor desempenho e compatibilidade com os tipos de fibra modernos. Observação: o 1000BASE-FX não é um padrão para módulos SFP em implantações modernas e é normalmente encontrado em equipamentos mais antigos.
-
-		- Todos os três padrões utilizam codificação 8b/10b e são normalmente implementados como transceptores SFP para conectividade hot-swappable em switches e roteadores.
+	- Todos os três padrões utilizam codificação 8b/10b e são normalmente implementados como transceptores SFP para conectividade hot-swappable em switches e roteadores.
 
 ### Cabeamento Estruturado
 - subsistemas:
 	- 1. *ponto de entrada \(entrance facilities)*: chegada do sinal externo, entrada do prédio;
 	- 2. *sala de equipamento \(equipament room)*: sala de servidores, com racks ou armários;
-	- 3. *backbone cabling*: cabeamento de backbone \(espinha dorsal);
-	- 4. *telecommunications rooms and enclosure*: salas ou armários de telecomunicação, normalmente com *patch panels*;
+	- 3. *backbone cabling*: cabeamento de backbone \(espinha dorsal) - cabeamento vertical;
+	- 4. *telecommunications rooms and enclosure*: salas ou armários de telecomunicação, normalmente com *switches* e *patch panels*;
 	- 5. *horizontal cabling*: cabeamento que conecta as salas de comunicação às tomadas de rede;
 	- 6. *work area*: áreas de trabalho;
 
@@ -907,6 +919,7 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 - maior segurança, pois os quadros são direcionados considerando origem e destino;
 - possui *buffer* para armazenamento temporário de quadros, até que sejam efetivamente transmitidos;
 - o reconhecimento dos nós da rede ocorre através de um processo chamado **flooding \(inundação)**, para realizar o checagem dos endereços físicos dos nós da rede;
+- os destinatários, são registrados em uma tabela chamada *CAM Table* \(Content Addressable Memory), com seus MACs e as respectivas portas do switch a que estão conectados;
 - *inundação* - difusão - transmissão em *broadcast* para identificar um destinatário;
 - os equipamentos mais sofisticados, permitem a configuração de redes virtuais **VLANs**, separando domínios de *broadcast*, isolando-as;
 - **bridge \(ponte)** um equipamento obsoleto para interligar segmentos de rede de cabo coaxial, operando na **camada 2 - Enlace** filtrando quadros e isolando os segmentos de rede, reduzindo a frequência de colisões;
@@ -1365,17 +1378,17 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 
 ### DoS
 - *Denial of Service* é um ataque de negação de serviço, normalmente provocado por sobrecarga de acessos a um serviço;
-- *Distributed DoS - DDoS* é um ataque DoS a partir de diversos clientes;
+- *Distributed DoS - DDoS* é um ataque DoS a partir de diversos clientes, distribuído;
 
 ### Ameaças e Ataques
 - as ameaças à segurança da informação são ações ou fatores que podem comprometer a confidencialidade, integridade e disponibilidade dos dados de uma organização; entre as principais ameaças destacam-se:
-	- Malware: software malicioso que infecta sistemas, podendo causar danos, roubar dados ou controlar dispositivos; 
-	- Ransomware: tipo de malware que criptografa arquivos, exigindo pagamento \(geralmente em criptomoedas) para liberá-los — não é recomendado pagar, pois os dados muitas vezes não são restaurados; 
-	- Phishing: enganação por e-mail ou site falso para obter senhas, dados bancários ou informações confidenciais; 
-	- Spyware: software que coleta informações silenciosamente, como senhas e atividades do usuário;
-	- Engenharia social: manipulação psicológica para induzir colaboradores a revelar informações sensíveis; 
-
-
+	- *Malware*: software malicioso que infecta sistemas, podendo causar danos, roubar dados ou controlar dispositivos; 
+	- *Ransomware*: tipo de malware que criptografa arquivos, exigindo pagamento \(geralmente em criptomoedas) para liberá-los — não é recomendado pagar, pois os dados muitas vezes não são restaurados; 
+	- *Phishing*: enganação por e-mail ou site falso para obter senhas, dados bancários ou informações confidenciais; 
+	- *Spyware*: software que coleta informações silenciosamente, como senhas e atividades do usuário;
+	- *Engenharia social*: manipulação psicológica para induzir colaboradores a revelar informações sensíveis; 
+	- *Sniffing*: interceptação de pacotes em trânsito, como senhas, comandos e dados sensíveis sem criptografia;
+	- *Spoofing*: falsificação de identidade, modificando campos como o endereço IP ou MAC dos pacotes, fazendo com que pareçam oriundos de fontes confiáveis; Man-in-the-Middle redirecionando tráfego ou enganando sistemas de autenticação;
 
 
 

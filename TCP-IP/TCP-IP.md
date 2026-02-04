@@ -60,6 +60,8 @@
 	- *Enlace*: Hardware
 	- *Física*: Hardware
 
+- na pilha de protocolos TCP/IP, as camadas de *Enlace* e *Física* podem ser tratadas como uma única camada de *Acesso à Rede*;
+
 ### Camada de Aplicação
 - **Protocolos de Aplicação**: linguagens de comunicação utilizadas pelo software da máquina: 
 	- FTP, HTTP, DNS, SMTP, IMAP, POP3, Telnet, SSH etc.;
@@ -293,7 +295,7 @@
 	- *cliente: porta 68*;
 
 - **etapas de comunicação**
-	- 1. um nó cliente solicita a entrada na rede através de uma mensagem **DHCPDISCOVERY** em *broadcast*;
+	- 1. um nó cliente solicita a entrada na rede através de uma mensagem **DHCPDISCOVER** em *broadcast*;
 	- 2. o servidor DHCP responde com uma mensagem **DHCPOFFER**; pode haver mais de um servidor DHCP na rede, e todos respondem;
 	- 3. o cliente direciona uma mensagem **DHCPREQUEST** em *broadcast*, mas direcionada a um servidor DHCP escolhido;
 	- 4. o servidor retorna uma mensagem DHCP Acknowledge **DHCPACK**;
@@ -761,7 +763,7 @@
 	- **servidor autoritativo**: servidor de registro de IPs de FQDNs;
 
 ### Consulta DNS
-- *nslookup*: comando para consultar uma URL por linha de comando;
+- *nslookup* e *dig*: comandos para consultar uma URL por linha de comando;
 
 - serviços DNS estáticos locais ficam armazenados em:
 	- Windows: ``` C:\windows\system32\drivers\etc\hosts ```;
