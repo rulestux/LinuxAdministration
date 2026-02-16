@@ -689,7 +689,7 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 	- aqui, a *mensagem* ainda não está fracionada em pacotes menores;
 
 - 5. **Sessão**:
-	- camada que cria uma *sessão* de conexão que, em caso de interrupção, a transferência é retomada a partir desse *sessão*;
+	- camada que cria uma *sessão* de conexão que, em caso de interrupção, a transferência é retomada a partir dessa *sessão*;
 	- *mensagem* ainda íntegra;
 
 - 4. **Transporte**:
@@ -707,8 +707,7 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 
 - 2. **Link de Dados \(Enlace de Dados)**:
 	- *Data Link Layer*;
-	- camada de operação de **switches**. que é responsável por inserir os *datagramas IP* em PDUs chamadas *quadros* \(frames) ou *células*;
-	- camada responsável por gerar PDUs chamadas *quadros*;
+	- camada de operação de **switches**, que é responsável por inserir os *datagramas IP* em PDUs chamadas *quadros* \(frames) ou *células*;
 	- camada responsável por identificar os *endereços físicos*, **MAC - Medium Access Control** de origem e destino dos pacotes;
 
 - 1. **Física**:
@@ -820,7 +819,7 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 - par trançado para Ethernet com 4 pares:
 	- **UTP - Unshielded Twisted Pair**: par trançado sem blindagem, suscetível a *cross-talk - diafonia*;
 	- **STP - Shielded Twisted Pair**: par trançado com blindagem;
-	- **conector 8P8C**: "RH-45";
+	- **conector 8P8C**: "RJ-45";
 	- subdivide-se em categorias, sendo o mais comum a **categoria 5e**, que suporta conexões de até 2,5 Gbit/s;
 
 - **classificação Ethernet**
@@ -828,6 +827,26 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 	- **100BASE-T**: FastEthernet padrão *IEEE 802.3u*, de 1995, a 100Mbit/s, cabo CAT5;
 	- **1000BASE-T**: GigabitEthernet padrão *IEEE 802.3ab*, de 1999, a 1000Mbit/s, cabo CAT5e;
 	- **10GBASE-T**: 10 GigabitEthernet padrão *IEEE 802.3ae*, de 2006, a 10Gbit/s, cabo CAT6 ou CAT6a;
+
+- **Tabela com a função de cada pino TIA/EIA-568 por padrão Ethernet:**
+	- Legenda:
+		- TX = Transmitir
+		- RX = Receber
+		- BI = Bidirecional
+		- — = Não utilizado
+		- Par = par trançado correspondente
+
+| Pino | Par   | 10Base-T | 100Base-T | 1000Base-T  | 10GBase-T |
+| ---- | ----- | -------- | --------- | ----------- | --------- |
+| 1    | Par 2 | TX+      | TX+       | BI+ (Par A) | BI+       |
+| 2    | Par 2 | TX−      | TX−       | BI− (Par A) | BI−       |
+| 3    | Par 3 | RX+      | RX+       | BI+ (Par B) | BI+       |
+| 4    | Par 1 | —        | —         | BI+ (Par C) | BI+       |
+| 5    | Par 1 | —        | —         | BI− (Par C) | BI−       |
+| 6    | Par 3 | RX−      | RX−       | BI− (Par B) | BI−       |
+| 7    | Par 4 | —        | —         | BI+ (Par D) | BI+       |
+| 8    | Par 4 | —        | —         | BI− (Par D) | BI−       |
+
 
 ### Fibra Óptica
 - tipo de cabeamento cuja transmissão de dados opera através de um *laser - light amplification by stimulated emission of radiation* em comprimento de onda infravermelho;
