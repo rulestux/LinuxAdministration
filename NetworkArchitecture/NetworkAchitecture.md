@@ -896,6 +896,8 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 
 	- **1000BASE-LX** é um padrão Gigabit Ethernet para distâncias maiores *long*, operando tanto em fibra **monomodo** \(SMF) quanto em fibra multimodo \(MMF) usando um comprimento de onda de 1310 nm. Ele suporta até 550 metros em MMF e 10 quilômetros em SMF. Utiliza lasers FP ou DFB, tornando-o adequado para redes backbone, WANs e interconexões entre edifícios. Embora o padrão original IEEE 802.3z não definisse alcances além de 10 km, versões estendidas \(por exemplo, 20 km) são comuns na indústria.
 
+	- **1000BASE-ZX** é um padrão Gigabit Ethernet para distâncias ainda maiores *ZX = Zerado de longe \(Extremo)*; opera em fibra monomodo \(MMF) até 80 km.
+
 	- **1000BASE-FX** é um padrão legado de Gigabit Ethernet definido pelo IEEE 802.3z, que especifica a transmissão em fibra **multimodo** usando um comprimento de onda de 1300 nm. Ele suporta até 2 quilômetros em fibra multimodo e era comumente usado nas primeiras redes de fibra óptica. Atualmente, foi amplamente substituído pelos padrões 1000BASE-SX e 1000BASE-LX, que oferecem melhor desempenho e compatibilidade com os tipos de fibra modernos. Observação: o 1000BASE-FX não é um padrão para módulos SFP em implantações modernas e é normalmente encontrado em equipamentos mais antigos.
 
 	- Todos os três padrões utilizam codificação 8b/10b e são normalmente implementados como transceptores SFP para conectividade hot-swappable em switches e roteadores.
@@ -1005,7 +1007,7 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 		- InfiniBand;
 		- iSCSI;
 		- Fibre Channel;
-	- conexão física a uma placa de expansão especial acrescida ao servidor;
+	- conexão física a uma placa \(HBA - Host Bus Adapter, para Fibre Channel) de expansão especial acrescida ao servidor;
 	- SANs operam em nível de bloco (block-level), geralmente usando Fibre Channel ou iSCSI, diferenciando-se do NAS que opera em nível de arquivo;
 
 ### RAID - Redundant Array of Independent Disks
