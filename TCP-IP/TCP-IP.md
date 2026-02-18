@@ -1196,6 +1196,8 @@
 
 - apresenta limitações como *convergência lenta* e *loop de roteamento*;
 
+- limite de 15 saltos;
+
 ### Temporizador e Mensagens
 - *update timer*: mensagens enviadas para outros roteadores a cada 30 segundos com sua tabela de roteamento atualizada;
 
