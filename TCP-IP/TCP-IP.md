@@ -177,7 +177,7 @@
 - **CIDR - Clasless Inter-Domain Routing**: roteamento entre domínios sem uso de classes: 
 	- ``` 192.168.0.0/24 ```;
 
-- Máscara de Subrede \(ou Máscara de Rede):
+- Máscara de sub-rede \(ou Máscara de Rede):
 	- ``` 255.255.255.0 ```;
 
 - Endereço de Rede \(primeiro endereço da rede):
@@ -189,7 +189,7 @@
 - o número de endereços disponíveis em uma rede sempre é: ``` 2ⁿ - 2 ```, em que *n* é o número de bits reservados para a identificação de nós, à direita;
 
 ### VLSM \(Segmentação)
-- **Variable-Length Subnet Masking**: Mascaramento de Subrede de Comprimento Variável;
+- **Variable-Length Subnet Masking**: Mascaramento de sub-rede de Comprimento Variável;
 - permite dobrar o número de redes disponíveis acrescentando mais um bit ao CIDR, por outro lado, dividindo por 2 o número de nós possíveis;
 
 ### Agregação de Rotas
@@ -304,6 +304,8 @@
 	- *DHCPRELEASE*: mensagem do cliente liberando seu IP e solicitando a renovação;
 	- *DHCPINFORM*: mensagem de solicitação de informações ao servidor DHCP;
 
+- **DHCP Relay**
+	- é um repetidor DHCP oferecido como recurso configurado em roteadores para permitir que mensagens DHCDISCOVER atravessem redes, nos casos em que o servidor DHCP estiver fora da rede do cliente \(considerar ma grande corporação que tenha uma rede \(ou um roteador) para cada andar ou setor e um servidor DHCP principal para todas as redes);
 
 ------------------------------------------------------------
 
@@ -366,6 +368,7 @@
 - **Local-Link**:
 	- Prefixo 
 		- ``` fe80::/64 ```;
+	- gateway padrão costuma ser ``` FE80::1 ```;
 	- não permite configuração de sub-redes - sem segmentação;
 	- usado em redes menores;
 
