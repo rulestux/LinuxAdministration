@@ -192,12 +192,20 @@
 - **Variable-Length Subnet Masking**: Mascaramento de sub-rede de Comprimento Variável;
 - permite dobrar o número de redes disponíveis acrescentando mais um bit ao CIDR, por outro lado, dividindo por 2 o número de nós possíveis;
 
+- **identificando sub-rede a partir do CIDR**:
+	- **Número Mágico**: a distância entre o início de uma rede e a próxima:
+	- supondo a rede 172.16.0.0/19, subtrair o CIDR do próximo múltiplo de 8 \(número d bits em cada bloco) maior que ele:
+		- 24 - 19 = 5 
+	- número mágico é 2 elevado a esse resultado: 
+		- 2⁵ = 32
+	- redes saltam de 32 em 32 no 3º octeto;
+
 ### Agregação de Rotas
-- consiste na união de redes próximas em entradas de *tabelas de roteamento* em roteadores;
+- consiste na união de redes com faixas de endereçamento próximas em uma única entrada de *tabelas de roteamento* em roteadores com um endereço IP cujo CIDR as abarque;
 - possível apenas quando várias redes são acessadas por um mesmo caminho, *i. e.*, por um mesmo roteador;
 
 ### Máscara Coringa
-- consiste na utilização de máscara com bits 0 marcando valores fixos e bits 1 marcando valores variáveis de uma faixa de endereço IP;
+- consiste na utilização de máscara com bits 0 marcando valores fixos e bits 1 marcando valores variáveis de uma faixa de endereço IP com a finalidade de criar filtros com cujos padrões endereços IP devem combinar;
 
 ### Classes
 - 0.0.0.0 a 127.255.255.255 - CIDR /8 - CLASSE A
@@ -424,7 +432,7 @@
 		- contém o endereço físico da máquina-alvo;
 
 	- 5. **redirecionamento** *ICMPv6 tipo 137*:
-		- enviada à orgigem de um roteador para informá-la que existe outro roteador com menor número de saltos até um determinado alvo;
+		- enviada à origem por um roteador para informá-la que existe outro roteador com menor número de saltos até um determinado alvo;
 		- equivale à mensagem ICMPv4 de redirecionamento - tipo 5;
 
 ### DHCPv6
@@ -436,7 +444,7 @@
 	- *ff02::1:2* usado por todos os servidores e relays DHCP da rede;
 	- *ff05::1:3* usado por todos os servidores DHCP da rede para acesso por relays;
 
-- os parâmetros principais para acesso à internet, endereço IP e dervidor DNS, são obtidos de forma automática pelo sistema *SLAAC - StateLess Address AutoConfiguration*, através do  protocolo *NDP*; o procotolo *DHCPv6* faz-se opcional, sendo usado apenas quando se deseja incluir outros parâmetros de configuração, feito seleção de servidor DNS alternativo;
+- os parâmetros principais para acesso à internet, endereço IP e servidor DNS, são obtidos de forma automática pelo sistema *SLAAC - StateLess Address AutoConfiguration*, através do  protocolo *NDP*; o procotolo *DHCPv6* faz-se opcional, sendo usado apenas quando se deseja incluir outros parâmetros de configuração, feito seleção de servidor DNS alternativo;
 
 - mensagens com SLAAC ativo:
 	- *information_request* com a especificação do dado que o cliente busca do servidor DHCPv6, para o endereço multicast *ff02::1:2*;
@@ -611,7 +619,7 @@
 
 - acrescenta-se um valor no campo *número de confirmação* que serve também para ordenar os segmentos TCP;
 
-- a ordem é definida e reprendentada pela adição ao número aleatório inicial do valor que representa o tamanho da área de dados em bytes;
+- a ordem é definida e reprensentada pela adição ao número aleatório inicial do valor do tamanho da área de dados em bytes;
 
 - o segmento TCP com *ACK* ativado retorna com o campo de número de confirmação contendo a numeração do próximo segmento TCP esperado do emissor \(número do pacote anterior + tamanho da área de dados);
 
@@ -674,10 +682,10 @@
 - **bits de controle**:
 	- NS:
 		- *ECN-Nonce*: bit experimental para evitar a manipulação de bits *ECE* e *CWR*;
-		- os três primeiros bits de controle são usados pelo sisstema *ECN - Explicit Congestion Notification*, que interage com o *Protocolo IP* na *camada de rede*;
+		- os três primeiros bits de controle são usados pelo sistema *ECN - Explicit Congestion Notification*, que interage com o *Protocolo IP* na *camada de rede*;
 	- CWR:
 		- *Congestion Window Reduced*;
-		- bit ativado em resposta ao bit *EXE*;
+		- bit ativado em resposta ao bit *ECE*;
 	- ECE:
 		- *ECN-Echo*: terceiro *ECN*, ativado durante a abertura de conexão, com o *SYN*, indicando que a máquina é compatível com o sistema *ECN*;
 		- caso o *ECE* esteja ativado sem a ativação do *SYN*, fica indicado ao protocolo IP que há problema de congestionamento na rede;
