@@ -63,7 +63,7 @@
 - **WLAN** é a modalidade Wireless;
 - **HAN** Home Area Network;
 - **SAN** Storage Area Network:
-	- rede local que funciona feito um barramento que conecta diversos dispositivos, como dispositivos de armazenamento, a um servidor;
+	- rede local que funciona feito um barramento que conecta diversos dispositivos de armazenamento a um servidor;
 
 ### CAN: *campus* Area Network
 - rede que conecta as diversas edificações, feito as edificações de um *campus* universitário;
@@ -164,7 +164,7 @@
 
 ### Meaning
 - Virtual Private Network;
-- a VPN estabelece um 'túnel' criptografados para o tráfego de dados;
+- a VPN estabelece um 'túnel' criptografado para o tráfego de dados;
 
 ### site-to-site
 - VPN para acesso a rede privada, servindo de caminho para uma 'Extranet', por exemplo;
@@ -526,8 +526,8 @@
 
 ### Quadro Ethernet
 
-| Sincronismo 		| Cabeçalho 											| Dados		| Rodapé 	|
-|:-----------------:|:-----------------------------------------------------:|:----------------:|:---------:|
+| Sincronismo 		| Cabeçalho 											| Dados			| Rodapé 	|
+|:-----------------:|:-----------------------------------------------------:|:-------------:|:---------:|
 | Preâmbulo - SDF 	| MAC Destino - MAC Origem - Comprimento - EtherType	| Payload		| FCS - CRC	|
 
 - no quadro Ethernet acima, o Preâmbulo é uma sequência de 7 bytes, alternando 0 e 1 para indicar o clock, e o *SDF - Start Frame Delimiter* indica o início do quadro com 1 byte, cuja estrutura é ``` 10101011 ```;
@@ -594,7 +594,7 @@
 - **CRC \(Cyclic Redundancy Check)**: um processo similar ao Checksum é feito, mas utilizando a divisão por um polinômio, resultando um *FCS - Frame Check Sequence*, formando uma sequência de bits com o total de bits do polinômio menos um bit; o FCS é acrescido ao dado; é o mecanismo mais utilizado;
 
 ### Correção de Erros
-- algoritmo que é capaz de detectar e corrigir o erro pode ser cjamado de:
+- algoritmo que é capaz de detectar e corrigir o erro pode ser chamado de:
 	- **ECC \(Error Correction Code)**: para memórias e sistemas de armazenamento;
 	- **FEC \(Forward Error Correction)**: para sitemas de transmissão de dados e telecomunicações;
 - ao ECC e ao FEC são adicionados bits de redundância que permitem a recuperação do dado original em caso de corrupção;
@@ -603,8 +603,7 @@
 ### Comutação de Pacotes
 - tipo mais comum de rede que opera no esquema de melhor esforço;
 - principais características:
-	- pode haver mais de um caminho entre a origem e o destino; não sabemos de antemão qual
-caminho será usado; o caminho pode variar a cada pacote de dados;
+	- pode haver mais de um caminho entre a origem e o destino; não sabemos de antemão qual caminho será usado; o caminho pode variar a cada pacote de dados;
 	- pacotes podem ser recebidos fora de ordem;
 	- não há garantia de velocidade;
 	- não há garantia de latência; não sabemos quando o pacote de dados chegará ao destino; pode haver atraso na entrega de pacotes de dados;
@@ -672,8 +671,8 @@ caminho será usado; o caminho pode variar a cada pacote de dados;
 ### Estrutura do Modelo
 - **Open Systems Interconnection**;
 - modelo de 7 camadas \(Layers) por que um dado passa após sair do **aplicativo** e antes de chegar ao **meio** em que será transmitido;
-- cada camada gera uma **Protocol Data Unit \(PDU)** que é repassado para a camada imediatamente inferior;
-- na camada inferior, a *PDU* é inserido na *área de dados* do pacote recebido da camada superior, resultando em um cabeçalho específico;
+- cada camada gera uma **Protocol Data Unit \(PDU)** que é repassada para a camada imediatamente inferior;
+- na camada inferior, a *PDU* é inserida na *área de dados* do pacote recebido da camada superior, resultando em um cabeçalho específico;
 - **Service Access Point \(SAP)** é o sistema de endereçamento no cabeçalho de cada *PDU* que direciona o pacote ao protocolo correto numa camada superior;
 
 ### CAMADAS
