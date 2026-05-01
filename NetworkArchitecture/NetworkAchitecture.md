@@ -681,7 +681,7 @@
 	- gera uma **Mensagem** com os dados e os comandos sobre o que fazer com os dados;
 
 - 6. **Apresentação**:
-	- camada que identifica ou modifica **Formato dos Dados**, resolvendo problemas de representação de informação existente entre *sistemas heterogêneos interconectados;
+	- camada que identifica ou modifica **Formato dos Dados**, resolvendo problemas de representação de informação existente entre *sistemas heterogêneos interconectados*;
 	- camada relacionada à *sintaxe* e à *semântica*;
 	- responsável por comprimir ou descomprimir os dados;
 	- responsável por criptografar dados, com o protocolo **TLS - Transport Layer Security** \(ou *SSL - Secure Socket Layer*, versão obsoleta antecessora ao *TSL*);
@@ -831,7 +831,7 @@
 	- Legenda:
 		- TX = Transmitir
 		- RX = Receber
-		- BI = Bidirecional
+		- BI = Bidirecional \(com transformador híbrido de casamento de impedância)
 		- — = Não utilizado
 		- Par = par trançado correspondente
 
@@ -1040,7 +1040,7 @@
 	- método obsoleto;
 
 - **RAID 5**: 
-	- equivalente ao *RAID 3* com dados de paridade em setores de todos os discos, sem um disco exclusivo para paridade;
+	- equivalente ao *RAID 3* com dados de paridade em setores de todos os discos \(paridade distribuída), sem um disco exclusivo para paridade;
 	- paridade distribuída: se um disco apresentar falhas, não há comprometimento da integridade dos dados;
 	- mínimo de três discos;
 
@@ -1195,7 +1195,7 @@
 
 ## IEEE 802 STANDARDS
 
-### IEEE 802.11-1997 - Wi-Fi 0
+### IEEE 802.11-1997 - "Wi-Fi 0"
 - opera na faixa 2,4 GHz;
 - canais de 22 MHz;
 - método de transmissão: 
@@ -1204,21 +1204,21 @@
 	- DSSS - Direct Sequence Spread Spectrum;
 - velocidades: 2 Mbit/s ou 1 Mbit/s;
 
-### IEEE 802.11b - Wi-Fi 1
+### IEEE 802.11b - "Wi-Fi 1"
 - ano 1999;
 - opera na faixa 2,4 GHz;
 - canais de 22 MHz;
 - método de transmissão: DSSS - Direct Sequence Spread Spectrum;
 - velocidades: 11, 5,5, 2 ou 1 Mbit/s;
 
-### IEEE 802.11a - Wi-Fi 2
+### IEEE 802.11a - "Wi-Fi 2"
 - ano 1999;
 - opera na faixa 5 GHz;
 - canais de 20 MHz;
 - método de transmissão: OFDM;
 - velocidades: 54, 48, 36, 24, 18, 12, 9 ou 6 Mbit/s;
 
-### IEEE 802.11g - Wi-Fi 3
+### IEEE 802.11g - "Wi-Fi 3"
 - ano 2003;
 - opera na faixa 2,4 GHz;
 - canais de 20 MHz;
@@ -1287,7 +1287,7 @@
 
 ### Virtualização SDN/VLAN
 - **Software Defined Network**:
-	- componentes de rede podem ser modificados através de software: um switch que, suportando a tecnolgia, pode ser virtualmente dividio em dois switches lógicos gerenciando duas redes independentes;
+	- componentes de rede podem ser modificados através de software: um switch que, suportando a tecnolgia, pode ser virtualmente dividido em dois switches lógicos gerenciando duas redes independentes;
 	- *Plano de Controle* do equipamento passa a ser controlado por software;
 
 ### Virtualização NFV
