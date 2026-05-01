@@ -597,7 +597,7 @@
 
 ### Abertura de Conexão
 - *handshake de três vias*:
-	- transmissor envia um segmento TCP contendo o *número de sequência*, aleatório, inicial e um bit de sincronia *SYN*;
+	- transmissor envia um segmento TCP contendo o *número de sequência* aleatório inicial e um bit de sincronia *SYN*;
 	- o receptor retorna um segmento TCP com o mesmo número de sequência + *SYN* + *ACK* \(aknowledge);
 	- o transmissor retorna um segmento TCP com um *ACK* confirmando a conexão;
 
@@ -858,7 +858,7 @@
 	- servidor retorna a mensagem *230 - Login successful*;
 
 - **modo ativo**:
-	- solicitação abertura pelo cliente de *conexão TCP dados*, através da *porta 20* do servidor, com o comando *PORT* + IP do cliente + porta enviado à porta 21 do servidor;
+	- solicitação abertura pelo cliente de *conexão 	TCP dados*, através da *porta 20* do servidor, com o comando *PORT* + IP do cliente + porta enviado à porta 21 do servidor;
 	- o servidor abre a conexão, no *modo ativo*, com three-way handshake; pode haver problemas com firewall do lado do cliente;
 	- cliente solicita arquivo com comando *RETR* através da conexão de controle;
 	- o arquivo é enviado pela conexão de dados;
