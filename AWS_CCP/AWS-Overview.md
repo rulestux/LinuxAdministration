@@ -62,5 +62,61 @@
 
 - **AWS Command Line Interface - CLI**: acesso aos serviços via linha de comando. Facilidade, flexibilidade e precisão para uso de scripts de automação.
 
+	- **AWS CloudShell**, que pode ser encontrado ao lado da barra de pesquisa no Console de gerenciamento da AWS, fornece um shell baseado em navegador que é pré-autenticado com as credenciais do console.
+
 - **Software Development Kit - SDK**: suporta diversas linguagens de programação e permite a incorporação de serviços AWS em aplicações.
 
+
+## AWS Core Design Architecture
+
+- [Well Architected Framework](https://aws.amazon.com/pt/architecture/well-architected) ajuda você a entender como projetar e operar sistemas confiáveis, seguros, eficientes e econômicos na nuvem AWS. Através de um conjunto de questões documentadas, ele fornece uma maneira de avaliar de forma consistente suas arquiteturas em relação às melhores práticas e identificar áreas para melhorias.
+
+### 5 Pilares do AWS Well-Architected Framework
+
+- **I - Excelência operacional \(Operational Excellence)**: se concentra em executar e monitorar sistemas para entregar valor empresarial e melhorar continuamente processos e procedimentos. Principais Serviços:
+
+	- AWS Config:
+		- proporciona um inventário de recursos da AWS, um histórico de configuração e notificações de alteração de configuração para possibilitar a segurança e a governança;
+	- Amazon Cloudwatch:
+		- fornece a você dados e insights acionáveis para monitorar aplicações, entender e reagir a alterações de performance em todo o sistema, otimizar a utilização de recursos e ter uma visualização unificada da integridade operacional;
+	- AWS CloudFormation:
+		- oferece aos desenvolvedores e administradores de sistemas uma maneira fácil de criar e gerenciar um conjunto de recursos relacionados na AWS, fornecendo provisionamento e atualização de uma forma organizada e previsível;
+
+- **II - Segurança \(Security)**: se concentra em proteger informações e sistemas. Principais Serviços:
+
+	- AWS Identity and Access Management \(IAM):
+		- Gerencie com segurança as identidades e o acesso a serviços e recursos da AWS;
+	- AWS CloudTrail: 
+		- Acompanhe a atividade dos usuários e o uso da API na AWS e em ambientes híbridos e multinuvem;
+	- AWS Web Application Firewall \(WAF):
+		- Proteja suas aplicações da Web contra explorações comuns;
+	- AWS Key Management Service \(KMS):
+		- acilita a criação e o gerenciamento de chaves criptográficas e o controle de seu uso em uma ampla variedade de serviços AWS e em seus aplicativos;
+
+- **III - Confiabilidade \(Reliability)**: se concentra em garantir que uma carga de trabalho execute sua função pretendida corretamente e de modo consistente quando esperado. Principais Serviços:
+
+	- AWS CloudFormation;
+	- Amazon Cloudwatch;
+	- Amazon Simple Storage Service \(S3):
+		- é um serviço de armazenamento de objetos que oferece escalabilidade líder do setor, disponibilidade de dados, segurança e performance;
+	- Amazon Glacier;
+
+- **IV - Eficiência de desempenho \(Performance Efficiency)**: se concentra no uso eficiente de recursos de TI e computação pelos clientes. Principais Serviços:
+	
+	- Amazon EC2 Auto Scaling:
+		- ajuda você a manter a disponibilidade do aplicativo e permite que você adicione ou remova instâncias EC2 automaticamente, de acordo com as condições definidas por você;
+	- Amazon Cloudwatch;
+	- Amazon CloudFront:
+		- fornece dados, vídeos, aplicativos e APIs para clientes em todo o mundo com baixa latência e altas velocidades de transferência, tudo em um ambiente amigável ao desenvolvedor;
+
+- **V - Otimização de custos \(Cost Optimization)**: se concentra em evitar custos desnecessários. Principais Serviços:
+
+	- Tag Resources;
+	- AWS Cost Explorer: 
+		- permite visualizar, entender e gerenciar seus custos e uso das soluções da AWS ao longo do tempo;
+
+### Serviços Relacionados ao AWS Core Design Architecture
+
+- **AWS Well-Architected Tool** é a ferramenta que facilita a verificação da conformidade de uma arquitetura desenvolvida pelo contratante, através da metodologia de perguntas e respostas do Framework.
+
+- **AWS Trusted Advisor** é um recurso on-line que auxilia na redução de custos, no aumento de performance e na *melhoria da segurança* por meio da otimização do seu ambiente da AWS. O Trusted Advisor fornece orientações em tempo real para auxiliar você no provisionamento de recursos com base nas práticas recomendadas da AWS. O número de métricas analisadas depende do nível de suporte contratado.
