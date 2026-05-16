@@ -41,6 +41,7 @@
 	- **Hybrid Cloud**
 		- Combinação entre Public Cloud e Private Cloud \(on-premises);
 
+
 ## Infraestrutura global
 
 - a [infraestrutura global da AWS](https://aws.amazon.com/pt/about-aws/global-infrastructure) é uma plataforma de nuvem e oferece mais de 200 serviços completos de datacenter em todo o mundo.
@@ -53,4 +54,13 @@
 
 ### Pontos de presença \(Edge locations)
 - uma *edge location* é basicamente um pequeno servidor de cache. Eles estão localizados na maioria das principais cidades do mundo e são usados especificamente pelo **CloudFront** \(CDN da AWS) para distribuir conteúdo ao usuário final e reduzir a latência do acesso.
+
+
+## Acesso \(AWS Management Interfaces)
+
+- **AWS Management Console**: interface gráfica com suporte para a maioria dos serviços da AWS. Pode ser usada via navegador ou aplicativo.
+
+- **AWS Command Line Interface - CLI**: acesso aos serviços via linha de comando. Facilidade, flexibilidade e precisão para uso de scripts de automação.
+
+- **Software Development Kit - SDK**: suporta diversas linguagens de programação e permite a incorporação de serviços AWS em aplicações.
 
