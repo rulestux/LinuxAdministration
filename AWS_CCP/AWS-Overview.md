@@ -42,7 +42,7 @@
 		- Combinação entre Public Cloud e Private Cloud \(on-premises);
 
 
-## Infraestrutura global
+## Infraestrutura Global da AWS
 
 - a [infraestrutura global da AWS](https://aws.amazon.com/pt/about-aws/global-infrastructure) é uma plataforma de nuvem e oferece mais de 200 serviços completos de datacenter em todo o mundo.
 
@@ -56,7 +56,7 @@
 - uma *edge location* é basicamente um pequeno servidor de cache. Eles estão localizados na maioria das principais cidades do mundo e são usados especificamente pelo **CloudFront** \(CDN da AWS) para distribuir conteúdo ao usuário final e reduzir a latência do acesso.
 
 
-## Acesso \(AWS Management Interfaces)
+## AWS Management Interfaces
 
 - **AWS Management Console**: interface gráfica com suporte para a maioria dos serviços da AWS. Pode ser usada via navegador ou aplicativo.
 
@@ -68,6 +68,8 @@
 
 
 ## AWS Core Design Architecture
+
+### AWS Well-Architected Framework
 
 - [Well Architected Framework](https://aws.amazon.com/pt/architecture/well-architected) ajuda você a entender como projetar e operar sistemas confiáveis, seguros, eficientes e econômicos na nuvem AWS. Através de um conjunto de questões documentadas, ele fornece uma maneira de avaliar de forma consistente suas arquiteturas em relação às melhores práticas e identificar áreas para melhorias.
 
@@ -115,8 +117,37 @@
 	- AWS Cost Explorer: 
 		- permite visualizar, entender e gerenciar seus custos e uso das soluções da AWS ao longo do tempo;
 
-### Serviços Relacionados ao AWS Core Design Architecture
+### Outros Serviços Relacionados ao AWS Core Design Architecture
 
 - **AWS Well-Architected Tool** é a ferramenta que facilita a verificação da conformidade de uma arquitetura desenvolvida pelo contratante, através da metodologia de perguntas e respostas do Framework.
 
 - **AWS Trusted Advisor** é um recurso on-line que auxilia na redução de custos, no aumento de performance e na *melhoria da segurança* por meio da otimização do seu ambiente da AWS. O Trusted Advisor fornece orientações em tempo real para auxiliar você no provisionamento de recursos com base nas práticas recomendadas da AWS. O número de métricas analisadas depende do nível de suporte contratado.
+
+
+## AWS Core Services
+
+### EC2 - Elastic Compute Cloud
+- *Amazon Elastic Compute Cloud \(Amazon EC2)* é um serviço web que fornece capacidade computacional segura e redimensionável na nuvem.
+
+- **AMI - Amazon Machine Image** é a instância EC2. A AMI é definida por:
+
+	- quantidade e tipo de **CPU**;
+
+	- quantidade de **RAM**;
+	
+	- tamanho e tipo de disco **EBS - Elastic Block Storage**;
+
+	- **modalidade** de custo:
+		- On-Demand:
+			- sob demanda; pay as you go; T2.micro -> Free Tier;
+
+		- Reserved Instance:
+			- reservada por 1 ou 3 anos, com até 75% de desconto, com pagamento à vista ou entrada mais restante mensal;
+
+		- Spot Request:
+			- leilão para uso de capacidade ociosa da AWS; o lance sendo aceito, a instância é provisionada;
+
+		- Dedicated Hosts:
+			- servidor físico dedicado pago por hora; descontos de até 70%;
+
+
