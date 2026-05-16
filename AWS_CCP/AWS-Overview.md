@@ -41,4 +41,16 @@
 	- **Hybrid Cloud**
 		- Combinação entre Public Cloud e Private Cloud \(on-premises);
 
+## Infraestrutura global
+
+- a [infraestrutura global da AWS](https://aws.amazon.com/pt/about-aws/global-infrastructure) é uma plataforma de nuvem e oferece mais de 200 serviços completos de datacenter em todo o mundo.
+
+### Regiões \(Regions)
+- são as localidades físicas onde a AWS está disponível ao redor do mundo.
+
+### Zonas de disponibilidades \(Availability Zone - AZ)
+- é a quantidade de datacenters que a AWS tem em cada uma das regiões para prover serviços e produtos. No mínimo, são duas zonas de disponibilidade por região, a fim de proporcionar **alta disponibilidade**, **tolerância a falhas**, *desempenho*, *disaster recovery* e **escalabilidade**.
+
+### Pontos de presença \(Edge locations)
+- uma *edge location* é basicamente um pequeno servidor de cache. Eles estão localizados na maioria das principais cidades do mundo e são usados especificamente pelo **CloudFront** \(CDN da AWS) para distribuir conteúdo ao usuário final e reduzir a latência do acesso.
 
