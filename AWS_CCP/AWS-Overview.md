@@ -291,6 +291,24 @@
 	- criptografia;
 	- rastreamento;
 
+### Virtual Private Cloud \(VPC)
+- a [VPC](https://aws.amazon.com/pt/vpc) é uma Rede Privada isolada para os clientes da AWS, criada por padrão para cada conta AWS em cada Região, com configurações básicas e novas funcionalidades podem ser adicionadas;
+
+- **subnets** são criadas para cada AZ e podem ser configuradas para terem acesso público ou privado;
+
+- **Route Tables** controlam o tráfego das subnets;
+
+- **Internet Gateway \(IGW)** permite que a rede VPC tenha acesso à internet;
+
+- **NAT Gateway** permite que subnets tenham conexão com a internet, através de tradução de endereços;
+
+- **Natwork Access Control List \(NACL)** controla o acesso a subnets;
+
+- **Security Groups** controlam o acesso a instâncias EC2 e RDS, agindo como Firewall;
+
+- novas redes \(redes não padrão) podem ser criadas e configuradas conforme a necessidade do cliente em cada Região;
+
+- **Virtual Private Network - VPN**: a [VPN](https://aws.amazon.com/pt/vpn) é um serviço que estabelece conexões seguras entre redes locais, escritórios remotos, dispositivos de clientes e a rede global da AWS.
 
 
 
