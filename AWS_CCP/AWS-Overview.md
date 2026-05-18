@@ -151,7 +151,7 @@
 		- servidor físico dedicado pago por hora; descontos de até 70%;
 
 ### S3 - Simple Storage Service
-- principal serviço de armazenamento da AWS, permite armazenar e recuperar qualquer quantidade de informações via internet, pagando apenas pelo que usar;
+- [S3](https://aws.amazon.com/pt/s3) é o principal serviço de armazenamento da AWS, permite armazenar e recuperar qualquer quantidade de informações via internet, pagando apenas pelo que usar;
 
 - armazenamento de objetos:
 	- cada objeto suportado até um máximo de **5TB de tamanho**;
@@ -174,6 +174,11 @@
 
 	- os objetos são armazenados em **buckets** \(baldes, algo semelhante a diretórios):
 		- a definição da Região de armazenamento de um bucket é difinida na sua criação;
+		- o nome do bucket deve:
+			- ser único em todo o Amazon S3;
+			- ter entre 3 e 63 caracteres;
+			- estar sem caracteres maiúsculos;
+			- começar com uma letra minúscula ou um número;
 
 	- o nome dado ao objeto é sua **object key**;
 
@@ -249,14 +254,15 @@
 ### Other Storage Services
 	
 - **EBS - Elastic Block Storage**
-	- armazenamento em blocos;
-	- possui Snapshot;
+	- o [EBS](https://aws.amazon.com/pt/ebs) é um tipo de **armazenamento em blocos**, persistente e customizável para instâncias EC2;
+	- possui *Snapshot*, que permite criar várias cópias do volume;
 	- alta disponibilidade e escalabilidade;
 	- segurança;
+	- permite habilitar encriptação \(Encryption on Rest);
 	- usado em instâncias *EC2*;
 
 - **EFS - Elastic File System**
-	- armazenamento de arquivos;
+	- o [EFS](https://aws.amazon.com/pt/efs) é um serviço de armazenamento que aumenta e diminui automaticamente conforme você adiciona e remove arquivos, sem a necessidade de gerenciamento ou provisionamento;
 	- alta disponibilidade e escalabilidade;
 	- segurança;
 	- baixo custo;
@@ -284,6 +290,7 @@
 	- caminhão com container contendo um "mini datacenter móvel" da AWS que suporta até 100PB, para transferência de altíssimo volume de dados;
 	- criptografia;
 	- rastreamento;
+
 
 
 
