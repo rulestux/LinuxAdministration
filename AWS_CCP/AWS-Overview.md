@@ -52,7 +52,7 @@
 ### Zonas de disponibilidades \(Availability Zone - AZ)
 - é a quantidade de datacenters que a AWS tem em cada uma das regiões para prover serviços e produtos. No mínimo, são duas zonas de disponibilidade por região, a fim de proporcionar **alta disponibilidade**, **tolerância a falhas**, *desempenho*, *disaster recovery* e **escalabilidade**.
 
-### Pontos de presença \(Edge locations)
+### Pontos de presença \(Edge Locations)
 - uma *edge location* é basicamente um pequeno servidor de cache. Eles estão localizados na maioria das principais cidades do mundo e são usados especificamente pelo **CloudFront** \(CDN da AWS) para distribuir conteúdo ao usuário final e reduzir a latência do acesso.
 
 
@@ -131,23 +131,167 @@
 
 - **AMI - Amazon Machine Image** é a instância EC2. A AMI é definida por:
 
-	- quantidade e tipo de **CPU**;
+- quantidade e tipo de **CPU**;
 
-	- quantidade de **RAM**;
+- quantidade de **RAM**;
+
+- tamanho e tipo de disco **EBS - Elastic Block Storage**;
+
+- **modalidade** de custo:
+	- *On-Demand*:
+		- sob demanda; pay as you go; T2.micro -> Free Tier;
+
+	- *Reserved Instance*:
+		- reservada por 1 ou 3 anos, com até 75% de desconto, com pagamento à vista ou entrada mais restante mensal;
+
+	- *Spot Request*:
+		- leilão para uso de capacidade ociosa da AWS; o lance sendo aceito, a instância é provisionada;
+
+	- *Dedicated Hosts*:
+		- servidor físico dedicado pago por hora; descontos de até 70%;
+
+### S3 - Simple Storage Service
+- principal serviço de armazenamento da AWS, permite armazenar e recuperar qualquer quantidade de informações via internet, pagando apenas pelo que usar;
+
+- armazenamento de objetos:
+	- cada objeto suportado até um máximo de **5TB de tamanho**;
+
+- alta durabilidade 99.999999999%, disponibilidade 99.99% e escalabilidade;
+
+- flexibilidade;
+
+- segurança;
+
+- baixo custo;
+
+- ideal para objetos estáticos, sites e outros;
+
+- provê **interface web** \(console);
+
+- **acesso CLI e SDK**;
+
+- **conceitos importantes**:
+
+	- os objetos são armazenados em **buckets** \(baldes, algo semelhante a diretórios):
+		- a definição da Região de armazenamento de um bucket é difinida na sua criação;
+
+	- o nome dado ao objeto é sua **object key**;
+
+	- possui **versionamento**, com custo adicional, e cada versão de um objeto recebe uma **version ID**;
+
+	- o endereço \(URL) de um objeto é um **link address**:
+
+		- ``` https://s3amazonaws.com/bucket-name/object-key.fileformat ```;
+
+- **Storage Class**:
+
+	- a classe de armazenamento é definida por:
+		- **frequência de acesso** de seus objetos pelos usuários de uma aplicação;
+		- **tempo de recuperação**;
+		- **preço**;
+
+	- classe **S3 Standard**:
+		- padrão de armazenamento, para acesso frequente e imediato;
+		- ideal para aplicações em nuvem, websites, games, big data, videos etc.;
+
+	- classe **S3 Standard for infrequent access**:
+		- *standard* para acesso não frequente, mas imediato;
+		- menor custo;
+		- ideal para backups, disaster recovery, dados de vida longa;
+
+	- classe **One Zone for infrequent access**:
+		- para acesso não frequente, mas imediato;
+		- menor custo;
+		- mantido em apenas **uma** Zona de Disponibilidade \(AZ);
+		- usada para dados não críticos;
+
+	- classe **Glacier**:
+		- archiving;
+		- acesso **não** frequente e **não** imediato;
+		- alta durabilidade, disponibilidade e escalabilidade;
+		- segurança;
+		- menor custo;
+		- ideal para objetos arquivados, backups, logs etc.;
+
+	- classe **Reduced Redundancy**:
+		- archiving;
+		- acesso frequente e imediato;
+		- baixa redundância;
+		- usado para dados que podem ser novamente reproduzidos, como livros eletrônicos;
+
+	- classe **Intelligent-Tiering**:
+		- move automaticamente os objetos não usados para *infrequent access*;
+		- acesso imediato, quando o objeto tiver em *infrequent access* ele é movido imediatamente para *standard*;
+		- possui custo para a automação;
+		- ideal para objetos cuja frequência de utilização não esteja clara;
+
+- **Ciclo de Vida**:
+	- S3 permite que ações de gerenciamento de ciclo de vida de objetos possam ser criadas a partir de regras;
+
+- **Transition Actions**:
+	- os objetos podem ser movidos entre classes de armazenamento após certo período, otimizando os custos de armazenamento a partir de regras;
+
+- **Policies**:
+	- as políticas de acesso a buckets e objetos são definidas em arquivos de políticas, definindo quem pode e quando pode acessá-los;
+
+- **Criptografia**:
+	- pode ser habilitada para armazenamento ou transmissão;
+
+- **Cross-Region Replication**:
+	- funcionalidade que permite a replicação de objetos entre buckets em diferentes regiões;
+	- o versionamento precisa estar habilitado;
+	- útil para backup, redução de latência e atendimento de requisitos legais;
+
+- **Transfer Acceleration**:
+	- funcionalidade para a transferência de grande volume de dados através de longas distâncias;
+	- **Edge Locations** e **CloudFront** são utilizados para otimizar o processo;
+
+### Other Storage Services
 	
-	- tamanho e tipo de disco **EBS - Elastic Block Storage**;
+- **EBS - Elastic Block Storage**
+	- armazenamento em blocos;
+	- possui Snapshot;
+	- alta disponibilidade e escalabilidade;
+	- segurança;
+	- usado em instâncias *EC2*;
 
-	- **modalidade** de custo:
-		- On-Demand:
-			- sob demanda; pay as you go; T2.micro -> Free Tier;
+- **EFS - Elastic File System**
+	- armazenamento de arquivos;
+	- alta disponibilidade e escalabilidade;
+	- segurança;
+	- baixo custo;
+	- usado para compartilhamento de arquivos entre instâncias *EC2* e entre essas e Data Centers On-Premises \(local) via *Direct Connect*;
 
-		- Reserved Instance:
-			- reservada por 1 ou 3 anos, com até 75% de desconto, com pagamento à vista ou entrada mais restante mensal;
+- **Storage Gateway**
+	- armazenamento híbrido \(objeto ou bloco; local ou em nuvem);
+	- segurança;
 
-		- Spot Request:
-			- leilão para uso de capacidade ociosa da AWS; o lance sendo aceito, a instância é provisionada;
+- **Snowball**
+	- dispositivo físico para transferência de grandes volumes de dados locais para a nuvem AWS;
+	- capacidade de petabytes;
+	- criptografia;
+	- rastreamento;
+	- Amazon envia e coleta;
 
-		- Dedicated Hosts:
-			- servidor físico dedicado pago por hora; descontos de até 70%;
+- **Snowball Edge**
+	- dispositivo físico para processamento de serviços como *EC2* e *Lambda*, permitindo utilização da nuvem AWS em locais sem acesso à Cloud e posterior sincronização;
+	- suporta 100TB
+	- segurança;
+	- gerenciamento;
+	- ideal para Navios, Fábricas, Desertos etc.;
+
+- **Snowmobile**
+	- caminhão com container contendo um "mini datacenter móvel" da AWS que suporta até 100PB, para transferência de altíssimo volume de dados;
+	- criptografia;
+	- rastreamento;
+
+
+
+
+
+
+
+
+
 
 
