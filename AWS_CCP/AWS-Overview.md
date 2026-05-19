@@ -1,75 +1,90 @@
-## Computação em nuvem
+# Computação em Nuvem
 
 - É a entrega **sob demanda** \(on demand) de recursos de computação, banco de dados, armazenamento, aplicações ou qualquer outro recurso de tecnologia entregue por uma **plataforma** via internet, onde o pagamento e o preço são baseados em **consumo** \(pay as you go).
 
-### Vantagens
 
-	- **Mudança na modalidade gastos**: muda da modalidade de despesas de capital, [CAPEx](https://pt.wikipedia.org/wiki/CAPEX) ou despesa de aquisição de bens, para modelo de despesa variável,  [OPEx](https://pt.wikipedia.org/wiki/OPEX) ou depesa operacional.
+## Vantagens
 
-	- **Economia de escala**: com a computação em nuvem, você pode chegar a um custo variável menor do que seria possível por conta própria. Como o uso de centenas de milhares de clientes é agregado à nuvem, os provedores como a AWS têm redução de custos, através da alta escala de aquisição de hardware para a infraestrutura, o que se converte em um menor preço pago em função do uso.
+### Mudança na modalidade gastos
+- muda da modalidade de despesas de capital, [CAPEx](https://pt.wikipedia.org/wiki/CAPEX) ou despesa de aquisição de bens, para modelo de despesa variável, [OPEx](https://pt.wikipedia.org/wiki/OPEX) ou depesa operacional.
 
-	- **Capacidade**: você cresce ou diminui a capacidade necessária para atender às suas demandas, pagando apenas o que consumir.
+### Economia de escala
+- com a computação em nuvem, você pode chegar a um custo variável menor do que seria possível por conta própria. Como o uso de centenas de milhares de clientes é agregado à nuvem, os provedores como a AWS têm redução de custos, através da alta escala de aquisição de hardware para a infraestrutura, o que se converte em um menor preço pago em função do uso.
 
-	- **Agilidade e velocidade**: recursos estão disponíveis imediatamente; alta disponibilidade.
+### Capacidade
+- você cresce ou diminui a capacidade necessária para atender às suas demandas, pagando apenas o que consumir.
 
-	- **Economia**: você deixa de gastar dinheiro para comprar e manter data centers.
+### Agilidade e velocidade
+- recursos estão disponíveis imediatamente; alta disponibilidade.
 
-	- **Global em poucos minutos**: permite que você tenha recursos disponíveis globalmente em poucos minutos, com baixa latência e custo, melhorando a experiência do cliente, através de Content Delivery Network \(CDN).
+### Economia
+- você deixa de gastar dinheiro para comprar e manter data centers.
 
-### Tipos de Cloud Computing
-
-	- **IaaS - Infrastructure as a Service**
-		- contratante gerencia os servidores físicos ou virtuais;
-		- contratante gerencia os sistemas operacionais e softwares adicionais;
-		- o datacenter não tem responsabilidade com o que você faz com os recursos;
-
-	- **PaaS - Platform as a Service**
-		- datacenter é responsável pelos recursos físicos ou virtuais, SOs, softwares e alguns itens de segurança;
-		- contratante é responsável pela aplicação e sua configuração;
-		
-	- **SaaS - Software as a Service**
-		- toda a responsabilidade é do provedor, como no caso do Gmail, Office 365, Salesforce etc..
-
-### Modelos de Implantação de Cloud Computing
-
-	- **Public Cloud**
-		- AWS, Azure, Google Cloud;
-
-	- **Private Cloud**
-		- datacenter próprio da empresa \(on-premises), como uma infraestrutura de TI antigam, com recursos dedicados privados;
-
-	- **Hybrid Cloud**
-		- Combinação entre Public Cloud e Private Cloud \(on-premises);
+### Global em poucos minutos
+- permite que você tenha recursos disponíveis globalmente em poucos minutos, com baixa latência e custo, melhorando a experiência do cliente, através de Content Delivery Network \(CDN).
 
 
-## Infraestrutura Global da AWS
+## Tipos de Cloud Computing
+
+### IaaS - Infrastructure as a Service
+	- contratante gerencia os servidores físicos ou virtuais;
+	- contratante gerencia os sistemas operacionais e softwares adicionais;
+	- o datacenter não tem responsabilidade com o que você faz com os recursos;
+
+### PaaS - Platform as a Service
+	- datacenter é responsável pelos recursos físicos ou virtuais, SOs, softwares e alguns itens de segurança;
+	- contratante é responsável pela aplicação e sua configuração;
+	
+### SaaS - Software as a Service
+	- toda a responsabilidade é do provedor, como no caso do Gmail, Office 365, Salesforce etc..
+
+
+## Modelos de Implantação de Cloud Computing
+
+### Public Cloud
+	- AWS, Azure, Google Cloud;
+
+### Private Cloud
+	- datacenter próprio da empresa \(on-premises), como uma infraestrutura de TI antigam, com recursos dedicados privados;
+
+### Hybrid Cloud
+	- Combinação entre Public Cloud e Private Cloud \(on-premises);
+
+
+# Infraestrutura Global da AWS
 
 - a [infraestrutura global da AWS](https://aws.amazon.com/pt/about-aws/global-infrastructure) é uma plataforma de nuvem e oferece mais de 200 serviços completos de datacenter em todo o mundo.
 
-### Regiões \(Regions)
+## Regiões \(Regions)
 - são as localidades físicas onde a AWS está disponível ao redor do mundo.
 
-### Zonas de disponibilidades \(Availability Zone - AZ)
+## Zonas de disponibilidades \(Availability Zone - AZ)
 - é a quantidade de datacenters que a AWS tem em cada uma das regiões para prover serviços e produtos. No mínimo, são duas zonas de disponibilidade por região, a fim de proporcionar **alta disponibilidade**, **tolerância a falhas**, *desempenho*, *disaster recovery* e **escalabilidade**.
 
-### Pontos de presença \(Edge Locations)
+## Pontos de presença \(Edge Locations)
 - uma *edge location* é basicamente um pequeno servidor de cache. Eles estão localizados na maioria das principais cidades do mundo e são usados especificamente pelo **CloudFront** \(CDN da AWS) para distribuir conteúdo ao usuário final e reduzir a latência do acesso.
 
 
-## AWS Management Interfaces
+# AWS Management Interfaces
 
-- **AWS Management Console**: interface gráfica com suporte para a maioria dos serviços da AWS. Pode ser usada via navegador ou aplicativo.
-
-- **AWS Command Line Interface - CLI**: acesso aos serviços via linha de comando. Facilidade, flexibilidade e precisão para uso de scripts de automação.
-
-	- **AWS CloudShell**, que pode ser encontrado ao lado da barra de pesquisa no Console de gerenciamento da AWS, fornece um shell baseado em navegador que é pré-autenticado com as credenciais do console.
-
-- **Software Development Kit - SDK**: suporta diversas linguagens de programação e permite a incorporação de serviços AWS em aplicações.
+## AWS Management Console
+- interface gráfica com suporte para a maioria dos serviços da AWS. Pode ser usada via navegador ou aplicativo.
 
 
-## AWS Core Design Architecture
+## AWS Command Line Interface - CLI
+- acesso aos serviços via linha de comando. Facilidade, flexibilidade e precisão para uso de scripts de automação.
 
-### AWS Well-Architected Framework
+### AWS CloudShell
+- funcionalidade que pode ser encontrada ao lado da barra de pesquisa no Console de gerenciamento da AWS, fornece um shell baseado em navegador que é pré-autenticado com as credenciais do console.
+
+
+## Software Development Kit - SDK
+- suporta diversas linguagens de programação e permite a incorporação de serviços AWS em aplicações.
+
+
+# AWS Core Design Architecture
+
+## AWS Well-Architected Framework
 
 - [Well Architected Framework](https://aws.amazon.com/pt/architecture/well-architected) ajuda você a entender como projetar e operar sistemas confiáveis, seguros, eficientes e econômicos na nuvem AWS. Através de um conjunto de questões documentadas, ele fornece uma maneira de avaliar de forma consistente suas arquiteturas em relação às melhores práticas e identificar áreas para melhorias.
 
@@ -117,14 +132,19 @@
 	- AWS Cost Explorer: 
 		- permite visualizar, entender e gerenciar seus custos e uso das soluções da AWS ao longo do tempo;
 
-### Outros Serviços Relacionados ao AWS Core Design Architecture
 
-- **AWS Well-Architected Tool** é a ferramenta que facilita a verificação da conformidade de uma arquitetura desenvolvida pelo contratante, através da metodologia de perguntas e respostas do Framework.
+## Outros Serviços Relacionados ao AWS Core Design Architecture
 
-- **AWS Trusted Advisor** é um recurso on-line que auxilia na redução de custos, no aumento de performance e na *melhoria da segurança* por meio da otimização do seu ambiente da AWS. O Trusted Advisor fornece orientações em tempo real para auxiliar você no provisionamento de recursos com base nas práticas recomendadas da AWS. O número de métricas analisadas depende do nível de suporte contratado.
+### AWS Well-Architected Tool
+- é a ferramenta que facilita a verificação da conformidade de uma arquitetura desenvolvida pelo contratante, através da metodologia de perguntas e respostas do Framework.
+
+### AWS Trusted Advisor
+- é um recurso on-line que auxilia na redução de custos, no aumento de performance e na *melhoria da segurança* por meio da otimização do seu ambiente da AWS. O Trusted Advisor fornece orientações em tempo real para auxiliar você no provisionamento de recursos com base nas práticas recomendadas da AWS. O número de métricas analisadas depende do nível de suporte contratado.
 
 
-## AWS Core Services
+# AWS Core Services
+
+## Computing Services
 
 ### EC2 - Elastic Compute Cloud
 - *Amazon Elastic Compute Cloud \(Amazon EC2)* é um serviço web que fornece capacidade computacional segura e redimensionável na nuvem.
@@ -149,6 +169,19 @@
 
 	- *Dedicated Hosts*:
 		- servidor físico dedicado pago por hora; descontos de até 70%;
+
+- **Tipos de instância**: os tipos de instância EC2 são otimizados para tarefas diferentes;
+
+| Tipos                          | Características                                                                                                                                           |
+|:-------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Uso geral`                    | fornecem um equilíbrio de recursos de computação, memória e rede;                                                                                         |
+| `Computação acelerada`         | usam aceleradores de hardware, ou coprocessadores, para executar algumas funções de forma mais eficiente do que é possível no software executado em CPUs; |
+| `Otimizada para memória`       | são projetadas para fornecer rápida performance para cargas de trabalho que processam grandes conjuntos de dados na memória;                              |
+| `Otimizada para computação`    | são ideais para aplicações vinculadas à computação que se beneficiam de processadores de alta performance;                                                |
+| `Otimizada para armazenamento` | são projetadas para cargas de trabalho que exigem alto acesso sequencial de leitura e gravação a grandes conjuntos de dados no armazenamento local;       |
+
+
+## Storage Services
 
 ### S3 - Simple Storage Service
 - [S3](https://aws.amazon.com/pt/s3) é o principal serviço de armazenamento da AWS, permite armazenar e recuperar qualquer quantidade de informações via internet, pagando apenas pelo que usar;
@@ -251,45 +284,46 @@
 	- funcionalidade para a transferência de grande volume de dados através de longas distâncias;
 	- **Edge Locations** e **CloudFront** são utilizados para otimizar o processo;
 
-### Other Storage Services
-	
-- **EBS - Elastic Block Storage**
-	- o [EBS](https://aws.amazon.com/pt/ebs) é um tipo de **armazenamento em blocos**, persistente e customizável para instâncias EC2;
-	- possui *Snapshot*, que permite criar várias cópias do volume;
-	- alta disponibilidade e escalabilidade;
-	- segurança;
-	- permite habilitar encriptação \(Encryption on Rest);
-	- usado em instâncias *EC2*;
+### EBS - Elastic Block Storage
+- o [EBS](https://aws.amazon.com/pt/ebs) é um tipo de **armazenamento em blocos**, persistente e customizável para instâncias EC2;
+- possui *Snapshot*, que permite criar várias cópias do volume;
+- alta disponibilidade e escalabilidade;
+- segurança;
+- permite habilitar encriptação \(Encryption on Rest);
+- usado em instâncias *EC2*;
 
-- **EFS - Elastic File System**
-	- o [EFS](https://aws.amazon.com/pt/efs) é um serviço de armazenamento que aumenta e diminui automaticamente conforme você adiciona e remove arquivos, sem a necessidade de gerenciamento ou provisionamento;
-	- alta disponibilidade e escalabilidade;
-	- segurança;
-	- baixo custo;
-	- usado para compartilhamento de arquivos entre instâncias *EC2* e entre essas e Data Centers On-Premises \(local) via *Direct Connect*;
+### EFS - Elastic File System
+- o [EFS](https://aws.amazon.com/pt/efs) é um serviço de armazenamento que aumenta e diminui automaticamente conforme você adiciona e remove arquivos, sem a necessidade de gerenciamento ou provisionamento;
+- alta disponibilidade e escalabilidade;
+- segurança;
+- baixo custo;
+- usado para compartilhamento de arquivos entre instâncias *EC2* e entre essas e Data Centers On-Premises \(local) via *Direct Connect*;
 
-- **Storage Gateway**
-	- armazenamento híbrido \(objeto ou bloco; local ou em nuvem);
-	- segurança;
+### Storage Gateway
+- armazenamento híbrido \(objeto ou bloco; local ou em nuvem);
+- segurança;
 
-- **Snowball**
-	- dispositivo físico para transferência de grandes volumes de dados locais para a nuvem AWS;
-	- capacidade de petabytes;
-	- criptografia;
-	- rastreamento;
-	- Amazon envia e coleta;
+### Snowball
+- dispositivo físico para transferência de grandes volumes de dados locais para a nuvem AWS;
+- capacidade de petabytes;
+- criptografia;
+- rastreamento;
+- Amazon envia e coleta;
 
-- **Snowball Edge**
-	- dispositivo físico para processamento de serviços como *EC2* e *Lambda*, permitindo utilização da nuvem AWS em locais sem acesso à Cloud e posterior sincronização;
-	- suporta 100TB
-	- segurança;
-	- gerenciamento;
-	- ideal para Navios, Fábricas, Desertos etc.;
+### Snowball Edge
+- dispositivo físico para processamento de serviços como *EC2* e *Lambda*, permitindo utilização da nuvem AWS em locais sem acesso à Cloud e posterior sincronização;
+- suporta 100TB
+- segurança;
+- gerenciamento;
+- ideal para Navios, Fábricas, Desertos etc.;
 
-- **Snowmobile**
-	- caminhão com container contendo um "mini datacenter móvel" da AWS que suporta até 100PB, para transferência de altíssimo volume de dados;
-	- criptografia;
-	- rastreamento;
+### Snowmobile
+- caminhão com container contendo um "mini datacenter móvel" da AWS que suporta até 100PB, para transferência de altíssimo volume de dados;
+- criptografia;
+- rastreamento;
+
+
+## Network Services
 
 ### Virtual Private Cloud \(VPC)
 - a [VPC](https://aws.amazon.com/pt/vpc) é uma Rede Privada isolada para os clientes da AWS, criada por padrão para cada conta AWS em cada Região, com configurações básicas e novas funcionalidades podem ser adicionadas;
@@ -309,6 +343,43 @@
 - novas redes \(redes não padrão) podem ser criadas e configuradas conforme a necessidade do cliente em cada Região;
 
 - **Virtual Private Network - VPN**: a [VPN](https://aws.amazon.com/pt/vpn) é um serviço que estabelece conexões seguras entre redes locais, escritórios remotos, dispositivos de clientes e a rede global da AWS.
+
+
+# AWS Integrated Services
+
+## Database Services
+
+### AWS DynamoDB
+- o [DynamoDB](https://aws.amazon.com/pt/dynamodb) é um banco de dados **NoSQL**, sem servidor \(**serverless**) e **totalmente gerenciado**, projetado para executar aplicações de alto desempenho em qualquer escala \(**escalável**);
+
+- **estrutura chave-valor** \(NoSQL);
+
+- **arquitetura serverless**: não sendo necessário aprovisionar servidores;
+
+- segurança: **controle de acesso** e **criptografia** de dados ociosos;
+
+- monitoramento de uso: **métricas operacionais** com CloudWatch;
+
+- custo: **Pay as you Go**;
+
+- é **gerenciado**:
+	- possui presença global, em diversas Regiões;
+	- capacidade adaptável;
+	- alta escalabilidade;
+	- backup e recuperação sob demanda e point-in-time;
+	- TTL que permite definir a vida útil do dado;
+
+- **DAX - DynamoDB Accelerator**: recurso de cache de memória gerenciado e altamente disponível, que otimiza o tempo de resposta;
+
+- **Índices**: índices secundários para flexibilização de consultas;
+
+- **Uso Local**: permite desenvolver e testar localmente;
+
+- **Trigger**: executa código *Lambda* automaticamente, baseado numa condição;
+
+- **Streams**: permite criar sequências quando alterações acontecem nas tabelas do DynamoDB;
+
+- **acessibilidade**: AWS Console, AWS CLI, AWS SDK;
 
 
 
