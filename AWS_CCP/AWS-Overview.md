@@ -381,6 +381,34 @@
 
 - **acessibilidade**: AWS Console, AWS CLI, AWS SDK;
 
+### AWS RDS - Relational Database Service
+- o [RDS](https://aws.amazon.com/pt/rds) é um serviço de banco de dados relacional gerenciado, escalável e de alta disponibilidade; o RDS oferece seis mecanismos de bancos de dados comuns, incluindo **Amazon Aurora**, PostgreSQL, MySQL, MariaDB, Oracle Database e SQL Server;
+	- configurável via AWS Console, CLI ou SDK;
+	- atualização patching automática, gerenciada pela AWS;
+	- recomandações de melhores práticas \(tamanho da instância, storage e rede);
+	- alta performance com discos GEneral Purpose SSD e Provisioned IOPS SSD;
+	- alta escalabilidade \(Compute, Storage e **Read Replicas**);
+	- alta disponibilidade \(Backups Automáticos, Snapshots e **Multi-AZ Deployments**);
+	- Seguro com dados criptografados em storage e em trânsito;
+	- isolamento de rede;
+	- monitoramento \(Eeventos e Métricas);
+
+- **Read Replicas**:
+- recurso relacionado a *performance, desempenho e redução de latência*, consistindo em um Snapshot do DB atualizado de forma síncrona entre diferentes Zonas de Disponibilidade e Regiões, comportando-se como CDN;
+
+- **Multi-AZ Deployments**:
+- recurso relacionado a Disaster Ricover, mantendo réplicas constantemente sincronizadas em mais de uma Zona de Disponibilidade; o redirecionamento de acesso é automático, quando for necessário, apontando para uma segunda instância entre 60-120 segundos;
+
+- **Amazon Aurora**:
+- o [Aurora](https://aws.amazon.com/pt/rds/aurora) é um banco de dados relacional desenvolvido e gerenciado pela AWS, compatível com MySQL e PostgreSQL; o Aurora é até cinco vezes mais rápido que bancos de dados MySQL padrão e três vezes mais rápido que bancos de dados PostgreSQL padrão;
+
+- características:
+	- armazenamento distribuído;
+	- tolerante a falhas e com recuperação automática;
+	- replicação entre três zonas de disponibilidade;
+
+
+
 
 
 
