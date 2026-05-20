@@ -407,9 +407,21 @@
 	- tolerante a falhas e com recuperação automática;
 	- replicação entre três zonas de disponibilidade;
 
+### AWS Redshift
+- o [Redshift](https://aws.amazon.com/pt/redshift) é um banco de dados colunar \(column-oriented) da AWS, de alta escalabilidade, baixa latência, processamento massivo e paralelo, e armazenamento em escala, para o processamento de dados; simples de usar, custo efetivo para utilização em **Data Warehouse** e **Data Lakes**;
 
+- características:
+	- fácil implementação e configuração;
+	- Pay As You Go;
+	- Escalabilidade em Petabytes e leituras no S3 em Exabytes;
+	- Integra-se com ferramentas de terceiros;
 
+### Neptune
+- o [Neptune](https://aws.amazon.com/pt/neptune) é um serviço de banco de dados gráfico rápido, confiável e totalmente gerenciado que facilita a criação e a execução de aplicativos;
 
+### Database Migration Service - DMS
+- o [DMS](https://aws.amazon.com/pt/dms) é um serviço que permite migrar bancos de dados relacionais, bancos de dados não relacionais e outros tipos de armazenamentos de dados; o banco de dados de origem permanece totalmente operacional
+durante a migração, minimizando o tempo de inatividade de aplicações que dependem do banco de dados;
 
 
 
