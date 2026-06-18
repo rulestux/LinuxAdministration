@@ -443,6 +443,7 @@ durante a migração, minimizando o tempo de inatividade de aplicações que dep
 	- Ruby;
 	- Go;
 
+
 ## Management Services
 
 ### AWS CloudTrail
@@ -450,6 +451,13 @@ durante a migração, minimizando o tempo de inatividade de aplicações que dep
 
 ### AWS CloudWatch
 - o [CloudWatch](https://aws.amazon.com/pt/cloudwatch) é um serviço de monitoramento de recursos integrado da AWS que permite coleta, monitoração, análise e ação sobre os comportamentos dos recursos da AWS; Ele coleta dados de monitoramento e operações na forma de logs, métricas e eventos;
+
+
+## Content Delivery
+
+### AWS CloudFront
+- o [CloudFront](https://aws.amazon.com/pt/cloudfront) é um serviço de rede de entrega de conteúdo (CDN) criado para alta performance, segurança e conveniência do desenvolvedor.
+
 
 
 
