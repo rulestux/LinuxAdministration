@@ -424,7 +424,32 @@
 durante a migração, minimizando o tempo de inatividade de aplicações que dependem do banco de dados;
 
 
+## Computing Services
 
+### AWS Lambda
+- o [Lambda](https://aws.amazon.com/pt/lambda) é um serviço de computação sem servidor \(serverless) e orientado a eventos que permite executar código para praticamente qualquer tipo de aplicação ou serviço de backend sem provisionar ou gerenciar servidores;
+
+- **Lambda functions** é um microsserviço \(código) que roda na plataforma do AWS Lambda baseado em eventos, em um conceito conhecido como **Function as Service - FaaS**;
+
+- a *programação orientada a eventos* segue o padrão:
+
+	- evento \(trigger) -> função -> ação;
+
+- linguagens suportadas:
+	- NodeJS;
+	- Python;
+	- Java;
+	- C#;
+	- Ruby;
+	- Go;
+
+## Management Services
+
+### AWS CloudTrail
+- o [CloudTrail](https://aws.amazon.com/pt/cloudtrail) é um serviço de segurança que monitora, registra e retém todas as atividades e ações realizadas em uma conta AWS na infraestrutura e serviços AWS; ele registra **quem** fez **o que**, em **qual recurso** e **quando**; é usado principalmente para auxílio a governança, auditoria, segurança, análise de riscos e outros;
+
+### AWS CloudWatch
+- o [CloudWatch](https://aws.amazon.com/pt/cloudwatch) é um serviço de monitoramento de recursos integrado da AWS que permite coleta, monitoração, análise e ação sobre os comportamentos dos recursos da AWS; Ele coleta dados de monitoramento e operações na forma de logs, métricas e eventos;
 
 
 
