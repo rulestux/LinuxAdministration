@@ -484,6 +484,9 @@ durante a migração, minimizando o tempo de inatividade de aplicações que dep
 
 - as configurações ficam salvas em histórico, de forma a permitir recuperação dessas configurações após alguma alteração;
 
+### Amazon Simple Notification Service
+- o [Amazon SNS](https://aws.amazon.com/pt/sns) é um serviço de notificação totalmente gerenciado, altamente disponível, seguro e durável, que permite o desacoplamento de microsserviços, sistemas distribuídos e aplicativos sem servidor;
+
 
 ## Network Services
 
