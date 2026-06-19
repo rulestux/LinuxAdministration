@@ -455,6 +455,14 @@ durante a migração, minimizando o tempo de inatividade de aplicações que dep
 ### Auto Scaling
 - o [Auto Scaling](https://aws.amazon.com/pt/autoscaling) é um serviço que monitora os aplicativos e ajusta automaticamente a capacidade para manter um desempenho constante e previsível pelo menor custo possível, em instâncias pré-configuradas, usando tráfego ou processamento \(CPU) como critério de gatilho;
 
+### Elastic BeanStalk
+- o [Elastic BeanStalk](https://aws.amazon.com/pt/elasticbeanstalk) é um serviço que permite a implantação de aplicações apenas fornecendo o código-fonte, sem conhecimento ou definição prévia da infraestrutura; trata-se de um serviço **PaaS - Platform as a Service**	;
+
+- suporta aplicações em Go, Java, .NET, PHP, Python e Ruby;
+- monitoração com CloudWatch e X-Ray;
+- escalabilidade automática;
+- recursos personalizados;
+
 
 ## Management Services
 
