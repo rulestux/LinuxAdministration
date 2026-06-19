@@ -464,7 +464,7 @@ durante a migração, minimizando o tempo de inatividade de aplicações que dep
 - recursos personalizados;
 
 
-## Management Services
+## Observability and Management Services
 
 ### AWS CloudTrail
 - o [CloudTrail](https://aws.amazon.com/pt/cloudtrail) é um serviço de segurança que monitora, registra e retém todas as atividades e ações realizadas em uma conta AWS na infraestrutura e serviços AWS; ele registra **quem** fez **o que**, em **qual recurso** e **quando**; é usado principalmente para auxílio a governança, auditoria, segurança, análise de riscos e outros;
@@ -484,53 +484,85 @@ durante a migração, minimizando o tempo de inatividade de aplicações que dep
 
 - as configurações ficam salvas em histórico, de forma a permitir recuperação dessas configurações após alguma alteração;
 
+### AWS CloudFormation
+- o [CloudFormation](https://aws.amazon.com/pt/cloudformation) é um serviço que permite descrever e modelar toda a infraestrutura na AWS utilizando um arquivo de texto ou linguagem de programação ;
+
+- **Características**:
+	- infraestrutura como código \(IaaC - Infrastructure as a Code)(versionamento);
+	- fonte única e confiável para concentrar todos os recursos;
+	- permite automação;
+	- suporta formato JSON ou YAML;
+	- cada design é chamado de stacks \(pilhas);
+
 
 ## App Integration
 
 ### Amazon Simple Notification Service - SNS
 - o [SNS](https://aws.amazon.com/pt/sns) é um serviço de notificação totalmente gerenciado, altamente disponível, seguro e durável, que permite o desacoplamento de microsserviços, sistemas distribuídos e aplicativos sem servidor;
 
-**Características**
-- criptografia de mensagens;
-- filtro de mensagens;
-- notificações mobile;
-- configuração de privacidade de mensagens;
+- **características**:
+	- criptografia de mensagens;
+	- filtro de mensagens;
+	- notificações mobile;
+	- configuração de privacidade de mensagens;
 
 ### Amazon Simple Queue Service - SQS
 - o [SQS](https://aws.amazon.com/pt/sqs) é um serviço de filas de mensagens \(mensageria) gerenciado que permite o desacoplamento e a
 escalabilidade de microsserviços, sistemas distribuídos e aplicações sem servidor;
 
-**Características**
-- filas e mensagens ilimitadas;
-- retenha as mensagens nas filas por até 14 dias;
-- envie e releia as mensagens simultaneamente;
-- bloqueio de mensagens;
-- compartilhamento de filas;
-- criptografia no lado do servidor;
+- **características**:
+	- filas e mensagens ilimitadas;
+	- retenha as mensagens nas filas por até 14 dias;
+	- envie e releia as mensagens simultaneamente;
+	- bloqueio de mensagens;
+	- compartilhamento de filas;
+	- criptografia no lado do servidor;
+
+### Amazon Simple E-mail Service - SES
+- o [SES](https://aws.amazon.com/pt/ses/) é o serviço que provê envio e recebimento de e-mails em alta escala com custo efetivo;
+
+- **usecases**:
+	- *e-mail marketing*: envio de e-mail para grande base de clientes para promoção de produtos, propaganda, ofertas especiais etc.;
+
+	- *e-mail transacional*: envio de e-mail automatizado como confirmação de pedidos, entrega, status de pedido, mudança de políticas, reset de senhas etc.;
+
+	- *notificações*: erros em sistemas ou produtos, monitoramento, mudança de status de processos etc.;
+
+	- *recebimento*: receber e-mails em massa e tomada de decisão \(automação);
 
 
 ## Network Services
 
 ### AWS CloudFront
-- o [CloudFront](https://aws.amazon.com/pt/cloudfront) é um serviço de rede de entrega de conteúdo (CDN) criado para alta performance, segurança e conveniência do desenvolvedor.
+- o [CloudFront](https://aws.amazon.com/pt/cloudfront) é um serviço de rede de entrega de conteúdo (CDN) criado para alta performance, segurança e conveniência do desenvolvedor;
+
+
+### Route53
+- o [Route53](https://aws.amazon.com/pt/route53) é um serviço DNS altamente disponível e escalável;
+
+- **características**:
+	- oferece serviços de registro de nome de domínio;
+	- é possível obter DNS recursivo para o Amazon VPC e as redes on-premises;
+	- regras de firewall que filtram o tráfego de DNS de saída em relação a essas regras;
+	- gerenciamento de tráfego global;
 
 
 ## Development Tools
 
 ### AWS Cloud9
-- o Cloud9 é um serviço de IDE acessível via browser que permite desenvolvimento colaborativo integrado com o AWS CLI, facilitando o desenvolvimento serverless-lambda e suportando 40 linguagens de programação;
+- o [Cloud9](https://aws.amazon.com/pt/cloud9/) é um serviço de IDE acessível via browser que permite desenvolvimento colaborativo integrado com o AWS CLI, facilitando o desenvolvimento serverless-lambda e suportando 40 linguagens de programação;
 
 ### AWS CodeCommit
-- o CodeCommit é um serviço de repositório baseado em GIT, com repositórios ilimitados e integrado com AWS CLI e AWS SDK;
+- o [CodeCommit](https://aws.amazon.com/pt/codecommit/) é um serviço de *repositório de código* baseado em GIT, com repositórios ilimitados e integrado com AWS CLI e AWS SDK;
 
 ### AWS CodeBuild
-- o CodeBuild é um serviço de Integração Contínua \(CI) totalmente gerenciado e extensível, permitindo o uso de ferramentas externas à AWS; pay-as-you-go; permite monitoramento pelo AWS CloudWatch
+- o [CodeBuild](https://aws.amazon.com/pt/codebuild/) é um serviço de Integração Contínua \(CI) totalmente gerenciado e extensível, permitindo o uso de ferramentas externas à AWS; pay-as-you-go; permite monitoramento pelo AWS CloudWatch
 
 ### AWS CodeDeploy
-- o CodeDeploy é um serviço de implementação automática de aplicações, integrado com as demais ferramentas da AWS;
+- o [CodeDeploy](https://aws.amazon.com/pt/codedeploy/) é um serviço de implementação automática de aplicações, integrado com as demais ferramentas da AWS;
 
 ### AWS CodePipeline
-- o CodePipeline é um serviço de Entrega Contínua \(CD), feito uma esteira ou workflow para inserção de tarefas do ciclo de desenvolvimento, integrado com as demais ferramentas da AWS e com diversos plugins para as principais soluções do mercado;
+- o [CodePipeline](https://aws.amazon.com/pt/codepipeline/) é um serviço de Entrega Contínua \(CD), feito uma esteira ou workflow para inserção de tarefas do ciclo de desenvolvimento, integrado com as demais ferramentas da AWS e com diversos plugins para as principais soluções do mercado;
 
 ### AWS CodeStar
 - o CodeStar é um serviço que permite acessar outros serviços num mesmo ambiente; inclui serviços como Cloud9, CodeCommit, CodeBuild e CodeDeploy ofertados pré-configurados;
@@ -539,7 +571,7 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 ## Security Services
 
 ### AWS Rekognition
-- o Rekognition é um serviço de API que faz análise de imagens e vídeos utilizando Machine Learning e retornando informações categorizadas e classificadas;
+- o [Rekognition](https://aws.amazon.com/pt/rekognition/) é um serviço de API que faz análise de imagens e vídeos utilizando Machine Learning e retornando informações categorizadas e classificadas;
 
 
 
