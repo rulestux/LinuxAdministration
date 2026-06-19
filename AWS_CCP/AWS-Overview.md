@@ -477,8 +477,15 @@ durante a migração, minimizando o tempo de inatividade de aplicações que dep
 
 - *instrumentação* em Aplicativos usados no EC2, ECS, Lambda e Beanstalk.
 
+### AWS Config
+- o [Config](https://aws.amazon.com/pt/config) é um serviço que permite acessar, auditar e avaliar as configurações dos recursos da AWS; o Config monitora e grava continuamente registros das configurações de recursos da AWS e lhe permite automatizar a avaliação das configurações registradas com base nas configurações desejadas;
 
-## Content Delivery
+- disponibiliza regras para avaliação de recursos, seja através de **Regras Gerenciadas**, criadas e mantidas pela AWS, ou através de **Regra Personalizadas** feitas pelo cliente;
+
+- as configurações ficam salvas em histórico, de forma a permitir recuperação dessas configurações após alguma alteração;
+
+
+## Network Services
 
 ### AWS CloudFront
 - o [CloudFront](https://aws.amazon.com/pt/cloudfront) é um serviço de rede de entrega de conteúdo (CDN) criado para alta performance, segurança e conveniência do desenvolvedor.
@@ -504,6 +511,11 @@ durante a migração, minimizando o tempo de inatividade de aplicações que dep
 ### AWS CodeStar
 - o CodeStar é um serviço que permite acessar outros serviços num mesmo ambiente; inclui serviços como Cloud9, CodeCommit, CodeBuild e CodeDeploy ofertados pré-configurados;
 
+
+## Security Services
+
+### AWS Rekognition
+- o Rekognition é um serviço de API que faz análise de imagens e vídeos utilizando Machine Learning e retornando informações categorizadas e classificadas;
 
 
 
