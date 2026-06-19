@@ -484,8 +484,29 @@ durante a migração, minimizando o tempo de inatividade de aplicações que dep
 
 - as configurações ficam salvas em histórico, de forma a permitir recuperação dessas configurações após alguma alteração;
 
-### Amazon Simple Notification Service
-- o [Amazon SNS](https://aws.amazon.com/pt/sns) é um serviço de notificação totalmente gerenciado, altamente disponível, seguro e durável, que permite o desacoplamento de microsserviços, sistemas distribuídos e aplicativos sem servidor;
+
+## App Integration
+
+### Amazon Simple Notification Service - SNS
+- o [SNS](https://aws.amazon.com/pt/sns) é um serviço de notificação totalmente gerenciado, altamente disponível, seguro e durável, que permite o desacoplamento de microsserviços, sistemas distribuídos e aplicativos sem servidor;
+
+**Características**
+- criptografia de mensagens;
+- filtro de mensagens;
+- notificações mobile;
+- configuração de privacidade de mensagens;
+
+### Amazon Simple Queue Service - SQS
+- o [SQS](https://aws.amazon.com/pt/sqs) é um serviço de filas de mensagens \(mensageria) gerenciado que permite o desacoplamento e a
+escalabilidade de microsserviços, sistemas distribuídos e aplicações sem servidor;
+
+**Características**
+- filas e mensagens ilimitadas;
+- retenha as mensagens nas filas por até 14 dias;
+- envie e releia as mensagens simultaneamente;
+- bloqueio de mensagens;
+- compartilhamento de filas;
+- criptografia no lado do servidor;
 
 
 ## Network Services
