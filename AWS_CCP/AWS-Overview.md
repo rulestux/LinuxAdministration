@@ -471,6 +471,25 @@ durante a migração, minimizando o tempo de inatividade de aplicações que dep
 - o [CloudFront](https://aws.amazon.com/pt/cloudfront) é um serviço de rede de entrega de conteúdo (CDN) criado para alta performance, segurança e conveniência do desenvolvedor.
 
 
+## Development Tools
+
+### AWS Cloud9
+- o Cloud9 é um serviço de IDE acessível via browser que permite desenvolvimento colaborativo integrado com o AWS CLI, facilitando o desenvolvimento serverless-lambda e suportando 40 linguagens de programação;
+
+### AWS CodeCommit
+- o CodeCommit é um serviço de repositório baseado em GIT, com repositórios ilimitados e integrado com AWS CLI e AWS SDK;
+
+### AWS CodeBuild
+- o CodeBuild é um serviço de Integração Contínua \(CI) totalmente gerenciado e extensível, permitindo o uso de ferramentas externas à AWS; pay-as-you-go; permite monitoramento pelo AWS CloudWatch
+
+### AWS CodeDeploy
+- o CodeDeploy é um serviço de implementação automática de aplicações, integrado com as demais ferramentas da AWS;
+
+### AWS CodePipeline
+- o CodePipeline é um serviço de Entrega Contínua \(CD), feito uma esteira ou workflow para inserção de tarefas do ciclo de desenvolvimento, integrado com as demais ferramentas da AWS e com diversos plugins para as principais soluções do mercado;
+
+### AWS CodeStar
+- o CodeStar é um serviço que permite acessar outros serviços num mesmo ambiente; inclui serviços como Cloud9, CodeCommit, CodeBuild e CodeDeploy ofertados pré-configurados;
 
 
 
