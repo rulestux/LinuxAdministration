@@ -50,6 +50,7 @@
 ### Hybrid Cloud
 	- Combinação entre Public Cloud e Private Cloud \(on-premises);
 
+---------------------------------------------------------------------
 
 # Infraestrutura Global da AWS
 
@@ -81,6 +82,7 @@
 ## Software Development Kit - SDK
 - suporta diversas linguagens de programação e permite a incorporação de serviços AWS em aplicações.
 
+---------------------------------------------------------------------
 
 # AWS Core Design Architecture
 
@@ -102,13 +104,25 @@
 - **II - Segurança \(Security)**: se concentra em proteger informações e sistemas. Principais Serviços:
 
 	- AWS Identity and Access Management \(IAM):
-		- Gerencie com segurança as identidades e o acesso a serviços e recursos da AWS;
+		- gerencie com segurança as identidades e o acesso a serviços e recursos da AWS;
 	- AWS CloudTrail: 
-		- Acompanhe a atividade dos usuários e o uso da API na AWS e em ambientes híbridos e multinuvem;
+		- acompanhe a atividade dos usuários e o uso da API na AWS e em ambientes híbridos e multinuvem;
 	- AWS Web Application Firewall \(WAF):
-		- Proteja suas aplicações da Web contra explorações comuns;
+		- proteja suas aplicações da Web contra explorações comuns;
 	- AWS Key Management Service \(KMS):
-		- acilita a criação e o gerenciamento de chaves criptográficas e o controle de seu uso em uma ampla variedade de serviços AWS e em seus aplicativos;
+		- facilita a criação e o gerenciamento de chaves criptográficas e o controle de seu uso em uma ampla variedade de serviços AWS e em seus aplicativos;
+	- AWS Shield:
+		- proteção contra ataques DDoS;
+	- AWS Inspector:
+		- análise de vulnerabilidades;
+	- AWS GuardDuty:
+		- monitoramento de ameaças baseado em Machine Learning;
+	- AWS Cognito:
+		- gestão de acesso para aplicativos móveis integrada com Facebook, AWS, Active Directory etc.;
+	- Security Groups:
+		- firewall para instâncias EC2 e RDS, incluído na VPC da AWS;
+	- Network ACL \(NACL):
+		- controle de acesso à rede baseado em regras;
 
 - **III - Confiabilidade \(Reliability)**: se concentra em garantir que uma carga de trabalho execute sua função pretendida corretamente e de modo consistente quando esperado. Principais Serviços:
 
@@ -141,6 +155,7 @@
 ### AWS Trusted Advisor
 - é um recurso on-line que auxilia na redução de custos, no aumento de performance e na *melhoria da segurança* por meio da otimização do seu ambiente da AWS. O Trusted Advisor fornece orientações em tempo real para auxiliar você no provisionamento de recursos com base nas práticas recomendadas da AWS. O número de métricas analisadas depende do nível de suporte contratado.
 
+---------------------------------------------------------------------
 
 # AWS Core Services
 
@@ -344,6 +359,7 @@
 
 - **Virtual Private Network - VPN**: a [VPN](https://aws.amazon.com/pt/vpn) é um serviço que estabelece conexões seguras entre redes locais, escritórios remotos, dispositivos de clientes e a rede global da AWS.
 
+---------------------------------------------------------------------
 
 # AWS Integrated Services
 
@@ -573,6 +589,56 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 ### AWS Rekognition
 - o [Rekognition](https://aws.amazon.com/pt/rekognition/) é um serviço de API que faz análise de imagens e vídeos utilizando Machine Learning e retornando informações categorizadas e classificadas;
 
+**Shield**
+
+O [Shield](https://aws.amazon.com/pt/shield) é um serviço gerenciado de proteção contra DDoS que protege os aplicativos
+executados na AWS.
+
+**Cognito**
+
+O [Cognito](https://aws.amazon.com/pt/cognito) é um serviço que permite adicionar cadastramento, login e controle de
+acesso de usuários a aplicações web e móveis com rapidez e facilidade.
+
+**Inspector**
+
+O [Inspector](https://aws.amazon.com/pt/inspector) é um serviço e avaliação de segurança automático que ajuda a melhorar
+a segurança e a conformidade dos aplicativos implantados na AWS. O Amazon Inspector avalia automaticamente aplicativos
+em busca de exposições, vulnerabilidades ou discrepâncias em relação às melhores práticas.
+
+**Organizations**
+
+O [Organizations](https://aws.amazon.com/pt/organizations) é um serviço que ajuda você a gerenciar e controlar seu
+ambiente de maneira centralizada à medida que os negócios e seus recursos da AWS expandem.
+
+**Características**
+
+- Gerencia todas as suas contas.
+- Permite a consolidação de faturamento (consolidated bills).
+- Com muitas contas e grandes volumes de utilização pode-se obter descontos na AWS.
+- Políticas de segurança podem ser controladas de forma “organizacional”.
+
+**Web Application Firewall - WAF**
+
+O [WAF](https://aws.amazon.com/pt/waf) é um firewall de aplicações web que ajuda a proteger suas aplicações web ou APIs
+contra bots e exploits comuns na web que podem afetar a disponibilidade, comprometer a segurança ou consumir recursos em
+excesso.
+
+**Identity and Access Management - IAM**
+
+O [IAM](https://aws.amazon.com/pt/iam) é um serviço que controla o acesso aos recursos na AWS. Ele permite criar e
+controlar usuário, autenticação ou limitar acesso de usuário a recursos. Resumindo, o IAM controlar **quem** pode fazer
+**o que** na sua conta AWS.
+
+**GuardDuty**
+
+O [GuardDuty](https://aws.amazon.com/pt/guardduty) é um serviço de detecção de ameaças que monitora continuamente suas
+contas e cargas de trabalho da AWS para atividade maliciosa e fornece resultados de segurança detalhados para
+visibilidade e remediação.
+
+**Macie**
+
+O [Macie](https://aws.amazon.com/pt/macie) é um serviço de segurança e privacidade de dados totalmente gerenciado que
+usa Machine Learning e correspondência de padrões para descobrir e proteger seus dados confidenciais na AWS.
 
 
 
