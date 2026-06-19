@@ -443,6 +443,18 @@ durante a migração, minimizando o tempo de inatividade de aplicações que dep
 	- Ruby;
 	- Go;
 
+### Elastic Load Balancing - ELB
+- o [ELB](https://aws.amazon.com/pt/elasticloadbalancing) é um serviço que distribui automaticamente o tráfego de aplicações de entrada entre vários destinos e dispositivos virtuais em uma ou mais zonas de disponibilidade (AZ);
+
+- *Classic Load Balancing*: distribui entre instâncias EC2;
+
+- *Network Load Balancing*: distribui o tráfego através da camada 4 \(TCP/UDP) através de instâncias EC2 e contêineres;
+
+- *Application Load Balancing*: distribui o tráfego através da camada 7 \(protocolos de aplicação), através de instâncias EC2, contêineres e lambdas;
+
+### Auto Scaling
+- o [Auto Scaling](https://aws.amazon.com/pt/autoscaling) é um serviço que monitora os aplicativos e ajusta automaticamente a capacidade para manter um desempenho constante e previsível pelo menor custo possível, em instâncias pré-configuradas, usando tráfego ou processamento \(CPU) como critério de gatilho;
+
 
 ## Management Services
 
@@ -457,6 +469,8 @@ durante a migração, minimizando o tempo de inatividade de aplicações que dep
 
 ### AWS CloudFront
 - o [CloudFront](https://aws.amazon.com/pt/cloudfront) é um serviço de rede de entrega de conteúdo (CDN) criado para alta performance, segurança e conveniência do desenvolvedor.
+
+
 
 
 
