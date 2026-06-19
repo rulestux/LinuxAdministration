@@ -589,6 +589,43 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 ### AWS Rekognition
 - o [Rekognition](https://aws.amazon.com/pt/rekognition/) é um serviço de API que faz análise de imagens e vídeos utilizando Machine Learning e retornando informações categorizadas e classificadas;
 
+### AWS Identity and Access Management - IAM
+- o [IAM](https://aws.amazon.com/pt/iam) é um serviço que controla o acesso aos recursos na AWS; ele permite criar e controlar usuário, autenticação ou limitar acesso de usuário a recursos; 
+
+- o IAM controlar **quem \(Autenticação)** pode fazer **o que \(Autorização: permissões)** na sua conta AWS;
+
+- **users**:
+	- pessoa ou serviço que interage com a AWS Cloud;
+	- nome único;
+	- pode ter um conjunto de cerdenciais:
+		- senha do Console da AWS;
+		- Access Key \(Acesso via CLI ou SDK);
+		- MFA - Multi Factor Authentication \(Software, Hardware, SMS);
+	- tem que estar associado a apenas uma conta da AWS;
+	- permite acesso de forma humana ou programada \(via API ou CLI(;
+
+- **groups**:
+	- agrupamento de usuários por departamentos, funções ou afinidades etc.;
+	- usuários compartilham as mesmas permissões \(policies);
+	- facilitam o gerenciamento de usuários;
+
+- **policies**:
+	- definem **quem** tem acesso **ao que**, **o que** e **quando** pode fazer;
+	- são descritas em formato JSON;
+	- por padrão não dão acesso a coisa alguma;
+	- podem ser assinaladas para Users, Groups e Roles;
+	- definem em detalhes as ações que podem ser executadas;
+	- podem ser **managed policies** \(criadas e mantidas pela AWS) ou **inline policies** \(criadas pelos clientes);
+
+- **role**:
+	- função/papel que interage com recursos da AWS sem a necessidade de criar um user;
+	- usa Policies;
+	- não possui credenciais;
+	- chaves de acesso são criadas dinamicamente;
+	- usuários, aplicações e serviços podem assumir IAM Roles;
+
+
+
 **Shield**
 
 O [Shield](https://aws.amazon.com/pt/shield) é um serviço gerenciado de proteção contra DDoS que protege os aplicativos
@@ -623,11 +660,7 @@ O [WAF](https://aws.amazon.com/pt/waf) é um firewall de aplicações web que aj
 contra bots e exploits comuns na web que podem afetar a disponibilidade, comprometer a segurança ou consumir recursos em
 excesso.
 
-**Identity and Access Management - IAM**
 
-O [IAM](https://aws.amazon.com/pt/iam) é um serviço que controla o acesso aos recursos na AWS. Ele permite criar e
-controlar usuário, autenticação ou limitar acesso de usuário a recursos. Resumindo, o IAM controlar **quem** pode fazer
-**o que** na sua conta AWS.
 
 **GuardDuty**
 
