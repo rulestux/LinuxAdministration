@@ -625,27 +625,28 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 	- usuários, aplicações e serviços podem assumir IAM Roles;
 
 
+### Amazon Inspector
+- o [Inspector](https://aws.amazon.com/pt/inspector) é um serviço de avaliação de segurança automático que ajuda a melhorar a segurança e a conformidade dos aplicativos implementados na AWS com máquinas EC2; o Amazon Inspector avalia automaticamente aplicativos em busca de exposições, vulnerabilidades ou discrepâncias em relação às melhores práticas; analisa conforme padrões de complience e segurança;
+
+- administrado através de:
+	- console;
+	- CLI;
+	- SDK;
+	- API;
+
 
 **Shield**
 
-O [Shield](https://aws.amazon.com/pt/shield) é um serviço gerenciado de proteção contra DDoS que protege os aplicativos
-executados na AWS.
+O [Shield](https://aws.amazon.com/pt/shield) é um serviço gerenciado de proteção contra DDoS que protege os aplicativos executados na AWS.
 
 **Cognito**
 
-O [Cognito](https://aws.amazon.com/pt/cognito) é um serviço que permite adicionar cadastramento, login e controle de
-acesso de usuários a aplicações web e móveis com rapidez e facilidade.
+O [Cognito](https://aws.amazon.com/pt/cognito) é um serviço que permite adicionar cadastramento, login e controle de acesso de usuários a aplicações web e móveis com rapidez e facilidade.
 
-**Inspector**
-
-O [Inspector](https://aws.amazon.com/pt/inspector) é um serviço e avaliação de segurança automático que ajuda a melhorar
-a segurança e a conformidade dos aplicativos implantados na AWS. O Amazon Inspector avalia automaticamente aplicativos
-em busca de exposições, vulnerabilidades ou discrepâncias em relação às melhores práticas.
 
 **Organizations**
 
-O [Organizations](https://aws.amazon.com/pt/organizations) é um serviço que ajuda você a gerenciar e controlar seu
-ambiente de maneira centralizada à medida que os negócios e seus recursos da AWS expandem.
+O [Organizations](https://aws.amazon.com/pt/organizations) é um serviço que ajuda você a gerenciar e controlar seu ambiente de maneira centralizada à medida que os negócios e seus recursos da AWS expandem.
 
 **Características**
 
@@ -656,22 +657,17 @@ ambiente de maneira centralizada à medida que os negócios e seus recursos da A
 
 **Web Application Firewall - WAF**
 
-O [WAF](https://aws.amazon.com/pt/waf) é um firewall de aplicações web que ajuda a proteger suas aplicações web ou APIs
-contra bots e exploits comuns na web que podem afetar a disponibilidade, comprometer a segurança ou consumir recursos em
-excesso.
+O [WAF](https://aws.amazon.com/pt/waf) é um firewall de aplicações web que ajuda a proteger suas aplicações web ou APIs contra bots e exploits comuns na web que podem afetar a disponibilidade, comprometer a segurança ou consumir recursos em excesso.
 
 
 
 **GuardDuty**
 
-O [GuardDuty](https://aws.amazon.com/pt/guardduty) é um serviço de detecção de ameaças que monitora continuamente suas
-contas e cargas de trabalho da AWS para atividade maliciosa e fornece resultados de segurança detalhados para
-visibilidade e remediação.
+O [GuardDuty](https://aws.amazon.com/pt/guardduty) é um serviço de detecção de ameaças que monitora continuamente suas contas e cargas de trabalho da AWS para atividade maliciosa e fornece resultados de segurança detalhados para visibilidade e remediação.
 
 **Macie**
 
-O [Macie](https://aws.amazon.com/pt/macie) é um serviço de segurança e privacidade de dados totalmente gerenciado que
-usa Machine Learning e correspondência de padrões para descobrir e proteger seus dados confidenciais na AWS.
+O [Macie](https://aws.amazon.com/pt/macie) é um serviço de segurança e privacidade de dados totalmente gerenciado que usa Machine Learning e correspondência de padrões para descobrir e proteger seus dados confidenciais na AWS.
 
 
 
