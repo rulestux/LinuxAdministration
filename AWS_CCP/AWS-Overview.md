@@ -652,36 +652,33 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 	- provê acesso em tempo real a relatórios e métricas, com total visibilidade do impacto do ataque em seus recursos AWS;
 	- protege contra ataques de diversos outros tipos, como SYN Flood, UDP Reflection Attack, DNS Query Flood, Cache-Busting Attack etc.;
 
+### AWS Web Application Firewall - WAF
+- o [WAF](https://aws.amazon.com/pt/waf) é um firewall de aplicações web que ajuda a proteger suas aplicações web ou APIs contra bots e exploits comuns na web que podem afetar a disponibilidade, comprometer a segurança ou consumir recursos em excesso;
 
-**Cognito**
+- usado para identificar como as distribuições CloudFront e ALB respondem às requisições web;
 
-O [Cognito](https://aws.amazon.com/pt/cognito) é um serviço que permite adicionar cadastramento, login e controle de acesso de usuários a aplicações web e móveis com rapidez e facilidade.
+- é composto por:
+	- *conditions* que definem quais elementos das requisições de entrada HTTP e HTTPS o WAF vai monitorar, sob critérios de seleção de scripts, localidades de origem de requisição, endereço IP, strings e RegEx ou size constraints, além de SQL injection;
+	- *rules* que são constituídas por conjuntos de *conditions*, as quais devem ser totalmente satisfeitas, por estarem paralelizadas com o operador *and*;
+	- *web ACL* que é constituída por um conjunto de *rules*;
 
+### Amazon Cognito
+- o [Cognito](https://aws.amazon.com/pt/cognito) é um serviço que permite adicionar cadastramento, login e controle de acesso de usuários a aplicações web e móveis com rapidez e facilidade;
 
-**Organizations**
+### AWS Organizations
+- o [Organizations](https://aws.amazon.com/pt/organizations) é um serviço que ajuda você a gerenciar e controlar seu ambiente de maneira centralizada à medida que os negócios e seus recursos da AWS expandem;
 
-O [Organizations](https://aws.amazon.com/pt/organizations) é um serviço que ajuda você a gerenciar e controlar seu ambiente de maneira centralizada à medida que os negócios e seus recursos da AWS expandem.
+- **características**:
+	- gerencia todas as suas contas;
+	- permite a consolidação de faturamento (consolidated bills);
+	- com muitas contas e grandes volumes de utilização pode-se obter descontos na AWS;
+	- políticas de segurança podem ser controladas de forma “organizacional”;
 
-**Características**
+### AWS GuardDuty
+- o [GuardDuty](https://aws.amazon.com/pt/guardduty) é um serviço de detecção de ameaças que monitora continuamente suas contas e cargas de trabalho da AWS para atividade maliciosa e fornece resultados de segurança detalhados para visibilidade e remediação;
 
-- Gerencia todas as suas contas.
-- Permite a consolidação de faturamento (consolidated bills).
-- Com muitas contas e grandes volumes de utilização pode-se obter descontos na AWS.
-- Políticas de segurança podem ser controladas de forma “organizacional”.
-
-**Web Application Firewall - WAF**
-
-O [WAF](https://aws.amazon.com/pt/waf) é um firewall de aplicações web que ajuda a proteger suas aplicações web ou APIs contra bots e exploits comuns na web que podem afetar a disponibilidade, comprometer a segurança ou consumir recursos em excesso.
-
-
-
-**GuardDuty**
-
-O [GuardDuty](https://aws.amazon.com/pt/guardduty) é um serviço de detecção de ameaças que monitora continuamente suas contas e cargas de trabalho da AWS para atividade maliciosa e fornece resultados de segurança detalhados para visibilidade e remediação.
-
-**Macie**
-
-O [Macie](https://aws.amazon.com/pt/macie) é um serviço de segurança e privacidade de dados totalmente gerenciado que usa Machine Learning e correspondência de padrões para descobrir e proteger seus dados confidenciais na AWS.
+### Amazon Macie
+- o [Macie](https://aws.amazon.com/pt/macie) é um serviço de segurança de dados que descobre dados sigilosos usando machine learning e correspondência de padrões, fornece visibilidade dos riscos de segurança de dados e permite proteção automatizada contra esses riscos;
 
 
 
