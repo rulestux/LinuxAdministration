@@ -624,7 +624,6 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 	- chaves de acesso são criadas dinamicamente;
 	- usuários, aplicações e serviços podem assumir IAM Roles;
 
-
 ### Amazon Inspector
 - o [Inspector](https://aws.amazon.com/pt/inspector) é um serviço de avaliação de segurança automático que ajuda a melhorar a segurança e a conformidade dos aplicativos implementados na AWS com máquinas EC2; o Amazon Inspector avalia automaticamente aplicativos em busca de exposições, vulnerabilidades ou discrepâncias em relação às melhores práticas; analisa conforme padrões de complience e segurança;
 
@@ -634,10 +633,25 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 	- SDK;
 	- API;
 
+### AWS Shield
+- o [Shield](https://aws.amazon.com/pt/shield) é um serviço gerenciado de proteção contra DDoS que protege os aplicativos executados na AWS;
 
-**Shield**
+- **AWS Shield Standrd**:
+	- disponível para todos os clientes da AWS sem custos adicionais;
+	- protege contra ataques mais comuns;
+	- protege as camadas de transporte e rede;
+	- pode ser usado com o Amazon Route53 e o Amazon CloudFront, para aumentar o nível de segurança;
 
-O [Shield](https://aws.amazon.com/pt/shield) é um serviço gerenciado de proteção contra DDoS que protege os aplicativos executados na AWS.
+- **AWS Shield Advanced**:
+	- com custo adicional, oferece alto nível de proteção contr ataques web no CloudFront, Route53, EC2, Elastic Load Balancing, Elastic IP;
+	- protege contra ataques massivos de alta escala e grande volume de eventos;
+	- configura Network ACLs durante ataque para evitar parada do serviço e utilização em excesso de recursos como capacidade da rede;
+	- permite proteção customizada;
+	- protege contra custos de DDoS, ou seja, quando o custo dos recursos atingidos aumentar, como caso o ELB aumentar, a AWS devolve como créditos ao cliente;
+	- permite contactar o **DDoS Response Team \(DRT)**, que trabalha em plantão 24x7, para obter assistência e ajuda na mitigação dos problemas;
+	- provê acesso em tempo real a relatórios e métricas, com total visibilidade do impacto do ataque em seus recursos AWS;
+	- protege contra ataques de diversos outros tipos, como SYN Flood, UDP Reflection Attack, DNS Query Flood, Cache-Busting Attack etc.;
+
 
 **Cognito**
 
