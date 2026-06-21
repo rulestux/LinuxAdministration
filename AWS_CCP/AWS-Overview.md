@@ -665,6 +665,26 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 ### Amazon Cognito
 - o [Cognito](https://aws.amazon.com/pt/cognito) é um serviço que permite adicionar cadastramento, login e controle de acesso de usuários a aplicações web e móveis com rapidez e facilidade;
 
+### AWS GuardDuty
+- o [GuardDuty](https://aws.amazon.com/pt/guardduty) é um serviço de detecção de ameaças que monitora continuamente suas contas e cargas de trabalho da AWS para atividade maliciosa e fornece resultados de segurança detalhados para visibilidade e remediação;
+
+### Amazon Macie
+- o [Macie](https://aws.amazon.com/pt/macie) é um serviço de segurança de dados que descobre dados sigilosos usando machine learning e correspondência de padrões, fornece visibilidade dos riscos de segurança de dados e permite proteção automatizada contra esses riscos;
+
+
+## Billing and Pricing
+
+### AWS Support
+- o AWS Support é dividio em planos ou níveis; são eles:
+
+	- *básico*: gratuito, provê acesso a atendimento ao cliente, documentação, whitepapers e fóruns de suporte 24x7;
+
+	- *desenvolvedor*: com custo, recomendado para quem está experimentando ou testando a AWS;
+
+	- *business*: com custo, recomendado para quem tem cargs de trabalho de produção na AWS;
+
+	- *empresarial*: com custo, recomendado para quem tem cargas de trabalho empresariais ou críticas na AWS;
+
 ### AWS Organizations
 - o [Organizations](https://aws.amazon.com/pt/organizations) é um serviço que ajuda você a gerenciar e controlar seu ambiente de maneira centralizada à medida que os negócios e seus recursos da AWS expandem;
 
@@ -674,11 +694,14 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 	- com muitas contas e grandes volumes de utilização pode-se obter descontos na AWS;
 	- políticas de segurança podem ser controladas de forma “organizacional”;
 
-### AWS GuardDuty
-- o [GuardDuty](https://aws.amazon.com/pt/guardduty) é um serviço de detecção de ameaças que monitora continuamente suas contas e cargas de trabalho da AWS para atividade maliciosa e fornece resultados de segurança detalhados para visibilidade e remediação;
 
-### Amazon Macie
-- o [Macie](https://aws.amazon.com/pt/macie) é um serviço de segurança de dados que descobre dados sigilosos usando machine learning e correspondência de padrões, fornece visibilidade dos riscos de segurança de dados e permite proteção automatizada contra esses riscos;
+---------------------------------------------------------------------
+
+# Créditos
+
+- fichamento adaptado do curso [AWS Certified Cloud Practitioner - Preparatório AWS CCP](https://www.udemy.com/course/aws-certified-cloud-practitioner-aws-ccp) e do repositório [AWS Certified Cloud Practitioner](https://github.com/gustavofreze/aws-certified-cloud-practitioner)
+
+
 
 
 
