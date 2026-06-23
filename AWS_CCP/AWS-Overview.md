@@ -4,83 +4,133 @@
 
 
 ## Vantagens
+- As 6 Vantagens Oficiais da Nuvem:
 
 ### Mudança na modalidade gastos
-- muda da modalidade de despesas de capital, [CAPEx](https://pt.wikipedia.org/wiki/CAPEX) ou despesa de aquisição de bens, para modelo de despesa variável, [OPEx](https://pt.wikipedia.org/wiki/OPEX) ou depesa operacional.
+- muda da modalidade de despesas de capital, [CapEx](https://pt.wikipedia.org/wiki/CAPEX) ou despesa de aquisição de bens \(**despesa de capital**), para modelo de despesa variável, [OpEx](https://pt.wikipedia.org/wiki/OPEX) ou **depesa operacional**.
 
-### Economia de escala
-- com a computação em nuvem, você pode chegar a um custo variável menor do que seria possível por conta própria. Como o uso de centenas de milhares de clientes é agregado à nuvem, os provedores como a AWS têm redução de custos, através da alta escala de aquisição de hardware para a infraestrutura, o que se converte em um menor preço pago em função do uso.
+[Gemini](https://gemini.google.com/) comments:
+- **CAPEX \(Capital Expenditure):** Dinheiro gasto adiantado em ativos físicos (comprar servidores, construir datacenters). Prende capital e gera custos de depreciação.
+- **OPEX \(Operational Expenditure):** Despesas operacionais cotidianas. Na nuvem, você paga apenas pelo que consome, transformando um custo fixo previsível/alto em um custo variável escalável.
+
+- *Conceitos Importantes para Fixar (Padrão NIST)*:
+	- **On-demand self-service \(Autoatendimento sob demanda):** O usuário provisiona recursos sozinho, via console/API, sem precisar solicitar a um atendente.
+	- **Measured Service \(Serviço mensurado):** Sistemas de nuvem controlam e otimizam o uso de recursos automaticamente, fornecendo relatórios precisos do que foi consumido (transparência de custos).
+
+### Economia de escala massiva
+- com a computação em nuvem, você pode chegar a um custo variável menor do que seria possível por conta própria \(Benefit from massive economies of scale); 
+
+- como o uso de centenas de milhares de clientes é agregado à nuvem, os provedores como a AWS têm redução de custos, através da alta escala de aquisição de hardware para a infraestrutura, o que se converte em um menor preço pago em função do uso;
 
 ### Capacidade
-- você cresce ou diminui a capacidade necessária para atender às suas demandas, pagando apenas o que consumir.
+- você cresce ou diminui a capacidade necessária para atender às suas demandas, pagando apenas o que consumir;
 
 ### Agilidade e velocidade
-- recursos estão disponíveis imediatamente; alta disponibilidade.
+- recursos estão disponíveis imediatamente; alta disponibilidade;
 
 ### Economia
-- você deixa de gastar dinheiro para comprar e manter data centers.
+- você deixa de gastar dinheiro para comprar e manter data centers;
 
 ### Global em poucos minutos
-- permite que você tenha recursos disponíveis globalmente em poucos minutos, com baixa latência e custo, melhorando a experiência do cliente, através de Content Delivery Network \(CDN).
+- permite que você tenha recursos disponíveis globalmente em poucos minutos, com baixa latência e custo, melhorando a experiência do cliente, através de Content Delivery Network \(CDN);
 
 
 ## Tipos de Cloud Computing
 
 ### IaaS - Infrastructure as a Service
-	- contratante gerencia os servidores físicos ou virtuais;
-	- contratante gerencia os sistemas operacionais e softwares adicionais;
-	- o datacenter não tem responsabilidade com o que você faz com os recursos;
+- o Provedor de Nuvem gerencia os servidores físicos ou virtuais;
+- o contratante gerencia os sistemas operacionais e softwares adicionais;
+- o Provedor de Nuvem não tem responsabilidade com o que você faz com os recursos;
+- **Exemplo na AWS:** **Amazon EC2**, Amazon EBS, Amazon VPC;
 
 ### PaaS - Platform as a Service
-	- datacenter é responsável pelos recursos físicos ou virtuais, SOs, softwares e alguns itens de segurança;
-	- contratante é responsável pela aplicação e sua configuração;
-	
+- o provedor é responsável pelos recursos físicos ou virtuais, SOs, softwares e alguns itens de segurança;
+- o contratante é responsável pela aplicação e sua configuração;
+- **Exemplo na AWS:** **AWS Elastic Beanstalk**, Amazon RDS;
+
 ### SaaS - Software as a Service
-	- toda a responsabilidade é do provedor, como no caso do Gmail, Office 365, Salesforce etc..
+- toda a responsabilidade é do provedor;
+- **Exemplos comuns:** Gmail, Microsoft Office 365, Salesforce;
 
 
 ## Modelos de Implantação de Cloud Computing
 
 ### Public Cloud
-	- AWS, Azure, Google Cloud;
+- os recursos de computação (como servidores e armazenamento) pertencem e são operados por um provedor terceirizado (como a AWS) e entregues pela internet.
+- AWS, Azure, Google Cloud;
 
 ### Private Cloud
-	- datacenter próprio da empresa \(on-premises), como uma infraestrutura de TI antigam, com recursos dedicados privados;
+- datacenter próprio da empresa \(on-premises. on-prem, private cloud ou infraestrutura local), como uma infraestrutura de TI antiga, com recursos dedicados privados;
 
 ### Hybrid Cloud
-	- Combinação entre Public Cloud e Private Cloud \(on-premises);
+- Combinação entre Public Cloud e Private Cloud \(on-premises);
+- serviços AWS para nuvem híbrida:
+	- **AWS Outposts:** hardware físico da AWS instalado dentro do datacenter local do cliente para rodar serviços da AWS de forma nativa e local;
+	- **AWS Direct Connect:** conexão de rede física direta dedicada entre a infraestrutura local e as instalações da AWS, contornando a internet pública;
+	- **AWS Storage Gateway:** integração de armazenamento híbrido, permitindo que servidores locais usem o Amazon S3 com segurança;
+
+## Modelo de Responsabilidade Compartilhada (Shared Responsibility Model)
+- **responsabilidade DA nuvem \(Segurança DA Nuvem - AWS):** a AWS protege a infraestrutura global que executa todos os serviços oferecidos;
+    - **o que engloba:** segurança física dos datacenters, instalações, hardware \(servidores, discos), software de virtualização \(hypervisors) e a rede física das Regiões e Zonas de Disponibilidade \(AZs);
+
+- **Responsabilidade NA nuvem \(Segurança NA Nuvem - Cliente):** o cliente é responsável por como configura e utiliza os recursos provisionados;
+    - **O que engloba:** dados do cliente, gerenciamento de identidades e acessos \(IAM), configuração de firewalls \(Security Groups e NACLs), criptografia de dados \(em repouso e em trânsito) e o gerenciamento/patches do Sistema Operacional \(em serviços IaaS como instâncias EC2);
+
 
 ---------------------------------------------------------------------
 
 # Infraestrutura Global da AWS
 
-- a [infraestrutura global da AWS](https://aws.amazon.com/pt/about-aws/global-infrastructure) é uma plataforma de nuvem e oferece mais de 200 serviços completos de datacenter em todo o mundo.
+- a [infraestrutura global da AWS](https://aws.amazon.com/pt/about-aws/global-infrastructure) é uma plataforma de nuvem e oferece mais de 200 serviços completos de datacenter em todo o mundo;
 
 ## Regiões \(Regions)
-- são as localidades físicas onde a AWS está disponível ao redor do mundo.
+- são as localidades físicas, totalmente isoladas e independentes umas das outras, onde a AWS está disponível ao redor do mundo;
 
-## Zonas de disponibilidades \(Availability Zone - AZ)
-- é a quantidade de datacenters que a AWS tem em cada uma das regiões para prover serviços e produtos. No mínimo, são duas zonas de disponibilidade por região, a fim de proporcionar **alta disponibilidade**, **tolerância a falhas**, *desempenho*, *disaster recovery* e **escalabilidade**.
+- *Critérios para escolha de uma Região:*
+  1. **Conformidade/Legislação \(Compliance):** atender a requisitos legais de retenção de dados no país de origem \(ex: LGPD no Brasil, GDPR na Europa);
+  2. **Proximidade \(Latência):** reduzir o tempo de resposta de rede para os usuários finais;
+  3. **Custo:** os preços dos serviços variam de acordo com a Região devido a impostos e infraestrutura local \(ex: a Região de São Paulo é historicamente mais cara que a de Virgínia do Norte devido a impostos locais);
+  4. **Disponibilidade de Serviços:** verificar se o serviço desejado já está homologado naquela região;
 
-## Pontos de presença \(Edge Locations)
-- uma *edge location* é basicamente um pequeno servidor de cache. Eles estão localizados na maioria das principais cidades do mundo e são usados especificamente pelo **CloudFront** \(CDN da AWS) para distribuir conteúdo ao usuário final e reduzir a latência do acesso.
+## Zonas de Disponibilidades \(Availability Zone - AZ)
+- consiste em **um ou mais datacenters discretos** que a AWS tem, com energia, refrigeração e segurança física redundantes dentro de uma mesma Região, para prover serviços e produtos, ; no mínimo, são duas zonas de disponibilidade por região, a fim de proporcionar **alta disponibilidade**, **tolerância a falhas**, *desempenho*, *disaster recovery* e **escalabilidade**.
 
+- por padrão, cada Região possui no mínimo 3 AZs, focando em resiliência tripla, com raras exceções históricas com 2;
+
+- **Conectividade:** as AZs de uma mesma região são interconectadas por redes de fibra óptica privadas, de altíssima velocidade e baixa latência;
+
+## Pontos de Presença \(Edge Locations)
+- uma **edge location** é basicamente uma infraestrutura de computadores/servidores de tamanho menor localizados nas principais metrópoles do mundo, fora das Regiões centrais, funcionando como um pequeno servidor de cache; 
+
+- eles estão localizados na maioria das principais cidades do mundo e são usados especificamente pelo **Amazon CloudFront** \(CDN da AWS) para distribuir conteúdo ao usuário final e reduzir a latência do acesso a conteúdos estáticos e dinâmicos \(vídeos, imagens, arquivos);
+
+- **Regional Edge Caches:** Uma camada intermediária de cache localizada entre as Edge Locations e as Regiões, usada para armazenar conteúdos de acesso menos frequente.
+
+
+---------------------------------------------------------------------
 
 # AWS Management Interfaces
 
 ## AWS Management Console
-- interface gráfica com suporte para a maioria dos serviços da AWS. Pode ser usada via navegador ou aplicativo.
+- interface gráfica com suporte para a maioria dos serviços da AWS; pode ser usada via navegador ou aplicativo;
+- é ideal para iniciantes, atividades visuais, testes rápidos, visualização de custos e tarefas não automatizada;
+- **Autenticação:** usuário, senha e MFA \(Múltiplo Fator de Autenticação);
 
 
 ## AWS Command Line Interface - CLI
-- acesso aos serviços via linha de comando. Facilidade, flexibilidade e precisão para uso de scripts de automação.
+- acesso aos serviços via linha de comando; 
+- facilidade, flexibilidade e precisão ideais para uso de scripts de automação; requer instalação local;
+- **Autenticação:** utiliza **Chaves de Acesso** \(Access Key ID e Secret Access Key);
 
 ### AWS CloudShell
-- funcionalidade que pode ser encontrada ao lado da barra de pesquisa no Console de gerenciamento da AWS, fornece um shell baseado em navegador que é pré-autenticado com as credenciais do console.
+- funcionalidade que pode ser encontrada ao lado da barra de pesquisa no console de gerenciamento da AWS, fornece um shell baseado em navegador que é pré-autenticado com as credenciais do console;
+- apresenta a AWS CLI e outras ferramentas \(como Git, Python, etc.) já instaladas de fábrica;
 
 
 ## Software Development Kit - SDK
-- suporta diversas linguagens de programação e permite a incorporação de serviços AWS em aplicações.
+- conjunto de bibliotecas e ferramentas de desenvolvimento para integrar serviços da AWS diretamente no código-fonte; suporta diversas linguagens de programação e permite a incorporação de serviços AWS em aplicações;
+- **Autenticação:** utiliza **Chaves de Acesso** embutidas de forma segura no ambiente da aplicação;
+
 
 ---------------------------------------------------------------------
 
@@ -88,31 +138,36 @@
 
 ## AWS Well-Architected Framework
 
-- [Well Architected Framework](https://aws.amazon.com/pt/architecture/well-architected) ajuda você a entender como projetar e operar sistemas confiáveis, seguros, eficientes e econômicos na nuvem AWS. Através de um conjunto de questões documentadas, ele fornece uma maneira de avaliar de forma consistente suas arquiteturas em relação às melhores práticas e identificar áreas para melhorias.
+- [Well Architected Framework](https://aws.amazon.com/pt/architecture/well-architected) ajuda você a entender como projetar e operar sistemas confiáveis, seguros, eficientes e econômicos na nuvem AWS; através de um conjunto de questões documentadas, ele fornece uma maneira de avaliar de forma consistente suas arquiteturas em relação às melhores práticas e identificar áreas para melhorias;
 
 ### 5 Pilares do AWS Well-Architected Framework
 
-- **I - Excelência operacional \(Operational Excellence)**: se concentra em executar e monitorar sistemas para entregar valor empresarial e melhorar continuamente processos e procedimentos. Principais Serviços:
+- **I - Excelência operacional \(Operational Excellence)**: se concentra em executar e monitorar sistemas para entregar valor empresarial e melhorar continuamente processos e procedimentos; palavras-chave: "Executar a infraestrutura como código \(IaC)" e "Evoluir procedimentos com frequência"; Principais Serviços:
 
-	- AWS Config:
+	- **AWS CloudFormation**:
+		- oferece aos desenvolvedores e administradores de sistemas uma maneira fácil de criar e gerenciar um conjunto de recursos relacionados na AWS, fornecendo provisionamento e atualização de uma forma organizada e previsível; é o campeão desse pilar por permitir tratar infraestrutura como código \(IaC);
+	- **AWS Config**:
 		- proporciona um inventário de recursos da AWS, um histórico de configuração e notificações de alteração de configuração para possibilitar a segurança e a governança;
-	- Amazon Cloudwatch:
+	- **Amazon Cloudwatch**:
 		- fornece a você dados e insights acionáveis para monitorar aplicações, entender e reagir a alterações de performance em todo o sistema, otimizar a utilização de recursos e ter uma visualização unificada da integridade operacional;
-	- AWS CloudFormation:
-		- oferece aos desenvolvedores e administradores de sistemas uma maneira fácil de criar e gerenciar um conjunto de recursos relacionados na AWS, fornecendo provisionamento e atualização de uma forma organizada e previsível;
 
-- **II - Segurança \(Security)**: se concentra em proteger informações e sistemas. Principais Serviços:
+- **II - Segurança \(Security)**: se concentra em proteger informações e sistemas; Principais Serviços:
 
 	- AWS Identity and Access Management \(IAM):
 		- gerencie com segurança as identidades e o acesso a serviços e recursos da AWS;
 	- AWS CloudTrail: 
 		- acompanhe a atividade dos usuários e o uso da API na AWS e em ambientes híbridos e multinuvem;
-	- AWS Web Application Firewall \(WAF):
+		- lembrar: o CloudTrail audita quem fez o quê \(chamadas de API/histórico de ações); o CloudWatch monitora performance e métricas \(uso de CPU, logs de aplicação);
+	- AWS Web Application Firewall \(WAF) e AWS Network Firewall:
 		- proteja suas aplicações da Web contra explorações comuns;
-	- AWS Key Management Service \(KMS):
-		- facilita a criação e o gerenciamento de chaves criptográficas e o controle de seu uso em uma ampla variedade de serviços AWS e em seus aplicativos;
 	- AWS Shield:
 		- proteção contra ataques DDoS;
+
+	- AWS Key Management Service \(KMS):
+		- facilita a criação e o gerenciamento de chaves criptográficas e o controle de seu uso em uma ampla variedade de serviços AWS e em seus aplicativos;
+	- AWS Artifact: 
+		- serviço gratuito onde você baixa os relatórios de conformidade da AWS \(como ISO, PCI, SOC) para provar a auditores que a nuvem é segura;
+
 	- AWS Inspector:
 		- análise de vulnerabilidades;
 	- AWS GuardDuty:
@@ -124,21 +179,25 @@
 	- Network ACL \(NACL):
 		- controle de acesso à rede baseado em regras;
 
-- **III - Confiabilidade \(Reliability)**: se concentra em garantir que uma carga de trabalho execute sua função pretendida corretamente e de modo consistente quando esperado. Principais Serviços:
+- **III - Confiabilidade \(Reliability)**: se concentra em garantir que uma carga de trabalho execute sua função pretendida corretamente e de modo consistente quando esperado; foco em Alta Disponibilidade e Redundância; Principais Serviços:
 
 	- AWS CloudFormation;
 	- Amazon Cloudwatch;
 	- Amazon Simple Storage Service \(S3):
 		- é um serviço de armazenamento de objetos que oferece escalabilidade líder do setor, disponibilidade de dados, segurança e performance;
-	- Amazon Glacier;
+	- Amazon S3 Glacier;
+	- Amazon Route 53;
+	- Elastic Load Balancing \(ELB);
+	- AWS Backup;
 
-- **IV - Eficiência de desempenho \(Performance Efficiency)**: se concentra no uso eficiente de recursos de TI e computação pelos clientes. Principais Serviços:
+- **IV - Eficiência de desempenho \(Performance Efficiency)**: se concentra no uso eficiente de recursos de TI e computação pelos clientes; palavras-chave: "Selecionar os recursos certos com base na carga de trabalho"; Principais Serviços:
 	
 	- Amazon EC2 Auto Scaling:
 		- ajuda você a manter a disponibilidade do aplicativo e permite que você adicione ou remova instâncias EC2 automaticamente, de acordo com as condições definidas por você;
 	- Amazon Cloudwatch;
 	- Amazon CloudFront:
 		- fornece dados, vídeos, aplicativos e APIs para clientes em todo o mundo com baixa latência e altas velocidades de transferência, tudo em um ambiente amigável ao desenvolvedor;
+	- AWS Lambda;
 
 - **V - Otimização de custos \(Cost Optimization)**: se concentra em evitar custos desnecessários. Principais Serviços:
 
@@ -146,14 +205,74 @@
 	- AWS Cost Explorer: 
 		- permite visualizar, entender e gerenciar seus custos e uso das soluções da AWS ao longo do tempo;
 
+- **VI - Sustentabilidade (Sustainability)**: concentra-se em minimizar os impactos ambientais da execução de cargas de trabalho na nuvem;
+	- *Conceito-chave:* entender o impacto compartilhado \(a AWS otimiza os datacenters e o cliente otimiza o código/arquitetura), maximizar a utilização dos servidores para reduzir o consumo de energia por unidade de trabalho;
+	- *Recomendações:* escolher tipos de instâncias eficientes \(como processadores AWS Graviton) ou usar arquiteturas serverless para reduzir o desperdício de recursos ligados sem uso;
+
 
 ## Outros Serviços Relacionados ao AWS Core Design Architecture
 
 ### AWS Well-Architected Tool
-- é a ferramenta que facilita a verificação da conformidade de uma arquitetura desenvolvida pelo contratante, através da metodologia de perguntas e respostas do Framework.
+- é a ferramenta que facilita a verificação da conformidade de uma arquitetura desenvolvida pelo contratante, através da metodologia de perguntas e respostas do Framework;
+
+- é um questionário conceitual guiado pelo cliente da AWS; o cliente entra nela e responde perguntas sobre os processos da sua equipe para que a ferramenta gere um relatório de riscos de design;
 
 ### AWS Trusted Advisor
-- é um recurso on-line que auxilia na redução de custos, no aumento de performance e na *melhoria da segurança* por meio da otimização do seu ambiente da AWS. O Trusted Advisor fornece orientações em tempo real para auxiliar você no provisionamento de recursos com base nas práticas recomendadas da AWS. O número de métricas analisadas depende do nível de suporte contratado.
+- é um recurso on-line que auxilia na redução de custos, no aumento de performance e na *melhoria da segurança* por meio da otimização do seu ambiente da AWS; 
+- o Trusted Advisor fornece orientações em tempo real para auxiliar você no provisionamento de recursos com base nas práticas recomendadas da AWS; 
+- o número de métricas analisadas depende do nível de suporte contratado;
+- é um scanner automatizado que varre a conta AWS de forma programática atrás de coisas mal configuradas no código da infraestrutura \(ex: volumes de disco soltos e sem uso);
+
+- 5 pilares/categorias de inspeção do Trusted Advisor:
+
+	- Otimização de Custos \(Cost Optimization):
+		- identifica recursos ociosos \(como instâncias EC2 subutilizadas) para economizar dinheiro;
+
+	- Desempenho \(Performance);
+		- sugere melhorias de throughput e configurações de rede;
+		
+	- Segurança \(Security);
+		- avalia permissões perigosas \(como buckets S3 públicos por engano) e configurações de firewall expostas;
+
+	- Tolerância a Falhas \(Fault Tolerance);
+		- verifica se os backups estão ativos e se há redundância de AZs configurada;
+
+	- Limites de Serviço \(Service Limits): 
+		- avisa quando você está prestes a estourar o teto padrão de recursos da conta \(como limite de instâncias EC2 rodando em uma região); 
+		- monitora o uso da sua conta em relação aos limites padrão impostos pela AWS para evitar travamentos operacionais;
+
+- **Regra de Suporte:** contas com suporte *Basic* ou *Developer* têm acesso a regras limitadas de segurança e limites de serviço; o acesso completo a todas as verificações exige suporte técnico nível *Business* ou *Enterprise*:
+
+	- Nível Gratuito (Basic/Developer Support): dá acesso limitado, cobrindo apenas verificações básicas de segurança (como portas abertas de Security Groups ou falta de MFA na conta raiz) e os limites de serviço;
+
+	- Nível Completo (Business/Enterprise Support): desbloqueia o monitoramento completo com todas as centenas de regras automatizadas de infraestrutura em tempo real;
+
+
+## Frameworks de Adoção e Migração para Nuvem
+
+### AWS Cloud Adoption Framework \(AWS CAF)
+- o CAF ajuda as organizações a criarem um plano abrangente para a transformação digital na nuvem através de **6 Perspectivas** fundamentais divididas em dois blocos:
+
+ 	- **Perspectivas de Negócios \(Foco em capacidades de negócios e pessoas):**
+		- I. *Business \(Negócios):* alinhamento da TI com as estratégias e resultados de negócios;
+		- II. *People \(Pessoas):* evolução da cultura, competências e liderança para a nuvem;
+		- III. *Governance \(Governança):* gerenciamento e medição de investimentos em nuvem para maximizar o valor;
+	- **Perspectivas Técnicas \(Foco em capacidades tecnológicas e de engenharia):**
+		- IV. *Platform \(Plataforma):* arquitetura de ambientes de nuvem e padrões de infraestrutura;
+		- V. *Security \(Segurança):* garantia de conformidade, visibilidade e controle de riscos na nuvem;
+		- VI. *Operations \(Operações):* saúde, monitoramento e entrega de serviços de TI em escala de nuvem;
+
+### Estratégias de Migração \(os 7 R's)
+- quando uma empresa decide migrar sua infraestrutura local \(on-premises) para a AWS, cada aplicação deve seguir uma destas estratégias:
+
+	- **I. Rehost \(Lift-and-Shift):** mover a aplicação para a nuvem exatamente como ela está, sem modificações \(ex: migrar uma VM local diretamente para o EC2); rápido, mas não otimizado;
+	- **II. Relocate \(Hypervisor-Level Shift):** mover cargas de trabalho baseadas em virtualização local \(geralmente VMware) diretamente para uma solução de nuvem compatível \(como *VMware Cloud on AWS*), sem precisar alterar configurações operacionais ou converter o formato das VMs;
+	- **III. Replatform \(Lift-Tinker-and-Shift):** mover para a nuvem fazendo pequenas otimizações para aproveitar recursos gerenciados, sem alterar o código principal \(ex: mover um banco de dados local para o Amazon RDS);
+	- **IV. Refactor / Re-architect \(Rearquitetar):** modificar o código ou arquitetura para torná-la nativa da nuvem \(ex: transformar uma aplicação monolítica em microsserviços usando AWS Lambda);
+	- **V. Repurchase \(Recomprar):** mudar para um produto ou modelo comercial diferente, geralmente migrando para um SaaS \(ex: abandonar um CRM local e assinar o Salesforce);
+	- **VI. Retain \(Reter):** manter a aplicação rodando no ambiente local \(on-premises) por enquanto, seja por razões de conformidade ou porque passou por uma migração recente;
+	- **VII. Retire \(Aposentar):** identificar e desativar aplicações que não são mais úteis ou necessárias para o negócio;
+
 
 ---------------------------------------------------------------------
 
@@ -162,7 +281,7 @@
 ## Computing Services
 
 ### EC2 - Elastic Compute Cloud
-- *Amazon Elastic Compute Cloud \(Amazon EC2)* é um serviço web que fornece capacidade computacional segura e redimensionável na nuvem.
+- *Amazon Elastic Compute Cloud \(Amazon EC2)* é um serviço web que fornece capacidade computacional segura e redimensionável na nuvem;
 
 - **AMI - Amazon Machine Image** é a instância EC2. A AMI é definida por:
 
@@ -459,7 +578,7 @@ durante a migração, minimizando o tempo de inatividade de aplicações que dep
 	- Ruby;
 	- Go;
 
-### Elastic Load Balancing - ELB
+### AWS Elastic Load Balancing - ELB
 - o [ELB](https://aws.amazon.com/pt/elasticloadbalancing) é um serviço que distribui automaticamente o tráfego de aplicações de entrada entre vários destinos e dispositivos virtuais em uma ou mais zonas de disponibilidade (AZ);
 
 - *Classic Load Balancing*: distribui entre instâncias EC2;
@@ -471,7 +590,7 @@ durante a migração, minimizando o tempo de inatividade de aplicações que dep
 ### Auto Scaling
 - o [Auto Scaling](https://aws.amazon.com/pt/autoscaling) é um serviço que monitora os aplicativos e ajusta automaticamente a capacidade para manter um desempenho constante e previsível pelo menor custo possível, em instâncias pré-configuradas, usando tráfego ou processamento \(CPU) como critério de gatilho;
 
-### Elastic Beanstalk
+### AWS Elastic Beanstalk
 - o [Elastic Beanstalk](https://aws.amazon.com/pt/elasticBeanstalk) é um serviço que permite a implantação de aplicações apenas fornecendo o código-fonte, sem conhecimento ou definição prévia da infraestrutura; trata-se de um serviço **PaaS - Platform as a Service**;
 
 - suporta aplicações em Go, Java, .NET, PHP, Python e Ruby;
@@ -483,10 +602,10 @@ durante a migração, minimizando o tempo de inatividade de aplicações que dep
 ## Observability and Management Services
 
 ### AWS CloudTrail
-- o [CloudTrail](https://aws.amazon.com/pt/cloudtrail) é um serviço de segurança que monitora, registra e retém todas as atividades e ações realizadas em uma conta AWS na infraestrutura e serviços AWS; ele registra **quem** fez **o que**, em **qual recurso** e **quando**; é usado principalmente para auxílio a governança, auditoria, segurança, análise de riscos e outros;
+- o [CloudTrail](https://aws.amazon.com/pt/cloudtrail) é um serviço de segurança que monitora, registra e retém todas as atividades e ações realizadas em uma conta AWS na infraestrutura e serviços AWS; ele registra em logs **quem** fez **o que**, em **qual recurso** e **quando**; é usado principalmente para auxílio a governança, auditoria, segurança, análise de riscos e outros;
 
 ### AWS CloudWatch
-- o [CloudWatch](https://aws.amazon.com/pt/cloudwatch) é um serviço de monitoramento de recursos integrado da AWS que permite coleta, monitoração, análise e ação sobre os comportamentos dos recursos da AWS; Ele coleta dados de monitoramento e operações na forma de logs, métricas e eventos;
+- o [CloudWatch](https://aws.amazon.com/pt/cloudwatch) é um serviço de monitoramento de recursos integrado da AWS que permite coleta, monitoração, análise e ação sobre os comportamentos dos recursos da AWS; ele coleta dados de monitoramento e operações na forma de logs, métricas e eventos, visando a "saúde" e a performance das aplicações hospedadas;
 
 ### AWS X-Ray
 - o X-Ray é um serviço que facilita a análise de *comportamento* e *rastreamento* completo de Aplicações Distribuídas \(em microsserviços);
@@ -549,11 +668,11 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 
 ## Network Services
 
-### AWS CloudFront
+### Amazon CloudFront
 - o [CloudFront](https://aws.amazon.com/pt/cloudfront) é um serviço de rede de entrega de conteúdo (CDN) criado para alta performance, segurança e conveniência do desenvolvedor;
 
 
-### Route53
+### Amazon Route53
 - o [Route53](https://aws.amazon.com/pt/route53) é um serviço DNS altamente disponível e escalável;
 
 - **características**:
@@ -675,15 +794,17 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 ## Billing and Pricing
 
 ### AWS Support
-- o AWS Support é dividio em planos ou níveis; são eles:
+- o AWS Support é dividido em planos ou níveis; são eles:
 
 	- *básico*: gratuito, provê acesso a atendimento ao cliente, documentação, whitepapers e fóruns de suporte 24x7;
 
-	- *desenvolvedor*: com custo, recomendado para quem está experimentando ou testando a AWS;
+	- *desenvolvedor*: com custo, recomendado para quem está experimentando ou testando a AWS; resposta em horário comercial;
 
-	- *business*: com custo, recomendado para quem tem cargs de trabalho de produção na AWS;
+	- *business*: com custo, recomendado para quem tem cargs de trabalho de produção na AWS; resposta em 30 minutos;
 
-	- *empresarial*: com custo, recomendado para quem tem cargas de trabalho empresariais ou críticas na AWS;
+	- *empresarial*: com custo, recomendado para quem tem cargas de trabalho empresariais na AWS; resposta em 15 minutos;
+
+	- *unified operations*: com custo, recomendado para quem tem cargas de trabalho de missão críticas na AWS; resposta em 5 minutos;
 
 ### AWS Organizations
 - o [Organizations](https://aws.amazon.com/pt/organizations) é um serviço que ajuda você a gerenciar e controlar seu ambiente de maneira centralizada à medida que os negócios e seus recursos da AWS expandem;
@@ -693,6 +814,11 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 	- permite a consolidação de faturamento (consolidated bills);
 	- com muitas contas e grandes volumes de utilização pode-se obter descontos na AWS;
 	- políticas de segurança podem ser controladas de forma “organizacional”;
+
+### AWS Marketplace
+*   **O que é:** Um catálogo digital com milhares de listagens de software de fornecedores independentes (terceiros) que funcionam perfeitamente na AWS.
+*   **Uso em prova:** Geralmente aparece como a resposta correta para cenários em que uma empresa precisa "encontrar, testar, comprar e implantar rapidamente softwares de terceiros pré-configurados" (como uma imagem pronta de um firewall da Cisco ou Fortinet, ou um sistema operacional customizado).
+*   **Vantagem Financeira:** Integra-se ao faturamento consolidado da AWS, facilitando o gerenciamento de custos de licenciamento.
 
 
 ---------------------------------------------------------------------
