@@ -281,9 +281,11 @@
 ## Computing Services
 
 ### EC2 - Elastic Compute Cloud
-- *Amazon Elastic Compute Cloud \(Amazon EC2)* é um serviço web que fornece capacidade computacional segura e redimensionável na nuvem;
+- *Amazon Elastic Compute Cloud \(Amazon EC2)* é um serviço web que fornece capacidade computacional \(servidores virtuais chamados "Instâncias") segura e redimensionável na nuvem;
 
-- **AMI - Amazon Machine Image** é a instância EC2. A AMI é definida por:
+- **AMI - Amazon Machine Image** é o template de inicialização \(gabarito) para instâncias EC2; uma AMI contém o Sistema Operacional \(Linux, Windows), configurações de inicialização e softwares/aplicações pré-instalados;
+
+- tipos de instâncias determinam o hardware físico do computador host usado para a sua instância \(CPU, RAM, Armazenamento e Capacidade de Rede); são otimizados para diferentes cenários por:
 
 - quantidade e tipo de **CPU**;
 
@@ -291,28 +293,48 @@
 
 - tamanho e tipo de disco **EBS - Elastic Block Storage**;
 
-- **modalidade** de custo:
+- **modalidade** de custo \(EC2 Purchasing Options):
 	- *On-Demand*:
 		- sob demanda; pay as you go; T2.micro -> Free Tier;
+		- ideal para **aplicações de curto prazo**, cargas de trabalho imprevisíveis ou sistemas que estão sendo testados pela primeira vez e não podem ser interrompidos.
 
 	- *Reserved Instance*:
-		- reservada por 1 ou 3 anos, com até 75% de desconto, com pagamento à vista ou entrada mais restante mensal;
+		- reservada por 1 ou 3 anos, com até 72% de desconto, com pagamento à vista ou entrada mais restante mensal;
+		- ideal para **cargas de trabalho previsíveis** e de estado estacionário (steady-state) que rodam continuamente;
+
+	- *Savings Plans*:
+		- oferece os mesmos descontos das RIs \(até 72%), mas o cliente se compromete com um **valor de consumo por hora** \(ex: \$10/hora) por 1 ou 3 anos;
+		- é muito mais flexível que a RI porque o desconto se aplica automaticamente mesmo se o cliente mudar o tamanho da instância, região, ou migrar do EC2 para AWS Lambda e AWS Fargate;
 
 	- *Spot Request*:
-		- leilão para uso de capacidade ociosa da AWS; o lance sendo aceito, a instância é provisionada;
+		- permite arrematar a capacidade computacional ociosa da AWS com até 90% de desconto; a AWS pode recuperar a instância com um aviso prévio de apenas **2 minutos** se precisar da capacidade de volta; o lance sendo aceito, a instância é provisionada;
+		- ideal para cargas de trabalho **tolerantes a falhas e interrupções** \(processamento em lote, filas de background, renderização de imagens);
 
 	- *Dedicated Hosts*:
-		- servidor físico dedicado pago por hora; descontos de até 70%;
+		- servidor físico totalmente dedicado pago por hora; descontos de até 70%;
+		- dá controle total sobre os sockets e cores físicos; usado estritamente por motivos de **conformidade regulatória rígida** ou para reaproveitar licenças de software corporativas existentes vinculadas ao hardware (modelo **BYOL - Bring Your Own License**);
 
-- **Tipos de instância**: os tipos de instância EC2 são otimizados para tarefas diferentes;
+- **Tipos de instância**: os tipos de instância EC2 são otimizados para tarefas diferente:
 
-| Tipos                          | Características                                                                                                                                           |
-|:-------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Uso geral`                    | fornecem um equilíbrio de recursos de computação, memória e rede;                                                                                         |
-| `Computação acelerada`         | usam aceleradores de hardware, ou coprocessadores, para executar algumas funções de forma mais eficiente do que é possível no software executado em CPUs; |
-| `Otimizada para memória`       | são projetadas para fornecer rápida performance para cargas de trabalho que processam grandes conjuntos de dados na memória;                              |
-| `Otimizada para computação`    | são ideais para aplicações vinculadas à computação que se beneficiam de processadores de alta performance;                                                |
-| `Otimizada para armazenamento` | são projetadas para cargas de trabalho que exigem alto acesso sequencial de leitura e gravação a grandes conjuntos de dados no armazenamento local;       |
+- `Uso geral`
+	- fornecem um equilíbrio de recursos de computação, memória e rede;
+	- usado em servidores web básicos, servidores de desenvolvimento e testes;
+
+- `Otimizada para computação`
+	- são ideais para aplicações vinculadas à computação que se beneficiam de processadores de alta performance; foco em processamento;
+	- usado em servidores de jogos, codificação de vídeo, modelagem científica;
+
+- `Computação acelerada`
+	- usam aceleradores de hardware \(GPUs), ou coprocessadores, para executar algumas funções de forma mais eficiente do que é possível no software executado em CPUs; 
+	- usado em treinamento de Inteligência Artificial (LLMs), Machine Learning, gráficos 3D;
+
+- `Otimizada para memória`
+	- são projetadas para fornecer rápida performance para cargas de trabalho que processam grandes conjuntos de dados na memória;
+	- usado em bancos de dados relacionais de alta performance, caches em memória \(ElastiCache);
+
+- `Otimizada para armazenamento`
+	- são projetadas para cargas de trabalho que exigem alto acesso sequencial de leitura e gravação a grandes conjuntos de dados no armazenamento local;
+	- usado em sistemas de Big Data, Data Warehousing, sistemas de arquivos distribuídos;
 
 
 ## Storage Services
@@ -323,11 +345,13 @@
 - armazenamento de objetos:
 	- cada objeto suportado até um máximo de **5TB de tamanho**;
 
+- armazenamento infinito via internet \(API), não é montado nativamente como um sistema de arquivos local do SO;
+
 - alta durabilidade 99.999999999%, disponibilidade 99.99% e escalabilidade;
 
 - flexibilidade;
 
-- segurança;
+- segurança: aplica criptografia do lado do servidor \(SSE-S3) automaticamente como padrão para todos os novos objetos, sem custo adicional e sem precisar que você configure manualmente;
 
 - baixo custo;
 
@@ -353,7 +377,7 @@
 
 	- o endereço \(URL) de um objeto é um **link address**:
 
-		- ``` https://s3amazonaws.com/bucket-name/object-key.fileformat ```;
+		- ``` https://bucket-name.s3.amazonaws.com/object-key ```;
 
 - **Storage Class**:
 
@@ -377,7 +401,7 @@
 		- mantido em apenas **uma** Zona de Disponibilidade \(AZ);
 		- usada para dados não críticos;
 
-	- classe **Glacier**:
+	- classe **S3 Glacier**:
 		- archiving;
 		- acesso **não** frequente e **não** imediato;
 		- alta durabilidade, disponibilidade e escalabilidade;
@@ -385,36 +409,36 @@
 		- menor custo;
 		- ideal para objetos arquivados, backups, logs etc.;
 
-	- classe **Reduced Redundancy**:
-		- archiving;
-		- acesso frequente e imediato;
-		- baixa redundância;
-		- usado para dados que podem ser novamente reproduzidos, como livros eletrônicos;
-
 	- classe **Intelligent-Tiering**:
 		- move automaticamente os objetos não usados para *infrequent access*;
 		- acesso imediato, quando o objeto tiver em *infrequent access* ele é movido imediatamente para *standard*;
 		- possui custo para a automação;
+		- não cobra taxa de recuperação \(diferente das classes IA);
 		- ideal para objetos cuja frequência de utilização não esteja clara;
 
 - **Ciclo de Vida**:
-	- S3 permite que ações de gerenciamento de ciclo de vida de objetos possam ser criadas a partir de regras;
+	- S3 permite que ações de gerenciamento de ciclo de vida de objetos possam ser criadas a partir de regras de tempo \(ex: após 30 dias):
+	- **Transition Actions**:
+		- os objetos podem ser movidos entre classes de armazenamento após certo período, otimizando os custos de armazenamento a partir de regras;
+	- **Expiration Actions**:
+		- servem para deletar objetos permanentemente após 'X' dias \(muito usado para apagar logs antigos de auditoria);
 
-- **Transition Actions**:
-	- os objetos podem ser movidos entre classes de armazenamento após certo período, otimizando os custos de armazenamento a partir de regras;
+- **Versionamento \(Versioning)**:
+ 	- mantém múltiplas variantes de um objeto no mesmo bucket; permite recuperar arquivos deletados por engano ou sobrescritos; *gera custos adicionais pois cada versão conta como armazenamento*;
 
-- **Policies**:
-	- as políticas de acesso a buckets e objetos são definidas em arquivos de políticas, definindo quem pode e quando pode acessá-los;
+- **Políticas de Acesso (Policies)**:
+	- **Bucket Policies:** regras em formato JSON anexadas diretamente ao bucket para autorizar/negar acessos em massa \(ex: tornar uma pasta do bucket pública para a internet);
+	- **S3 Block Public Access:** trava de segurança global que impede que qualquer bucket seja exposto publicamente, mesmo se houver erro em uma Bucket Policy;
 
 - **Criptografia**:
-	- pode ser habilitada para armazenamento ou transmissão;
+	- por padrão, todos os novos buckets e uploads de objetos no S3 são criptografados automaticamente do lado do servidor \(Server-Side Encryption);
 
 - **Cross-Region Replication**:
 	- funcionalidade que permite a replicação de objetos entre buckets em diferentes regiões;
 	- o versionamento precisa estar habilitado;
 	- útil para backup, redução de latência e atendimento de requisitos legais;
 
-- **Transfer Acceleration**:
+- **S3 Transfer Acceleration**:
 	- funcionalidade para a transferência de grande volume de dados através de longas distâncias;
 	- **Edge Locations** e **CloudFront** são utilizados para otimizar o processo;
 
@@ -423,8 +447,14 @@
 - possui *Snapshot*, que permite criar várias cópias do volume;
 - alta disponibilidade e escalabilidade;
 - segurança;
-- permite habilitar encriptação \(Encryption on Rest);
+- permite habilitar encriptação \(Encryption at Rest);
 - usado em instâncias *EC2*;
+
+- um volume EBS padrão só pode ser anexado a uma única instância EC2 por vez \(com raras exceções de volumes específicos chamados Multi-Attach, mas a regra geral de prova é 1 para 1) e eles devem estar na mesma Zona de Disponibilidade \(AZ) da instância; equivale a um DAS;
+
+- **tipos**:
+	- SSD \(Solid State Drives): focado em performance de IOPS (operações de leitura/escrita por segundo); ideal para Bancos de dados e volumes de boot do Sistema Operacional; tipos comuns: gp3, io2;
+	- HDD \(Hard Disk Drives): focado em throughput \(taxa de transferência de dados em MB/s); ideal para Big Data, Log-streaming e cargas de trabalho sequenciais de baixo custo onde a velocidade de IOPS não é crítica; tipos comuns: st1, sc1;
 
 ### EFS - Elastic File System
 - o [EFS](https://aws.amazon.com/pt/efs) é um serviço de armazenamento que aumenta e diminui automaticamente conforme você adiciona e remove arquivos, sem a necessidade de gerenciamento ou provisionamento;
@@ -433,28 +463,38 @@
 - baixo custo;
 - usado para compartilhamento de arquivos entre instâncias *EC2* e entre essas e Data Centers On-Premises \(local) via *Direct Connect*;
 
+- pode ser montado e compartilhado por centenas de instâncias EC2 simultaneamente, inclusive distribuídas em múltiplas AZs; equivale a um NAS;
+
 ### Storage Gateway
 - armazenamento híbrido \(objeto ou bloco; local ou em nuvem);
 - segurança;
 
-### Snowball
-- dispositivo físico para transferência de grandes volumes de dados locais para a nuvem AWS;
+- tipos de arquitetura que ele assume na ponta \(On-premises):
+	- File Gateway: expõe um compartilhamento de arquivos local \(NFS/SMB) que salva os arquivos diretamente como objetos no Amazon S3;
+	- Volume Gateway: expõe volumes de bloco locais \(iSCSI) para seus servidores locais e tira snapshots assíncronos deles para o EBS na nuvem;
+	- Tape Gateway: substitui fitas magnéticas físicas de backup locais \(VTL) por armazenamento virtual seguro no S3 Glacier;
+
+### AWS Snow Family
+- dispositivos físicos e blindados enviados pela AWS via correio para cenários com conectividade de internet limitada ou inexistente;
+- Migração de Dados e Computação de Borda
 - capacidade de petabytes;
 - criptografia;
 - rastreamento;
 - Amazon envia e coleta;
 
-### Snowball Edge
+### AWS Snowcone
+- o menor e mais leve dispositivo da família \(ultra-portátil, pesa ~2 kg);
+- suporta armazenamento de até 14 TB e possui recursos básicos de computação local; usado para ambientes táticos e remotos;
+
+### AWS Snowball Edge
 - dispositivo físico para processamento de serviços como *EC2* e *Lambda*, permitindo utilização da nuvem AWS em locais sem acesso à Cloud e posterior sincronização;
-- suporta 100TB
 - segurança;
 - gerenciamento;
-- ideal para Navios, Fábricas, Desertos etc.;
 
-### Snowmobile
-- caminhão com container contendo um "mini datacenter móvel" da AWS que suporta até 100PB, para transferência de altíssimo volume de dados;
-- criptografia;
-- rastreamento;
+- **Snowball Edge Storage Optimized** suporta 100TB; ideal para transferência de dados em massa \(até 80/100 TB) de servidores locais para o S3;
+- **Snowball Edge Compute Optimized** fornece forte capacidade de computação local \(incluindo instâncias EC2 e funções AWS Lambda locais) para locais isolados \(*Edge Computing*) como navios, fábricas ou áreas de desastre, permitindo processar os dados localmente e sincronizar com a AWS mais tarde;
+
+### Snowmobile \(serviço descontinuado)
 
 
 ## Network Services
@@ -464,19 +504,36 @@
 
 - **subnets** são criadas para cada AZ e podem ser configuradas para terem acesso público ou privado;
 
-- **Route Tables** controlam o tráfego das subnets;
+	- um VPC para cada Região e uma Subnet para cada AZ;
 
-- **Internet Gateway \(IGW)** permite que a rede VPC tenha acesso à internet;
+- **Route Tables** conjunto de regras \(rotas) que determinam para onde o tráfego de rede das sub-redes ou gateways deve ser direcionado; controlam o tráfego das subnets;
+
+- **Internet Gateway \(IGW)** componente redundante e altamente disponível que permite que a rede VPC tenha acesso à internet;
 
 - **NAT Gateway** permite que subnets tenham conexão com a internet, através de tradução de endereços;
 
+- **VPC Peering** é uma conexão de rede que permite rotear o tráfego diretamente entre duas VPCs \(da sua conta ou de contas terceiras) usando endereços IP privados, fazendo com que elas se comuniquem como se estivessem na mesma rede; não é transitivo \(se A conecta com B, e B com C, A não fala com C automaticamente);
+
+- **Security Groups** 
+	- atuam como firewall virtual para as **Instâncias EC2** \(nível de host);
+	- **Stateful \(Com estado)**: se uma regra de entrada \(Inbound) for permitida, o tráfego de retorno na saída \(Outbound) é liberado automaticamente;
+	- Suporta apenas regras de **Permissão** \(Allow).
+
 - **Natwork Access Control List \(NACL)** controla o acesso a subnets;
+	- atua como um firewall de borda para as **Sub-redes** \(nível de subnet); camada adicional de segurança;
+	- **Stateless (Sem estado):** as regras de entrada e saída são isoladas; se permitir a entrada, deve configurar explicitamente a permissão de saída;
+	- suporta regras de **Permissão (Allow)** e **Negação (Deny)**; avaliado em ordem numérica;
+	- novas redes \(redes não padrão) podem ser criadas e configuradas conforme a necessidade do cliente em cada Região;
 
-- **Security Groups** controlam o acesso a instâncias EC2 e RDS, agindo como Firewall;
+### AWS Site-to-Site VPN
+-  a [VPN](https://aws.amazon.com/pt/vpn) é um serviço que estabelece conexões seguras entre redes locais, escritórios remotos, dispositivos de clientes e a rede global da AWS;
 
-- novas redes \(redes não padrão) podem ser criadas e configuradas conforme a necessidade do cliente em cada Região;
+- estabelece um túnel criptografado seguro \(IPsec) entre a rede local da sua empresa \(On-premises) e a VPC da AWS **através da internet pública**; é rápido de implantar e econômico, mas sujeito às oscilações da internet;
 
-- **Virtual Private Network - VPN**: a [VPN](https://aws.amazon.com/pt/vpn) é um serviço que estabelece conexões seguras entre redes locais, escritórios remotos, dispositivos de clientes e a rede global da AWS.
+### AWS Direct Connect
+- o [Direct Connect](https://aws.amazon.com/pt/directconnect/) é o serviço de rede que estabelece uma conexão de rede física dedicada e exclusiva entre o datacenter local da sua empresa e a AWS, **contornando totalmente a internet**;
+
+- fornece **largura de banda** consistente, **latência ultra-baixa e estável**, e segurança de rede máxima para migrações massivas ou ambientes de missão crítica;
 
 ---------------------------------------------------------------------
 
