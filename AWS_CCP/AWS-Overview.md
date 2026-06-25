@@ -1,10 +1,10 @@
 # Computação em Nuvem
 
-- É a entrega **sob demanda** \(on demand) de recursos de computação, banco de dados, armazenamento, aplicações ou qualquer outro recurso de tecnologia entregue por uma **plataforma** via internet, onde o pagamento e o preço são baseados em **consumo** \(pay as you go).
+- é a entrega **sob demanda** \(on demand) de recursos de computação, banco de dados, armazenamento, aplicações ou qualquer outro recurso de tecnologia entregue por uma **plataforma** via internet, onde o pagamento e o preço são baseados em **consumo** \(pay as you go).
 
 
 ## Vantagens
-- As 6 Vantagens Oficiais da Nuvem:
+- as 6 Vantagens Oficiais da Nuvem:
 
 ### Mudança na modalidade gastos
 - muda da modalidade de despesas de capital, [CapEx](https://pt.wikipedia.org/wiki/CAPEX) ou despesa de aquisição de bens \(**despesa de capital**), para modelo de despesa variável, [OpEx](https://pt.wikipedia.org/wiki/OPEX) ou **depesa operacional**.
