@@ -544,7 +544,7 @@
 ### AWS DynamoDB
 - o [DynamoDB](https://aws.amazon.com/pt/dynamodb) é um banco de dados **NoSQL**, sem servidor \(**serverless**) e **totalmente gerenciado**, projetado para executar aplicações de alto desempenho em qualquer escala \(**escalável**);
 
-- **estrutura chave-valor** \(NoSQL);
+- **estrutura chave-valor** \(NoSQL) e documentos JSON;
 
 - **arquitetura serverless**: não sendo necessário aprovisionar servidores;
 
@@ -552,16 +552,18 @@
 
 - monitoramento de uso: **métricas operacionais** com CloudWatch;
 
-- custo: **Pay as you Go**;
+- custo: **Pay as you Go**; pode ser configurado em modo *On-Demand* \(paga por leitura/escrita exata) ou *Provisioned* \(você define o limite de processamento para ganhar previsibilidade de custo);
 
 - é **gerenciado**:
 	- possui presença global, em diversas Regiões;
 	- capacidade adaptável;
 	- alta escalabilidade;
 	- backup e recuperação sob demanda e point-in-time;
-	- TTL que permite definir a vida útil do dado;
+	- TTL que permite definir a vida útil do dado \(ideal para limpar sessões de usuários ou logs antigos);
 
-- **DAX - DynamoDB Accelerator**: recurso de cache de memória gerenciado e altamente disponível, que otimiza o tempo de resposta;
+- **DAX - DynamoDB Accelerator**: recurso de cache de memória gerenciado e altamente disponível, que otimiza o tempo de resposta de milissegundos para **microssegundos**; ideal para tabelas com altíssima intensidade de leitura \(ex: catálogo de produtos de um e-commerce na Black Friday);
+
+- **DynamoDB Global Tables \(Tabelas Globais)**: funcionalidade que replica suas tabelas de forma automática, assíncrona e bidirecional entre **múltiplas Regiões da AWS**; garante que usuários globais acessem os dados com latência local e provê excelente resiliência de Disaster Recovery;
 
 - **Índices**: índices secundários para flexibilização de consultas;
 
@@ -586,20 +588,26 @@
 	- monitoramento \(Eeventos e Métricas);
 
 - **Read Replicas**:
-- recurso relacionado a *performance, desempenho e redução de latência*, consistindo em um Snapshot do DB atualizado de forma síncrona entre diferentes Zonas de Disponibilidade e Regiões, comportando-se como CDN;
+- recurso relacionado a *performance, desempenho e redução de latência*, consistindo em um Snapshot do DB atualizado de forma assíncrona \(**replicação assíncrona**) entre diferentes Zonas de Disponibilidade e Regiões, comportando-se como servidores adicionais de consulta \(somente leitura) que podem estar na mesma AZ, em outra AZ ou em outra Região.;
 
 - **Multi-AZ Deployments**:
-- recurso relacionado a Disaster Ricover, mantendo réplicas constantemente sincronizadas em mais de uma Zona de Disponibilidade; o redirecionamento de acesso é automático, quando for necessário, apontando para uma segunda instância entre 60-120 segundos;
+- recurso relacionado a Disaster Ricover, mantendo réplicas constantemente sincronizadas \(**replicação síncrona**) em mais de uma Zona de Disponibilidade; o redirecionamento de acesso é automático, quando for necessário, apontando para uma segunda instância entre 60-120 segundos;
 
-- **Amazon Aurora**:
+- **caso de uso**: por que uma empresa escolheria o RDS em vez de instalar o MySQL dentro de uma instância EC2?
+
+	- se escolher EC2: o cliente é responsável por patches do S.O., backups manuais, configurar cluster de alta disponibilidade e escaneamento do disco local \(Nível do S.O. para cima);
+
+	-s e escolher RDS \(Gerenciado): a AWS cuida do provisionamento do hardware, aplicação de patches do S.O. e do motor do banco, além de backups automatizados; o cliente não tem acesso ao sistema operacional \(SSH) em uma instância RDS tradicional;
+
+### Amazon Aurora
 - o [Aurora](https://aws.amazon.com/pt/rds/aurora) é um banco de dados relacional desenvolvido e gerenciado pela AWS, compatível com MySQL e PostgreSQL; o Aurora é até cinco vezes mais rápido que bancos de dados MySQL padrão e três vezes mais rápido que bancos de dados PostgreSQL padrão;
 
 - características:
 	- armazenamento distribuído;
 	- tolerante a falhas e com recuperação automática;
-	- replicação entre três zonas de disponibilidade;
+	- replica os dados de forma síncrona em 3 Zonas de Disponibilidade, mas armazena 2 cópias dos dados em cada AZ, totalizando 6 cópias dos seus dados;
 
-### AWS Redshift
+### Amazon Redshift
 - o [Redshift](https://aws.amazon.com/pt/redshift) é um banco de dados colunar \(column-oriented) da AWS, de alta escalabilidade, baixa latência, processamento massivo e paralelo, e armazenamento em escala, para o processamento de dados; simples de usar, custo efetivo para utilização em **Data Warehouse** e **Data Lakes**;
 
 - características:
@@ -608,12 +616,17 @@
 	- Escalabilidade em Petabytes e leituras no S3 em Exabytes;
 	- Integra-se com ferramentas de terceiros;
 
-### Neptune
-- o [Neptune](https://aws.amazon.com/pt/neptune) é um serviço de banco de dados gráfico rápido, confiável e totalmente gerenciado que facilita a criação e a execução de aplicativos;
+### Amazon Neptune
+- o [Neptune](https://aws.amazon.com/pt/neptune) é um serviço de banco de dados gráfico rápido, confiável e totalmente gerenciado que facilita a criação e a execução de aplicativos; 
+
+- usado em Redes sociais \(mapear conexões de amigos), motores de recomendação ou sistemas de detecção de fraude financeira \(rastrear caminhos de transações);
 
 ### Database Migration Service - DMS
-- o [DMS](https://aws.amazon.com/pt/dms) é um serviço que permite migrar bancos de dados relacionais, bancos de dados não relacionais e outros tipos de armazenamentos de dados; o banco de dados de origem permanece totalmente operacional
-durante a migração, minimizando o tempo de inatividade de aplicações que dependem do banco de dados;
+- o [DMS](https://aws.amazon.com/pt/dms) é um serviço que permite migrar bancos de dados relacionais, bancos de dados não relacionais e outros tipos de armazenamentos de dados; o banco de dados de origem permanece totalmente operacional durante a migração, minimizando o tempo de inatividade de aplicações que dependem do banco de dados;
+
+### Amazon ElastiCache
+- o [ElastiCache](https://aws.amazon.com/pt/elasticache/) é um serviço de armazenamento de dados **em memória \(In-memory cache)** totalmente gerenciado, compatível com Redis e Memcached;
+- usado para **melhorar a latência e o desempenho de leitura** de aplicações, aliviando a carga de bancos de dados relacionais (RDS) ao armazenar em cache os resultados das consultas mais frequentes na memória RAM;
 
 
 ## Computing Services
@@ -635,20 +648,30 @@ durante a migração, minimizando o tempo de inatividade de aplicações que dep
 	- Ruby;
 	- Go;
 
+- o Lambda cobra baseado no número de solicitações \(requisições) e na duração \(o tempo que o código leva para executar, medido em milissegundos), combinado com a quantidade de memória RAM alocada para a função; se o código não está rodando \(esperando um evento), o custo é rigorosamente ZERO;
+
+- uma função Lambda tem um tempo máximo de execução de 15 minutos; se o processamento demorar mais que isso, o Lambda não serve \(precisa usar EC2 ou containers);
+
 ### AWS Elastic Load Balancing - ELB
 - o [ELB](https://aws.amazon.com/pt/elasticloadbalancing) é um serviço que distribui automaticamente o tráfego de aplicações de entrada entre vários destinos e dispositivos virtuais em uma ou mais zonas de disponibilidade (AZ);
 
-- *Classic Load Balancing*: distribui entre instâncias EC2;
+- *Classic Load Balancing*: **descontinuado**;
 
-- *Network Load Balancing*: distribui o tráfego através da camada 4 \(TCP/UDP) através de instâncias EC2 e contêineres;
+- *Application Load Balancing \(ALB)*: distribui o tráfego através da camada 7 \(protocolos de aplicação), com roteamento inteligente baseado no conteúdo da requisição HTTP/HTTPS através de instâncias EC2, contêineres e lambdas;
 
-- *Application Load Balancing*: distribui o tráfego através da camada 7 \(protocolos de aplicação), através de instâncias EC2, contêineres e lambdas;
+- *Network Load Balancing \(NLB)*: distribui o tráfego pela camada 4 \(TCP/UDP) através de instâncias EC2 e contêineres; ultra-alta performance, latência extremamente baixa e capacidade de lidar com milhões de requisições por segundo;
+
+- *Gateway Load Balancer \(GWLB)*: opera na Camada 3 (Rede) e é usado especificamente para implantar, dimensionar e gerenciar appliances virtuais de terceiros \(como Firewalls de rede de fornecedores como Palo Alto, CheckPoint, ou sistemas de detecção de intrusão - IDS/IPS); *caso de uso*: inserir um appliance de firewall de terceiros ou inspeção profunda de pacotes antes do tráfego chegar à aplicação;
 
 ### Auto Scaling
 - o [Auto Scaling](https://aws.amazon.com/pt/autoscaling) é um serviço que monitora os aplicativos e ajusta automaticamente a capacidade para manter um desempenho constante e previsível pelo menor custo possível, em instâncias pré-configuradas, usando tráfego ou processamento \(CPU) como critério de gatilho;
 
 ### AWS Elastic Beanstalk
 - o [Elastic Beanstalk](https://aws.amazon.com/pt/elasticBeanstalk) é um serviço que permite a implantação de aplicações apenas fornecendo o código-fonte, sem conhecimento ou definição prévia da infraestrutura; trata-se de um serviço **PaaS - Platform as a Service**;
+
+- serviço gratuito \(paga apenas pelos recursos subjacentes - instâncias EC2, buckets S3, instâncias RDS - que ele cria para rodar o código);
+
+- *caso de uso*: um desenvolvedor quer implantar uma aplicação web rapidamente na AWS, não quer se preocupar com o provisionamento da infraestrutura subjacente, mas deseja manter o controle total sobre os recursos caso precise ajustar o sistema operacional ou o servidor web mais tarde;
 
 - suporta aplicações em Go, Java, .NET, PHP, Python e Ruby;
 - monitoração com CloudWatch e X-Ray;
@@ -661,14 +684,6 @@ durante a migração, minimizando o tempo de inatividade de aplicações que dep
 ### AWS CloudTrail
 - o [CloudTrail](https://aws.amazon.com/pt/cloudtrail) é um serviço de segurança que monitora, registra e retém todas as atividades e ações realizadas em uma conta AWS na infraestrutura e serviços AWS; ele registra em logs **quem** fez **o que**, em **qual recurso** e **quando**; é usado principalmente para auxílio a governança, auditoria, segurança, análise de riscos e outros;
 
-### AWS CloudWatch
-- o [CloudWatch](https://aws.amazon.com/pt/cloudwatch) é um serviço de monitoramento de recursos integrado da AWS que permite coleta, monitoração, análise e ação sobre os comportamentos dos recursos da AWS; ele coleta dados de monitoramento e operações na forma de logs, métricas e eventos, visando a "saúde" e a performance das aplicações hospedadas;
-
-### AWS X-Ray
-- o X-Ray é um serviço que facilita a análise de *comportamento* e *rastreamento* completo de Aplicações Distribuídas \(em microsserviços);
-
-- *instrumentação* em Aplicativos usados no EC2, ECS, Lambda e Beanstalk.
-
 ### AWS Config
 - o [Config](https://aws.amazon.com/pt/config) é um serviço que permite acessar, auditar e avaliar as configurações dos recursos da AWS; o Config monitora e grava continuamente registros das configurações de recursos da AWS e lhe permite automatizar a avaliação das configurações registradas com base nas configurações desejadas;
 
@@ -676,21 +691,40 @@ durante a migração, minimizando o tempo de inatividade de aplicações que dep
 
 - as configurações ficam salvas em histórico, de forma a permitir recuperação dessas configurações após alguma alteração;
 
+- enquanto o CloudTrail registra oum evento de alteração \(ex: "o usuário X rodou o comando para alterar o Security Group"), o AWS Config registra o impacto físico daquela alteração no recurso ao longo do tempo \(ex: "o Security Group X mudou do estado 'Seguro' para o estado 'Inseguro' porque a porta 22 foi aberta para o mundo"); o Config permite ver uma linha do tempo de alterações de hardware e regras;
+
+### AWS CloudWatch
+- o [CloudWatch](https://aws.amazon.com/pt/cloudwatch) é um serviço de monitoramento de recursos integrado da AWS que permite coleta, monitoração, análise e ação sobre os comportamentos dos recursos da AWS; ele coleta dados de monitoramento e operações na forma de logs, métricas e eventos, visando a "saúde" e a performance das aplicações hospedadas;
+
+### AWS X-Ray
+- o X-Ray é um serviço que facilita a análise de *comportamento* e *rastreamento* completo de Aplicações Distribuídas \(em microsserviços);
+
+- seu uso consiste em Depurar \(Debug) ou Rastrear \(Trace) gargalos de performance em arquiteturas de Microsserviços ou aplicações distribuídas;
+
+- *instrumentação* em Aplicativos usados no EC2, ECS, Lambda e Beanstalk.
+
+
 ### AWS CloudFormation
-- o [CloudFormation](https://aws.amazon.com/pt/cloudformation) é um serviço que permite descrever e modelar toda a infraestrutura na AWS utilizando um arquivo de texto ou linguagem de programação ;
+- o [CloudFormation](https://aws.amazon.com/pt/cloudformation) é um serviço que permite descrever e modelar toda a infraestrutura na AWS utilizando um arquivo de texto ou linguagem de programação;
+
+- serviço 100% gratuito; você não paga nada para criar ou gerenciar suas Stacks; você paga única e exclusivamente pelos recursos de infraestrutura \(EC2, RDS, volumes EBS) que o template criar;
 
 - **Características**:
-	- infraestrutura como código \(IaaC - Infrastructure as a Code)(versionamento);
+	- infraestrutura como código \(IaC - Infrastructure as Code)(versionamento);
 	- fonte única e confiável para concentrar todos os recursos;
 	- permite automação;
 	- suporta formato JSON ou YAML;
-	- cada design é chamado de stacks \(pilhas);
+	- o arquivo de texto \(JSON/YAML) é o Template \(gabarito), e quando a AWS lê esse template e provisiona os recursos reais na nuvem, o conjunto desses recursos gerados é chamado de Stack \(Pilha);
 
 
 ## App Integration
 
 ### Amazon Simple Notification Service - SNS
 - o [SNS](https://aws.amazon.com/pt/sns) é um serviço de notificação totalmente gerenciado, altamente disponível, seguro e durável, que permite o desacoplamento de microsserviços, sistemas distribuídos e aplicativos sem servidor;
+
+- Funcionamento no Modelo Push/Pub-Sub: funciona no estilo Publish/Subscribe \(Publicador/Assinante); um serviço publica uma mensagem em um Tópico e o SNS empurra \(push) essa mesma mensagem instantaneamente para múltiplos assinantes de uma vez \(como funções Lambda, filas SQS, URLs HTTP ou e-mails); é uma comunicação de um para muitos.
+
+- use SNS se precisar enviar notificações operacionais automatizadas rápidas ou alertas de infraestrutura \(ex: acoplado a um alarme do CloudWatch);
 
 - **características**:
 	- criptografia de mensagens;
@@ -701,6 +735,8 @@ durante a migração, minimizando o tempo de inatividade de aplicações que dep
 ### Amazon Simple Queue Service - SQS
 - o [SQS](https://aws.amazon.com/pt/sqs) é um serviço de filas de mensagens \(mensageria) gerenciado que permite o desacoplamento e a
 escalabilidade de microsserviços, sistemas distribuídos e aplicações sem servidor;
+
+- Funcionamento no Modelo Pull/Fila: funciona no estilo baseado em Fila \(Queue); um serviço envia a mensagem para a fila e ela fica lá guardada; o componente receptor precisa ir até a fila e puxar \(pull/polling) a mensagem para processá-la; é uma comunicação de um para um \(uma mensagem na fila geralmente é processada por apenas um consumidor por vez);
 
 - **características**:
 	- filas e mensagens ilimitadas;
@@ -722,12 +758,14 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 
 	- *recebimento*: receber e-mails em massa e tomada de decisão \(automação);
 
+- use SES se precisar de uma plataforma de e-mail profissional de alta escala voltada para o negócio \(ex: e-mail marketing, newsletters corporativas ou automação de marketing transacional);
+
 
 ## Network Services
 
 ### Amazon CloudFront
-- o [CloudFront](https://aws.amazon.com/pt/cloudfront) é um serviço de rede de entrega de conteúdo (CDN) criado para alta performance, segurança e conveniência do desenvolvedor;
-
+- o [CloudFront](https://aws.amazon.com/pt/cloudfront) é um serviço de rede de entrega de conteúdo (CDN) criado para alta performance, segurança e conveniência do desenvolvedor; funciona através da rede global de centenas de datacenters menores, as **Edge Locations**;
+- oferece proteção nativa contra ataques DDoS em conjunto com o AWS Shield;
 
 ### Amazon Route53
 - o [Route53](https://aws.amazon.com/pt/route53) é um serviço DNS altamente disponível e escalável;
@@ -738,32 +776,32 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 	- regras de firewall que filtram o tráfego de DNS de saída em relação a essas regras;
 	- gerenciamento de tráfego global;
 
+- **principais políticas de roteamento**:
+	- **Simple Routing**: direciona o tráfego para um único recurso padrão \(ex: um IP de um servidor);
+	- **Latency Routing:** encaminha o usuário para a Região AWS que entregar a menor latência de rede para ele;
+	- **Failover Routing:** roteia o tráfego para um site de backup em caso de falha do ambiente principal \(Disaster Recovery);
+	- **Geolocation Routing:** exibe conteúdo ou direciona para servidores específicos com base na localização geográfica do IP do cliente \(país ou continente);
+
 
 ## Development Tools
 
-### AWS Cloud9
-- o [Cloud9](https://aws.amazon.com/pt/cloud9/) é um serviço de IDE acessível via browser que permite desenvolvimento colaborativo integrado com o AWS CLI, facilitando o desenvolvimento serverless-lambda e suportando 40 linguagens de programação;
+### AWS Cloud9 \(Descontinuado)
 
-### AWS CodeCommit
-- o [CodeCommit](https://aws.amazon.com/pt/codecommit/) é um serviço de *repositório de código* baseado em GIT, com repositórios ilimitados e integrado com AWS CLI e AWS SDK;
+### AWS CodeStar \(Descontinuado)
+
+### AWS CodeCommit \(Descontinuado)
 
 ### AWS CodeBuild
-- o [CodeBuild](https://aws.amazon.com/pt/codebuild/) é um serviço de Integração Contínua \(CI) totalmente gerenciado e extensível, permitindo o uso de ferramentas externas à AWS; pay-as-you-go; permite monitoramento pelo AWS CloudWatch
+- o [CodeBuild](https://aws.amazon.com/pt/codebuild/) é um serviço de Integração Contínua \(CI) totalmente gerenciado e extensível, permitindo o uso de ferramentas externas à AWS; pay-as-you-go; permite monitoramento pelo AWS CloudWatch; compila o código-fonte, roda testes automatizados e gera pacotes prontos para implantação \(artefatos);
 
 ### AWS CodeDeploy
-- o [CodeDeploy](https://aws.amazon.com/pt/codedeploy/) é um serviço de implementação automática de aplicações, integrado com as demais ferramentas da AWS;
+- o [CodeDeploy](https://aws.amazon.com/pt/codedeploy/) é um serviço de implementação automática de aplicações, integrado com as demais ferramentas da AWS; instala o pacote gerado automaticamente nas instâncias EC2, containers \(ECS) ou AWS Lambda; evita o trabalho manual de atualizar servidor por servidor;
 
 ### AWS CodePipeline
-- o [CodePipeline](https://aws.amazon.com/pt/codepipeline/) é um serviço de Entrega Contínua \(CD), feito uma esteira ou workflow para inserção de tarefas do ciclo de desenvolvimento, integrado com as demais ferramentas da AWS e com diversos plugins para as principais soluções do mercado;
-
-### AWS CodeStar
-- o CodeStar é um serviço que permite acessar outros serviços num mesmo ambiente; inclui serviços como Cloud9, CodeCommit, CodeBuild e CodeDeploy ofertados pré-configurados;
+- o [CodePipeline](https://aws.amazon.com/pt/codepipeline/) é um serviço de Entrega Contínua \(CD), feito uma esteira ou workflow para inserção de tarefas do ciclo de desenvolvimento, integrado com as demais ferramentas da AWS e com diversos plugins para as principais soluções do mercado; não compila e não instala nada sozinho, mas gerencia o fluxo visual e liga o CodeBuild ao CodeDeploy automaticamente sempre que há uma mudança no código;
 
 
 ## Security Services
-
-### AWS Rekognition
-- o [Rekognition](https://aws.amazon.com/pt/rekognition/) é um serviço de API que faz análise de imagens e vídeos utilizando Machine Learning e retornando informações categorizadas e classificadas;
 
 ### AWS Identity and Access Management - IAM
 - o [IAM](https://aws.amazon.com/pt/iam) é um serviço que controla o acesso aos recursos na AWS; ele permite criar e controlar usuário, autenticação ou limitar acesso de usuário a recursos; 
@@ -793,7 +831,7 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 	- definem em detalhes as ações que podem ser executadas;
 	- podem ser **managed policies** \(criadas e mantidas pela AWS) ou **inline policies** \(criadas pelos clientes);
 
-- **role**:
+- **roles**:
 	- função/papel que interage com recursos da AWS sem a necessidade de criar um user;
 	- usa Policies;
 	- não possui credenciais;
@@ -838,14 +876,17 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 	- *rules* que são constituídas por conjuntos de *conditions*, as quais devem ser totalmente satisfeitas, por estarem paralelizadas com o operador *and*;
 	- *web ACL* que é constituída por um conjunto de *rules*;
 
-### Amazon Cognito
-- o [Cognito](https://aws.amazon.com/pt/cognito) é um serviço que permite adicionar cadastramento, login e controle de acesso de usuários a aplicações web e móveis com rapidez e facilidade;
-
 ### AWS GuardDuty
 - o [GuardDuty](https://aws.amazon.com/pt/guardduty) é um serviço de detecção de ameaças que monitora continuamente suas contas e cargas de trabalho da AWS para atividade maliciosa e fornece resultados de segurança detalhados para visibilidade e remediação;
 
 ### Amazon Macie
 - o [Macie](https://aws.amazon.com/pt/macie) é um serviço de segurança de dados que descobre dados sigilosos usando machine learning e correspondência de padrões, fornece visibilidade dos riscos de segurança de dados e permite proteção automatizada contra esses riscos;
+
+### Amazon Cognito
+- o [Cognito](https://aws.amazon.com/pt/cognito) é um serviço que permite adicionar cadastramento, login e controle de acesso de usuários a aplicações web e móveis com rapidez e facilidade;
+
+### AWS Rekognition
+- o [Rekognition](https://aws.amazon.com/pt/rekognition/) é um serviço de API que faz análise de imagens e vídeos utilizando Machine Learning e retornando informações categorizadas e classificadas;
 
 
 ## Billing and Pricing
@@ -853,15 +894,30 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 ### AWS Support
 - o AWS Support é dividido em planos ou níveis; são eles:
 
-	- *básico*: gratuito, provê acesso a atendimento ao cliente, documentação, whitepapers e fóruns de suporte 24x7;
+- **Basic \(Básico):**
+  - *Custo:* Gratuito \(incluso em todas as contas).
+  - *O que cobre:* Acesso a fóruns, documentação e suporte para faturamento \(*billing*) e limites da conta. **Zero suporte técnico para problemas em servidores ou códigos.**
+  - *Trusted Advisor:* Acesso apenas às verificações básicas de segurança e limites.
 
-	- *desenvolvedor*: com custo, recomendado para quem está experimentando ou testando a AWS; resposta em horário comercial;
+- **Developer \(Desenvolvedor):**
+  - *Custo:* Pago. Recomendado para ambientes de testes e desenvolvimento.
+  - *O que cobre:* Suporte técnico de arquitetura básica via **E-mail** em horário comercial \(um usuário primário).
+  - *SLA de Prova:* Resposta em menos de 24h para falhas gerais e **menos de 12h** para sistemas instáveis.
 
-	- *business*: com custo, recomendado para quem tem cargs de trabalho de produção na AWS; resposta em 30 minutos;
+- **Business \(Negócios):**
+  - *Custo:* Pago. Recomendado para cargas de trabalho ativas em **Produção**.
+  - *O que cobre:* Suporte técnico **24x7 via Chat e Telefone** com engenheiros da AWS \(usuários ilimitados). Acesso total \(100%) às recomendações do AWS Trusted Advisor.
+  - *SLA de Prova:* Resposta em **menos de 1 hora** para sistemas de produção fora do ar.
 
-	- *empresarial*: com custo, recomendado para quem tem cargas de trabalho empresariais na AWS; resposta em 15 minutos;
+- **Enterprise On-Ramp \(Corporativo Intermediário):**
+  - *Custo:* Pago. Recomendado para aplicações de negócios robustas.
+  - *O que cobre:* Suporte técnico 24x7 por chat/telefone. Acesso a um pool compartilhado de Gerentes Técnicos de Conta \(TAM).
+  - *SLA de Prova:* Resposta em **menos de 30 minutos** para sistemas de negócios críticos fora do ar.
 
-	- *unified operations*: com custo, recomendado para quem tem cargas de trabalho de missão críticas na AWS; resposta em 5 minutos;
+- **Enterprise \(Empresarial):**
+  - *Custo:* Pago (foco corporativo de grande porte). Recomendado para sistemas de **Missão Crítica**.
+  - *O que cobre:* Suporte técnico 24x7. Dá direito exclusivo a um **TAM \(Technical Account Manager)** — um engenheiro dedicado à sua conta — e suporte à gestão de eventos \(ex: monitoramento na Black Friday).
+  - *SLA de Prova:* Resposta recorde em **menos de 15 minutos** para sistemas de missão crítica fora do ar.
 
 ### AWS Organizations
 - o [Organizations](https://aws.amazon.com/pt/organizations) é um serviço que ajuda você a gerenciar e controlar seu ambiente de maneira centralizada à medida que os negócios e seus recursos da AWS expandem;
@@ -876,6 +932,11 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 *   **O que é:** Um catálogo digital com milhares de listagens de software de fornecedores independentes (terceiros) que funcionam perfeitamente na AWS.
 *   **Uso em prova:** Geralmente aparece como a resposta correta para cenários em que uma empresa precisa "encontrar, testar, comprar e implantar rapidamente softwares de terceiros pré-configurados" (como uma imagem pronta de um firewall da Cisco ou Fortinet, ou um sistema operacional customizado).
 *   **Vantagem Financeira:** Integra-se ao faturamento consolidado da AWS, facilitando o gerenciamento de custos de licenciamento.
+
+### Ferramentas para precificação
+- **AWS Pricing Calculator:** Calculadora web utilizada para estimar e desenhar o custo financeiro de uma arquitetura **antes** de contratá-la ou migrá-la para a nuvem.
+- **AWS Budgets \(Orçamentos):** Permite configurar limites de gastos mensais ou diários. Ele envia **alertas automatizados** \(e-mail ou SNS) quando seus custos reais *ou previstos* ultrapassam a meta desenhada.
+- **AWS Cost Explorer:** Ferramenta de análise pós-gasto. Fornece gráficos detalhados e relatórios visuais para compreender, detalhar e rastrear os custos históricos obtidos nos meses anteriores na nuvem.
 
 
 ---------------------------------------------------------------------
