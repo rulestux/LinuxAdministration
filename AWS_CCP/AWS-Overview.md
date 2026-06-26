@@ -617,7 +617,7 @@
 	- Integra-se com ferramentas de terceiros;
 
 ### Amazon Neptune
-- o [Neptune](https://aws.amazon.com/pt/neptune) é um serviço de banco de dados gráfico rápido, confiável e totalmente gerenciado que facilita a criação e a execução de aplicativos; 
+- o [Neptune](https://aws.amazon.com/pt/neptune) é um serviço de banco de dados gráfico rápido \(baseado em grafos), confiável e totalmente gerenciado que facilita a criação e a execução de aplicativos; 
 
 - usado em Redes sociais \(mapear conexões de amigos), motores de recomendação ou sistemas de detecção de fraude financeira \(rastrear caminhos de transações);
 
@@ -628,11 +628,13 @@
 - o [ElastiCache](https://aws.amazon.com/pt/elasticache/) é um serviço de armazenamento de dados **em memória \(In-memory cache)** totalmente gerenciado, compatível com Redis e Memcached;
 - usado para **melhorar a latência e o desempenho de leitura** de aplicações, aliviando a carga de bancos de dados relacionais (RDS) ao armazenar em cache os resultados das consultas mais frequentes na memória RAM;
 
-### AWS Data Exchange
-- o Data Exchange é um serviço gerenciado que facilita a **descoberta, assinatura e utilização de dados de terceiros** com total segurança na nuvem AWS;
-- funciona como um "mercado de dados brutos": em vez de comprar softwares \(como no Marketplace), você assina conjuntos de dados \(*data sets*) fornecidos por empresas globais \(dados financeiros, climáticos, de saúde, demográficos, de geolocalização, etc.);
-- ideal para cenários em que uma empresa precisa **consumir dados externos prontos** de fornecedores terceiros para alimentar as suas ferramentas de Big Data, Business Intelligence \(Redshift) ou Machine Learning, sem precisar criar integrações ou APIs manuais;
-- **Integração**: os dados assinados são integrados e atualizados automaticamente em buckets do Amazon S3 ou tabelas do Redshift da sua conta;
+### Amazon Athena
+- o Athena é um serviço de consulta interativo e **Serverless** \(sem servidor) que permite analisar dados diretamente no Amazon S3 usando **SQL padrão**;
+- você aponta o Athena para o seu bucket do S3 onde estão armazenados os arquivos \(como CSV, JSON, Apache Parquet ou logs), escreve uma consulta SQL comum e ele exibe o resultado em segundos;
+- **Usecases**:
+	- cenários onde a equipe de TI precisa analisar e filtrar grandes volumes de logs de segurança \(como logs do **CloudTrail** ou **VPC Flow Logs**) armazenados no S3;
+	- extrair informações de arquivos de dados sem a necessidade de criar, gerenciar ou pagar por um banco de dados relacional \(RDS) ou data warehouse \(Redshift);
+- você não paga pelo serviço parado; a cobrança é feita exclusivamente **por terabyte de dados escaneados** durante a execução das suas consultas SQL;
 
 
 ## Computing Services
@@ -718,7 +720,6 @@
 - seu uso consiste em Depurar \(Debug) ou Rastrear \(Trace) gargalos de performance em arquiteturas de Microsserviços ou aplicações distribuídas;
 
 - *instrumentação* em Aplicativos usados no EC2, ECS, Lambda e Beanstalk.
-
 
 ### AWS CloudFormation
 - o [CloudFormation](https://aws.amazon.com/pt/cloudformation) é um serviço que permite descrever e modelar toda a infraestrutura na AWS utilizando um arquivo de texto ou linguagem de programação;
@@ -949,10 +950,16 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 - **Usecases**: cenários em que uma empresa precisa "encontrar, testar, comprar e implantar rapidamente softwares de terceiros pré-configurados" \(como uma imagem pronta de um firewall da Cisco ou Fortinet, ou um sistema operacional customizado);
 - **Vantagem Financeira**: integra-se ao faturamento consolidado da AWS, facilitando o gerenciamento de custos de licenciamento;
 
+### AWS Data Exchange
+- o Data Exchange é um serviço gerenciado que facilita a **descoberta, assinatura e utilização de dados de terceiros** com total segurança na nuvem AWS;
+- funciona como um "mercado de dados brutos": em vez de comprar softwares \(como no Marketplace), você assina conjuntos de dados \(*data sets*) fornecidos por empresas globais \(dados financeiros, climáticos, de saúde, demográficos, de geolocalização, etc.);
+- ideal para cenários em que uma empresa precisa **consumir dados externos prontos** de fornecedores terceiros para alimentar as suas ferramentas de Big Data, Business Intelligence \(Redshift) ou Machine Learning, sem precisar criar integrações ou APIs manuais;
+- **Integração**: os dados assinados são integrados e atualizados automaticamente em buckets do Amazon S3 ou tabelas do Redshift da sua conta;
+
 ### Ferramentas para precificação
-- **AWS Pricing Calculator:** Calculadora web utilizada para estimar e desenhar o custo financeiro de uma arquitetura **antes** de contratá-la ou migrá-la para a nuvem.
-- **AWS Budgets \(Orçamentos):** Permite configurar limites de gastos mensais ou diários. Ele envia **alertas automatizados** \(e-mail ou SNS) quando seus custos reais *ou previstos* ultrapassam a meta desenhada.
-- **AWS Cost Explorer:** Ferramenta de análise pós-gasto. Fornece gráficos detalhados e relatórios visuais para compreender, detalhar e rastrear os custos históricos obtidos nos meses anteriores na nuvem.
+- **AWS Pricing Calculator:** calculadora web utilizada para estimar e desenhar o custo financeiro de uma arquitetura **antes** de contratá-la ou migrá-la para a nuvem;
+- **AWS Budgets \(Orçamentos):** permite configurar limites de gastos mensais ou diários; ele envia **alertas automatizados** \(e-mail ou SNS) quando seus custos reais *ou previstos* ultrapassam a meta desenhada;
+- **AWS Cost Explorer:** ferramenta de análise pós-gasto; fornece gráficos detalhados e relatórios visuais para compreender, detalhar e rastrear os custos históricos obtidos nos meses anteriores na nuvem;
 
 
 ---------------------------------------------------------------------
