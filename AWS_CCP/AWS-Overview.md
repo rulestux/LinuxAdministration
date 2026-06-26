@@ -628,6 +628,12 @@
 - o [ElastiCache](https://aws.amazon.com/pt/elasticache/) é um serviço de armazenamento de dados **em memória \(In-memory cache)** totalmente gerenciado, compatível com Redis e Memcached;
 - usado para **melhorar a latência e o desempenho de leitura** de aplicações, aliviando a carga de bancos de dados relacionais (RDS) ao armazenar em cache os resultados das consultas mais frequentes na memória RAM;
 
+### AWS Data Exchange
+- o Data Exchange é um serviço gerenciado que facilita a **descoberta, assinatura e utilização de dados de terceiros** com total segurança na nuvem AWS;
+- funciona como um "mercado de dados brutos": em vez de comprar softwares \(como no Marketplace), você assina conjuntos de dados \(*data sets*) fornecidos por empresas globais \(dados financeiros, climáticos, de saúde, demográficos, de geolocalização, etc.);
+- ideal para cenários em que uma empresa precisa **consumir dados externos prontos** de fornecedores terceiros para alimentar as suas ferramentas de Big Data, Business Intelligence \(Redshift) ou Machine Learning, sem precisar criar integrações ou APIs manuais;
+- **Integração**: os dados assinados são integrados e atualizados automaticamente em buckets do Amazon S3 ou tabelas do Redshift da sua conta;
+
 
 ## Computing Services
 
@@ -934,14 +940,14 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 
 - **características**:
 	- gerencia todas as suas contas;
-	- permite a consolidação de faturamento (consolidated bills);
+	- permite a consolidação de faturamento \(consolidated bills);
 	- com muitas contas e grandes volumes de utilização pode-se obter descontos na AWS;
 	- políticas de segurança podem ser controladas de forma “organizacional”;
 
 ### AWS Marketplace
-*   **O que é:** Um catálogo digital com milhares de listagens de software de fornecedores independentes (terceiros) que funcionam perfeitamente na AWS.
-*   **Uso em prova:** Geralmente aparece como a resposta correta para cenários em que uma empresa precisa "encontrar, testar, comprar e implantar rapidamente softwares de terceiros pré-configurados" (como uma imagem pronta de um firewall da Cisco ou Fortinet, ou um sistema operacional customizado).
-*   **Vantagem Financeira:** Integra-se ao faturamento consolidado da AWS, facilitando o gerenciamento de custos de licenciamento.
+- o Marketplace é um catálogo digital com milhares de listagens de software de fornecedores independentes \(terceiros) que funcionam perfeitamente na AWS;
+- **Usecases**: cenários em que uma empresa precisa "encontrar, testar, comprar e implantar rapidamente softwares de terceiros pré-configurados" \(como uma imagem pronta de um firewall da Cisco ou Fortinet, ou um sistema operacional customizado);
+- **Vantagem Financeira**: integra-se ao faturamento consolidado da AWS, facilitando o gerenciamento de custos de licenciamento;
 
 ### Ferramentas para precificação
 - **AWS Pricing Calculator:** Calculadora web utilizada para estimar e desenhar o custo financeiro de uma arquitetura **antes** de contratá-la ou migrá-la para a nuvem.
