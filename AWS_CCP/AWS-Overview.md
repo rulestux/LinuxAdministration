@@ -678,6 +678,16 @@
 - escalabilidade automática;
 - recursos personalizados;
 
+### Amazon EventBridge
+- o EventBridge é um barramento de eventos \(*Event Bus*) totalmente gerenciado e **Serverless** que facilita a construção de aplicações orientadas a eventos em escala;
+- ele recebe eventos de fontes emissoras \(serviços AWS, aplicações próprias ou sistemas SaaS de terceiros) e aplica **Regras (Rules)** para rotear esses dados para alvos específicos \(como AWS Lambda, SQS, SNS ou instâncias EC2).
+
+- **Usecases**:
+	- **Ações Agendadas (Cron na Nuvem):** permite programar a execução de tarefas automáticas em horários ou intervalos de tempo fixos \(ex: disparar um script Lambda de limpeza de logs toda madrugada);
+	- **Reação a Eventos de Infraestrutura:** monitora mudanças de estado de recursos AWS em tempo real \(ex: disparar um alerta se uma instância EC2 parar inesperadamente);
+
+- ele substitui e expande o antigo serviço conhecido como *Amazon CloudWatch Events*;
+
 
 ## Observability and Management Services
 
