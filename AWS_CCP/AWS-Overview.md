@@ -1033,6 +1033,11 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
   4. Serviços **Amazon ECS** no AWS Fargate \(sugere o tamanho de CPU e memória para containers).
 - **Custo:** O serviço em si é **gratuito** para analisar métricas padrão de instâncias EC2.
 
+### AWS IQ
+- o IQ é uma plataforma profissional que **conecta clientes da AWS a especialistas, consultores e engenheiros certificados pela AWS** para a realização de projetos sob demanda.
+- **Usecases**: Resposta ideal para cenários onde uma empresa \(ou startup) que está a migrar para a nuvem **não possui mão de obra técnica qualificada na sua equipa interna** e precisa contratar ajuda externa rapidamente para desenhar, implementar ou revisar uma arquitetura na AWS.
+- **Facilidade Financeira:** Os custos do contrato, das horas de consultoria ou do projeto fechado com o freelancer são cobrados de forma centralizada e unificada diretamente na sua fatura mensal da AWS.
+
 ### AWS Marketplace
 - o Marketplace é um catálogo digital com milhares de listagens de software de fornecedores independentes \(terceiros) que funcionam perfeitamente na AWS;
 - **Usecases**: cenários em que uma empresa precisa "encontrar, testar, comprar e implantar rapidamente softwares de terceiros pré-configurados" \(como uma imagem pronta de um firewall da Cisco ou Fortinet, ou um sistema operacional customizado);
