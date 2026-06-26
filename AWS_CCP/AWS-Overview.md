@@ -636,6 +636,14 @@
 	- extrair informações de arquivos de dados sem a necessidade de criar, gerenciar ou pagar por um banco de dados relacional \(RDS) ou data warehouse \(Redshift);
 - você não paga pelo serviço parado; a cobrança é feita exclusivamente **por terabyte de dados escaneados** durante a execução das suas consultas SQL;
 
+### Amazon QuickSight
+- o QuickSight é um serviço de **Business Intelligence (BI)** totalmente gerenciado, rápido e em escala de nuvem \(é o "Power BI / Tableau" da AWS);
+- ele se conecta a diversas fontes de dados da AWS \(como Amazon S3, Athena, RDS, Redshift) ou locais \(arquivos Excel, bancos de dados on-premises) para extrair informações e transformá-las em recursos visuais;
+- **Usecases**:
+	- **Dashboards e Relatórios:** cenários em que a empresa precisa criar **painéis interativos e gráficos visuais** para que executivos e equipes de negócios analisem dados e tomem decisões estratégicas;
+	- **QuickSight Q**: recurso baseado em Machine Learning que permite aos usuários fazer perguntas complexas sobre os dados usando **linguagem natural** \(frases comuns) e receber respostas visuais imediatas;
+- **Vantagem Arquitetural**: totalmente **Serverless** e de fácil compartilhamento, permitindo embutir os gráficos criados dentro de portais ou aplicativos da própria empres;
+
 
 ## Computing Services
 
