@@ -801,11 +801,11 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 
 ### Amazon API Gateway
 - **O que é:** Um serviço totalmente gerenciado que facilita para os desenvolvedores a criação, publicação, manutenção, monitoramento e proteção de APIs em qualquer escala.
-- **Como funciona:** Atua como a "porta de entrada" (Front Door) pública para que aplicações externas acessem dados, lógicas de negócios ou funcionalidades de seus serviços de backend hospedados na AWS.
+- **Como funciona:** Atua como a "porta de entrada" \(Front Door) pública para que aplicações externas acessem dados, lógicas de negócios ou funcionalidades de seus serviços de backend hospedados na AWS.
 - **Usecases:**
-  - **Arquitetura Serverless Principal:** Ideal quando associado ao **AWS Lambda** para expor microsserviços na internet sem a necessidade de provisionar ou gerenciar servidores web tradicionais (como Nginx ou Apache).
-  - **Segurança e Controle de Tráfego (Throttling):** Protege o backend contra picos de acessos e ataques limitando a taxa de requisições por segundo por usuário (*Rate Limiting*). Integra-se nativamente com o *Amazon Cognito* para autenticação de usuários.
-  - **Gerenciamento de Versões:** Permite rodar e gerenciar simultaneamente múltiplas versões da mesma API (ex: Produção, Homologação, Desenvolvimento).
+  - **Arquitetura Serverless Principal:** Ideal quando associado ao **AWS Lambda** para expor microsserviços na internet sem a necessidade de provisionar ou gerenciar servidores web tradicionais \(como Nginx ou Apache).
+  - **Segurança e Controle de Tráfego \(Throttling):** Protege o backend contra picos de acessos e ataques limitando a taxa de requisições por segundo por usuário \(*Rate Limiting*). Integra-se nativamente com o *Amazon Cognito* para autenticação de usuários.
+  - **Gerenciamento de Versões:** Permite rodar e gerenciar simultaneamente múltiplas versões da mesma API \(ex: Produção, Homologação, Desenvolvimento).
 - **Escala:** Totalmente Serverless. Escala de forma automática de centenas a milhões de chamadas de API simultâneas com baixa latência.
 
 
@@ -933,8 +933,20 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 ### Amazon Cognito
 - o [Cognito](https://aws.amazon.com/pt/cognito) é um serviço que permite adicionar cadastramento, login e controle de acesso de usuários a aplicações web e móveis com rapidez e facilidade;
 
+
+## Artificial Intelligence
+
 ### AWS Rekognition
 - o [Rekognition](https://aws.amazon.com/pt/rekognition/) é um serviço de API que faz análise de imagens e vídeos utilizando Machine Learning e retornando informações categorizadas e classificadas;
+
+### Amazon Comprehend
+- **O que é:** Um serviço de processamento de linguagem natural (NLP) baseado em **Inteligência Artificial e Machine Learning**.
+- **Como funciona:** Ele analisa textos brutos e desestruturados (como e-mails, artigos, chats ou posts de redes sociais) e extrai insights, conexões e padrões ocultos.
+- **Usecases**:
+  - **Análise de Sentimento:** Resposta correta para cenários onde a empresa precisa classificar automaticamente se o texto de um cliente é **Positivo, Negativo, Neutro ou Misto** (ex: analisar o feedback de clientes no suporte).
+  - **Reconhecimento de Entidades:** Identifica automaticamente elementos-chave no texto, como nomes de lugares, pessoas, datas, marcas ou produtos.
+  - **Detecção de PII:** Identifica e sinaliza dados de identificação pessoal para ajudar na conformidade com leis de privacidade.
+- É um serviço pré-treinado pela AWS; desenvolvedores podem integrá-lo via API sem precisar de qualquer conhecimento em ciência de dados ou Machine Learning.
 
 
 ## Billing and Pricing
