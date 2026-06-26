@@ -642,7 +642,21 @@
 - **Usecases**:
 	- **Dashboards e Relatórios:** cenários em que a empresa precisa criar **painéis interativos e gráficos visuais** para que executivos e equipes de negócios analisem dados e tomem decisões estratégicas;
 	- **QuickSight Q**: recurso baseado em Machine Learning que permite aos usuários fazer perguntas complexas sobre os dados usando **linguagem natural** \(frases comuns) e receber respostas visuais imediatas;
-- **Vantagem Arquitetural**: totalmente **Serverless** e de fácil compartilhamento, permitindo embutir os gráficos criados dentro de portais ou aplicativos da própria empres;
+- **Vantagem Arquitetural**: totalmente **Serverless** e de fácil compartilhamento, permitindo embutir os gráficos criados dentro de portais ou aplicativos da própria empresa;
+
+### Amazon OpenSearch Service
+- o OpenSearch é um serviço gerenciado que facilita a implantação, operação e escalabilidade de ferramentas de **busca de texto, análise de logs e monitoramento de infraestrutura em tempo real** \(Sucessor do *Amazon Elasticsearch Service*);
+- ele ingere dados estruturados e não-estruturados em altíssima velocidade, indexa esses dados e permite que você realize pesquisas complexas quase instantaneamente;
+- **Usecases**:
+	- para cenários onde um aplicativo precisa de uma barra de ferramentas para **pesquisa de texto avançada e rápida** \(ex: busca em catálogo de produtos);
+	- **Análise de Logs em Tempo Real**: para equipes de segurança e infraestrutura que precisam analisar logs operacionais de servidores e redes continuamente para identificar falhas ou ataques no exato momento em que acontecem;
+- **Visualização Integrada**: inclui o *OpenSearch Dashboards* \(evolução do Kibana), permitindo criar gráficos e painéis interativos para monitorar a saúde dos sistemas em tempo real;
+
+### Amazon CloudSearch
+- o CloudSearch um serviço totalmente gerenciado na nuvem da AWS que facilita a configuração, o gerenciamento e a escalabilidade de um **mecanismo de busca personalizado** para sites ou aplicativos;
+- **Recursos Nativos**: suporta funcionalidades clássicas de barras de pesquisa, como realce de sintaxe \(*highlighting*), preenchimento automático \(*autocomplete*), busca facetada \(filtros por categoria) e correções tipográficas;
+- **Usecases**:
+	- para cenários que exigem a implantação de uma **solução de busca simples, rápida e com o menor esforço operacional possível**, sem que o desenvolvedor precise entender de administração de clusters ou servidores de busca complexos;
 
 
 ## Computing Services
@@ -784,6 +798,15 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 	- *recebimento*: receber e-mails em massa e tomada de decisão \(automação);
 
 - use SES se precisar de uma plataforma de e-mail profissional de alta escala voltada para o negócio \(ex: e-mail marketing, newsletters corporativas ou automação de marketing transacional);
+
+### Amazon API Gateway
+- **O que é:** Um serviço totalmente gerenciado que facilita para os desenvolvedores a criação, publicação, manutenção, monitoramento e proteção de APIs em qualquer escala.
+- **Como funciona:** Atua como a "porta de entrada" (Front Door) pública para que aplicações externas acessem dados, lógicas de negócios ou funcionalidades de seus serviços de backend hospedados na AWS.
+- **Usecases:**
+  - **Arquitetura Serverless Principal:** Ideal quando associado ao **AWS Lambda** para expor microsserviços na internet sem a necessidade de provisionar ou gerenciar servidores web tradicionais (como Nginx ou Apache).
+  - **Segurança e Controle de Tráfego (Throttling):** Protege o backend contra picos de acessos e ataques limitando a taxa de requisições por segundo por usuário (*Rate Limiting*). Integra-se nativamente com o *Amazon Cognito* para autenticação de usuários.
+  - **Gerenciamento de Versões:** Permite rodar e gerenciar simultaneamente múltiplas versões da mesma API (ex: Produção, Homologação, Desenvolvimento).
+- **Escala:** Totalmente Serverless. Escala de forma automática de centenas a milhões de chamadas de API simultâneas com baixa latência.
 
 
 ## Network Services
@@ -944,6 +967,11 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
   - *O que cobre:* Suporte técnico 24x7. Dá direito exclusivo a um **TAM \(Technical Account Manager)** — um engenheiro dedicado à sua conta — e suporte à gestão de eventos \(ex: monitoramento na Black Friday).
   - *SLA de Prova:* Resposta recorde em **menos de 15 minutos** para sistemas de missão crítica fora do ar.
 
+### Ferramentas para precificação
+- **AWS Pricing Calculator:** calculadora web utilizada para estimar e desenhar o custo financeiro de uma arquitetura **antes** de contratá-la ou migrá-la para a nuvem;
+- **AWS Budgets \(Orçamentos):** permite configurar limites de gastos mensais ou diários; ele envia **alertas automatizados** \(e-mail ou SNS) quando seus custos reais *ou previstos* ultrapassam a meta desenhada;
+- **AWS Cost Explorer:** ferramenta de análise pós-gasto; fornece gráficos detalhados e relatórios visuais para compreender, detalhar e rastrear os custos históricos obtidos nos meses anteriores na nuvem;
+
 ### AWS Organizations
 - o [Organizations](https://aws.amazon.com/pt/organizations) é um serviço que ajuda você a gerenciar e controlar seu ambiente de maneira centralizada à medida que os negócios e seus recursos da AWS expandem;
 
@@ -952,6 +980,16 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 	- permite a consolidação de faturamento \(consolidated bills);
 	- com muitas contas e grandes volumes de utilização pode-se obter descontos na AWS;
 	- políticas de segurança podem ser controladas de forma “organizacional”;
+
+### AWS Compute Optimizer
+- **O que é:** Um serviço gerenciado que utiliza **Machine Learning** para analisar o histórico de uso dos seus recursos e recomendar melhorias para reduzir custos e aumentar a performance.
+- **Como funciona:** Ele avalia os dados de telemetria do *Amazon CloudWatch* \(CPU, memória, armazenamento e rede) e identifica se seus recursos estão operando de forma ideal, superdimensionados \(gastando dinheiro à toa) ou subdimensionados \(risco de lentidão).
+- Ele gera recomendações específicas e acionáveis para **quatro componentes de computação**:
+  1. Instâncias **Amazon EC2** \(sugere a família e tamanho ideal de máquina).
+  2. Volumes **Amazon EBS** \(sugere o tipo de IOPS e tamanho do disco).
+  3. Funções **AWS Lambda** \(sugere a quantidade ideal de memória RAM alocada).
+  4. Serviços **Amazon ECS** no AWS Fargate \(sugere o tamanho de CPU e memória para containers).
+- **Custo:** O serviço em si é **gratuito** para analisar métricas padrão de instâncias EC2.
 
 ### AWS Marketplace
 - o Marketplace é um catálogo digital com milhares de listagens de software de fornecedores independentes \(terceiros) que funcionam perfeitamente na AWS;
@@ -963,11 +1001,6 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 - funciona como um "mercado de dados brutos": em vez de comprar softwares \(como no Marketplace), você assina conjuntos de dados \(*data sets*) fornecidos por empresas globais \(dados financeiros, climáticos, de saúde, demográficos, de geolocalização, etc.);
 - ideal para cenários em que uma empresa precisa **consumir dados externos prontos** de fornecedores terceiros para alimentar as suas ferramentas de Big Data, Business Intelligence \(Redshift) ou Machine Learning, sem precisar criar integrações ou APIs manuais;
 - **Integração**: os dados assinados são integrados e atualizados automaticamente em buckets do Amazon S3 ou tabelas do Redshift da sua conta;
-
-### Ferramentas para precificação
-- **AWS Pricing Calculator:** calculadora web utilizada para estimar e desenhar o custo financeiro de uma arquitetura **antes** de contratá-la ou migrá-la para a nuvem;
-- **AWS Budgets \(Orçamentos):** permite configurar limites de gastos mensais ou diários; ele envia **alertas automatizados** \(e-mail ou SNS) quando seus custos reais *ou previstos* ultrapassam a meta desenhada;
-- **AWS Cost Explorer:** ferramenta de análise pós-gasto; fornece gráficos detalhados e relatórios visuais para compreender, detalhar e rastrear os custos históricos obtidos nos meses anteriores na nuvem;
 
 
 ---------------------------------------------------------------------
