@@ -718,6 +718,16 @@
 
 - ele substitui e expande o antigo serviço conhecido como *Amazon CloudWatch Events*;
 
+### AWS Fargate
+- **O que é:** Um mecanismo de computação **Serverless** \(sem servidor) projetado especificamente para rodar containers através do *Amazon ECS* \(Elastic Container Service) ou *Amazon EKS* \(Elastic Kubernetes Service).
+- **Usecases**: Permite executar containers na nuvem **sem a necessidade de provisionar, configurar ou gerenciar instâncias EC2** \(servidores virtuais) nos bastidores. A AWS cuida de toda a infraestrutura e do Sistema Operacional subjacente.
+- **Modelo de Custo:** Você paga única e exclusivamente pela quantidade de vCPU e memória RAM alocadas e consumidas ativamente pelo container enquanto ele estiver rodando.
+
+### AWS Batch
+- **O que é:** Um serviço de computação focado no planeamento, agendamento e execução automática de cargas de trabalho de **processamento em lote (Batch Processing)** em qualquer escala.
+- **Usecases**: para cenários que exigem a execução de milhares de tarefas computacionais pesadas de forma sequencial ou paralela \(ex: análise massiva de dados financeiros, renderização de imagens, simulações científicas ou conversão em lote de ficheiros). 
+- **Otimização de Custos:** Ele provisiona dinamicamente os recursos de computação necessários \(instâncias EC2 padrão ou Spot) com base no volume da fila de tarefas e desliga as máquinas automaticamente assim que o processamento termina.
+
 
 ## Observability and Management Services
 
@@ -808,6 +818,12 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
   - **Gerenciamento de Versões:** Permite rodar e gerenciar simultaneamente múltiplas versões da mesma API \(ex: Produção, Homologação, Desenvolvimento).
 - **Escala:** Totalmente Serverless. Escala de forma automática de centenas a milhões de chamadas de API simultâneas com baixa latência.
 
+### AWS Step Functions
+- o  Step Functions é um orquestrador visual de fluxos de trabalho (workflows) baseado em **máquinas de estados** que facilita a coordenação de múltiplos serviços da AWS.
+- **Usecases:**
+	- É utilizado para sequenciar e conectar várias funções **AWS Lambda** e outros serviços em passos lógicos e estruturados em aplicações distribuídas (microsserviços).
+	- Ideal para fluxos complexos de negócios que exigem tomada de decisão ou tratamento de erros (ex: Processo de e-commerce: Passo 1 -> Validar pagamento. Se aprovado, vai para o Passo 2 -> Emitir Fatura; se falhar, vai para o Passo 3 -> Enviar e-mail de alerta).
+
 
 ## Network Services
 
@@ -829,6 +845,11 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 	- **Latency Routing:** encaminha o usuário para a Região AWS que entregar a menor latência de rede para ele;
 	- **Failover Routing:** roteia o tráfego para um site de backup em caso de falha do ambiente principal \(Disaster Recovery);
 	- **Geolocation Routing:** exibe conteúdo ou direciona para servidores específicos com base na localização geográfica do IP do cliente \(país ou continente);
+
+### AWS Wavelength
+- o Wavelength é um serviço de infraestrutura que incorpora serviços de computação e armazenamento da AWS **dentro dos datacenters das redes 5G** dos provedores de telecomunicações.
+- **Usecases**: É a escolha ideal para cenários que exigem **latência ultra-baixa (na casa dos milissegundos)** para aplicações destinadas a dispositivos móveis e edge. 
+- Permite processar dados na borda da rede celular para streaming de jogos em tempo real, telemedicina, veículos autónomos ou processamento inteligente de vídeo de alta definição, evitando que o tráfego precise viajar até uma Região AWS distante.
 
 
 ## Development Tools
