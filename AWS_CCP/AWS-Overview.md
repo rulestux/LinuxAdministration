@@ -933,6 +933,15 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 ### Amazon Cognito
 - o [Cognito](https://aws.amazon.com/pt/cognito) é um serviço que permite adicionar cadastramento, login e controle de acesso de usuários a aplicações web e móveis com rapidez e facilidade;
 
+### AWS Certificate Manager (ACM)
+- o ACM é um serviço que facilita o provisionamento, gerenciamento e implantação de **certificados SSL/TLS** \(públicos e privados) para uso com serviços da AWS.
+- **Como funciona:** Ele elimina o processo manual e complexo de comprar, validar e renovar certificados digitais necessários para habilitar o protocolo seguro **HTTPS** em sites e aplicações.
+- **Usecases**:
+  - **Criptografia em Trânsito:** Quando o cenário exige proteger o tráfego de dados entre o usuário final e a aplicação na nuvem usando SSL/TLS.
+  - **Renovação Automática:** Ele gerencia e renova automaticamente os certificados expirados que estão em uso, evitando que o site fique fora do ar por certificados vencidos.
+  - **Integração Nativa:** Associa-se diretamente ao *Elastic Load Balancing (ELB)*, *Amazon CloudFront* e *Amazon API Gateway*.
+- **Preço:** Os certificados SSL/TLS públicos provisionados através do ACM são completamente **gratuitos**.
+
 
 ## Artificial Intelligence
 
@@ -940,7 +949,7 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 - o [Rekognition](https://aws.amazon.com/pt/rekognition/) é um serviço de API que faz análise de imagens e vídeos utilizando Machine Learning e retornando informações categorizadas e classificadas;
 
 ### Amazon Comprehend
-- **O que é:** Um serviço de processamento de linguagem natural (NLP) baseado em **Inteligência Artificial e Machine Learning**.
+- o Comprehend é um serviço de processamento de linguagem natural (NLP) baseado em **Inteligência Artificial e Machine Learning**.
 - **Como funciona:** Ele analisa textos brutos e desestruturados (como e-mails, artigos, chats ou posts de redes sociais) e extrai insights, conexões e padrões ocultos.
 - **Usecases**:
   - **Análise de Sentimento:** Resposta correta para cenários onde a empresa precisa classificar automaticamente se o texto de um cliente é **Positivo, Negativo, Neutro ou Misto** (ex: analisar o feedback de clientes no suporte).
