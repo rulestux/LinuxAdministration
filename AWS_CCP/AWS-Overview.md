@@ -316,25 +316,31 @@
 
 - **Tipos de instância**: os tipos de instância EC2 são otimizados para tarefas diferente:
 
-- `Uso geral`
+- *Uso geral*
 	- fornecem um equilíbrio de recursos de computação, memória e rede;
 	- usado em servidores web básicos, servidores de desenvolvimento e testes;
 
-- `Otimizada para computação`
+- *Otimizada para computação*
 	- são ideais para aplicações vinculadas à computação que se beneficiam de processadores de alta performance; foco em processamento;
 	- usado em servidores de jogos, codificação de vídeo, modelagem científica;
 
-- `Computação acelerada`
+- *Computação acelerada*
 	- usam aceleradores de hardware \(GPUs), ou coprocessadores, para executar algumas funções de forma mais eficiente do que é possível no software executado em CPUs; 
 	- usado em treinamento de Inteligência Artificial (LLMs), Machine Learning, gráficos 3D;
 
-- `Otimizada para memória`
+- *Otimizada para memória*
 	- são projetadas para fornecer rápida performance para cargas de trabalho que processam grandes conjuntos de dados na memória;
 	- usado em bancos de dados relacionais de alta performance, caches em memória \(ElastiCache);
 
-- `Otimizada para armazenamento`
+- *Otimizada para armazenamento*
 	- são projetadas para cargas de trabalho que exigem alto acesso sequencial de leitura e gravação a grandes conjuntos de dados no armazenamento local;
 	- usado em sistemas de Big Data, Data Warehousing, sistemas de arquivos distribuídos;
+
+### Amazon Lightsail
+- o Lightsail é uma solução de nuvem privada virtual \(**VPS**) simplificada que oferece tudo o que é necessário para criar um site ou aplicação Web, agrupando computação, armazenamento e rede em um único pacote;
+- ele elimina a complexidade de configuração da infraestrutura da AWS; em um único clique, fornece uma instância virtual configurada com um Sistema Operacional \(Linux ou Windows) e aplicações prontas de mercado;
+- funciona sob um modelo de **preço mensal fixo e previsível**, ideal para pequenas empresas, startups ou estudantes que precisam evitar surpresas no faturamento;
+- ideal para cenários em que é necessário implementar rapidamente plataformas comuns como **WordPress, Magento, Joomla, Drupal** ou pilhas de desenvolvimento como **LAMP** e **Node.js**;
 
 
 ## Storage Services
@@ -453,7 +459,7 @@
 - um volume EBS padrão só pode ser anexado a uma única instância EC2 por vez \(com raras exceções de volumes específicos chamados Multi-Attach, mas a regra geral de prova é 1 para 1) e eles devem estar na mesma Zona de Disponibilidade \(AZ) da instância; equivale a um DAS;
 
 - **tipos**:
-	- SSD \(Solid State Drives): focado em performance de IOPS (operações de leitura/escrita por segundo); ideal para Bancos de dados e volumes de boot do Sistema Operacional; tipos comuns: gp3, io2;
+	- SSD \(Solid State Drives): focado em performance de IOPS \(operações de leitura/escrita por segundo); ideal para Bancos de dados e volumes de boot do Sistema Operacional; tipos comuns: gp3, io2;
 	- HDD \(Hard Disk Drives): focado em throughput \(taxa de transferência de dados em MB/s); ideal para Big Data, Log-streaming e cargas de trabalho sequenciais de baixo custo onde a velocidade de IOPS não é crítica; tipos comuns: st1, sc1;
 
 ### EFS - Elastic File System
