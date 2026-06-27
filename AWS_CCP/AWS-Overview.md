@@ -724,8 +724,18 @@
 
 - ele substitui e expande o antigo serviço conhecido como *Amazon CloudWatch Events*;
 
+### Amazon ECS \(Elastic Container Service)
+- o ECS é um serviço de orquestração de **containers Docker** altamente escalável e de alto desempenho, proprietário da AWS.
+- ideal para cenários que buscam uma solução **simples e nativamente integrada** com os recursos de segurança (IAM) e rede da AWS, sem a complexidade de ferramentas open source.
+- **Modelos de Execução:** Pode rodar os containers gerenciando as próprias máquinas virtuais (*EC2*) ou delegando a computação de forma totalmente Serverless para o *AWS Fargate*.
+
+### Amazon EKS \(Elastic Kubernetes Service)
+- o EKS é um serviço totalmente gerenciado que facilita a execução do **Kubernetes** na AWS sem a necessidade de instalar e operar sua própria infraestrutura de controle do Kubernetes.
+- É o serviço definitivo para cenários de **nuvem híbrida ou portabilidade**, onde a empresa já usa Kubernetes no datacenter local (on-premises) e quer migrar para a nuvem mantendo as mesmas ferramentas e configurações.
+- **Flexibilidade:** Permite aproveitar todo o ecossistema open source global do Kubernetes e também suporta computação via EC2 ou Fargate.
+
 ### AWS Fargate
-- **O que é:** Um mecanismo de computação **Serverless** \(sem servidor) projetado especificamente para rodar containers através do *Amazon ECS* \(Elastic Container Service) ou *Amazon EKS* \(Elastic Kubernetes Service).
+- o Fargate é um mecanismo de computação **Serverless** \(sem servidor) projetado especificamente para rodar containers através do *Amazon ECS* \(Elastic Container Service) ou *Amazon EKS* \(Elastic Kubernetes Service).
 - **Usecases**: Permite executar containers na nuvem **sem a necessidade de provisionar, configurar ou gerenciar instâncias EC2** \(servidores virtuais) nos bastidores. A AWS cuida de toda a infraestrutura e do Sistema Operacional subjacente.
 - **Modelo de Custo:** Você paga única e exclusivamente pela quantidade de vCPU e memória RAM alocadas e consumidas ativamente pelo container enquanto ele estiver rodando.
 
