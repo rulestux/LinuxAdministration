@@ -831,6 +831,12 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 - o [CloudFront](https://aws.amazon.com/pt/cloudfront) é um serviço de rede de entrega de conteúdo (CDN) criado para alta performance, segurança e conveniência do desenvolvedor; funciona através da rede global de centenas de datacenters menores, as **Edge Locations**;
 - oferece proteção nativa contra ataques DDoS em conjunto com o AWS Shield;
 
+### AWS Global Accelerator
+- p Global Accelerator é um serviço de rede que otimiza a velocidade, a segurança e a disponibilidade do tráfego dos seus usuários globais em até 60%, utilizando a rede privada da AWS;
+- ele fornece **2 endereços IP estáticos globais** fixos \(usando Anycast) para a sua aplicação; o tráfego do usuário entra na *Edge Location* mais próxima e viaja até o backend inteiramente pela rede de fibra óptica privada e dedicada da AWS, evitando o congestionamento da internet pública.
+- ideal para cenários onde a aplicação precisa de um ponto de entrada fixo e imutável na internet, eliminando a dependência de atualizações de DNS.
+- diferente do *CloudFront*, o Global Accelerator **não realiza cache de conteúdo**; ele funciona estritamente como um otimizador de rotas de rede \(Camadas 3 e 4).
+
 ### Amazon Route53
 - o [Route53](https://aws.amazon.com/pt/route53) é um serviço DNS altamente disponível e escalável;
 
