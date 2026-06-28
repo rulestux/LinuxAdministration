@@ -243,9 +243,9 @@
 
 - **Regra de Suporte:** contas com suporte *Basic* ou *Developer* têm acesso a regras limitadas de segurança e limites de serviço; o acesso completo a todas as verificações exige suporte técnico nível *Business* ou *Enterprise*:
 
-	- Nível Gratuito (Basic/Developer Support): dá acesso limitado, cobrindo apenas verificações básicas de segurança (como portas abertas de Security Groups ou falta de MFA na conta raiz) e os limites de serviço;
+	- Nível Gratuito \(Basic/Developer Support): dá acesso limitado, cobrindo apenas verificações básicas de segurança \(como portas abertas de Security Groups ou falta de MFA na conta raiz) e os limites de serviço;
 
-	- Nível Completo (Business/Enterprise Support): desbloqueia o monitoramento completo com todas as centenas de regras automatizadas de infraestrutura em tempo real;
+	- Nível Completo \(Business/Enterprise Support): desbloqueia o monitoramento completo com todas as centenas de regras automatizadas de infraestrutura em tempo real;
 
 
 ## Frameworks de Adoção e Migração para Nuvem
@@ -456,7 +456,7 @@
 - permite habilitar encriptação \(Encryption at Rest);
 - usado em instâncias *EC2*;
 
-- um volume EBS padrão só pode ser anexado a uma única instância EC2 por vez \(com raras exceções de volumes específicos chamados Multi-Attach, mas a regra geral de prova é 1 para 1) e eles devem estar na mesma Zona de Disponibilidade \(AZ) da instância; equivale a um DAS;
+- um volume EBS padrão só pode ser anexado a uma única instância EC2 por vez \(com raras exceções de volumes específicos chamados Multi-Attach, mas a regra geral de prova é 1 para 1) e eles devem estar na mesma Zona de Disponibilidade \(AZ) da instância; **equivale a um DAS**;
 
 - **tipos**:
 	- SSD \(Solid State Drives): focado em performance de IOPS \(operações de leitura/escrita por segundo); ideal para Bancos de dados e volumes de boot do Sistema Operacional; tipos comuns: gp3, io2;
@@ -469,7 +469,7 @@
 - baixo custo;
 - usado para compartilhamento de arquivos entre instâncias *EC2* e entre essas e Data Centers On-Premises \(local) via *Direct Connect*;
 
-- pode ser montado e compartilhado por centenas de instâncias EC2 simultaneamente, inclusive distribuídas em múltiplas AZs; equivale a um NAS;
+- pode ser montado e compartilhado por centenas de instâncias EC2 simultaneamente, inclusive distribuídas em múltiplas AZs; **equivale a um NAS**;
 
 ### Storage Gateway
 - armazenamento híbrido \(objeto ou bloco; local ou em nuvem);
@@ -508,7 +508,7 @@
 ### Virtual Private Cloud \(VPC)
 - a [VPC](https://aws.amazon.com/pt/vpc) é uma Rede Privada isolada para os clientes da AWS, criada por padrão para cada conta AWS em cada Região, com configurações básicas e novas funcionalidades podem ser adicionadas;
 
-- **subnets** são criadas para cada AZ e podem ser configuradas para terem acesso público ou privado;
+- **subnets** são criadas para cada *AZ* e podem ser configuradas para terem acesso público ou privado;
 
 	- um VPC para cada Região e uma Subnet para cada AZ;
 
@@ -523,7 +523,7 @@
 - **Security Groups** 
 	- atuam como firewall virtual para as **Instâncias EC2** \(nível de host);
 	- **Stateful \(Com estado)**: se uma regra de entrada \(Inbound) for permitida, o tráfego de retorno na saída \(Outbound) é liberado automaticamente;
-	- Suporta apenas regras de **Permissão** \(Allow).
+	- Suporta apenas regras de **Permissão** \(Allow) \(tudo é DENY por padrão).
 
 - **Natwork Access Control List \(NACL)** controla o acesso a subnets;
 	- atua como um firewall de borda para as **Sub-redes** \(nível de subnet); camada adicional de segurança;
@@ -586,7 +586,7 @@
 	- configurável via AWS Console, CLI ou SDK;
 	- atualização patching automática, gerenciada pela AWS;
 	- recomandações de melhores práticas \(tamanho da instância, storage e rede);
-	- alta performance com discos GEneral Purpose SSD e Provisioned IOPS SSD;
+	- alta performance com discos General Purpose SSD e Provisioned IOPS SSD;
 	- alta escalabilidade \(Compute, Storage e **Read Replicas**);
 	- alta disponibilidade \(Backups Automáticos, Snapshots e **Multi-AZ Deployments**);
 	- Seguro com dados criptografados em storage e em trânsito;
@@ -594,16 +594,16 @@
 	- monitoramento \(Eeventos e Métricas);
 
 - **Read Replicas**:
-- recurso relacionado a *performance, desempenho e redução de latência*, consistindo em um Snapshot do DB atualizado de forma assíncrona \(**replicação assíncrona**) entre diferentes Zonas de Disponibilidade e Regiões, comportando-se como servidores adicionais de consulta \(somente leitura) que podem estar na mesma AZ, em outra AZ ou em outra Região.;
+	- recurso relacionado a *performance, desempenho e redução de latência*, consistindo em um Snapshot do DB atualizado de forma assíncrona \(**replicação assíncrona**) entre diferentes Zonas de Disponibilidade e Regiões, comportando-se como servidores adicionais de consulta \(somente leitura) que podem estar na mesma AZ, em outra AZ ou em outra Região;
 
 - **Multi-AZ Deployments**:
-- recurso relacionado a Disaster Ricover, mantendo réplicas constantemente sincronizadas \(**replicação síncrona**) em mais de uma Zona de Disponibilidade; o redirecionamento de acesso é automático, quando for necessário, apontando para uma segunda instância entre 60-120 segundos;
+	- recurso relacionado a Disaster Recover, mantendo réplicas constantemente sincronizadas \(**replicação síncrona**) em mais de uma Zona de Disponibilidade; o redirecionamento de acesso é automático, quando for necessário, apontando para uma segunda instância entre 60-120 segundos;
 
 - **caso de uso**: por que uma empresa escolheria o RDS em vez de instalar o MySQL dentro de uma instância EC2?
 
 	- se escolher EC2: o cliente é responsável por patches do S.O., backups manuais, configurar cluster de alta disponibilidade e escaneamento do disco local \(Nível do S.O. para cima);
 
-	-s e escolher RDS \(Gerenciado): a AWS cuida do provisionamento do hardware, aplicação de patches do S.O. e do motor do banco, além de backups automatizados; o cliente não tem acesso ao sistema operacional \(SSH) em uma instância RDS tradicional;
+	- se escolher RDS \(Gerenciado): a AWS cuida do provisionamento do hardware, aplicação de patches do S.O. e do motor do banco, além de backups automatizados; o cliente não tem acesso ao sistema operacional \(SSH) em uma instância RDS tradicional;
 
 ### Amazon Aurora
 - o [Aurora](https://aws.amazon.com/pt/rds/aurora) é um banco de dados relacional desenvolvido e gerenciado pela AWS, compatível com MySQL e PostgreSQL; o Aurora é até cinco vezes mais rápido que bancos de dados MySQL padrão e três vezes mais rápido que bancos de dados PostgreSQL padrão;
@@ -613,54 +613,63 @@
 	- tolerante a falhas e com recuperação automática;
 	- replica os dados de forma síncrona em 3 Zonas de Disponibilidade, mas armazena 2 cópias dos dados em cada AZ, totalizando 6 cópias dos seus dados;
 
+- **Amazon Aurora Serverless** é uma versão sem servidor que se desativa automaticamente após 5 minutos de inatividade;
+
 ### Amazon Redshift
 - o [Redshift](https://aws.amazon.com/pt/redshift) é um banco de dados colunar \(column-oriented) da AWS, de alta escalabilidade, baixa latência, processamento massivo e paralelo, e armazenamento em escala, para o processamento de dados; simples de usar, custo efetivo para utilização em **Data Warehouse** e **Data Lakes**;
 
 - características:
 	- fácil implementação e configuração;
 	- Pay As You Go;
-	- Escalabilidade em Petabytes e leituras no S3 em Exabytes;
-	- Integra-se com ferramentas de terceiros;
+	- escalabilidade em Petabytes e leituras no S3 em Exabytes;
+	- integra-se com ferramentas de terceiros;
 
 ### Amazon Neptune
 - o [Neptune](https://aws.amazon.com/pt/neptune) é um serviço de banco de dados gráfico rápido \(baseado em grafos), confiável e totalmente gerenciado que facilita a criação e a execução de aplicativos; 
 
-- usado em Redes sociais \(mapear conexões de amigos), motores de recomendação ou sistemas de detecção de fraude financeira \(rastrear caminhos de transações);
+- usado em Redes Sociais \(mapear conexões de amigos), motores de recomendação ou sistemas de detecção de fraude financeira \(rastrear caminhos de transações);
 
 ### Database Migration Service - DMS
 - o [DMS](https://aws.amazon.com/pt/dms) é um serviço que permite migrar bancos de dados relacionais, bancos de dados não relacionais e outros tipos de armazenamentos de dados; o banco de dados de origem permanece totalmente operacional durante a migração, minimizando o tempo de inatividade de aplicações que dependem do banco de dados;
 
 ### Amazon ElastiCache
 - o [ElastiCache](https://aws.amazon.com/pt/elasticache/) é um serviço de armazenamento de dados **em memória \(In-memory cache)** totalmente gerenciado, compatível com Redis e Memcached;
-- usado para **melhorar a latência e o desempenho de leitura** de aplicações, aliviando a carga de bancos de dados relacionais (RDS) ao armazenar em cache os resultados das consultas mais frequentes na memória RAM;
+- usado para **melhorar a latência e o desempenho de leitura** de aplicações, aliviando a carga de bancos de dados relacionais \(RDS) ao armazenar em cache os resultados das consultas mais frequentes na memória RAM;
 
 ### Amazon Athena
 - o Athena é um serviço de consulta interativo e **Serverless** \(sem servidor) que permite analisar dados diretamente no Amazon S3 usando **SQL padrão**;
 - você aponta o Athena para o seu bucket do S3 onde estão armazenados os arquivos \(como CSV, JSON, Apache Parquet ou logs), escreve uma consulta SQL comum e ele exibe o resultado em segundos;
+
 - **Usecases**:
 	- cenários onde a equipe de TI precisa analisar e filtrar grandes volumes de logs de segurança \(como logs do **CloudTrail** ou **VPC Flow Logs**) armazenados no S3;
 	- extrair informações de arquivos de dados sem a necessidade de criar, gerenciar ou pagar por um banco de dados relacional \(RDS) ou data warehouse \(Redshift);
+
 - você não paga pelo serviço parado; a cobrança é feita exclusivamente **por terabyte de dados escaneados** durante a execução das suas consultas SQL;
 
 ### Amazon QuickSight
 - o QuickSight é um serviço de **Business Intelligence (BI)** totalmente gerenciado, rápido e em escala de nuvem \(é o "Power BI / Tableau" da AWS);
 - ele se conecta a diversas fontes de dados da AWS \(como Amazon S3, Athena, RDS, Redshift) ou locais \(arquivos Excel, bancos de dados on-premises) para extrair informações e transformá-las em recursos visuais;
+
 - **Usecases**:
 	- **Dashboards e Relatórios:** cenários em que a empresa precisa criar **painéis interativos e gráficos visuais** para que executivos e equipes de negócios analisem dados e tomem decisões estratégicas;
 	- **QuickSight Q**: recurso baseado em Machine Learning que permite aos usuários fazer perguntas complexas sobre os dados usando **linguagem natural** \(frases comuns) e receber respostas visuais imediatas;
+
 - **Vantagem Arquitetural**: totalmente **Serverless** e de fácil compartilhamento, permitindo embutir os gráficos criados dentro de portais ou aplicativos da própria empresa;
 
 ### Amazon OpenSearch Service
 - o OpenSearch é um serviço gerenciado que facilita a implantação, operação e escalabilidade de ferramentas de **busca de texto, análise de logs e monitoramento de infraestrutura em tempo real** \(Sucessor do *Amazon Elasticsearch Service*);
 - ele ingere dados estruturados e não-estruturados em altíssima velocidade, indexa esses dados e permite que você realize pesquisas complexas quase instantaneamente;
+
 - **Usecases**:
 	- para cenários onde um aplicativo precisa de uma barra de ferramentas para **pesquisa de texto avançada e rápida** \(ex: busca em catálogo de produtos);
 	- **Análise de Logs em Tempo Real**: para equipes de segurança e infraestrutura que precisam analisar logs operacionais de servidores e redes continuamente para identificar falhas ou ataques no exato momento em que acontecem;
+
 - **Visualização Integrada**: inclui o *OpenSearch Dashboards* \(evolução do Kibana), permitindo criar gráficos e painéis interativos para monitorar a saúde dos sistemas em tempo real;
 
 ### Amazon CloudSearch
 - o CloudSearch um serviço totalmente gerenciado na nuvem da AWS que facilita a configuração, o gerenciamento e a escalabilidade de um **mecanismo de busca personalizado** para sites ou aplicativos;
 - **Recursos Nativos**: suporta funcionalidades clássicas de barras de pesquisa, como realce de sintaxe \(*highlighting*), preenchimento automático \(*autocomplete*), busca facetada \(filtros por categoria) e correções tipográficas;
+
 - **Usecases**:
 	- para cenários que exigem a implantação de uma **solução de busca simples, rápida e com o menor esforço operacional possível**, sem que o desenvolvedor precise entender de administração de clusters ou servidores de busca complexos;
 
@@ -695,12 +704,23 @@
 
 - *Application Load Balancing \(ALB)*: distribui o tráfego através da camada 7 \(protocolos de aplicação), com roteamento inteligente baseado no conteúdo da requisição HTTP/HTTPS através de instâncias EC2, contêineres e lambdas;
 
-- *Network Load Balancing \(NLB)*: distribui o tráfego pela camada 4 \(TCP/UDP) através de instâncias EC2 e contêineres; ultra-alta performance, latência extremamente baixa e capacidade de lidar com milhões de requisições por segundo;
+- *Network Load Balancing \(NLB)*: distribui o tráfego pela camada 4 \(Transporte - TCP/UDP) através de instâncias EC2 e contêineres; ultra-alta performance, latência extremamente baixa e capacidade de lidar com milhões de requisições por segundo;
 
-- *Gateway Load Balancer \(GWLB)*: opera na Camada 3 (Rede) e é usado especificamente para implantar, dimensionar e gerenciar appliances virtuais de terceiros \(como Firewalls de rede de fornecedores como Palo Alto, CheckPoint, ou sistemas de detecção de intrusão - IDS/IPS); *caso de uso*: inserir um appliance de firewall de terceiros ou inspeção profunda de pacotes antes do tráfego chegar à aplicação;
+- *Gateway Load Balancer \(GWLB)*: opera na Camada 3 \(Rede - IP) e é usado especificamente para implantar, dimensionar e gerenciar appliances virtuais de terceiros \(como Firewalls de rede de fornecedores como Palo Alto, CheckPoint, ou sistemas de detecção de intrusão - IDS/IPS); *caso de uso*: inserir um appliance de firewall de terceiros ou inspeção profunda de pacotes antes do tráfego chegar à aplicação;
 
 ### Auto Scaling
 - o [Auto Scaling](https://aws.amazon.com/pt/autoscaling) é um serviço que monitora os aplicativos e ajusta automaticamente a capacidade para manter um desempenho constante e previsível pelo menor custo possível, em instâncias pré-configuradas, usando tráfego ou processamento \(CPU) como critério de gatilho;
+
+- tipos de escalonamento:
+	- manual;
+	- dinâmico, baseado em alarmes do CloudWatch:
+		- target tracking:
+			- rótulo de capacidade média ou mínima como gatilho;
+		- simple scaling:
+			- cooldown: tempo de espera para executar após o gatilho;
+	- predictive scaling: com Machine Learning para prever o tráfego;
+	- scheduled scaling: com agendamento de escalonamento;
+		
 
 ### AWS Elastic Beanstalk
 - o [Elastic Beanstalk](https://aws.amazon.com/pt/elasticBeanstalk) é um serviço que permite a implantação de aplicações apenas fornecendo o código-fonte, sem conhecimento ou definição prévia da infraestrutura; trata-se de um serviço **PaaS - Platform as a Service**;
@@ -710,7 +730,7 @@
 - *caso de uso*: um desenvolvedor quer implantar uma aplicação web rapidamente na AWS, não quer se preocupar com o provisionamento da infraestrutura subjacente, mas deseja manter o controle total sobre os recursos caso precise ajustar o sistema operacional ou o servidor web mais tarde;
 
 - suporta aplicações em Go, Java, .NET, PHP, Python e Ruby;
-- monitoração com CloudWatch e X-Ray;
+- monitoramento com CloudWatch e X-Ray;
 - escalabilidade automática;
 - recursos personalizados;
 
@@ -719,15 +739,15 @@
 - ele recebe eventos de fontes emissoras \(serviços AWS, aplicações próprias ou sistemas SaaS de terceiros) e aplica **Regras (Rules)** para rotear esses dados para alvos específicos \(como AWS Lambda, SQS, SNS ou instâncias EC2).
 
 - **Usecases**:
-	- **Ações Agendadas (Cron na Nuvem):** permite programar a execução de tarefas automáticas em horários ou intervalos de tempo fixos \(ex: disparar um script Lambda de limpeza de logs toda madrugada);
+	- **Ações Agendadas \(Cron na Nuvem):** permite programar a execução de tarefas automáticas em horários ou intervalos de tempo fixos \(ex: disparar um script Lambda de limpeza de logs toda madrugada);
 	- **Reação a Eventos de Infraestrutura:** monitora mudanças de estado de recursos AWS em tempo real \(ex: disparar um alerta se uma instância EC2 parar inesperadamente);
 
 - ele substitui e expande o antigo serviço conhecido como *Amazon CloudWatch Events*;
 
 ### Amazon ECS \(Elastic Container Service)
-- o ECS é um serviço de orquestração de **containers Docker** altamente escalável e de alto desempenho, proprietário da AWS.
-- ideal para cenários que buscam uma solução **simples e nativamente integrada** com os recursos de segurança (IAM) e rede da AWS, sem a complexidade de ferramentas open source.
-- **Modelos de Execução:** Pode rodar os containers gerenciando as próprias máquinas virtuais (*EC2*) ou delegando a computação de forma totalmente Serverless para o *AWS Fargate*.
+- o ECS é um serviço de orquestração de **containers Docker** altamente escalável e de alto desempenho, proprietário da AWS;
+- ideal para cenários que buscam uma solução **simples e nativamente integrada** com os recursos de segurança \(IAM) e rede da AWS, sem a complexidade de ferramentas open source;
+- **Modelos de Execução:** Pode rodar os containers gerenciando as próprias máquinas virtuais (*EC2*) ou delegando a computação de forma totalmente Serverless para o *AWS Fargate*;
 
 ### Amazon EKS \(Elastic Kubernetes Service)
 - o EKS é um serviço totalmente gerenciado que facilita a execução do **Kubernetes** na AWS sem a necessidade de instalar e operar sua própria infraestrutura de controle do Kubernetes.
@@ -740,7 +760,7 @@
 - **Modelo de Custo:** Você paga única e exclusivamente pela quantidade de vCPU e memória RAM alocadas e consumidas ativamente pelo container enquanto ele estiver rodando.
 
 ### AWS Batch
-- **O que é:** Um serviço de computação focado no planeamento, agendamento e execução automática de cargas de trabalho de **processamento em lote (Batch Processing)** em qualquer escala.
+- **O que é:** Um serviço de computação focado no planejamento, agendamento e execução automática de cargas de trabalho de **processamento em lote (Batch Processing)** em qualquer escala.
 - **Usecases**: para cenários que exigem a execução de milhares de tarefas computacionais pesadas de forma sequencial ou paralela \(ex: análise massiva de dados financeiros, renderização de imagens, simulações científicas ou conversão em lote de ficheiros). 
 - **Otimização de Custos:** Ele provisiona dinamicamente os recursos de computação necessários \(instâncias EC2 padrão ou Spot) com base no volume da fila de tarefas e desliga as máquinas automaticamente assim que o processamento termina.
 
@@ -757,10 +777,10 @@
 
 - as configurações ficam salvas em histórico, de forma a permitir recuperação dessas configurações após alguma alteração;
 
-- enquanto o CloudTrail registra oum evento de alteração \(ex: "o usuário X rodou o comando para alterar o Security Group"), o AWS Config registra o impacto físico daquela alteração no recurso ao longo do tempo \(ex: "o Security Group X mudou do estado 'Seguro' para o estado 'Inseguro' porque a porta 22 foi aberta para o mundo"); o Config permite ver uma linha do tempo de alterações de hardware e regras;
+- enquanto o CloudTrail registra um evento de alteração \(ex: "o usuário X rodou o comando para alterar o Security Group"), o AWS Config registra o impacto físico daquela alteração no recurso ao longo do tempo \(ex: "o Security Group X mudou do estado 'Seguro' para o estado 'Inseguro' porque a porta 22 foi aberta para o mundo"); o Config permite ver uma linha do tempo de alterações de hardware e regras;
 
 ### AWS CloudWatch
-- o [CloudWatch](https://aws.amazon.com/pt/cloudwatch) é um serviço de monitoramento de recursos integrado da AWS que permite coleta, monitoração, análise e ação sobre os comportamentos dos recursos da AWS; ele coleta dados de monitoramento e operações na forma de logs, métricas e eventos, visando a "saúde" e a performance das aplicações hospedadas;
+- o [CloudWatch](https://aws.amazon.com/pt/cloudwatch) é um serviço de monitoramento de recursos integrado da AWS que permite coleta, monitoramento, análise e ação sobre os comportamentos dos recursos da AWS; ele coleta dados de monitoramento e operações na forma de logs, métricas e eventos, visando a "saúde" e a performance das aplicações hospedadas;
 
 ### AWS X-Ray
 - o X-Ray é um serviço que facilita a análise de *comportamento* e *rastreamento* completo de Aplicações Distribuídas \(em microsserviços);
@@ -781,13 +801,15 @@
 	- suporta formato JSON ou YAML;
 	- o arquivo de texto \(JSON/YAML) é o Template \(gabarito), e quando a AWS lê esse template e provisiona os recursos reais na nuvem, o conjunto desses recursos gerados é chamado de Stack \(Pilha);
 
+- o CloudFormation equivale ao Terraform;
+
 
 ## App Integration
 
 ### Amazon Simple Notification Service - SNS
 - o [SNS](https://aws.amazon.com/pt/sns) é um serviço de notificação totalmente gerenciado, altamente disponível, seguro e durável, que permite o desacoplamento de microsserviços, sistemas distribuídos e aplicativos sem servidor;
 
-- Funcionamento no Modelo Push/Pub-Sub: funciona no estilo Publish/Subscribe \(Publicador/Assinante); um serviço publica uma mensagem em um Tópico e o SNS empurra \(push) essa mesma mensagem instantaneamente para múltiplos assinantes de uma vez \(como funções Lambda, filas SQS, URLs HTTP ou e-mails); é uma comunicação de um para muitos.
+- funcionamento no Modelo Push/Pub-Sub: funciona no estilo Publish/Subscribe \(Publicador/Assinante); um serviço publica uma mensagem em um Tópico e o SNS empurra \(push) essa mesma mensagem instantaneamente para múltiplos assinantes de uma vez \(como funções Lambda, filas SQS, URLs HTTP ou e-mails); é uma comunicação de um para muitos.
 
 - use SNS se precisar enviar notificações operacionais automatizadas rápidas ou alertas de infraestrutura \(ex: acoplado a um alarme do CloudWatch);
 
@@ -798,8 +820,7 @@
 	- configuração de privacidade de mensagens;
 
 ### Amazon Simple Queue Service - SQS
-- o [SQS](https://aws.amazon.com/pt/sqs) é um serviço de filas de mensagens \(mensageria) gerenciado que permite o desacoplamento e a
-escalabilidade de microsserviços, sistemas distribuídos e aplicações sem servidor;
+- o [SQS](https://aws.amazon.com/pt/sqs) é um serviço de filas de mensagens \(mensageria) gerenciado que permite o desacoplamento e a escalabilidade de microsserviços, sistemas distribuídos e aplicações sem servidor;
 
 - Funcionamento no Modelo Pull/Fila: funciona no estilo baseado em Fila \(Queue); um serviço envia a mensagem para a fila e ela fica lá guardada; o componente receptor precisa ir até a fila e puxar \(pull/polling) a mensagem para processá-la; é uma comunicação de um para um \(uma mensagem na fila geralmente é processada por apenas um consumidor por vez);
 
@@ -835,10 +856,10 @@ escalabilidade de microsserviços, sistemas distribuídos e aplicações sem ser
 - **Escala:** Totalmente Serverless. Escala de forma automática de centenas a milhões de chamadas de API simultâneas com baixa latência.
 
 ### AWS Step Functions
-- o  Step Functions é um orquestrador visual de fluxos de trabalho (workflows) baseado em **máquinas de estados** que facilita a coordenação de múltiplos serviços da AWS.
+- o  Step Functions é um orquestrador visual de fluxos de trabalho \(workflows) baseado em **máquinas de estados** que facilita a coordenação de múltiplos serviços da AWS.
 - **Usecases:**
-	- É utilizado para sequenciar e conectar várias funções **AWS Lambda** e outros serviços em passos lógicos e estruturados em aplicações distribuídas (microsserviços).
-	- Ideal para fluxos complexos de negócios que exigem tomada de decisão ou tratamento de erros (ex: Processo de e-commerce: Passo 1 -> Validar pagamento. Se aprovado, vai para o Passo 2 -> Emitir Fatura; se falhar, vai para o Passo 3 -> Enviar e-mail de alerta).
+	- É utilizado para sequenciar e conectar várias funções **AWS Lambda** e outros serviços em passos lógicos e estruturados em aplicações distribuídas \(microsserviços).
+	- Ideal para fluxos complexos de negócios que exigem tomada de decisão ou tratamento de erros \(ex: Processo de e-commerce: Passo 1 -> Validar pagamento. Se aprovado, vai para o Passo 2 -> Emitir Fatura; se falhar, vai para o Passo 3 -> Enviar e-mail de alerta).
 
 
 ## Network Services
