@@ -93,7 +93,7 @@
   4. **Disponibilidade de Serviços:** verificar se o serviço desejado já está homologado naquela região;
 
 ## Zonas de Disponibilidades \(Availability Zone - AZ)
-- consiste em **um ou mais datacenters discretos** que a AWS tem, com energia, refrigeração e segurança física redundantes dentro de uma mesma Região, para prover serviços e produtos, ; no mínimo, são duas zonas de disponibilidade por região, a fim de proporcionar **alta disponibilidade**, **tolerância a falhas**, *desempenho*, *disaster recovery* e **escalabilidade**.
+- consiste em **um ou mais datacenters discretos** que a AWS tem, com energia, refrigeração e segurança física redundantes dentro de uma mesma Região, para prover serviços e produtos; no mínimo, são três zonas de disponibilidade por região, a fim de proporcionar **alta disponibilidade**, **tolerância a falhas**, *desempenho*, *disaster recovery* e **escalabilidade**.
 
 - por padrão, cada Região possui no mínimo 3 AZs, focando em resiliência tripla, com raras exceções históricas com 2;
 
@@ -300,7 +300,7 @@
 
 	- *Reserved Instance*:
 		- reservada por 1 ou 3 anos, com até 72% de desconto, com pagamento à vista ou entrada mais restante mensal;
-		- ideal para **cargas de trabalho previsíveis** e de estado estacionário (steady-state) que rodam continuamente;
+		- ideal para **cargas de trabalho previsíveis** e de estado estacionário \(steady-state) que rodam continuamente;
 
 	- *Savings Plans*:
 		- oferece os mesmos descontos das RIs \(até 72%), mas o cliente se compromete com um **valor de consumo por hora** \(ex: \$10/hora) por 1 ou 3 anos;
@@ -312,7 +312,7 @@
 
 	- *Dedicated Hosts*:
 		- servidor físico totalmente dedicado pago por hora; descontos de até 70%;
-		- dá controle total sobre os sockets e cores físicos; usado estritamente por motivos de **conformidade regulatória rígida** ou para reaproveitar licenças de software corporativas existentes vinculadas ao hardware (modelo **BYOL - Bring Your Own License**);
+		- dá controle total sobre os sockets e cores físicos; usado estritamente por motivos de **conformidade regulatória rígida** ou para reaproveitar licenças de software corporativas existentes vinculadas ao hardware \(modelo **BYOL - Bring Your Own License**);
 
 - **Tipos de instância**: os tipos de instância EC2 são otimizados para tarefas diferente:
 
@@ -337,7 +337,7 @@
 	- usado em sistemas de Big Data, Data Warehousing, sistemas de arquivos distribuídos;
 
 ### Amazon Lightsail
-- o Lightsail é uma solução de nuvem privada virtual \(**VPS**) simplificada que oferece tudo o que é necessário para criar um site ou aplicação Web, agrupando computação, armazenamento e rede em um único pacote;
+- o Lightsail é uma solução de servidor privado virtual \(**VPS**) simplificado que oferece tudo o que é necessário para criar um site ou aplicação Web, agrupando computação, armazenamento e rede em um único pacote;
 - ele elimina a complexidade de configuração da infraestrutura da AWS; em um único clique, fornece uma instância virtual configurada com um Sistema Operacional \(Linux ou Windows) e aplicações prontas de mercado;
 - funciona sob um modelo de **preço mensal fixo e previsível**, ideal para pequenas empresas, startups ou estudantes que precisam evitar surpresas no faturamento;
 - ideal para cenários em que é necessário implementar rapidamente plataformas comuns como **WordPress, Magento, Joomla, Drupal** ou pilhas de desenvolvimento como **LAMP** e **Node.js**;
@@ -363,9 +363,7 @@
 
 - ideal para objetos estáticos, sites e outros;
 
-- provê **interface web** \(console);
-
-- **acesso CLI e SDK**;
+- provê **interface web** \(console), **acesso CLI e SDK**;
 
 - **conceitos importantes**:
 
@@ -417,7 +415,7 @@
 
 	- classe **Intelligent-Tiering**:
 		- move automaticamente os objetos não usados para *infrequent access*;
-		- acesso imediato, quando o objeto tiver em *infrequent access* ele é movido imediatamente para *standard*;
+		- acesso imediato, quando o objeto estiver em *infrequent access* ele é movido imediatamente para *standard*;
 		- possui custo para a automação;
 		- não cobra taxa de recuperação \(diferente das classes IA);
 		- ideal para objetos cuja frequência de utilização não esteja clara;
@@ -510,7 +508,7 @@
 
 - **subnets** são criadas para cada *AZ* e podem ser configuradas para terem acesso público ou privado;
 
-	- um VPC para cada Região e uma Subnet para cada AZ;
+	- uma VPC para cada Região e uma Subnet para cada AZ;
 
 - **Route Tables** conjunto de regras \(rotas) que determinam para onde o tráfego de rede das sub-redes ou gateways deve ser direcionado; controlam o tráfego das subnets;
 
@@ -760,7 +758,7 @@
 - **Modelo de Custo:** Você paga única e exclusivamente pela quantidade de vCPU e memória RAM alocadas e consumidas ativamente pelo container enquanto ele estiver rodando.
 
 ### AWS Batch
-- **O que é:** Um serviço de computação focado no planejamento, agendamento e execução automática de cargas de trabalho de **processamento em lote (Batch Processing)** em qualquer escala.
+- **O que é:** Um serviço de computação focado no planejamento, agendamento e execução automática de cargas de trabalho de **processamento em lote \(Batch Processing)** em qualquer escala.
 - **Usecases**: para cenários que exigem a execução de milhares de tarefas computacionais pesadas de forma sequencial ou paralela \(ex: análise massiva de dados financeiros, renderização de imagens, simulações científicas ou conversão em lote de ficheiros). 
 - **Otimização de Custos:** Ele provisiona dinamicamente os recursos de computação necessários \(instâncias EC2 padrão ou Spot) com base no volume da fila de tarefas e desliga as máquinas automaticamente assim que o processamento termina.
 
